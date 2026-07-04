@@ -1,5 +1,5 @@
 import { Link, useNavigate } from '@tanstack/react-router'
-import { LayoutDashboard, LogIn, LogOut, Music2 } from 'lucide-react'
+import { LayoutDashboard, LogIn, LogOut } from 'lucide-react'
 import { useMemo } from 'react'
 
 import { useAuth } from './auth-provider'
@@ -48,7 +48,7 @@ export function SiteHeader() {
     <header className="site-header">
       <Link to="/" className="brand" aria-label="SAIMA home">
         <span className="brand-mark">
-          <Music2 size={20} aria-hidden="true" />
+          <img src="/logo.jpg" alt="" aria-hidden="true" />
         </span>
         <span>
           <strong>SAIMA</strong>

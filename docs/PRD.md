@@ -116,10 +116,12 @@ Requirements:
 ### Course Availability
 
 Requirements:
-- Members can publish course or lesson slots.
-- Slots include title, start time, end time, location, capacity, and status.
-- Public users can browse available slots.
-- Only signed-in users can book slots.
+- Members can publish courses with title, summary, instrument/focus, level, and location.
+- Members can manage only courses they created.
+- Members can create availability for a course as 30 minute slots.
+- Public users can browse published courses and available slots from the database.
+- Only signed-in visitors can book an available slot.
+- The system must atomically reserve a slot so it cannot be double-booked.
 
 ### Bookings
 
@@ -149,12 +151,14 @@ Core entities:
 - `profiles`
 - `events`
 - `membership_applications`
-- `availability_slots`
+- `courses`
+- `course_slots`
 - `bookings`
 
 Core enums:
 - Roles: `visitor`, `member`, `admin`
 - Application status: `pending`, `approved`, `rejected`, `needs_info`
+- Course status: `draft`, `published`, `archived`
 - Slot status: `available`, `booked`, `cancelled`
 - Booking status: `confirmed`, `cancelled`, `completed`
 

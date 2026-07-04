@@ -2,7 +2,8 @@ create extension if not exists "pgcrypto";
 
 create type public.app_role as enum ('visitor', 'member', 'admin');
 create type public.application_status as enum ('pending', 'approved', 'rejected', 'needs_info');
-create type public.slot_status as enum ('available', 'booked', 'cancelled');
+create type public.course_status as enum ('draft', 'published', 'archived');
+create type public.slot_status as enum ('available', 'booked');
 create type public.booking_status as enum ('confirmed', 'cancelled', 'completed');
 
 create table public.profiles (
@@ -48,22 +49,41 @@ create table public.membership_applications (
   decided_at timestamptz
 );
 
-create table public.availability_slots (
+create table public.courses (
   id uuid primary key default gen_random_uuid(),
   member_id uuid not null references public.profiles(id) on delete cascade,
   title text not null,
+  summary text not null,
+  instrument text not null,
+  level text not null default 'All levels',
+  location text not null,
+  status public.course_status not null default 'published',
+  cover_image_key text,
+  cover_image_url text,
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now()
+);
+
+create table public.course_slots (
+  id uuid primary key default gen_random_uuid(),
+  course_id uuid not null references public.courses(id) on delete cascade,
+  member_id uuid not null references public.profiles(id) on delete cascade,
   starts_at timestamptz not null,
   ends_at timestamptz not null,
-  location text not null,
-  capacity integer not null default 1 check (capacity > 0),
   status public.slot_status not null default 'available',
   created_at timestamptz not null default now(),
-  constraint availability_time_order check (ends_at > starts_at)
+  constraint course_slot_duration check (ends_at = starts_at + interval '30 minutes'),
+  constraint course_slot_half_hour_start check (
+    extract(minute from starts_at)::int in (0, 30)
+    and extract(second from starts_at)::int = 0
+  ),
+  unique (course_id, starts_at)
 );
 
 create table public.bookings (
   id uuid primary key default gen_random_uuid(),
-  slot_id uuid not null references public.availability_slots(id) on delete cascade,
+  course_id uuid not null references public.courses(id) on delete cascade,
+  slot_id uuid not null references public.course_slots(id) on delete cascade,
   visitor_id uuid not null references public.profiles(id) on delete cascade,
   status public.booking_status not null default 'confirmed',
   created_at timestamptz not null default now(),
@@ -146,8 +166,14 @@ set
 create index membership_applications_user_id_idx
 on public.membership_applications (user_id);
 
-create index availability_slots_status_starts_at_idx
-on public.availability_slots (status, starts_at);
+create index courses_member_status_idx
+on public.courses (member_id, status);
+
+create index course_slots_course_status_starts_at_idx
+on public.course_slots (course_id, status, starts_at);
+
+create index course_slots_member_status_starts_at_idx
+on public.course_slots (member_id, status, starts_at);
 
 create index bookings_visitor_id_created_at_idx
 on public.bookings (visitor_id, created_at desc);
@@ -155,18 +181,65 @@ on public.bookings (visitor_id, created_at desc);
 create index bookings_slot_id_idx
 on public.bookings (slot_id);
 
+create index bookings_course_id_created_at_idx
+on public.bookings (course_id, created_at desc);
+
+create or replace function public.book_course_slot(p_slot_id uuid, p_visitor_id uuid)
+returns public.bookings
+language plpgsql
+security definer set search_path = public
+as $$
+declare
+  target_slot public.course_slots%rowtype;
+  created_booking public.bookings%rowtype;
+begin
+  select *
+  into target_slot
+  from public.course_slots
+  where id = p_slot_id
+  for update;
+
+  if not found then
+    raise exception 'Slot not found' using errcode = 'P0002';
+  end if;
+
+  if target_slot.status <> 'available' then
+    raise exception 'This slot is no longer available.' using errcode = '23505';
+  end if;
+
+  if target_slot.member_id = p_visitor_id then
+    raise exception 'Members cannot book their own course slots.' using errcode = '42501';
+  end if;
+
+  insert into public.bookings (course_id, slot_id, visitor_id, status)
+  values (target_slot.course_id, target_slot.id, p_visitor_id, 'confirmed')
+  returning * into created_booking;
+
+  update public.course_slots
+  set status = 'booked'
+  where id = target_slot.id;
+
+  return created_booking;
+end;
+$$;
+
 alter table public.profiles enable row level security;
 alter table public.events enable row level security;
 alter table public.membership_applications enable row level security;
-alter table public.availability_slots enable row level security;
+alter table public.courses enable row level security;
+alter table public.course_slots enable row level security;
 alter table public.bookings enable row level security;
 
 create policy "public can read published events"
 on public.events for select
 using (is_published = true);
 
-create policy "public can read available slots"
-on public.availability_slots for select
+create policy "public can read published courses"
+on public.courses for select
+using (status = 'published');
+
+create policy "public can read available course slots"
+on public.course_slots for select
 using (status = 'available');
 
 create policy "users can read own profile"
@@ -177,7 +250,3 @@ create policy "users can update own profile"
 on public.profiles for update
 using (auth.uid() = id)
 with check (auth.uid() = id);
-
-insert into public.events (title, summary, starts_at, location, is_published) values
-  ('SAIMA Winter Showcase', 'An evening of chamber music, contemporary works, and community performances.', now() + interval '14 days', 'Adelaide Town Hall', true),
-  ('International Musicians Welcome Session', 'Meet SAIMA members, learn about membership, and discuss collaboration opportunities.', now() + interval '30 days', 'Adelaide CBD', true);

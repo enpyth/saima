@@ -4,7 +4,9 @@ export type Role = (typeof roles)[number]
 
 export type ApplicationStatus = 'pending' | 'approved' | 'rejected' | 'needs_info'
 
-export type SlotStatus = 'available' | 'booked' | 'cancelled'
+export type CourseStatus = 'draft' | 'published' | 'archived'
+
+export type SlotStatus = 'available' | 'booked'
 
 export type BookingStatus = 'confirmed' | 'cancelled' | 'completed'
 
@@ -47,19 +49,33 @@ export type MembershipApplication = {
   createdAt: string
 }
 
-export type AvailabilitySlot = {
+export type Course = {
   id: string
   memberId: string
   title: string
+  summary: string
+  instrument: string
+  level: string
+  location: string
+  status: CourseStatus
+  coverImageKey?: string | null
+  coverImageUrl?: string | null
+  createdAt: string
+  updatedAt: string
+}
+
+export type CourseSlot = {
+  id: string
+  courseId: string
+  memberId: string
   startsAt: string
   endsAt: string
-  location: string
-  capacity: number
   status: SlotStatus
 }
 
 export type Booking = {
   id: string
+  courseId: string
   slotId: string
   visitorId: string
   status: BookingStatus
