@@ -1,8 +1,11 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { useEffect, useState } from 'react'
+import { ArrowDown, LayoutDashboard, Search } from 'lucide-react'
 
+import { Button } from '../components/ui/button'
 import { CourseSlotBoard } from '../components/course-slot-board'
 import { useAuth } from '../components/auth-provider'
+import { siteImages } from '../lib/content'
 import { api } from '../lib/orpc'
 import { getSlotsByIds, toDateKey } from '../lib/slot-board'
 
@@ -85,16 +88,41 @@ function Courses() {
   }
 
   return (
-    <main>
-      <section className="page-hero">
+    <main className="public-page">
+      <section className="courses-hero">
+        <div>
         <span className="eyebrow">Courses</span>
-        <h2>Book member-led music sessions in half-hour slots.</h2>
+        <h1>
+          Refine your art with <span>global maestros.</span>
+        </h1>
         <p>
           Browse published courses from SAIMA members. Sign in to reserve an available time and
           manage your booking history from the visitor dashboard.
         </p>
+        <div className="actions">
+          <Button asChild>
+            <a href="#browse-courses">
+              Browse courses <ArrowDown size={16} />
+            </a>
+          </Button>
+          <Button asChild variant="outline">
+            <a href="/dashboard">
+              Dashboard <LayoutDashboard size={16} />
+            </a>
+          </Button>
+        </div>
+        </div>
+        <img src={siteImages.mandateLesson} alt="Member-led music lesson" />
       </section>
-      <section className="section">
+
+      <section className="course-filter-strip" aria-label="Course search preview">
+        <div>
+          <Search size={18} aria-hidden="true" />
+          <span>Filter by instrument, level, host, or available time from the live booking board.</span>
+        </div>
+      </section>
+
+      <section className="public-section" id="browse-courses">
         {message ? <p className="muted">{message}</p> : null}
         {loading ? <p className="muted">Loading courses...</p> : null}
         {!loading && courses.length === 0 ? (
@@ -114,9 +142,9 @@ function Courses() {
           confirmLabel={user ? 'Confirm selected bookings' : 'Sign in to book'}
         />
         {courses.length > 0 ? (
-          <div className="course-list compact">
+          <div className="course-card-grid">
             {courses.map((course) => (
-              <article className="course-row compact" key={course.id}>
+              <article className="course-card" key={course.id}>
                 <div>
                   <span className="eyebrow">{course.instrument}</span>
                   <h3>{course.title}</h3>

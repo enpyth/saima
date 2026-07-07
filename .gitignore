@@ -35,3 +35,8 @@ pnpm-debug.log*
 .idea/
 .vscode/*
 !.vscode/settings.json
+
+# design screenshots
+docs/stitch_saima/*/*.png
+
+tmp*

@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+
+<html lang="en" style=""><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Gallery | SAIMA - South Australian International Musicians Association</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+        
+        .gallery-card-hover {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .gallery-card-hover:hover {
+            transform: translateY(-8px);
+        }
+        
+        .glass-overlay {
+            background: rgba(252, 249, 245, 0.85);
+            backdrop-filter: blur(8px);
+        }
+
+        .curated-shadow {
+            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #fcf9f5;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #7c5800;
+            border-radius: 10px;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-fixed": "#ffdea8",
+                        "surface-container-highest": "#e5e2de",
+                        "surface-variant": "#e5e2de",
+                        "surface-container-high": "#eae8e4",
+                        "surface-container": "#f0ede9",
+                        "surface-tint": "#565e74",
+                        "secondary-container": "#fcbf46",
+                        "primary": "#000000",
+                        "surface-container-low": "#f6f3ef",
+                        "surface": "#fcf9f5",
+                        "tertiary-fixed-dim": "#b9c9d2",
+                        "primary-container": "#131b2e",
+                        "on-surface-variant": "#45464d",
+                        "on-tertiary-fixed": "#0f1d24",
+                        "secondary": "#7c5800",
+                        "background": "#fcf9f5",
+                        "on-primary-fixed-variant": "#3f465c",
+                        "on-error": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "inverse-primary": "#bec6e0",
+                        "surface-dim": "#dcdad6",
+                        "on-primary-fixed": "#131b2e",
+                        "on-error-container": "#93000a",
+                        "primary-fixed-dim": "#bec6e0",
+                        "on-primary-container": "#7c839b",
+                        "surface-bright": "#fcf9f5",
+                        "surface-container-lowest": "#ffffff",
+                        "outline": "#76777d",
+                        "outline-variant": "#c6c6cd",
+                        "error": "#ba1a1a",
+                        "on-tertiary": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "on-secondary-container": "#704e00",
+                        "tertiary-fixed": "#d5e5ee",
+                        "inverse-surface": "#31302e",
+                        "tertiary-container": "#0f1d24",
+                        "on-surface": "#1c1c1a",
+                        "tertiary": "#000000",
+                        "inverse-on-surface": "#f3f0ec",
+                        "on-secondary-fixed-variant": "#5e4200",
+                        "on-secondary": "#ffffff",
+                        "primary-fixed": "#dae2fd",
+                        "on-tertiary-container": "#77868e",
+                        "on-secondary-fixed": "#271900",
+                        "on-background": "#1c1c1a",
+                        "secondary-fixed-dim": "#f9bc44",
+                        "on-tertiary-fixed-variant": "#3a4950"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "24px": "1.5rem",
+                        "16px": "1rem",
+                        "32px": "2rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-sm": "16px",
+                        "container-max": "1280px",
+                        "stack-lg": "64px",
+                        "gutter": "24px",
+                        "margin-mobile": "20px",
+                        "unit": "8px",
+                        "section-gap": "120px",
+                        "stack-md": "32px",
+                        "margin-tablet": "32px",
+                        "margin-desktop": "64px"
+                    },
+                    "fontFamily": {
+                        "title-lg": ["Plus Jakarta Sans"],
+                        "label-md": ["Plus Jakarta Sans"],
+                        "display": ["EB Garamond"],
+                        "headline-md": ["EB Garamond"],
+                        "body-md": ["Plus Jakarta Sans"],
+                        "headline-sm": ["EB Garamond"],
+                        "headline-lg-mobile": ["EB Garamond"],
+                        "headline-lg": ["EB Garamond"],
+                        "body-lg": ["Plus Jakarta Sans"],
+                        "caption": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "title-lg": ["20px", {"lineHeight": "1.5", "fontWeight": "600"}],
+                        "label-md": ["14px", {"lineHeight": "1.4", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "display": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "headline-md": ["32px", {"lineHeight": "1.3", "fontWeight": "500"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "headline-sm": ["24px", {"lineHeight": "1.4", "fontWeight": "500"}],
+                        "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                        "headline-lg": ["48px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "caption": ["12px", {"lineHeight": "1.4", "fontWeight": "500"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-surface text-on-surface font-body-md selection:bg-secondary-fixed selection:text-on-secondary-fixed">
+<!-- TopNavBar -->
+<header class="bg-surface/90 backdrop-blur-md shadow-sm w-full top-0 sticky z-50 flex justify-between items-center px-margin-mobile md:px-margin-desktop py-4">
+<div class="font-headline-sm text-headline-sm font-bold text-primary dark:text-on-surface">SAIMA</div>
+<nav class="hidden lg:flex items-center space-x-8">
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Home</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">About Us</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Events</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Youth</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Choir</a>
+<a class="font-label-md text-label-md text-primary border-b-2 border-secondary pb-1 font-bold" href="#">Gallery</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Courses</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Join &amp; Contact</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="font-label-md text-label-md text-primary border border-primary px-6 py-2.5 rounded-lg hover:bg-primary hover:text-white transition-all duration-300 active:scale-95">Login</button>
+</div>
+</header>
+<main class="pt-20">
+<!-- Hero Section -->
+<header class="relative h-[60vh] flex items-center justify-center overflow-hidden">
+<div class="relative z-10 text-center px-margin-mobile">
+<span class="inline-block px-4 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-md text-label-md mb-stack-sm uppercase tracking-widest">Our Visual Legacy</span>
+<h1 class="font-display text-display text-primary mb-stack-sm">Curated Harmony</h1>
+<p class="font-body-lg text-body-lg max-w-2xl mx-auto text-on-surface-variant">Capturing the soul of multicultural music through the lenses of performance, education, and community.</p>
+</div>
+</header>
+<!-- Featured Videos Section (Bento Grid) -->
+<section class="py-section-gap px-margin-desktop max-w-container-max mx-auto">
+<div class="flex flex-col md:flex-row justify-between items-end mb-stack-lg gap-gutter">
+<div class="max-w-xl">
+<h2 class="font-headline-lg text-headline-lg text-primary mb-stack-sm">Young Virtuoso Series</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Experience the breathtaking talent of our young vocalists and instrumentalists as they master the world's most challenging compositions.</p>
+</div>
+<button class="flex items-center gap-2 text-secondary font-label-md uppercase tracking-wider hover:translate-x-2 transition-transform">
+                View Full Playlist <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-4 grid-rows-2 gap-gutter h-auto md:h-[800px]">
+<!-- Large Video Feature -->
+<div class="md:col-span-2 md:row-span-2 group relative overflow-hidden rounded-24px curated-shadow bg-surface-container aspect-square md:aspect-auto">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="A cinematic close-up shot of a young girl with focused expression playing a dark polished grand piano. The lighting is dramatic, high-contrast spotlighting her hands and the ivory keys against a dark, warm background. The aesthetic is professional, sophisticated, and deeply artistic, reflecting a high-end cultural concert atmosphere." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCzJu7uTO47RH7GxOD5ODd_i5HRWcifR_J4zzy70J8w6kC1p13KgM3gInX4Bv2rem5ph2DZQAojhsBrE1ZT0ta7a-9s4yNiPmsj-o4C41AOl0J3uFoPHsNj1p1SS_28_N-ou3ejjY_WmwAeoTFCANRmWv5z6t2SbDNeUeou0L0IKkhyTGhjucwtqjIfQCwCgA5L3fdO7I82U-DiPoeAfd26cdaOLkeSdGQNmjM-5BCZJxrF_6OaWjhpkOuXCIUM35ChaCCHVMKdn7c')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-stack-md w-full">
+<span class="bg-secondary text-on-primary px-3 py-1 rounded-full text-caption font-label-md mb-2 inline-block">FEATURED PERFORMANCE</span>
+<h3 class="text-on-primary font-headline-sm text-headline-sm">Beethoven's Moonlight Sonata: A Modern Interpretation</h3>
+<div class="flex items-center gap-4 mt-4 text-on-primary/80 font-label-md">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[18px]">person</span> Elena Zhang</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[18px]">schedule</span> 12:45</span>
+</div>
+</div>
+<button class="absolute inset-0 m-auto w-20 h-20 bg-secondary/90 text-white rounded-full flex items-center justify-center scale-90 group-hover:scale-100 opacity-0 group-hover:opacity-100 transition-all duration-300">
+<span class="material-symbols-outlined text-[48px]" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</button>
+</div>
+<!-- Small Video 1 -->
+<div class="md:col-span-2 group relative overflow-hidden rounded-24px curated-shadow aspect-[16/9] md:aspect-auto">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="A wide shot of a youth string quartet performing in a modern architectural space with glass walls and soft natural daylight. Four teenagers with violins and a cello are synchronized in their movements. The scene is bright, elegant, and filled with a sense of cultural heritage and professional dedication, using a palette of creams and deep wood tones." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAYXeQRRpZcJTQcdxUxhFq0xV9PFzpRaIGXiisRyhuOjHnIUh8nmt7B9nGrJ4htpHIrSEv-Yalr0XuOYZqAqGAmtIi4fk4R-rXBPuC57Kknh8Us2TS3dV7QzouHcVM1495RQnTYQH8uJzM3QR_ZF0VgBe2eUqV6VWmYwcNFbiqKvZkoR7gRPLzDLyCR9TevAaHLBKhJCytb7Te_h8J0CoEosxljNCA6BF55fI7Qm8A9m0sS0OVfCjQYB1Y0fl2L3VSqxE8on23YxPw')"></div>
+<div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors"></div>
+<div class="absolute bottom-0 left-0 p-stack-sm">
+<h4 class="text-on-primary font-title-lg text-title-lg">Summer Strings Ensemble</h4>
+<p class="text-on-primary/70 font-caption">Vivaldi's Four Seasons</p>
+</div>
+<div class="absolute top-4 right-4 bg-white/20 backdrop-blur-md p-2 rounded-full text-white">
+<span class="material-symbols-outlined">videocam</span>
+</div>
+</div>
+<!-- Small Video 2 -->
+<div class="group relative overflow-hidden rounded-24px curated-shadow aspect-square md:aspect-auto">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="A close-up of a young male vocalist singing with intense emotion, a vintage-style microphone in the foreground. The lighting is warm and amber-hued, suggesting an intimate studio or recital hall setting. The atmosphere is soulful and focused, capturing a moment of raw artistic expression within a professional music education context." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCkiieR9wvrzzHLssI2fGV0zCDDJ2Rf0bHlS4oUijVEwl_wniAixkvJk3gB7uqveYmmF13xAF_PdDU3YJ2DenUO5x8bbICrcfncGW8VQ_3pGQmxJHmx9OD3W8iYq68_OV2ze8N33HlPw4ElpAtM1UI5WyyApQz1ZAMGy1lZMeQ0X1gfekEz-RbSEBMKghiF6_ppDlZ26Er4Ia66-b7LbV_ELO5EJO-XSIFSZGEx5CLSBg1it4bNOV8_xEYnGQZkTlyStRW-ovmp1r0')"></div>
+<div class="absolute inset-0 bg-black/20"></div>
+<div class="absolute bottom-0 left-0 p-stack-sm">
+<h4 class="text-on-primary font-title-lg text-title-lg">Vocal Mastery</h4>
+</div>
+</div>
+<!-- Small Video 3 -->
+<div class="group relative overflow-hidden rounded-24px curated-shadow aspect-square md:aspect-auto">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="A talented young boy playing a traditional Chinese Pipa, his fingers moving gracefully over the strings. The background is a soft-focus garden setting, blending cultural tradition with modern photographic style. The color palette features rich earthy tones and vibrant secondary ochre highlights, emphasizing a culturally rooted yet contemporary feeling." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAFbiWy3lUkUQx0As-21Ua0IvAL27_jkXK68dBgf59xesMfWNU_L7eGGfVwfl9lTofbAa0LaEK4LqnCqDX9b7hV4cfJWY11ii6W5TT6dIjfClLbfrdMz4UzpE_TV8WsIADMpZy9O0XN3ytA0CYHCUbcO-lAhKiXXu4_7Ylc2lfiU5ZZ-sevdHZSFJc7lCLP1Y1OGf2ZoJNqNfGiGnN5aJHZBUhotVF1dM47wdW5ivP63X4jMcsWfSNUHfsXy7kOBXkNj0Wo7wEvAtk')"></div>
+<div class="absolute inset-0 bg-black/20"></div>
+<div class="absolute bottom-0 left-0 p-stack-sm">
+<h4 class="text-on-primary font-title-lg text-title-lg">Pipa Horizons</h4>
+</div>
+</div>
+</div>
+</section>
+<!-- Concert Highlights (Horizontal Scroll / Editorial) -->
+<section class="bg-primary text-on-primary py-section-gap overflow-hidden">
+<div class="px-margin-desktop max-w-container-max mx-auto mb-stack-lg">
+<h2 class="font-headline-lg text-headline-lg mb-stack-sm">Concert Highlights</h2>
+<p class="font-body-md text-on-primary/70 max-w-2xl">Relive the magic of our annual multicultural concerts where diverse traditions merge into a single symphonic voice.</p>
+</div>
+<div class="flex gap-gutter overflow-x-auto pb-stack-md px-margin-desktop no-scrollbar">
+<!-- Concert Card 1 -->
+<div class="min-w-[320px] md:min-w-[400px] h-[450px] md:h-[500px] relative group overflow-hidden rounded-24px flex-shrink-0">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-1000 group-hover:scale-105" data-alt="A grand stage filled with a multicultural orchestra including violins, tablas, and traditional flutes." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDHCEgHdaqCby4m0DPvGtKteEm3Nk7Z31C0Q5KBCgsQuncTLdL9GYxWlIpKVYfboBUJirV89wxl0xBsgMvfN6u22qJfwB5_z7CgddLv1AXzEosVOI7ZwdUCJCuNwn2RopHnBkQ2OPsoywbo26wiDxPK0oFaSPeEcf4UfjGphUbMpb_Jnyn4yueZeOqzYoEjTdpIqwl9dZd4vbR9FNuHknLs5rwRW9xXyk90Y_Jqg2Ktrb-mv0FBokGewkv3rVVcSnAA2g4hiKt36tY')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80"></div>
+<div class="absolute bottom-0 p-stack-md">
+<p class="font-label-md text-secondary-fixed mb-2">ADELAIDE TOWN HALL 2023</p>
+<h3 class="font-headline-sm text-headline-sm">Symphony of the Sands</h3>
+</div>
+</div>
+<!-- Concert Card 2 -->
+<div class="min-w-[320px] md:min-w-[400px] h-[450px] md:h-[500px] relative group overflow-hidden rounded-24px flex-shrink-0">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-1000 group-hover:scale-105" data-alt="An energetic group of indigenous dancers and modern percussionists performing together." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBzRk7gXm0eR0z3l3TYyNp6VQ88bS1JKp-qoqmVzBZ2XU0fLBgEAIQ-BTdhTn1GmhvNPPBhq0K79QWq63kiqMwPkB55izMm4Suu5_pjywRrzjvCKbLbF7SxTA_PwyYkyIoEs8jKZYIcHyLX9Z6o9u91RfRpk-jriVvK9rRFvE0_qQ2bC9RfsF71ALSUFuzwwDKnn0HT-vNHKN1tw66e-UY1IQ58e45hiPWGM6jUj-CyOJl2tEmBKn-vZ8Y-Xru_XYe3nsaR6E2Ywrs')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80"></div>
+<div class="absolute bottom-0 p-stack-md">
+<p class="font-label-md text-secondary-fixed mb-2">FESTIVAL CENTRE</p>
+<h3 class="font-headline-sm text-headline-sm">Echoes of Our Roots</h3>
+</div>
+</div>
+<!-- Concert Card 3 -->
+<div class="min-w-[320px] md:min-w-[400px] h-[450px] md:h-[500px] relative group overflow-hidden rounded-24px flex-shrink-0">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-1000 group-hover:scale-105" data-alt="A minimalist stage setting with a single spotlight on a harpist and a sitar player collaborating." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC494HjD_Uw2goZ330Ns8XgTrI7j0rtH_vJNAU_P93yK86YZ0W5VC2s6V2cW5u6CyI4DSSnwH4zNxdQFcH6roukjXCI2--ebcPgLkMRQJCV-fVg64uhw-ASWtCYkZz8bYa30u_A6_6jcbVtxksMI5rZce8x7afgVstRCclF75hVPKAcuBHyng5VRMBw3Dm013rCF8ysXy6dilh9rSacban4wnZRjk6XIuFhYkPgqAyBUHvygMJdaKHkf7_lXpXuosL4tRPdVl57ZoQ')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80"></div>
+<div class="absolute bottom-0 p-stack-md">
+<p class="font-label-md text-secondary-fixed mb-2">CHAMBER SERIES</p>
+<h3 class="font-headline-sm text-headline-sm">The Melodic Thread</h3>
+</div>
+</div>
+<!-- Concert Card 4 -->
+<div class="min-w-[320px] md:min-w-[400px] h-[450px] md:h-[500px] relative group overflow-hidden rounded-24px flex-shrink-0">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-1000 group-hover:scale-105" data-alt="A vibrant finale of a concert with hundreds of performers on stage." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBcE0Q7VaCUDObxQy8l3kCdeApVAOveXzOMwnDbvSHfvIZpQxzwvU5s33HUG8sCPdNF2ctUXVCyk__EQKYzzRmopfDwNBkp2eyJ8VdI_FZiv3MZZxZgguhI_aJnni3wfB37onKlimAJBBSCXfhIc5dMQ55ZzqOsvQInDLuPINDQF_A5Z0EeSuFX4eyOOKOIXXeEyBCSdhcq1Rez_8zaGyZf9aZzp427CZul4-R_aMhlQ9QzOE4y33AHDRNs7J84czewFX6jb3fo9l4')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80"></div>
+<div class="absolute bottom-0 p-stack-md">
+<p class="font-label-md text-secondary-fixed mb-2">ANNUAL GALA</p>
+<h3 class="font-headline-sm text-headline-sm">Voices of Unity 2024</h3>
+</div>
+</div>
+</div>
+</section>
+<!-- Young Artist Showcase (Asymmetric Masonry) -->
+<section class="py-section-gap px-margin-desktop max-w-container-max mx-auto">
+<div class="text-center mb-stack-lg">
+<h2 class="font-headline-lg text-headline-lg text-primary">Young Artist Showcase</h2>
+<div class="w-24 h-1 bg-secondary mx-auto mt-4"></div>
+</div>
+<div class="columns-1 md:columns-3 gap-gutter space-y-gutter">
+<div class="break-inside-avoid gallery-card-hover group relative rounded-16px overflow-hidden curated-shadow">
+<img class="w-full h-auto" data-alt="A professional portrait of a teenage violinist." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCEy_2J5e1RPdueMdbVuYSkEcfy5-Fga7dkpSE8b9z8pvOu9Bz5gWIPSDY5afXoxANEDCcQc9qTrlFKrvqbYsLkdGSs88sJDkYr742TsaJ5FFiLh2IWWS7VWD7ee_E4RZ8-qNvNFV517oMuXjtgm5qQwhIgJ7oHmCnM8qDlpT24w-raj7EWSLUnKhc2JjSs-Ybet4vcYlA2adJUNUmnyNQGoTwAWwTiYOohm6M9Kh5QfxgdI66c48p7zxH4laReF8Dy1yJ8yy_Qqyg"/>
+<div class="absolute inset-0 bg-secondary/0 group-hover:bg-secondary/10 transition-all"></div>
+</div>
+<div class="break-inside-avoid gallery-card-hover group relative rounded-16px overflow-hidden curated-shadow">
+<img class="w-full h-auto" data-alt="Detailed close-up of hands playing a classical guitar." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBjsivBTJkfHS_gR3rnWsDUMafs9PgaUJFHjQ13IxritUt-at-X6cplx-_97WE417LZUh04XFvbRIBj_w7LvPbBFVtyBSEItrZwjPpEOHSQbVAY802ZB6UUfBHi-kFXYcmV2Bxmmsb8CPi6TlQ1O9BHD1LZSEvsHQgSk38RJy3cLr7QniIYqk8l7Oeu2r-lqGsYvkmOv_nUzxBXsBeVexo1YuByE2mZPdwe47z7v6hnCF4h4Ki_hqDNwvcOr4uKzI7dOimkx__miMI"/>
+</div>
+<div class="break-inside-avoid gallery-card-hover group relative rounded-16px overflow-hidden curated-shadow">
+<img class="w-full h-auto" data-alt="A young girl in traditional dress concentrated as she plays a small flute." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB43cHlN1Uwg1eDDElue4bxcAlJCOozUMuUD8dkRppNWgN1zZVLSztwMg4WQ4pVtUxWwm1rVZXQyF6eIFp_n5RpSy6Qdnb0bXgdu2UVQV-NMCqz3REo4CZP69vJagHGegU3j5tPWfUZt-yI69NEjXmFOZAkKEKz8n5Fh0ihjegCfwMVf9d4pzOuELpT6acdhvwLJeBijUlPaVzXeblfMt0qrYWJsbLH84GVUC9GhDkZt0gRovTsCWX4Xd-PRZTA_-GZTfeIhR1fjgQ"/>
+</div>
+<div class="break-inside-avoid gallery-card-hover group relative rounded-16px overflow-hidden curated-shadow">
+<img class="w-full h-auto" data-alt="A dynamic shot of a young pianist's profile as they play with great energy." src="https://lh3.googleusercontent.com/aida-public/AB6AXuApRnSOMMq37ZPVaZMsJSPhSc6QQaQtNSZDDdZYCdKzktqITzAyJ2iDfGJEnwHYQc4KEVKt1omW94y_dihANbd69kuSW-lgzQJFlvswusx_LeCIjWAqRehX1W8ZcvrTpoAmw1jsP00TIT7KQZlm9pZfgOj8EeidiFBOyr_hCnaMtAfhNlUHH4ZE7tcPR4kVq7iQLinEz6Gf4OVSZHUCNnCyyxAzCMp-Kp-WvWS9NeFQOPJUxx1eFhUcSE9JyNN1P6AlhUwbXKLlltY"/>
+</div>
+<div class="break-inside-avoid gallery-card-hover group relative rounded-16px overflow-hidden curated-shadow">
+<img class="w-full h-auto" data-alt="A group of diverse children laughing together while holding various percussion instruments." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqANOeko2nz9l6IaXex51YFjZphNm0BSs9yw8lgT8l1IOSircLPnk6dX36f-Y7ZyB1S3OdUuTkvlCbWn8Qrvi5oGANagMFrJyJUI_z9RFy_Z4k4VoGCa33HcCyKumMu3KoSLqjDviZxnZR_f-Jy4VnnD3TP6P6PBL3LaJOvhJzSQLF8ky_zxCYybK8ztpRY6qBpCj0brvJQiqtWVkj6XDsVqYUxf1av-ZK5krRarg6J5Bjke2Bb7yygP1b2a8gHIEw-eRAEXy67Bs"/>
+</div>
+<div class="break-inside-avoid gallery-card-hover group relative rounded-16px overflow-hidden curated-shadow">
+<img class="w-full h-auto" data-alt="An artistic shot of a cello leaning against a grand piano in an empty recital hall." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBbG1r0PuQzcrL9LoIJImqdl2gb2QMdzztTgIREqjHuvYQe4eAbM6HA2lqdNhDVUCeS_vwTOvXYFe0YHisdEHAmCtr-oJNJqiwQB_iL9Aw0Rn0NZ_Rj5sB_mUTsiX-Uc9RJNuE8M2ZG2bH0eN6-5xFe1LIPiDlAJwi6mR0SReBdAB6LtMB8i7WfGSkO5IdjDuJGtkgUNg7jB3dtnkPdifTYWbCxwLxme1I1E60QWU6O3sid4s-c2zskSTIl3nV0Igf-DqhpIbMTM_M"/>
+</div>
+</div>
+</section>
+<!-- Charity & Community Moments -->
+<section class="bg-surface-container py-section-gap">
+<div class="px-margin-desktop max-w-container-max mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-stack-lg items-center">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-primary mb-stack-sm">Harmony Beyond the Stage</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-stack-md">We believe music is a universal language of healing and connection. Our community outreach programs bring the joy of live performance to aged care facilities, schools, and local neighborhoods.</p>
+<div class="space-y-4">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-secondary-fixed flex items-center justify-center text-on-secondary-fixed">
+<span class="material-symbols-outlined">volunteer_activism</span>
+</div>
+<div>
+<h4 class="font-title-lg text-title-lg">Aged Care Concerts</h4>
+<p class="text-on-surface-variant">Bringing classic melodies to our elders.</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-secondary-fixed flex items-center justify-center text-on-secondary-fixed">
+<span class="material-symbols-outlined">school</span>
+</div>
+<div>
+<h4 class="font-title-lg text-title-lg">School Workshops</h4>
+<p class="text-on-surface-variant">Inspiring the next generation of listeners.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-gutter">
+<div class="space-y-gutter mt-12">
+<div class="rounded-24px overflow-hidden h-64 curated-shadow">
+<div class="w-full h-full bg-cover bg-center" data-alt="A young violinist playing for an elderly woman." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCNMOXwDn31x0fEBV030ZYmP0thER4HMF70kE2Fi8hRfOG36WtZa7V26lE_dJZFbRrrKY_9gIWNlRTsm9tJc-rOXKkrNaePuRnkeg3QEKqaJFlQ5WilG5xSyi_HH_1D0lwkTJJplPzqYbAioSiOaLJ1aocIf7jlEYMThn_D6XItFWjCNb_qFcL7OGqt1lWgAQYyf_tvPzzv96IJvhSqwOsN68Yckmhe3uAWz5qq3-Bk9STB01RtYxZd5Wup_ib3vWnpyjXJBzj6FT4')"></div>
+</div>
+<div class="rounded-24px overflow-hidden h-48 curated-shadow">
+<div class="w-full h-full bg-cover bg-center" data-alt="A volunteer handing out sheet music to children." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDgBfOwW81v1Axgix-f9VvIqYrSEKjWi_f65cUrvyC2gcXXX8lg1VB3xO_pvbRHovBegVRJe88YAJGtsGYhqs-K4ROxG7dYhhFkwfWr7jop5MP7Pg4MMSA3XZYOOZAnYE-vpOqSJURhudmDM-FWETkTC2GLU-_SzZ2JVgY4AHqJ_E0YhWM2ClZZ_ugKII-KX7shKoAV7VMQucHdsfl2KHIqdYQvXlebeatvghNTdA9SIl7zUXzFQsR9RyOu2ZfxQglbZ3M4ecSZwMs')"></div>
+</div>
+</div>
+<div class="space-y-gutter">
+<div class="rounded-24px overflow-hidden h-48 curated-shadow">
+<div class="w-full h-full bg-cover bg-center" data-alt="Outdoor community music festival." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBd8oRQxRRfZWMSt5g9J2WpBZvnPRoTcGrSVL4U6NGyNeMu4LrhCnzZ80qb8IzF0YVlgbFYHBADzyYNJuymO3umkojOgvB0rc2P-7FY7pWc_lqv0576O1oRAJE7ooXZdKsKAYDKCGbcI-stfDHFuOGbVn6EtfK2MDW6MG3ritDHWZcoesm3pBDyIi1sKxN2L4nhn_7KlSgFZwEkT2ojB0wZxxGkZ-ABcYAt8zIy6j0jYY3KJrYYnhZg315ktlDt0o5WHs7lrJZKCPU')"></div>
+</div>
+<div class="rounded-24px overflow-hidden h-64 curated-shadow">
+<div class="w-full h-full bg-cover bg-center" data-alt="Musicians bowing at a charity gala." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDPYh-fWA45PsCSekW-xhDyhzKM6BbeRwxtJovt66scMwfd0DFPUI71kYCrtVGznxZ0FvIOll28gqei2Z-9LI6nlrhVN22bdogNGOIFfa_oq0zFVfyS06nid1PuP119HB9FpfpZRQPjAMUXa_W8eU3ll656zq2QgPHZ6nwzuke0nxcae27AcBM2ZYS-XcaqZp33P-ZDFxZmLhv4uDWPuGJ1OjpWthrXu7vIcKf7uw8xdfmjY-rXxFMR-YkZ8JKb9ZYNx9zufJgwW0Y')"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Behind the Scenes (Experimental Layout) -->
+<section class="py-section-gap px-margin-desktop max-w-container-max mx-auto overflow-hidden">
+<h2 class="font-headline-lg text-headline-lg text-primary mb-stack-lg text-center">Behind the Curtain</h2>
+<div class="relative">
+<div class="absolute top-1/2 left-0 w-full h-[2px] bg-outline-variant -translate-y-1/2 hidden md:block"></div>
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-gutter relative z-10">
+<div class="flex flex-col items-center text-center">
+<div class="w-40 h-40 md:w-48 md:h-48 rounded-full border-4 border-surface shadow-lg overflow-hidden mb-6 bg-surface-container">
+<div class="w-full h-full bg-cover bg-center" data-alt="Hands marking a musical score." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDlk1WYPJzuFQO0FuSpHW5CDSRxoRk8JODwm0oMaJt1xMcLIqiR5TSpggE2y0Pt5jqiqVtcVHKvkk0oBp5DCSLqRsCd6cIYwrlI3YiBNX-B3wnXBPMeBX9mQeqtvV8NOk3wowmwz_SzpVc6nIr1472O0p4smNrA1XFuR9dujU2r7z28AMwkWhaRf8rpoWCCtB1vZgUTqsAkd1IT6PTaBb95uD0FcV1i9hh1QVVsbs4T_N6Sl4nOy97jX_RgYrl5-wre4qK1rn4ntWU')"></div>
+</div>
+<h4 class="font-title-lg text-title-lg">Preparation</h4>
+<p class="font-caption text-on-surface-variant mt-2">Meticulous score study and planning.</p>
+</div>
+<div class="flex flex-col items-center text-center md:pt-24">
+<div class="w-40 h-40 md:w-48 md:h-48 rounded-full border-4 border-surface shadow-lg overflow-hidden mb-6 bg-surface-container">
+<div class="w-full h-full bg-cover bg-center" data-alt="Musicians in a rehearsal session." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAHWZdIuA_itIKA4-iXVnY2X6ri_tqyZ4RedGT1v5O0dpBYSZzJrqXcOj_WEQjFFAtTLWUkcMwsHv5qvO8tcxls-zg7aoGh0-fh6vMlSgbrU3dygiWWQFUEOPIX6Za_GrOHtKBwdvYIWcxpcSGweweb8g9uFlhUNl51C5yDoMavvHtP9NO5knl3zNyzgC7a4B2xgZoR92S7eF4682KRXkwkpO4qlUoQ9RsPxTXk6g0iFgmSFqRGGbveJlokOuyEQlVrwJXCROqq4mU')"></div>
+</div>
+<h4 class="font-title-lg text-title-lg">Rehearsal</h4>
+<p class="font-caption text-on-surface-variant mt-2">Hours of dedication before the lights go up.</p>
+</div>
+<div class="flex flex-col items-center text-center">
+<div class="w-40 h-40 md:w-48 md:h-48 rounded-full border-4 border-surface shadow-lg overflow-hidden mb-6 bg-surface-container">
+<div class="w-full h-full bg-cover bg-center" data-alt="Volunteers organizing a theater lobby." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBT7dW3TRDHOCL_Zw5Zjc-W6_PEGtsL5O0LloDJkWVEu5TOwRr3iV4kbmO73_g6b-v4H4xUa_lSBg0RcKYkp-T3Xy3n0Y-NTuzUeZqdXkcfqkcxNGZzY7_2K2Yggq_xLbHO_ar2UFb88e5iyk565RtTHIDp7BWoBNOkQmVgo5FMpHdKHNUSTcqh2dgBzWDQWoBU9_ESCpTSRAf1_2DmTnlRt1NQuSllKSZvmLPYJZShX37XaAAqxhc7gvFvX4FEM96mLTTl3kZW3UQ')"></div>
+</div>
+<h4 class="font-title-lg text-title-lg">Volunteers</h4>
+<p class="font-caption text-on-surface-variant mt-2">The heartbeat of our community events.</p>
+</div>
+<div class="flex flex-col items-center text-center md:pt-24">
+<div class="w-40 h-40 md:w-48 md:h-48 rounded-full border-4 border-surface shadow-lg overflow-hidden mb-6 bg-surface-container">
+<div class="w-full h-full bg-cover bg-center" data-alt="Musicians sharing a meal backstage." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBuDurjr2neM0AXHqu1yuwKCNcIocP2_Nu3PKfjqHxH1rHXWeYERvLih8I8qEUe2cFiDETjIJz5t7g62rBaQaRVwsrglOQD8yaE88S1HMNoCi4PAKFQS3IvIf43vRDPUeRywyLeUBxXrx3W7sUC4mKrLgeb0PPo4rgSlxdtEsh2lUKip1rlK76p1FPmzG7PnHWpiRkdGviAr4-rK311BpParF2ghNsCog9wfMoyWy3GMMYd41XeuBOkbnTmaYcL2cefX-KqbtSl6_4')"></div>
+</div>
+<h4 class="font-title-lg text-title-lg">Connections</h4>
+<p class="font-caption text-on-surface-variant mt-2">Lifelong friendships forged through music.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="py-section-gap px-margin-mobile">
+<div class="max-w-4xl mx-auto rounded-32px bg-primary p-stack-lg text-center relative overflow-hidden">
+<div class="relative z-10">
+<h2 class="font-headline-lg text-headline-lg text-on-primary mb-stack-sm">Be Part of the Story</h2>
+<p class="font-body-lg text-on-primary/80 mb-stack-md max-w-xl mx-auto">Join our community as a performer, volunteer, or supporter and help us continue this visual and musical journey.</p>
+<div class="flex flex-wrap justify-center gap-4">
+<button class="px-8 py-3 rounded-full bg-secondary text-on-primary font-body-md hover:opacity-90 transition-opacity">Become a Member</button>
+<button class="px-8 py-3 rounded-full border border-on-primary text-on-primary font-body-md hover:bg-white/10 transition-colors">Contact Us</button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container border-t border-outline-variant/20">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-desktop py-section-gap max-w-container-max mx-auto">
+<div class="space-y-stack-sm md:col-span-1">
+<div class="font-headline-sm text-headline-sm text-primary mb-4">SAIMA</div>
+<p class="font-body-md text-body-md text-on-surface-variant">Connecting cultures through the universal power of music in South Australia.</p>
+<div class="flex gap-4 pt-4">
+<a class="text-on-surface-variant hover:text-secondary" href="#"><span class="material-symbols-outlined">public</span></a>
+<a class="text-on-surface-variant hover:text-secondary" href="#"><span class="material-symbols-outlined">mail</span></a>
+<a class="text-on-surface-variant hover:text-secondary" href="#"><span class="material-symbols-outlined">call</span></a>
+</div>
+</div>
+<div class="space-y-4">
+<h4 class="font-label-md text-label-md text-primary uppercase">Quick Links</h4>
+<ul class="space-y-2">
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary underline decoration-secondary" href="#">Mission</a></li>
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary underline decoration-secondary" href="#">Contact Us</a></li>
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary underline decoration-secondary" href="#">Privacy Policy</a></li>
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary underline decoration-secondary" href="#">Newsletter Signup</a></li>
+</ul>
+</div>
+<div class="space-y-4">
+<h4 class="font-label-md text-label-md text-primary uppercase">Programs</h4>
+<ul class="space-y-2">
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary" href="#">Youth Orchestra</a></li>
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary" href="#">Global Masterclasses</a></li>
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary" href="#">Cultural Exchanges</a></li>
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary" href="#">Grant Opportunities</a></li>
+</ul>
+</div>
+<div class="space-y-4">
+<h4 class="font-label-md text-label-md text-primary uppercase">Visit Us</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                123 Cultural Way<br/>
+                Adelaide, SA 5000<br/>
+                Australia
+            </p>
+</div>
+</div>
+<div class="max-w-container-max mx-auto px-margin-desktop py-8 border-t border-outline-variant/10">
+<p class="font-body-md text-body-md text-on-surface-variant text-center md:text-left">
+            © 2026 South Australian International Musicians Association. All rights reserved.
+        </p>
+</div>
+</footer>
+<script>
+    // Simple scroll interaction for Header height
+    window.addEventListener('scroll', () => {
+        const header = document.querySelector('header');
+        if (window.scrollY > 50) {
+            header.classList.add('py-2');
+            header.classList.remove('py-4');
+        } else {
+            header.classList.add('py-4');
+            header.classList.remove('py-2');
+        }
+    });
+
+    // Simple animation for gallery items appearing on scroll
+    const observerOptions = {
+        threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('opacity-100', 'translate-y-0');
+                entry.target.classList.remove('opacity-0', 'translate-y-10');
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.gallery-card-hover').forEach(card => {
+        card.classList.add('opacity-0', 'translate-y-10', 'transition-all', 'duration-700');
+        observer.observe(card);
+    });
+</script>
+</body></html>

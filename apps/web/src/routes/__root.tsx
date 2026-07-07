@@ -1,7 +1,8 @@
-import { HeadContent, Outlet, Scripts, createRootRoute } from '@tanstack/react-router'
+import { HeadContent, Outlet, Scripts, createRootRoute, useLocation } from '@tanstack/react-router'
 import type { ReactNode } from 'react'
 
 import { AuthProvider } from '../components/auth-provider'
+import { SiteFooter } from '../components/site-footer'
 import { SiteHeader } from '../components/site-header'
 import appCss from '../styles.css?url'
 
@@ -36,10 +37,15 @@ export const Route = createRootRoute({
 })
 
 function App() {
+  const location = useLocation()
+  const hideFooter =
+    location.pathname.startsWith('/dashboard') || location.pathname.startsWith('/auth/callback')
+
   return (
     <AuthProvider>
       <SiteHeader />
       <Outlet />
+      {hideFooter ? null : <SiteFooter />}
     </AuthProvider>
   )
 }

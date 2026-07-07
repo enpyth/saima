@@ -3,6 +3,7 @@ import { LayoutDashboard, LogIn, LogOut } from 'lucide-react'
 import { useMemo } from 'react'
 
 import { useAuth } from './auth-provider'
+import { publicNavItems } from '../lib/content'
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar'
 import { Button } from './ui/button'
 import {
@@ -56,18 +57,11 @@ export function SiteHeader() {
         </span>
       </Link>
       <nav aria-label="Primary navigation">
-        <Link to="/events" className="nav-link">
-          Events
-        </Link>
-        <Link to="/membership" className="nav-link">
-          Membership
-        </Link>
-        <Link to="/courses" className="nav-link">
-          Courses
-        </Link>
-        <Link to="/contact" className="nav-link">
-          Contact
-        </Link>
+        {publicNavItems.map((item) => (
+          <Link key={item.to} to={item.to} className="nav-link" activeProps={{ className: 'active' }}>
+            {item.label}
+          </Link>
+        ))}
         {!loading && user ? (
           <DropdownMenu>
             <DropdownMenuTrigger asChild>

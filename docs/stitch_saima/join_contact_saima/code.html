@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Join Us &amp; Contact | SAIMA</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&amp;family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .parchment-texture {
+            background-color: #fcf9f5;
+            background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
+        }
+        .hero-gradient {
+            background: linear-gradient(180deg, rgba(252,249,245,0) 0%, rgba(252,249,245,1) 100%);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "tertiary-fixed-dim": "#b9c9d2",
+                      "on-secondary-fixed-variant": "#5e4200",
+                      "inverse-surface": "#31302e",
+                      "error": "#ba1a1a",
+                      "on-background": "#1c1c1a",
+                      "secondary-fixed-dim": "#f9bc44",
+                      "on-primary-fixed": "#131b2e",
+                      "outline": "#76777d",
+                      "outline-variant": "#c6c6cd",
+                      "on-primary-fixed-variant": "#3f465c",
+                      "secondary": "#7c5800",
+                      "tertiary-container": "#0f1d24",
+                      "surface": "#fcf9f5",
+                      "surface-tint": "#565e74",
+                      "on-primary-container": "#7c839b",
+                      "on-surface": "#1c1c1a",
+                      "on-error-container": "#93000a",
+                      "tertiary-fixed": "#d5e5ee",
+                      "inverse-on-surface": "#f3f0ec",
+                      "on-secondary-container": "#704e00",
+                      "on-secondary-fixed": "#271900",
+                      "surface-dim": "#dcdad6",
+                      "on-tertiary": "#ffffff",
+                      "on-secondary": "#ffffff",
+                      "secondary-fixed": "#ffdea8",
+                      "on-tertiary-fixed": "#0f1d24",
+                      "on-primary": "#ffffff",
+                      "surface-bright": "#fcf9f5",
+                      "on-tertiary-fixed-variant": "#3a4950",
+                      "on-surface-variant": "#45464d",
+                      "primary": "#000000",
+                      "on-tertiary-container": "#77868e",
+                      "surface-variant": "#e5e2de",
+                      "background": "#fcf9f5",
+                      "surface-container-highest": "#e5e2de",
+                      "secondary-container": "#fcbf46",
+                      "surface-container-lowest": "#ffffff",
+                      "on-error": "#ffffff",
+                      "inverse-primary": "#bec6e0",
+                      "primary-container": "#131b2e",
+                      "surface-container-high": "#eae8e4",
+                      "surface-container": "#f0ede9",
+                      "surface-container-low": "#f6f3ef",
+                      "error-container": "#ffdad6",
+                      "primary-fixed-dim": "#bec6e0",
+                      "primary-fixed": "#dae2fd",
+                      "tertiary": "#000000"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "margin-desktop": "64px",
+                      "stack-lg": "64px",
+                      "section-gap": "120px",
+                      "margin-mobile": "20px",
+                      "stack-md": "32px",
+                      "unit": "8px",
+                      "container-max": "1280px",
+                      "margin-tablet": "32px",
+                      "stack-sm": "16px",
+                      "gutter": "24px"
+              },
+              "fontFamily": {
+                      "headline-lg": ["EB Garamond"],
+                      "headline-sm": ["EB Garamond"],
+                      "caption": ["Plus Jakarta Sans"],
+                      "headline-md": ["EB Garamond"],
+                      "body-lg": ["Plus Jakarta Sans"],
+                      "body-md": ["Plus Jakarta Sans"],
+                      "display": ["EB Garamond"],
+                      "label-md": ["Plus Jakarta Sans"],
+                      "headline-lg-mobile": ["EB Garamond"],
+                      "title-lg": ["Plus Jakarta Sans"]
+              },
+              "fontSize": {
+                      "headline-lg": ["48px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                      "headline-sm": ["24px", {"lineHeight": "1.4", "fontWeight": "500"}],
+                      "caption": ["12px", {"lineHeight": "1.4", "fontWeight": "500"}],
+                      "headline-md": ["32px", {"lineHeight": "1.3", "fontWeight": "500"}],
+                      "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                      "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                      "display": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                      "label-md": ["14px", {"lineHeight": "1.4", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                      "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                      "title-lg": ["20px", {"lineHeight": "1.5", "fontWeight": "600"}]
+              }
+            },
+          },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface parchment-texture">
+<!-- TopNavBar -->
+<header class="bg-surface/90 backdrop-blur-md shadow-sm w-full top-0 sticky z-50 flex justify-between items-center px-margin-mobile md:px-margin-desktop py-4">
+<div class="font-headline-sm text-headline-sm font-bold text-primary dark:text-on-surface">SAIMA</div>
+<nav class="hidden lg:flex items-center space-x-8">
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Home</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">About Us</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Events</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Youth</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Choir</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Gallery</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Courses</a>
+<a class="font-label-md text-label-md text-primary border-b-2 border-secondary pb-1 font-bold" href="#">Join &amp; Contact</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="font-label-md text-label-md text-primary border border-primary px-6 py-2.5 rounded-lg hover:bg-primary hover:text-white transition-all duration-300 active:scale-95">Login</button>
+</div>
+</header>
+<main>
+<!-- Hero Section -->
+<section class="relative h-[60vh] flex items-center justify-center overflow-hidden">
+<div class="absolute inset-0 z-0">
+<div class="w-full h-full bg-cover bg-center" data-alt="A grand, high-ceilinged concert hall with warm wooden paneling and soft ambient lighting. Musicians are seen in soft focus in the background, holding classical instruments." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBUjjXWIP8FZvqNwkEShPKHsnQwhHkJUpGhicW_o6cz3WdDEqXm9QZ5nebhxoD4mkbyVMOEsass16_LyAp68HsqEi8kGbsVQFqUmNRQWQHXdV6YeGHSV8lMf5bcJWcvnLPYUlda59czTJP5d7uF3mMjTmJBPNuKkTMoc3lQjy-qVJaFpENpKUpkh9PZTc3i0uu064UViuohzneJTuDlxng4robw0LSaw-JtTNbji72CheA5YMrF9Qh6IV2onKpE1tWEE9GBZBz2uKY')"></div>
+<div class="absolute inset-0 hero-gradient"></div>
+</div>
+<div class="relative z-10 text-center px-margin-mobile">
+<h1 class="font-display text-headline-lg-mobile md:text-display text-primary mb-4">Harmony Through Community</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto">Join the South Australian International Musicians Association and help us foster cultural exchange through the universal language of music.</p>
+</div>
+</section>
+<!-- Brief Overview Section -->
+<section class="px-margin-mobile md:px-margin-desktop py-section-gap max-w-container-max mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-stack-lg items-center">
+<div class="order-2 md:order-1">
+<div class="inline-block px-4 py-1 bg-secondary-fixed text-on-secondary-fixed-variant rounded-full font-label-md text-label-md mb-6 uppercase tracking-widest">Our Impact</div>
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary mb-6">Why Your Participation Matters</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6 leading-relaxed">
+                    By joining SAIMA, you become a vital thread in South Australia's multicultural tapestry. Your support enables us to provide rehearsal spaces for emerging artists, organize cross-cultural workshops, and keep high-quality musical education accessible to local youth.
+                </p>
+<ul class="space-y-4">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">stars</span>
+<span class="font-body-md text-body-md">Funding for cultural preservation projects.</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">stars</span>
+<span class="font-body-md text-body-md">Sponsorships for underprivileged young musicians.</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">stars</span>
+<span class="font-body-md text-body-md">Community events that bridge diverse backgrounds.</span>
+</li>
+</ul>
+</div>
+<div class="order-1 md:order-2">
+<div class="w-full aspect-square bg-cover bg-center rounded-[24px] shadow-lg" data-alt="A diverse group of smiling musicians—a young violinist, an elderly percussionist, and a middle-aged cellist." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAuQZ0A_zdSOA7EnAv3K0Lau7-EbmOBvgN68k5FSZsIRT5ScJSQX35E9AcBAXis75zg3vFtYgOl4wAcI6sRipegdop3eCOFbIEwnLFrJxbXDduxl6PV2NdCt_8rxPrHK_jSY-pohae6sZ2kF8Vahb7ubCdTNBKWwUYWShblEkkMrkNeJawzThH8KWIitOzQXbbt3uvKZyof20xULtlPrlcuosm64d5a5vA3TTVbbFXIbpXbFXi8nxc5YmxuzlnJBx5eEz65tIlDqFE')"></div>
+</div>
+</div>
+</section>
+<!-- Join Us Paths (Bento Grid) -->
+<section class="bg-surface-container-low py-section-gap">
+<div class="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<div class="text-center mb-16">
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary">Find Your Place with Us</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-4">There are many ways to contribute to our mission.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Become a Member -->
+<div class="bg-surface p-8 rounded-[16px] shadow-md border border-outline-variant/10 hover:shadow-xl transition-all group">
+<span class="material-symbols-outlined text-4xl text-secondary mb-4 group-hover:scale-110 transition-transform">card_membership</span>
+<h3 class="font-headline-sm text-headline-sm text-primary mb-3">Become a Member</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6">Enjoy exclusive access to rehearsals, early-bird tickets, and voting rights in our annual assemblies.</p>
+<button class="font-label-md text-label-md text-secondary border-b border-secondary pb-1 group-hover:gap-2 flex items-center transition-all">Sign Up Today <span class="material-symbols-outlined text-sm">arrow_forward</span></button>
+</div>
+<!-- Volunteer -->
+<div class="bg-surface p-8 rounded-[16px] shadow-md border border-outline-variant/10 hover:shadow-xl transition-all group">
+<span class="material-symbols-outlined text-4xl text-secondary mb-4 group-hover:scale-110 transition-transform">volunteer_activism</span>
+<h3 class="font-headline-sm text-headline-sm text-primary mb-3">Volunteer</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6">Help us organize events, manage social media, or assist backstage during our grand seasonal concerts.</p>
+<button class="font-label-md text-label-md text-secondary border-b border-secondary pb-1 group-hover:gap-2 flex items-center transition-all">Join the Team <span class="material-symbols-outlined text-sm">arrow_forward</span></button>
+</div>
+<!-- Perform -->
+<div class="bg-surface p-8 rounded-[16px] shadow-md border border-outline-variant/10 hover:shadow-xl transition-all group">
+<span class="material-symbols-outlined text-4xl text-secondary mb-4 group-hover:scale-110 transition-transform">music_note</span>
+<h3 class="font-headline-sm text-headline-sm text-primary mb-3">Perform</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6">Are you a musician? We are always looking for diverse talent to showcase in our local and international showcases.</p>
+<button class="font-label-md text-label-md text-secondary border-b border-secondary pb-1 group-hover:gap-2 flex items-center transition-all">Audition Info <span class="material-symbols-outlined text-sm">arrow_forward</span></button>
+</div>
+<!-- Parent Support -->
+<div class="bg-surface p-8 rounded-[16px] shadow-md border border-outline-variant/10 hover:shadow-xl transition-all group">
+<span class="material-symbols-outlined text-4xl text-secondary mb-4 group-hover:scale-110 transition-transform">family_restroom</span>
+<h3 class="font-headline-sm text-headline-sm text-primary mb-3">Family Support</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6">Support your child's musical journey through our parent networks and family-oriented music workshops.</p>
+<button class="font-label-md text-label-md text-secondary border-b border-secondary pb-1 group-hover:gap-2 flex items-center transition-all">Learn More <span class="material-symbols-outlined text-sm">arrow_forward</span></button>
+</div>
+<!-- Partner -->
+<div class="bg-surface p-8 rounded-[16px] shadow-md border border-outline-variant/10 hover:shadow-xl transition-all group">
+<span class="material-symbols-outlined text-4xl text-secondary mb-4 group-hover:scale-110 transition-transform">handshake</span>
+<h3 class="font-headline-sm text-headline-sm text-primary mb-3">Partner</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6">Collaborate with us as a local business or educational institution to co-create cultural programs.</p>
+<button class="font-label-md text-label-md text-secondary border-b border-secondary pb-1 group-hover:gap-2 flex items-center transition-all">Start Partnership <span class="material-symbols-outlined text-sm">arrow_forward</span></button>
+</div>
+<!-- Sponsorship -->
+<div class="bg-surface p-8 rounded-[16px] shadow-md border border-outline-variant/10 hover:shadow-xl transition-all group">
+<span class="material-symbols-outlined text-4xl text-secondary mb-4 group-hover:scale-110 transition-transform">diamond</span>
+<h3 class="font-headline-sm text-headline-sm text-primary mb-3">Sponsorship</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6">Corporate and individual sponsors provide the backbone for our large-scale international festivals.</p>
+<button class="font-label-md text-label-md text-secondary border-b border-secondary pb-1 group-hover:gap-2 flex items-center transition-all">Inquire Now <span class="material-symbols-outlined text-sm">arrow_forward</span></button>
+</div>
+</div>
+</div>
+</section>
+<!-- Contact Section -->
+<section class="px-margin-mobile md:px-margin-desktop py-section-gap max-w-container-max mx-auto">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-stack-lg">
+<!-- Contact Form -->
+<div class="bg-white p-8 md:p-12 rounded-[24px] shadow-sm border border-outline-variant/20">
+<h2 class="font-headline-lg text-headline-md text-primary mb-8">Send us a Message</h2>
+<form class="space-y-6">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-2">Name</label>
+<input class="w-full bg-surface border border-outline/20 rounded-lg p-3 focus:ring-1 focus:ring-secondary focus:border-secondary outline-none transition-all" placeholder="John Doe" type="text"/>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-2">Email</label>
+<input class="w-full bg-surface border border-outline/20 rounded-lg p-3 focus:ring-1 focus:ring-secondary focus:border-secondary outline-none transition-all" placeholder="john@example.com" type="email"/>
+</div>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-2">Subject</label>
+<input class="w-full bg-surface border border-outline/20 rounded-lg p-3 focus:ring-1 focus:ring-secondary focus:border-secondary outline-none transition-all" placeholder="Inquiry about membership" type="text"/>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-2">Message</label>
+<textarea class="w-full bg-surface border border-outline/20 rounded-lg p-3 focus:ring-1 focus:ring-secondary focus:border-secondary outline-none transition-all resize-none" placeholder="How can we help you?" rows="5"></textarea>
+</div>
+<button class="w-full py-4 bg-primary text-on-primary font-label-md text-label-md rounded-lg hover:bg-on-surface-variant transition-colors flex items-center justify-center gap-2" type="submit">
+                        Send Message <span class="material-symbols-outlined text-sm">send</span>
+</button>
+</form>
+</div>
+<!-- Contact Details -->
+<div class="lg:pl-12 flex flex-col justify-center">
+<div class="mb-12">
+<h2 class="font-headline-lg text-headline-md text-primary mb-6">Contact Information</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">We're here to answer any questions you might have. Feel free to reach out via our channels or visit us during office hours.</p>
+</div>
+<div class="space-y-10">
+<div class="flex items-start gap-6">
+<div class="w-12 h-12 bg-secondary-container rounded-full flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-on-secondary-container">location_on</span>
+</div>
+<div>
+<h4 class="font-title-lg text-title-lg text-primary">Our Studio</h4>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">123 Cultural Way, North Adelaide,<br/>South Australia 5006</p>
+</div>
+</div>
+<div class="flex items-start gap-6">
+<div class="w-12 h-12 bg-secondary-container rounded-full flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-on-secondary-container">mail</span>
+</div>
+<div>
+<h4 class="font-title-lg text-title-lg text-primary">Email Us</h4>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">info@saima.org.au<br/>membership@saima.org.au</p>
+</div>
+</div>
+<div class="flex items-start gap-6">
+<div class="w-12 h-12 bg-secondary-container rounded-full flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-on-secondary-container">call</span>
+</div>
+<div>
+<h4 class="font-title-lg text-title-lg text-primary">Phone</h4>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">+61 (08) 1234 5678<br/>Mon-Fri, 9am - 5pm ACST</p>
+</div>
+</div>
+</div>
+<!-- Social Presence -->
+<div class="mt-12 pt-12 border-t border-outline-variant/30">
+<p class="font-label-md text-label-md text-on-surface-variant mb-4 uppercase tracking-widest">Follow Our Journey</p>
+<div class="flex gap-4">
+<a class="w-10 h-10 border border-outline/20 rounded-full flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all" href="#"><span class="material-symbols-outlined">public</span></a>
+<a class="w-10 h-10 border border-outline/20 rounded-full flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all" href="#"><span class="material-symbols-outlined">share</span></a>
+<a class="w-10 h-10 border border-outline/20 rounded-full flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all" href="#"><span class="material-symbols-outlined">play_circle</span></a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Location Map Placeholder -->
+<section class="h-[400px] w-full relative">
+<div class="w-full h-full bg-cover bg-center" data-alt="A clean, minimalist digital map of North Adelaide, South Australia." data-location="Adelaide, Australia" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAeigZ_mamAUmwRzwBogvc2bTBOzLhkN8lDzZLJ_e6zoWXqYn5QstQDKcSW1GFiwHVoBkBL_Nn-nDr8IRYXUKkdHbBH8kKI6pTrJZQY4xyVpszU-a4oNB3wwOraGrgDAHXWhRt9U4tOQCr3KjqiUC1E4xYDZMbbtJIzg3NWO3p2XNDZwk24XBlTreRaNLhYjevTN-u99V0HpfZ09w7OxNHSR-742YNXqUadWzMh4iVAlDIxVOGAX2PH8PDUh2T3tPaRGQCl59YZss4')"></div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container border-t border-outline-variant/20">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-desktop py-section-gap max-w-container-max mx-auto">
+<div class="space-y-stack-sm md:col-span-1">
+<div class="font-headline-sm text-headline-sm text-primary mb-4">SAIMA</div>
+<p class="font-body-md text-body-md text-on-surface-variant">Connecting cultures through the universal power of music in South Australia.</p>
+<div class="flex gap-4 pt-4">
+<a class="text-on-surface-variant hover:text-secondary" href="#"><span class="material-symbols-outlined">public</span></a>
+<a class="text-on-surface-variant hover:text-secondary" href="#"><span class="material-symbols-outlined">mail</span></a>
+<a class="text-on-surface-variant hover:text-secondary" href="#"><span class="material-symbols-outlined">call</span></a>
+</div>
+</div>
+<div class="space-y-4">
+<h4 class="font-label-md text-label-md text-primary uppercase">Quick Links</h4>
+<ul class="space-y-2">
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary underline decoration-secondary" href="#">Mission</a></li>
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary underline decoration-secondary" href="#">Contact Us</a></li>
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary underline decoration-secondary" href="#">Privacy Policy</a></li>
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary underline decoration-secondary" href="#">Newsletter Signup</a></li>
+</ul>
+</div>
+<div class="space-y-4">
+<h4 class="font-label-md text-label-md text-primary uppercase">Programs</h4>
+<ul class="space-y-2">
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary" href="#">Youth Orchestra</a></li>
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary" href="#">Global Masterclasses</a></li>
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary" href="#">Cultural Exchanges</a></li>
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary" href="#">Grant Opportunities</a></li>
+</ul>
+</div>
+<div class="space-y-4">
+<h4 class="font-label-md text-label-md text-primary uppercase">Visit Us</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                123 Cultural Way<br/>
+                Adelaide, SA 5000<br/>
+                Australia
+            </p>
+</div>
+</div>
+<div class="max-w-container-max mx-auto px-margin-desktop py-8 border-t border-outline-variant/10">
+<p class="font-body-md text-body-md text-on-surface-variant text-center md:text-left">
+            © 2026 South Australian International Musicians Association. All rights reserved.
+        </p>
+</div>
+</footer>
+<script>
+    // Simple scroll behavior for navbar
+    window.addEventListener('scroll', () => {
+        const header = document.querySelector('header');
+        if (window.scrollY > 50) {
+            header.classList.add('shadow-md');
+        } else {
+            header.classList.remove('shadow-md');
+        }
+    });
+</script>
+</body></html>

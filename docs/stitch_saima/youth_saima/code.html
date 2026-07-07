@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Youth &amp; Showcase | SAIMA</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700;800&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-fixed-dim": "#b9c9d2",
+                    "on-secondary-fixed-variant": "#5e4200",
+                    "inverse-surface": "#31302e",
+                    "error": "#ba1a1a",
+                    "on-background": "#1c1c1a",
+                    "secondary-fixed-dim": "#f9bc44",
+                    "on-primary-fixed": "#131b2e",
+                    "outline": "#76777d",
+                    "outline-variant": "#c6c6cd",
+                    "on-primary-fixed-variant": "#3f465c",
+                    "secondary": "#7c5800",
+                    "tertiary-container": "#0f1d24",
+                    "surface": "#fcf9f5",
+                    "surface-tint": "#565e74",
+                    "on-primary-container": "#7c839b",
+                    "on-surface": "#1c1c1a",
+                    "on-error-container": "#93000a",
+                    "tertiary-fixed": "#d5e5ee",
+                    "inverse-on-surface": "#f3f0ec",
+                    "on-secondary-container": "#704e00",
+                    "on-secondary-fixed": "#271900",
+                    "surface-dim": "#dcdad6",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary": "#ffffff",
+                    "secondary-fixed": "#ffdea8",
+                    "on-tertiary-fixed": "#0f1d24",
+                    "on-primary": "#ffffff",
+                    "surface-bright": "#fcf9f5",
+                    "on-tertiary-fixed-variant": "#3a4950",
+                    "on-surface-variant": "#45464d",
+                    "primary": "#000000",
+                    "on-tertiary-container": "#77868e",
+                    "surface-variant": "#e5e2de",
+                    "background": "#fcf9f5",
+                    "surface-container-highest": "#e5e2de",
+                    "secondary-container": "#fcbf46",
+                    "surface-container-lowest": "#ffffff",
+                    "on-error": "#ffffff",
+                    "inverse-primary": "#bec6e0",
+                    "primary-container": "#131b2e",
+                    "surface-container-high": "#eae8e4",
+                    "surface-container": "#f0ede9",
+                    "surface-container-low": "#f6f3ef",
+                    "error-container": "#ffdad6",
+                    "primary-fixed-dim": "#bec6e0",
+                    "primary-fixed": "#dae2fd",
+                    "tertiary": "#000000"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-desktop": "64px",
+                    "stack-lg": "64px",
+                    "section-gap": "120px",
+                    "margin-mobile": "20px",
+                    "stack-md": "32px",
+                    "unit": "8px",
+                    "container-max": "1280px",
+                    "margin-tablet": "32px",
+                    "stack-sm": "16px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["EB Garamond"],
+                    "headline-sm": ["EB Garamond"],
+                    "caption": ["Plus Jakarta Sans"],
+                    "headline-md": ["EB Garamond"],
+                    "body-lg": ["Plus Jakarta Sans"],
+                    "body-md": ["Plus Jakarta Sans"],
+                    "display": ["EB Garamond"],
+                    "label-md": ["Plus Jakarta Sans"],
+                    "headline-lg-mobile": ["EB Garamond"],
+                    "title-lg": ["Plus Jakarta Sans"]
+            },
+            "fontSize": {
+                    "headline-lg": ["48px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                    "headline-sm": ["24px", {"lineHeight": "1.4", "fontWeight": "500"}],
+                    "caption": ["12px", {"lineHeight": "1.4", "fontWeight": "500"}],
+                    "headline-md": ["32px", {"lineHeight": "1.3", "fontWeight": "500"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "display": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "1.4", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                    "title-lg": ["20px", {"lineHeight": "1.5", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .serif-text { font-family: 'EB Garamond', serif; }
+        .sans-text { font-family: 'Plus Jakarta Sans', sans-serif; }
+        
+        .image-soft-shadow {
+            box-shadow: 0 10px 30px -10px rgba(124, 88, 0, 0.1);
+        }
+        
+        .bento-card {
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        .bento-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface selection:bg-secondary-fixed selection:text-on-secondary-fixed">
+<!-- TopNavBar -->
+<header class="bg-surface/90 backdrop-blur-md shadow-sm w-full top-0 sticky z-50 flex justify-between items-center px-margin-mobile md:px-margin-desktop py-4">
+<div class="font-headline-sm text-headline-sm font-bold text-primary dark:text-on-surface">SAIMA</div>
+<nav class="hidden lg:flex items-center space-x-8">
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Home</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">About Us</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Events</a>
+<a class="font-label-md text-label-md text-primary border-b-2 border-secondary pb-1 font-bold" href="#">Youth</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Choir</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Gallery</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Courses</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Join &amp; Contact</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="font-label-md text-label-md text-primary border border-primary px-6 py-2.5 rounded-lg hover:bg-primary hover:text-white transition-all duration-300 active:scale-95">Login</button>
+</div>
+</header>
+<main class="max-w-container-max mx-auto overflow-hidden">
+<!-- Hero Section -->
+<header class="relative px-margin-mobile md:px-margin-desktop pt-stack-lg md:pt-section-gap pb-stack-md">
+<div class="max-w-4xl">
+<span class="font-label-md text-label-md text-secondary uppercase tracking-[0.2em] mb-4 block">Future Maestros</span>
+<h1 class="font-display text-display mb-stack-sm leading-[1.1] md:leading-[1.1]">Student Showcase: Young Voices and Performers</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">
+                Supporting young musicians across different instruments, voices, styles, and cultural traditions. We celebrate the dedication of our next generation.
+            </p>
+</div>
+<!-- Atmospheric decoration -->
+<div class="absolute -top-20 -right-20 w-96 h-96 bg-secondary-fixed-dim/10 rounded-full blur-3xl -z-10"></div>
+</header>
+<!-- Parent-Child Choir Section -->
+<section class="px-margin-mobile md:px-margin-desktop py-stack-lg md:py-section-gap bg-surface-container-low overflow-hidden">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter items-center">
+<div class="md:col-span-7 relative">
+<div class="rounded-[24px] overflow-hidden image-soft-shadow">
+<img class="w-full h-[500px] object-cover" data-alt="A warm, emotionally resonant photo of a parent and child singing together in a brightly lit choir rehearsal space." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCbJMf9eXc_-9o1begNpe2cjIwF6ESoqunUxJM2HY8VSoxLdLcr2fGI0Gayri5r4NuX8RV2vkYnRdLHcJ5gRigMN2ZnDVLm0h3v23Q8LxB6u7VYF7HE5o62YCWOxPX-MUk7sjd_2zAZvUVgfotOy8Ijs51tsfG7cyCDSjZYjSds4eobE9HDt_rcjpvHFPsM3db65EjFd5vEd_oNIKwoNxqC6gdWqKvZeuu54QVmvg8gix73lrQwQYgh_JfDlX52vDl0rtEl37ATIhg"/>
+</div>
+<!-- Decorative Element -->
+<div class="absolute -bottom-6 -left-6 bg-white p-6 rounded-xl shadow-lg hidden lg:block max-w-[200px]">
+<p class="font-headline-sm text-headline-sm text-secondary italic">"Generations in harmony"</p>
+</div>
+</div>
+<div class="md:col-span-5 flex flex-col gap-stack-sm">
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary">Parent-Child Choir Performances</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                    Music is a language that transcends age. Our intergenerational choir initiative brings families together, fostering deep emotional bonds through shared artistic expression and cultural heritage.
+                </p>
+<ul class="space-y-4 pt-4">
+<li class="flex items-center gap-3">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-body-md text-body-md">Weekly rehearsal sessions for all skill levels</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-body-md text-body-md">Multicultural repertoire including folk and classical</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-body-md text-body-md">Annual "Voices of Home" Concert Series</span>
+</li>
+</ul>
+<div class="pt-6">
+<button class="border border-primary px-8 py-3 rounded-full font-label-md text-label-md hover:bg-primary hover:text-white transition-all">Learn More About the Choir</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Young Artist Showcase Grid (Bento Style) -->
+<section class="px-margin-mobile md:px-margin-desktop py-section-gap">
+<div class="mb-stack-lg text-center max-w-3xl mx-auto">
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg mb-4">Young Artist Showcase</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                From classical strings to traditional folk instruments, discover the diverse talent flourishing under our mentorship program.
+            </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-gutter h-auto md:h-[900px]">
+<!-- Piano - Large Focus -->
+<div class="md:col-span-2 md:row-span-2 bento-card bg-white rounded-[24px] p-8 flex flex-col justify-end relative overflow-hidden group border border-outline-variant/10 shadow-sm opacity-0 translate-y-10 transition-all duration-700">
+<div class="absolute inset-0">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="A high-angle artistic shot of a young male pianist" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAwONMO62BeKjKkeCmlMU4WOkEli4XyfKrTpIkVt4SUIfD_fe67jVc4di1Wjn7rmTU_KIaMHPwrjwpONlQREt1i3uqksk41d0sa1sZESqx4kkUhJt65BRond_GcsCL1MXO0V7HOaT1ut1OPCpVdoYcIwwaSl8VHfWIgLVfuoJglp2lSz2BCu3dDSqsRri9SjoUG2ax65gQKPF2U5UPzpPnXgKd2aazkU4mnutjFWCBsa1rsxhYVPoRD1hyeRgrQIS7i6xDHPAkKDm0"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+</div>
+<div class="relative z-10 text-white">
+<span class="bg-secondary px-3 py-1 rounded-full text-[10px] uppercase font-bold tracking-widest mb-4 inline-block">Classical Piano</span>
+<h3 class="font-headline-md text-headline-md mb-2">The Piano Virtuosos</h3>
+<p class="font-body-md text-body-md opacity-90 max-w-md">Our keyboard department focuses on technical mastery and expressive nuance, from Baroque to Contemporary works.</p>
+</div>
+</div>
+<!-- Violin - Vertical -->
+<div class="md:col-span-1 md:row-span-1 bento-card bg-white rounded-[24px] p-6 flex flex-col border border-outline-variant/10 shadow-sm overflow-hidden group opacity-0 translate-y-10 transition-all duration-700">
+<div class="h-40 rounded-xl overflow-hidden mb-4">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Close-up of a young girl playing a violin" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBjcAml5LZ03JqWcMmRyEdNt83qzSyMmYNEQm82gttoPDXwafRRMKZMzInFUwMJ1fcbz8RAdN718qtEAyH3RM4GkdDrPWvsuLhE6rFWgKjQabJdExV0jyX8lnpzT0QPfY1ruAriid3Sg2QZr7_L0duIDJvWvW0lWhxl9cVA4qSDg841aO9cSyKtLwWXPRDS8M0w_CpPk6Z8KXeXuUfFN72_cT6s5_rpKfzSfUJyzRF91qlNYC1pDqU3sBzY3IofRZhbfG3Gss-n4SI"/>
+</div>
+<span class="text-secondary font-label-md text-label-md mb-1">Strings</span>
+<h3 class="font-title-lg text-title-lg mb-2">Violin Studio</h3>
+<p class="font-caption text-caption text-on-surface-variant">Mastering the art of bowing and tonal clarity in chamber and solo settings.</p>
+</div>
+<!-- Pipa - Cultural Heritage -->
+<div class="md:col-span-1 md:row-span-1 bento-card bg-secondary-container/10 rounded-[24px] p-6 flex flex-col border border-secondary/10 shadow-sm overflow-hidden group opacity-0 translate-y-10 transition-all duration-700">
+<div class="h-40 rounded-xl overflow-hidden mb-4">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="An elegant portrait of a teenager playing the Pipa" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKsEFmQnjjErbN0vSxtJNoam7qriUOrLZfOZHm7-l91xYJEU7JSmy8UMZQ1oF4y60aqArNDtnAYkL_JIrzFayfwG1XUFkBiJIfpPoCYnUkduzlVJvPOtSxgs2jgYBeBsvc8FF8IH6YSE0DVjiPnEp6HIqTDL-Hrr1T-tIhQ07Rq4bYxWdBse50PDAhb_iohXlLbLOeD0pnbF6iWsioGltJRhA-wrl7IjgkYeLokZPMj-rkNnemeTGpLhBfCuvsu_Z7Fnoc38S3-Ww"/>
+</div>
+<span class="text-secondary font-label-md text-label-md mb-1">Traditional</span>
+<h3 class="font-title-lg text-title-lg mb-2">Heritage Pipa</h3>
+<p class="font-caption text-caption text-on-surface-variant">Preserving ancient techniques while exploring contemporary fusions for the modern ear.</p>
+</div>
+<!-- Musical Theatre - Horizontal -->
+<div class="md:col-span-2 md:row-span-1 bento-card bg-white rounded-[24px] p-6 flex gap-6 items-center border border-outline-variant/10 shadow-sm overflow-hidden group opacity-0 translate-y-10 transition-all duration-700">
+<div class="w-1/3 h-full min-h-[160px] rounded-xl overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="A group of young performers on a stage" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCxgYr-3DQgxheAxbL7u5R9fo5bTk1LimBDY2ycTgjNeuFnNzqVYFSBF-0jbkrqKCrmq7cY8rHJHPwiqhItPp_5_dua6F_YkVBMcFnSj9YVeh81-bQBL9kNirMd4NS1-ifR62eZ9CA_CZbTdG_yxuQPhHVEotE74Noc6prWtrz3DRphgRqoTUe3hxn0NnU12TnEeoCkgtwbfIZqudJ1OlbljtX32DieQrUAuc8raAgmohSBqM99QbmfnroBzTq1wsp2rMYSMWl0-E"/>
+</div>
+<div class="w-2/3">
+<span class="text-secondary font-label-md text-label-md mb-1">Vocal Performance</span>
+<h3 class="font-headline-sm text-headline-sm mb-2">Musical Theatre</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Combining vocal excellence with dramatic storytelling and movement on the grand stage.</p>
+<div class="mt-4 flex gap-2">
+<div class="bg-secondary-fixed text-secondary font-label-md text-[10px] px-3 py-1 rounded-full uppercase font-bold">Broadway</div>
+<div class="bg-secondary-fixed text-secondary font-label-md text-[10px] px-3 py-1 rounded-full uppercase font-bold">Acting</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="px-margin-mobile md:px-margin-desktop py-section-gap">
+<div class="bg-primary-container rounded-[32px] p-12 md:p-24 text-center relative overflow-hidden">
+<!-- Background Decoration -->
+<div class="absolute top-0 right-0 w-64 h-64 bg-secondary/10 rounded-full -mr-32 -mt-32 blur-3xl"></div>
+<div class="absolute bottom-0 left-0 w-64 h-64 bg-secondary/10 rounded-full -ml-32 -mb-32 blur-3xl"></div>
+<div class="relative z-10 max-w-3xl mx-auto">
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-white mb-6">Nurturing the Next Generation</h2>
+<p class="font-body-lg text-body-lg text-on-primary-container mb-stack-md">
+                    Every performance starts with the courage to begin. Join SAIMA's youth programs and find your voice among a community that celebrates diversity and artistic excellence.
+                </p>
+<div class="flex flex-col sm:flex-row gap-4 justify-center">
+<button class="bg-secondary text-on-secondary font-label-md text-label-md px-10 py-4 rounded-full hover:bg-secondary-fixed transition-all active:scale-95 shadow-lg">Enrol Now</button>
+<button class="border border-white/30 text-white font-label-md text-label-md px-10 py-4 rounded-full hover:bg-white/10 transition-all active:scale-95">View Upcoming Recitals</button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container border-t border-outline-variant/20">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-desktop py-section-gap max-w-container-max mx-auto">
+<div class="space-y-stack-sm md:col-span-1">
+<div class="font-headline-sm text-headline-sm text-primary mb-4">SAIMA</div>
+<p class="font-body-md text-body-md text-on-surface-variant">Connecting cultures through the universal power of music in South Australia.</p>
+<div class="flex gap-4 pt-4">
+<a class="text-on-surface-variant hover:text-secondary" href="#"><span class="material-symbols-outlined">public</span></a>
+<a class="text-on-surface-variant hover:text-secondary" href="#"><span class="material-symbols-outlined">mail</span></a>
+<a class="text-on-surface-variant hover:text-secondary" href="#"><span class="material-symbols-outlined">call</span></a>
+</div>
+</div>
+<div class="space-y-4">
+<h4 class="font-label-md text-label-md text-primary uppercase">Quick Links</h4>
+<ul class="space-y-2">
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary underline decoration-secondary" href="#">Mission</a></li>
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary underline decoration-secondary" href="#">Contact Us</a></li>
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary underline decoration-secondary" href="#">Privacy Policy</a></li>
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary underline decoration-secondary" href="#">Newsletter Signup</a></li>
+</ul>
+</div>
+<div class="space-y-4">
+<h4 class="font-label-md text-label-md text-primary uppercase">Programs</h4>
+<ul class="space-y-2">
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary" href="#">Youth Orchestra</a></li>
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary" href="#">Global Masterclasses</a></li>
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary" href="#">Cultural Exchanges</a></li>
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary" href="#">Grant Opportunities</a></li>
+</ul>
+</div>
+<div class="space-y-4">
+<h4 class="font-label-md text-label-md text-primary uppercase">Visit Us</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                123 Cultural Way<br/>
+                Adelaide, SA 5000<br/>
+                Australia
+            </p>
+</div>
+</div>
+<div class="max-w-container-max mx-auto px-margin-desktop py-8 border-t border-outline-variant/10">
+<p class="font-body-md text-body-md text-on-surface-variant text-center md:text-left">
+            © 2026 South Australian International Musicians Association. All rights reserved.
+        </p>
+</div>
+</footer>
+<!-- Micro-interaction script -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const cards = document.querySelectorAll('.bento-card');
+        
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('opacity-100', 'translate-y-0');
+                    }, index * 100);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        cards.forEach(card => {
+            observer.observe(card);
+        });
+    });
+</script>
+</body></html>

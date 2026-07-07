@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SAIMA | Courses - Master the Heritage of International Music</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-fixed": "#ffdea8",
+                        "surface-container-highest": "#e5e2de",
+                        "surface-variant": "#e5e2de",
+                        "surface-container-high": "#eae8e4",
+                        "surface-container": "#f0ede9",
+                        "surface-tint": "#565e74",
+                        "secondary-container": "#fcbf46",
+                        "primary": "#000000",
+                        "surface-container-low": "#f6f3ef",
+                        "surface": "#fcf9f5",
+                        "tertiary-fixed-dim": "#b9c9d2",
+                        "primary-container": "#131b2e",
+                        "on-surface-variant": "#45464d",
+                        "on-tertiary-fixed": "#0f1d24",
+                        "secondary": "#7c5800",
+                        "background": "#fcf9f5",
+                        "on-primary-fixed-variant": "#3f465c",
+                        "on-error": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "inverse-primary": "#bec6e0",
+                        "surface-dim": "#dcdad6",
+                        "on-primary-fixed": "#131b2e",
+                        "on-error-container": "#93000a",
+                        "primary-fixed-dim": "#bec6e0",
+                        "on-primary-container": "#7c839b",
+                        "surface-bright": "#fcf9f5",
+                        "surface-container-lowest": "#ffffff",
+                        "outline": "#76777d",
+                        "outline-variant": "#c6c6cd",
+                        "error": "#ba1a1a",
+                        "on-tertiary": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "on-secondary-container": "#704e00",
+                        "tertiary-fixed": "#d5e5ee",
+                        "inverse-surface": "#31302e",
+                        "tertiary-container": "#0f1d24",
+                        "on-surface": "#1c1c1a",
+                        "tertiary": "#000000",
+                        "inverse-on-surface": "#f3f0ec",
+                        "on-secondary-fixed-variant": "#5e4200",
+                        "on-secondary": "#ffffff",
+                        "primary-fixed": "#dae2fd",
+                        "on-tertiary-container": "#77868e",
+                        "on-secondary-fixed": "#271900",
+                        "on-background": "#1c1c1a",
+                        "secondary-fixed-dim": "#f9bc44",
+                        "on-tertiary-fixed-variant": "#3a4950"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-sm": "16px",
+                        "container-max": "1280px",
+                        "stack-lg": "64px",
+                        "gutter": "24px",
+                        "margin-mobile": "20px",
+                        "unit": "8px",
+                        "section-gap": "120px",
+                        "stack-md": "32px",
+                        "margin-tablet": "32px",
+                        "margin-desktop": "64px"
+                    },
+                    "fontFamily": {
+                        "title-lg": ["Plus Jakarta Sans"],
+                        "label-md": ["Plus Jakarta Sans"],
+                        "display": ["EB Garamond"],
+                        "headline-md": ["EB Garamond"],
+                        "body-md": ["Plus Jakarta Sans"],
+                        "headline-sm": ["EB Garamond"],
+                        "headline-lg-mobile": ["EB Garamond"],
+                        "headline-lg": ["EB Garamond"],
+                        "body-lg": ["Plus Jakarta Sans"],
+                        "caption": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "title-lg": ["20px", {"lineHeight": "1.5", "fontWeight": "600"}],
+                        "label-md": ["14px", {"lineHeight": "1.4", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "display": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "headline-md": ["32px", {"lineHeight": "1.3", "fontWeight": "500"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "headline-sm": ["24px", {"lineHeight": "1.4", "fontWeight": "500"}],
+                        "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                        "headline-lg": ["48px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "caption": ["12px", {"lineHeight": "1.4", "fontWeight": "500"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .parchment-texture {
+            background-image: url("https://www.transparenttextures.com/patterns/felt.png");
+        }
+        .warm-shadow {
+            box-shadow: 0 10px 30px -5px rgba(124, 88, 0, 0.08);
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-surface font-body-md text-on-surface overflow-x-hidden">
+<!-- Top Navigation Bar -->
+<header class="bg-surface/90 backdrop-blur-md shadow-sm w-full top-0 sticky z-50 flex justify-between items-center px-margin-mobile md:px-margin-desktop py-4">
+<div class="font-headline-sm text-headline-sm font-bold text-primary">SAIMA</div>
+<nav class="hidden lg:flex items-center space-x-8">
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Home</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">About Us</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Events</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Youth</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Choir</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Gallery</a>
+<a class="font-label-md text-label-md text-primary border-b-2 border-secondary pb-1 font-bold" href="#">Courses</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Join &amp; Contact</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="font-label-md text-label-md text-primary border border-primary px-6 py-2.5 rounded-lg hover:bg-primary hover:text-white transition-all duration-300 active:scale-95">Login</button>
+</div>
+</header>
+<main>
+<!-- Hero Section -->
+<section class="relative bg-surface py-stack-lg md:py-section-gap overflow-hidden">
+<div class="absolute top-0 right-0 w-1/3 h-full bg-secondary/5 opacity-40 -skew-x-12 translate-x-1/2"></div>
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop relative">
+<div class="max-w-3xl">
+<span class="inline-block px-4 py-1 bg-secondary-fixed text-on-secondary-fixed font-label-md text-label-md rounded-full mb-6 uppercase tracking-widest">Mastery &amp; Tradition</span>
+<h1 class="font-display text-display text-primary leading-tight mb-8">Refine Your Art with <br class="hidden md:block"/><span class="italic text-secondary">Global Maestros.</span></h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mb-10">
+                    SAIMA connects aspiring musicians with world-renowned instructors specializing in international folk, classical, and contemporary heritage. Discover courses designed to bridge cultures through sound.
+                </p>
+<div class="flex flex-wrap gap-4">
+<a class="px-8 py-4 bg-primary text-on-primary font-label-md text-label-md uppercase tracking-widest rounded-lg hover:shadow-xl transition-shadow flex items-center gap-2" href="#browse-courses">
+                        Explore Curriculum
+                        <span class="material-symbols-outlined text-sm">arrow_downward</span>
+</a>
+<a class="px-8 py-4 bg-surface-container-high text-primary font-label-md text-label-md uppercase tracking-widest rounded-lg hover:bg-surface-variant transition-colors flex items-center gap-2" href="#visitor-dashboard">
+                        Manage Bookings
+                        <span class="material-symbols-outlined text-sm">dashboard</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+<!-- Search & Filter Bar -->
+<section class="bg-surface-container py-stack-md sticky top-20 z-40 shadow-sm border-b border-outline-variant/10">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+<div class="flex flex-col md:flex-row gap-4 items-center justify-between">
+<div class="relative w-full md:w-96 group">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full pl-12 pr-4 py-3 bg-surface border border-outline/20 rounded-xl focus:ring-2 focus:ring-secondary/20 focus:border-secondary outline-none transition-all font-body-md text-body-md" placeholder="Search instruments, subjects, or maestros..." type="text"/>
+</div>
+<div class="flex gap-2 overflow-x-auto w-full md:w-auto pb-2 md:pb-0 no-scrollbar">
+<button class="whitespace-nowrap px-4 py-2 bg-secondary text-on-primary rounded-full font-label-md text-label-md">All Subjects</button>
+<button class="whitespace-nowrap px-4 py-2 bg-surface text-on-surface-variant border border-outline/20 rounded-full font-label-md text-label-md hover:border-secondary transition-colors">Strings</button>
+<button class="whitespace-nowrap px-4 py-2 bg-surface text-on-surface-variant border border-outline/20 rounded-full font-label-md text-label-md hover:border-secondary transition-colors">Percussion</button>
+<button class="whitespace-nowrap px-4 py-2 bg-surface text-on-surface-variant border border-outline/20 rounded-full font-label-md text-label-md hover:border-secondary transition-colors">Theory</button>
+<button class="whitespace-nowrap px-4 py-2 bg-surface text-on-surface-variant border border-outline/20 rounded-full font-label-md text-label-md hover:border-secondary transition-colors">Voice</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Courses Grid -->
+<section class="py-section-gap max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop" id="browse-courses">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<!-- Course Card 1 -->
+<div class="bg-surface-container-lowest rounded-2xl overflow-hidden warm-shadow border border-surface-variant/50 flex flex-col group transition-all duration-500 hover:-translate-y-2">
+<div class="h-64 overflow-hidden relative">
+<div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105" data-alt="A cinematic, high-resolution portrait of a master Sitar player performing in a sun-drenched, heritage-style music hall." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuACSqzDAwssTiP9NhVhg3QYnXZ5r6MtqOY1XG2RkVHNV_fMEd0rJvSiRpuyJm2z_HbFuLSIY-8OAjSvspPFEReOELYf6zlY7gHij0D1cdKB3GeR11Dadiqfk62PWKG0m5LALqEgqZNbsL1h4h2tsvFZauZtbBrg5qjTQ5ahu7ehRgJJMheRtjCJ14-oMjO7MzbTrpL-QjTypjrTjfw9-OASV0gwC_TFV9Eh4_gIwb4H1YD5SyrNg8o1gaUBNINLQ5TI6Ufrk5-AUaE')"></div>
+<div class="absolute top-4 left-4">
+<span class="px-3 py-1 bg-secondary-container text-on-secondary-container rounded-lg font-label-md text-[12px] uppercase tracking-wider">Classical</span>
+</div>
+</div>
+<div class="p-8 flex flex-col flex-grow">
+<div class="flex justify-between items-start mb-4">
+<div>
+<p class="text-secondary font-label-md text-label-md uppercase tracking-widest mb-1">Pandit Arjan Dev</p>
+<h3 class="font-headline-sm text-headline-sm text-primary">Mastering the Hindustani Sitar</h3>
+</div>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-8 line-clamp-3">
+                        An intensive deep-dive into Raag structures, microtones (Meend), and complex rhythmic cycles (Taal) for advanced practitioners.
+                    </p>
+<div class="mt-auto pt-6 border-t border-surface-variant flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[20px]">schedule</span>
+<span class="font-label-md text-caption">12 Weeks</span>
+</div>
+<button class="font-label-md text-label-md text-secondary uppercase tracking-widest flex items-center gap-1 group/btn">
+                            Details <span class="material-symbols-outlined text-sm group-hover/btn:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Course Card 2 -->
+<div class="bg-surface-container-lowest rounded-2xl overflow-hidden warm-shadow border border-surface-variant/50 flex flex-col group transition-all duration-500 hover:-translate-y-2">
+<div class="h-64 overflow-hidden relative">
+<div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105" data-alt="An elegant, studio-lit photograph of a professional cellist in a minimalist, modern concert environment." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBjsnBrxsvitfTF1dz7dEJj32ERyDQPGsBMMQlfa6Q8CjH8j7_72YU5uheLQVavJPZTw62PeMiZX--BzRj5yaxQPXgK_mW3anmwl8MPOjq9lQ87Tv5afxsRlbUuHtlfgSKTJU4UgBhWCtOhTR9JcsM3LV_jhRyCvqcCpI0275mC6dr_b3MXu139nNIkNoO_HFKU6oi_SdCqMtJJuTrvRrWccIi5pR94Gt1KCjso8EmCqMPugXyY6uNe6Qttdlh_zh5q5sIJpetSdQQ')"></div>
+<div class="absolute top-4 left-4">
+<span class="px-3 py-1 bg-secondary-container text-on-secondary-container rounded-lg font-label-md text-[12px] uppercase tracking-wider">European Heritage</span>
+</div>
+</div>
+<div class="p-8 flex flex-col flex-grow">
+<div class="flex justify-between items-start mb-4">
+<div>
+<p class="text-secondary font-label-md text-label-md uppercase tracking-widest mb-1">Dr. Elena Volkov</p>
+<h3 class="font-headline-sm text-headline-sm text-primary">Baroque Cello Techniques</h3>
+</div>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-8 line-clamp-3">
+                        Explore the historical nuances of 18th-century performance practices, focusing on bowing styles and ornamentation.
+                    </p>
+<div class="mt-auto pt-6 border-t border-surface-variant flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[20px]">schedule</span>
+<span class="font-label-md text-caption">8 Weeks</span>
+</div>
+<button class="font-label-md text-label-md text-secondary uppercase tracking-widest flex items-center gap-1 group/btn">
+                            Details <span class="material-symbols-outlined text-sm group-hover/btn:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Course Card 3 -->
+<div class="bg-surface-container-lowest rounded-2xl overflow-hidden warm-shadow border border-surface-variant/50 flex flex-col group transition-all duration-500 hover:-translate-y-2">
+<div class="h-64 overflow-hidden relative">
+<div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105" data-alt="A dynamic, high-contrast action shot of an African percussionist playing traditional Djembe drums." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDtqZ95rN5aU1dADPE7PfBm6Gn1to-YRSDrCNagKxe2vhNVnGwZIaFhq9TR9rhII16CP3WQlVTnqCdASg52q_Utz-HmfFQ_N9dnGNPKv1JuAxIBgLM9iIgdqxeVAgmQ_K9-KMzqafLvdErzUfSVElxtUMJbq_vkYQqkGALT1NZDVycmrhuzi8ftHZ5ErQMM4hfO6MHku5GnmSAAA3a7CFm8N4ORUr-Ddye8JVdqEjWfBqjRplJqomiFLimy9LnkYcxdX87JPA8AWv0')"></div>
+<div class="absolute top-4 left-4">
+<span class="px-3 py-1 bg-secondary-container text-on-secondary-container rounded-lg font-label-md text-[12px] uppercase tracking-wider">Percussion</span>
+</div>
+</div>
+<div class="p-8 flex flex-col flex-grow">
+<div class="flex justify-between items-start mb-4">
+<div>
+<p class="text-secondary font-label-md text-label-md uppercase tracking-widest mb-1">Malick Sow</p>
+<h3 class="font-headline-sm text-headline-sm text-primary">Rhythms of West Africa</h3>
+</div>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-8 line-clamp-3">
+                        A rhythmic journey through the Djembe and Sabar traditions. Perfect for students looking to expand their timing and groove.
+                    </p>
+<div class="mt-auto pt-6 border-t border-surface-variant flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[20px]">schedule</span>
+<span class="font-label-md text-caption">6 Weeks</span>
+</div>
+<button class="font-label-md text-label-md text-secondary uppercase tracking-widest flex items-center gap-1 group/btn">
+                            Details <span class="material-symbols-outlined text-sm group-hover/btn:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Course Card 4 -->
+<div class="bg-surface-container-lowest rounded-2xl overflow-hidden warm-shadow border border-surface-variant/50 flex flex-col group transition-all duration-500 hover:-translate-y-2">
+<div class="h-64 overflow-hidden relative">
+<div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105" data-alt="A serene, professional image of a vocalist performing in an elegant, wood-paneled acoustic studio." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD5LAZg7iyUxeM43H7b-F_s-AALzSAwT80tcTtauD_6hRa5V46S1C319s3PCiYiYMRBDcDw4Z5-FAjIhQwL3eHQCz9OVC9F58cyHxPodKWYfgDsk-OBMp1IakzMeeBZ69gINwvBPDt3uFhDA2QLmhBeFScF24uUqJazK0XwGix9STSvCoOwbtsXIBqf73o9ZvCoF5vXUHIzPkKvyeg3a-Vm806XwpkSnIwVV3MZIpgS4_TQ5hyyGx-GnmsQTc85J2I-PWVJ5H82Iuk')"></div>
+<div class="absolute top-4 left-4">
+<span class="px-3 py-1 bg-secondary-container text-on-secondary-container rounded-lg font-label-md text-[12px] uppercase tracking-wider">Vocal</span>
+</div>
+</div>
+<div class="p-8 flex flex-col flex-grow">
+<div class="flex justify-between items-start mb-4">
+<div>
+<p class="text-secondary font-label-md text-label-md uppercase tracking-widest mb-1">Sara Al-Farsi</p>
+<h3 class="font-headline-sm text-headline-sm text-primary">Middle Eastern Vocal Maqam</h3>
+</div>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-8 line-clamp-3">
+                        Learn the intricate system of melodic modes used in traditional Arabic music, emphasizing quarter-tones and emotion.
+                    </p>
+<div class="mt-auto pt-6 border-t border-surface-variant flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[20px]">schedule</span>
+<span class="font-label-md text-caption">10 Weeks</span>
+</div>
+<button class="font-label-md text-label-md text-secondary uppercase tracking-widest flex items-center gap-1 group/btn">
+                            Details <span class="material-symbols-outlined text-sm group-hover/btn:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section: Sign In to Book -->
+<section class="bg-primary py-section-gap relative overflow-hidden">
+<div class="absolute inset-0 opacity-10 parchment-texture"></div>
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop text-center relative z-10">
+<h2 class="font-headline-lg text-headline-lg text-on-primary mb-6">Ready to Begin Your Journey?</h2>
+<p class="font-body-lg text-body-lg text-on-primary/80 max-w-2xl mx-auto mb-12">
+                To reserve your spot in a masterclass or workshop, please sign in to your SAIMA account. New to our community? Creating an account takes less than a minute.
+            </p>
+<div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+<button class="w-full sm:w-auto px-10 py-5 bg-secondary text-on-primary font-label-md text-label-md uppercase tracking-widest rounded-lg hover:scale-105 transition-transform shadow-lg">Sign In to Book</button>
+<button class="w-full sm:w-auto px-10 py-5 border border-on-primary/30 text-on-primary font-label-md text-label-md uppercase tracking-widest rounded-lg hover:bg-white/10 transition-colors">Create Account</button>
+</div>
+</div>
+</section>
+<!-- Visitor Dashboard Promotion -->
+<section class="py-section-gap bg-surface-container-low" id="visitor-dashboard">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+<div class="flex flex-col lg:flex-row items-center gap-16">
+<div class="flex-1">
+<div class="bg-surface-container-highest p-4 rounded-3xl warm-shadow">
+<div class="aspect-video bg-cover bg-center rounded-2xl" data-alt="A sleek, professional dashboard interface displayed on a modern laptop screen." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCtEjhjKluUlvYZdgCj5h06wmXCmPgw6XjPmxvH_cvP95cSjYyICOprwhR5LJld1kpmFyzJ8G3yGMahmUh5_DNX-hj1e2uPNsqKkf54F3GkehZVidc8DrbbkHsFjEP3CYAGo7DIhNbRfcBXwGIs1LnJ-nHH-Osrf_A8TQSbWL4GFuFrdLMMfpzAijk5BuGbYWT9Oa4IO-2CcMtQ4QMNXWzqyySQoawbjFiLtcVa-WU-vM5meWRqGPtS-OS6qUUEoTPEHdGVIpVsb94')"></div>
+</div>
+</div>
+<div class="flex-1">
+<span class="text-secondary font-label-md text-label-md uppercase tracking-widest mb-4 inline-block">Member Benefits</span>
+<h2 class="font-headline-lg text-headline-lg text-primary mb-8 leading-tight">Your Personalized Learning Hub</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-10">
+                        Once registered, the SAIMA Visitor Dashboard becomes your central command center for artistic growth. Manage your enrollments, communicate with maestros, and access exclusive course materials from any device.
+                    </p>
+<ul class="space-y-6">
+<li class="flex items-start gap-4">
+<span class="material-symbols-outlined text-secondary bg-secondary/10 p-2 rounded-lg">event_available</span>
+<div>
+<h4 class="font-title-lg text-title-lg text-primary">Manage Bookings</h4>
+<p class="text-on-surface-variant">View upcoming sessions and reschedule with ease.</p>
+</div>
+</li>
+<li class="flex items-start gap-4">
+<span class="material-symbols-outlined text-secondary bg-secondary/10 p-2 rounded-lg">description</span>
+<div>
+<h4 class="font-title-lg text-title-lg text-primary">Course Resources</h4>
+<p class="text-on-surface-variant">Download sheet music, Raag charts, and lecture recordings.</p>
+</div>
+</li>
+<li class="flex items-start gap-4">
+<span class="material-symbols-outlined text-secondary bg-secondary/10 p-2 rounded-lg">chat</span>
+<div>
+<h4 class="font-title-lg text-title-lg text-primary">Direct Messaging</h4>
+<p class="text-on-surface-variant">Connect with your instructors for personalized feedback.</p>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container border-t border-outline-variant/20">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-mobile md:px-margin-desktop py-section-gap max-w-container-max mx-auto">
+<div class="space-y-stack-sm md:col-span-1">
+<div class="font-headline-sm text-headline-sm text-primary mb-4">SAIMA</div>
+<p class="font-body-md text-body-md text-on-surface-variant">Connecting cultures through the universal power of music in South Australia.</p>
+<div class="flex gap-4 pt-4">
+<a class="text-on-surface-variant hover:text-secondary" href="#"><span class="material-symbols-outlined">public</span></a>
+<a class="text-on-surface-variant hover:text-secondary" href="#"><span class="material-symbols-outlined">mail</span></a>
+<a class="text-on-surface-variant hover:text-secondary" href="#"><span class="material-symbols-outlined">call</span></a>
+</div>
+</div>
+<div class="space-y-4">
+<h4 class="font-label-md text-label-md text-primary uppercase">Quick Links</h4>
+<ul class="space-y-2">
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary underline decoration-secondary" href="#">Mission</a></li>
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary underline decoration-secondary" href="#">Contact Us</a></li>
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary underline decoration-secondary" href="#">Privacy Policy</a></li>
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary underline decoration-secondary" href="#">Newsletter Signup</a></li>
+</ul>
+</div>
+<div class="space-y-4">
+<h4 class="font-label-md text-label-md text-primary uppercase">Programs</h4>
+<ul class="space-y-2">
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary" href="#">Youth Orchestra</a></li>
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary" href="#">Global Masterclasses</a></li>
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary" href="#">Cultural Exchanges</a></li>
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary" href="#">Grant Opportunities</a></li>
+</ul>
+</div>
+<div class="space-y-4">
+<h4 class="font-label-md text-label-md text-primary uppercase">Visit Us</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                123 Cultural Way<br/>
+                Adelaide, SA 5000<br/>
+                Australia
+            </p>
+</div>
+</div>
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-8 border-t border-outline-variant/10">
+<p class="font-body-md text-body-md text-on-surface-variant text-center md:text-left">© 2026 South Australian International Musicians Association. All rights reserved.</p>
+</div>
+</footer>
+<script>
+    // Intersection Observer for fade-in animations
+    const observerOptions = {
+        threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('opacity-100', 'translate-y-0');
+                entry.target.classList.remove('opacity-0', 'translate-y-10');
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.warm-shadow').forEach(el => {
+        el.classList.add('transition-all', 'duration-700', 'opacity-0', 'translate-y-10');
+        observer.observe(el);
+    });
+</script>
+</body></html>

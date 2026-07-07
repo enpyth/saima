@@ -9,12 +9,16 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as YouthRouteImport } from './routes/youth'
 import { Route as MembershipRouteImport } from './routes/membership'
 import { Route as LoginRouteImport } from './routes/login'
+import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as EventsRouteImport } from './routes/events'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as CoursesRouteImport } from './routes/courses'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as ChoirRouteImport } from './routes/choir'
+import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as DashboardVisitorRouteImport } from './routes/dashboard.visitor'
 import { Route as DashboardMemberRouteImport } from './routes/dashboard.member'
@@ -31,6 +35,11 @@ import { Route as DashboardAdminEventsRouteImport } from './routes/dashboard.adm
 import { Route as DashboardAdminBookingsRouteImport } from './routes/dashboard.admin.bookings'
 import { Route as DashboardAdminApplicationsRouteImport } from './routes/dashboard.admin.applications'
 
+const YouthRoute = YouthRouteImport.update({
+  id: '/youth',
+  path: '/youth',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MembershipRoute = MembershipRouteImport.update({
   id: '/membership',
   path: '/membership',
@@ -39,6 +48,11 @@ const MembershipRoute = MembershipRouteImport.update({
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
   path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GalleryRoute = GalleryRouteImport.update({
+  id: '/gallery',
+  path: '/gallery',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EventsRoute = EventsRouteImport.update({
@@ -59,6 +73,16 @@ const CoursesRoute = CoursesRouteImport.update({
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ChoirRoute = ChoirRouteImport.update({
+  id: '/choir',
+  path: '/choir',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -143,12 +167,16 @@ const DashboardAdminApplicationsRoute =
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/choir': typeof ChoirRoute
   '/contact': typeof ContactRoute
   '/courses': typeof CoursesRoute
   '/dashboard': typeof DashboardRouteWithChildren
   '/events': typeof EventsRoute
+  '/gallery': typeof GalleryRoute
   '/login': typeof LoginRoute
   '/membership': typeof MembershipRoute
+  '/youth': typeof YouthRoute
   '/auth/callback': typeof AuthCallbackRoute
   '/dashboard/admin': typeof DashboardAdminRouteWithChildren
   '/dashboard/member': typeof DashboardMemberRouteWithChildren
@@ -166,12 +194,16 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/choir': typeof ChoirRoute
   '/contact': typeof ContactRoute
   '/courses': typeof CoursesRoute
   '/dashboard': typeof DashboardRouteWithChildren
   '/events': typeof EventsRoute
+  '/gallery': typeof GalleryRoute
   '/login': typeof LoginRoute
   '/membership': typeof MembershipRoute
+  '/youth': typeof YouthRoute
   '/auth/callback': typeof AuthCallbackRoute
   '/dashboard/admin': typeof DashboardAdminRouteWithChildren
   '/dashboard/member': typeof DashboardMemberRouteWithChildren
@@ -190,12 +222,16 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/choir': typeof ChoirRoute
   '/contact': typeof ContactRoute
   '/courses': typeof CoursesRoute
   '/dashboard': typeof DashboardRouteWithChildren
   '/events': typeof EventsRoute
+  '/gallery': typeof GalleryRoute
   '/login': typeof LoginRoute
   '/membership': typeof MembershipRoute
+  '/youth': typeof YouthRoute
   '/auth/callback': typeof AuthCallbackRoute
   '/dashboard/admin': typeof DashboardAdminRouteWithChildren
   '/dashboard/member': typeof DashboardMemberRouteWithChildren
@@ -215,12 +251,16 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/about'
+    | '/choir'
     | '/contact'
     | '/courses'
     | '/dashboard'
     | '/events'
+    | '/gallery'
     | '/login'
     | '/membership'
+    | '/youth'
     | '/auth/callback'
     | '/dashboard/admin'
     | '/dashboard/member'
@@ -238,12 +278,16 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/about'
+    | '/choir'
     | '/contact'
     | '/courses'
     | '/dashboard'
     | '/events'
+    | '/gallery'
     | '/login'
     | '/membership'
+    | '/youth'
     | '/auth/callback'
     | '/dashboard/admin'
     | '/dashboard/member'
@@ -261,12 +305,16 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/about'
+    | '/choir'
     | '/contact'
     | '/courses'
     | '/dashboard'
     | '/events'
+    | '/gallery'
     | '/login'
     | '/membership'
+    | '/youth'
     | '/auth/callback'
     | '/dashboard/admin'
     | '/dashboard/member'
@@ -285,17 +333,28 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  ChoirRoute: typeof ChoirRoute
   ContactRoute: typeof ContactRoute
   CoursesRoute: typeof CoursesRoute
   DashboardRoute: typeof DashboardRouteWithChildren
   EventsRoute: typeof EventsRoute
+  GalleryRoute: typeof GalleryRoute
   LoginRoute: typeof LoginRoute
   MembershipRoute: typeof MembershipRoute
+  YouthRoute: typeof YouthRoute
   AuthCallbackRoute: typeof AuthCallbackRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/youth': {
+      id: '/youth'
+      path: '/youth'
+      fullPath: '/youth'
+      preLoaderRoute: typeof YouthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/membership': {
       id: '/membership'
       path: '/membership'
@@ -308,6 +367,13 @@ declare module '@tanstack/react-router' {
       path: '/login'
       fullPath: '/login'
       preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/gallery': {
+      id: '/gallery'
+      path: '/gallery'
+      fullPath: '/gallery'
+      preLoaderRoute: typeof GalleryRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/events': {
@@ -336,6 +402,20 @@ declare module '@tanstack/react-router' {
       path: '/contact'
       fullPath: '/contact'
       preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/choir': {
+      id: '/choir'
+      path: '/choir'
+      fullPath: '/choir'
+      preLoaderRoute: typeof ChoirRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -513,12 +593,16 @@ const DashboardRouteWithChildren = DashboardRoute._addFileChildren(
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  ChoirRoute: ChoirRoute,
   ContactRoute: ContactRoute,
   CoursesRoute: CoursesRoute,
   DashboardRoute: DashboardRouteWithChildren,
   EventsRoute: EventsRoute,
+  GalleryRoute: GalleryRoute,
   LoginRoute: LoginRoute,
   MembershipRoute: MembershipRoute,
+  YouthRoute: YouthRoute,
   AuthCallbackRoute: AuthCallbackRoute,
 }
 export const routeTree = rootRouteImport

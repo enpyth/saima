@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Events | SAIMA - South Australian International Musicians Association</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&amp;family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-fixed": "#ffdea8",
+                    "surface-container-highest": "#e5e2de",
+                    "surface-variant": "#e5e2de",
+                    "surface-container-high": "#eae8e4",
+                    "surface-container": "#f0ede9",
+                    "surface-tint": "#565e74",
+                    "secondary-container": "#fcbf46",
+                    "primary": "#000000",
+                    "surface-container-low": "#f6f3ef",
+                    "surface": "#fcf9f5",
+                    "tertiary-fixed-dim": "#b9c9d2",
+                    "primary-container": "#131b2e",
+                    "on-surface-variant": "#45464d",
+                    "on-tertiary-fixed": "#0f1d24",
+                    "secondary": "#7c5800",
+                    "background": "#fcf9f5",
+                    "on-primary-fixed-variant": "#3f465c",
+                    "on-error": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "inverse-primary": "#bec6e0",
+                    "surface-dim": "#dcdad6",
+                    "on-primary-fixed": "#131b2e",
+                    "on-error-container": "#93000a",
+                    "primary-fixed-dim": "#bec6e0",
+                    "on-primary-container": "#7c839b",
+                    "surface-bright": "#fcf9f5",
+                    "surface-container-lowest": "#ffffff",
+                    "outline": "#76777d",
+                    "outline-variant": "#c6c6cd",
+                    "error": "#ba1a1a",
+                    "on-tertiary": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "on-secondary-container": "#704e00",
+                    "tertiary-fixed": "#d5e5ee",
+                    "inverse-surface": "#31302e",
+                    "tertiary-container": "#0f1d24",
+                    "on-surface": "#1c1c1a",
+                    "tertiary": "#000000",
+                    "inverse-on-surface": "#f3f0ec",
+                    "on-secondary-fixed-variant": "#5e4200",
+                    "on-secondary": "#ffffff",
+                    "primary-fixed": "#dae2fd",
+                    "on-tertiary-container": "#77868e",
+                    "on-secondary-fixed": "#271900",
+                    "on-background": "#1c1c1a",
+                    "secondary-fixed-dim": "#f9bc44",
+                    "on-tertiary-fixed-variant": "#3a4950"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-sm": "16px",
+                    "container-max": "1280px",
+                    "stack-lg": "64px",
+                    "gutter": "24px",
+                    "margin-mobile": "20px",
+                    "unit": "8px",
+                    "section-gap": "120px",
+                    "stack-md": "32px",
+                    "margin-tablet": "32px",
+                    "margin-desktop": "64px"
+            },
+            "fontFamily": {
+                    "title-lg": ["Plus Jakarta Sans"],
+                    "label-md": ["Plus Jakarta Sans"],
+                    "display": ["EB Garamond"],
+                    "headline-md": ["EB Garamond"],
+                    "body-md": ["Plus Jakarta Sans"],
+                    "headline-sm": ["EB Garamond"],
+                    "headline-lg-mobile": ["EB Garamond"],
+                    "headline-lg": ["EB Garamond"],
+                    "body-lg": ["Plus Jakarta Sans"],
+                    "caption": ["Plus Jakarta Sans"]
+            },
+            "fontSize": {
+                    "title-lg": ["20px", {"lineHeight": "1.5", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "1.4", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "display": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "headline-md": ["32px", {"lineHeight": "1.3", "fontWeight": "500"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "headline-sm": ["24px", {"lineHeight": "1.4", "fontWeight": "500"}],
+                    "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                    "headline-lg": ["48px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "caption": ["12px", {"lineHeight": "1.4", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .event-card-hover {
+            transition: transform 0.4s cubic-bezier(0.2, 1, 0.3, 1), box-shadow 0.4s ease;
+        }
+        .event-card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.1);
+        }
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md selection:bg-secondary-fixed selection:text-on-secondary-fixed">
+<!-- TopNavBar -->
+<header class="bg-surface/90 backdrop-blur-md shadow-sm w-full top-0 sticky z-50 flex justify-between items-center px-margin-mobile md:px-margin-desktop py-4">
+<div class="font-headline-sm text-headline-sm font-bold text-primary">SAIMA</div>
+<nav class="hidden lg:flex items-center space-x-8">
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Home</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">About Us</a>
+<a class="font-label-md text-label-md text-primary border-b-2 border-secondary pb-1 font-bold" href="#">Events</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Youth</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Choir</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Gallery</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Courses</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Join &amp; Contact</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="font-label-md text-label-md text-primary border border-primary px-6 py-2 rounded-lg hover:bg-primary hover:text-white transition-all duration-300 active:scale-95">Login</button>
+</div>
+</header>
+<main class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+<!-- Hero Section -->
+<section class="py-section-gap flex flex-col items-center text-center">
+<span class="bg-secondary-fixed text-on-secondary-fixed-variant px-4 py-1 rounded-full font-label-md text-label-md uppercase tracking-wider mb-stack-sm">Experience Culture</span>
+<h1 class="font-display text-display mb-stack-md max-w-3xl">Performances that Connect Cultures and Hearts</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">From grand professional symphony concerts to intimate community performances, explore the rich tapestry of international music in South Australia.</p>
+</section>
+<!-- Upcoming Events -->
+<section class="pb-section-gap" id="upcoming">
+<div class="flex justify-between items-end mb-stack-lg border-b border-outline-variant pb-stack-sm">
+<div>
+<h2 class="font-headline-lg text-headline-lg">Upcoming Events</h2>
+<p class="text-on-surface-variant font-body-md mt-2">Join us for our forthcoming season of musical excellence.</p>
+</div>
+<div class="hidden md:flex gap-2">
+<button class="p-2 border border-outline-variant rounded-full hover:bg-surface-variant transition-colors"><span class="material-symbols-outlined">arrow_back</span></button>
+<button class="p-2 border border-outline-variant rounded-full hover:bg-surface-variant transition-colors"><span class="material-symbols-outlined">arrow_forward</span></button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Featured: A Dream for Every Child -->
+<div class="md:col-span-8 group cursor-pointer">
+<div class="relative overflow-hidden rounded-2xl bg-surface-container-high aspect-[16/9] mb-stack-sm shadow-md">
+<img alt="A grand orchestral performance" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAMEzWWLrNDAbIkg22KqgEoTQsJ7kcnd0eHU2NxthPnq0CZfxQ_EOQHg8l4kO3LiY5JxfCcbpniyWKhs9ME78Im9j7NzjN65OyWh3u2EgHr3NcqD7OF0nvPJPIJYCDKb-tv30fTmX7ksjsxdXa1un52oFGw1WzWD0o0Xlz3ncejsp9CsRx21RqsZtT2_qZAKg_yL9UHCDpoonW7X16fhPIDmx7YP45y3iqwtWgNCllVwpbwDvr-NNF0SS52BtKOnYo46R2e1CQIm_g"/>
+<div class="absolute top-4 left-4 flex gap-2">
+<span class="bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-caption font-label-md shadow-sm">Professional Concert</span>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<div class="flex items-center gap-2 text-secondary font-label-md">
+<span class="material-symbols-outlined text-[18px]">calendar_today</span>
+<span>October 24, 2024</span>
+<span class="mx-2">•</span>
+<span class="material-symbols-outlined text-[18px]">location_on</span>
+<span>Adelaide Town Hall</span>
+</div>
+<h3 class="font-headline-md text-headline-md group-hover:text-secondary transition-colors">A Dream for Every Child</h3>
+<p class="font-body-md text-on-surface-variant max-w-xl">A grand symphony dedicated to global youth, bridging the gap between dreams and reality through powerful orchestral arrangements.</p>
+<button class="mt-4 flex items-center gap-2 font-label-md text-label-md text-primary group-hover:gap-4 transition-all">Book Tickets <span class="material-symbols-outlined">arrow_forward</span></button>
+</div>
+</div>
+<!-- Column for others -->
+<div class="md:col-span-4 flex flex-col gap-gutter">
+<!-- Voices Beyond Borders -->
+<div class="group cursor-pointer">
+<div class="relative overflow-hidden rounded-2xl bg-surface-container-high aspect-square mb-stack-sm shadow-md">
+<img alt="Multicultural choir performing" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCfCajGyy5QrwNB_qnDAdx9xq9jx6JzHRBXMTJtPnaQ_IJ3tZk_aVw-AgHTQlNMTtfM7oemi5Hg3KHwbGjufWrlUCntgHCH-VyBZyjDkoKZgu2GLfP5Vzo6OjEPZ4cRNRguvVKz72UzHjcsUXhQ-S9oONJdk5b0uR07fnu5UunWIwXVdcj569FbvA39SMaKlnfeWSJWJqvsQtv-DLBNFgSPd3XhWJMt3-WrZY8SkaZuikcJykh1eTseQwvz3zAAvh5EPMAdJ0n6NSw"/>
+</div>
+<div class="flex flex-col gap-2">
+<div class="text-secondary font-label-md">Nov 12, 2024</div>
+<h3 class="font-headline-sm text-headline-sm group-hover:text-secondary transition-colors">Voices Beyond Borders</h3>
+<p class="font-body-md text-on-surface-variant line-clamp-2">A vocal showcase featuring international folk songs and contemporary multicultural harmonies.</p>
+</div>
+</div>
+<!-- Anti-War Concert -->
+<div class="group cursor-pointer">
+<div class="relative overflow-hidden rounded-2xl bg-surface-container-high aspect-square mb-stack-sm shadow-md">
+<img alt="Minimalist concert setup" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBrYC60R8H-pfYCSzCllG7nrRC0c-M3FT_XwHOmw6-69pP2B3OaUugvUOccw2Wu8aXZ6azvjxm35lK8mNnwIskfwmw59xImcOo_vigI5Dl5fEPoEld_HoeWckLv6NCNHnmYc89GrhY1b2wrCSZrKBj9JfhhdICBcatuwiQKIbECKHBgZVLzFpslHF5_u6dvKrnbb_iX38t7m24-CwjdX5eCP89tkupzFjhnKof8AycmaimLtkvPpdFRRyrtQuG-BjwfEW3ymC5cGtk"/>
+</div>
+<div class="flex flex-col gap-2">
+<div class="text-secondary font-label-md">Dec 05, 2024</div>
+<h3 class="font-headline-sm text-headline-sm group-hover:text-secondary transition-colors">An Anti-War Film Music Concert</h3>
+<p class="font-body-md text-on-surface-variant line-clamp-2">Reflective and cinematic scores that speak to the resilience of the human spirit in times of conflict.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Past Events Archive -->
+<section class="py-section-gap border-t border-outline-variant/30" id="archive">
+<div class="flex flex-col md:flex-row md:items-center justify-between mb-stack-lg gap-4">
+<h2 class="font-headline-lg text-headline-lg">Legacy of Performance</h2>
+<div class="flex flex-wrap gap-2">
+<span class="px-4 py-1 rounded-full border border-primary bg-primary text-white font-label-md text-label-md cursor-pointer">All Archive</span>
+<span class="px-4 py-1 rounded-full border border-outline-variant text-on-surface-variant font-label-md text-label-md hover:border-secondary hover:text-secondary transition-all cursor-pointer">Concerts</span>
+<span class="px-4 py-1 rounded-full border border-outline-variant text-on-surface-variant font-label-md text-label-md hover:border-secondary hover:text-secondary transition-all cursor-pointer">Community</span>
+<span class="px-4 py-1 rounded-full border border-outline-variant text-on-surface-variant font-label-md text-label-md hover:border-secondary hover:text-secondary transition-all cursor-pointer">Charity</span>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<!-- Archive Cards -->
+<div class="bg-white rounded-2xl p-6 event-card-hover border border-outline-variant/10">
+<span class="bg-tertiary-fixed text-on-tertiary-fixed-variant px-3 py-1 rounded-full text-caption font-label-md mb-4 inline-block">Professional Concert</span>
+<h4 class="font-headline-sm text-headline-sm mb-2">Multicultural Music Concerts</h4>
+<p class="text-on-surface-variant font-body-md mb-4">A recurring series celebrating the fusion of Eastern and Western musical traditions.</p>
+<div class="flex items-center justify-between mt-auto pt-4 border-t border-outline-variant/10">
+<span class="font-label-md text-label-md text-outline">Aug 2023</span>
+<a class="text-secondary font-label-md flex items-center gap-1" href="#">Gallery <span class="material-symbols-outlined text-sm">open_in_new</span></a>
+</div>
+</div>
+<div class="bg-white rounded-2xl p-6 event-card-hover border border-outline-variant/10">
+<span class="bg-tertiary-fixed text-on-tertiary-fixed-variant px-3 py-1 rounded-full text-caption font-label-md mb-4 inline-block">International Series</span>
+<h4 class="font-headline-sm text-headline-sm mb-2">Impressions of China</h4>
+<p class="text-on-surface-variant font-body-md mb-4">A delicate exploration of traditional Chinese instruments integrated with modern arrangements.</p>
+<div class="flex items-center justify-between mt-auto pt-4 border-t border-outline-variant/10">
+<span class="font-label-md text-label-md text-outline">May 2023</span>
+<a class="text-secondary font-label-md flex items-center gap-1" href="#">Gallery <span class="material-symbols-outlined text-sm">open_in_new</span></a>
+</div>
+</div>
+<div class="bg-white rounded-2xl p-6 event-card-hover border border-outline-variant/10">
+<span class="bg-secondary-fixed text-on-secondary-fixed-variant px-3 py-1 rounded-full text-caption font-label-md mb-4 inline-block">Charity/Community</span>
+<h4 class="font-headline-sm text-headline-sm mb-2">Aged Care Community Performance</h4>
+<p class="text-on-surface-variant font-body-md mb-4">Bringing the healing power of music to our local elders in South Australia.</p>
+<div class="flex items-center justify-between mt-auto pt-4 border-t border-outline-variant/10">
+<span class="font-label-md text-label-md text-outline">Apr 2023</span>
+<a class="text-secondary font-label-md flex items-center gap-1" href="#">Video Recap <span class="material-symbols-outlined text-sm">play_circle</span></a>
+</div>
+</div>
+<div class="bg-white rounded-2xl p-6 event-card-hover border border-outline-variant/10">
+<span class="bg-tertiary-fixed text-on-tertiary-fixed-variant px-3 py-1 rounded-full text-caption font-label-md mb-4 inline-block">Grand Concert</span>
+<h4 class="font-headline-sm text-headline-sm mb-2">A Journey of Brilliance</h4>
+<p class="text-on-surface-variant font-body-md mb-4">Our annual showcase of emerging youth talent performing alongside seasoned masters.</p>
+<div class="flex items-center justify-between mt-auto pt-4 border-t border-outline-variant/10">
+<span class="font-label-md text-label-md text-outline">Dec 2022</span>
+<a class="text-secondary font-label-md flex items-center gap-1" href="#">Gallery <span class="material-symbols-outlined text-sm">open_in_new</span></a>
+</div>
+</div>
+<div class="bg-white rounded-2xl p-6 event-card-hover border border-outline-variant/10">
+<span class="bg-secondary-fixed text-on-secondary-fixed-variant px-3 py-1 rounded-full text-caption font-label-md mb-4 inline-block">Charity Event</span>
+<h4 class="font-headline-sm text-headline-sm mb-2">Charity Fundraising Concerts</h4>
+<p class="text-on-surface-variant font-body-md mb-4">Performances dedicated to supporting local crisis relief and youth music scholarships.</p>
+<div class="flex items-center justify-between mt-auto pt-4 border-t border-outline-variant/10">
+<span class="font-label-md text-label-md text-outline">Sep 2022</span>
+<a class="text-secondary font-label-md flex items-center gap-1" href="#">Impact Report <span class="material-symbols-outlined text-sm">description</span></a>
+</div>
+</div>
+<div class="bg-primary-container text-white rounded-2xl p-8 flex flex-col justify-center text-center">
+<h4 class="font-headline-sm text-headline-sm mb-4">Missing an Event?</h4>
+<p class="font-body-md mb-6 opacity-80">Sign up to our newsletter to receive invitations to our private rehearsals and community sessions.</p>
+<button class="bg-secondary text-white px-6 py-3 rounded-lg font-label-md text-label-md self-center hover:bg-secondary-fixed hover:text-on-secondary-fixed transition-colors">Join Mailing List</button>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="py-section-gap">
+<div class="bg-surface-container-low rounded-[32px] p-12 relative overflow-hidden flex flex-col md:flex-row items-center gap-gutter border border-outline-variant/10">
+<div class="md:w-1/2 z-10">
+<h2 class="font-headline-lg text-headline-lg mb-stack-sm">Be Part of the Music</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-stack-md">Whether you are an aspiring musician, a donor, or a volunteer, your presence strengthens our multicultural community.</p>
+<div class="flex flex-wrap gap-4">
+<button class="bg-primary text-white px-8 py-4 rounded-xl font-label-md text-label-md shadow-md hover:shadow-lg transition-all">Register for Events</button>
+<button class="bg-white text-primary border border-primary px-8 py-4 rounded-xl font-label-md text-label-md hover:bg-surface-variant transition-all">Support Our Mission</button>
+</div>
+</div>
+<div class="md:w-1/2 relative h-64 md:h-80 w-full overflow-hidden rounded-2xl">
+<img alt="Community members smiling at event" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDS8VvfYy3d7DUCD-E3JDfPRsP5qM27WV3hCbsx6yghDMoYHqFyaCfABzsmnfxeEd0eKIw81LADWVwAD0BqVwjSeycEg84ljrXKiy6hh3ZVJEEsQLykI9HOhXgvqPO-0yH7DXyuAja5Jfag_KTv6652z6LibXt_q_AbLJTPgxVxuKMWXBccUIylKqpALOsO1wI88rBS66SmrTGOqX9alsQbOwF-BF9dqgTUAyL04etx9FLUWiSD4bp_z4H2ls4V8KeqFUP7nnlMnrs"/>
+</div>
+</div>
+</section>
+</main>
+<footer class="bg-surface-container border-t border-outline-variant/20">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-desktop py-section-gap max-w-container-max mx-auto">
+<div class="space-y-stack-sm md:col-span-1">
+<div class="font-headline-sm text-headline-sm text-primary mb-4">SAIMA</div>
+<p class="font-body-md text-body-md text-on-surface-variant">Connecting cultures through the universal power of music in South Australia.</p>
+<div class="flex gap-4 pt-4">
+<a class="text-on-surface-variant hover:text-secondary" href="#"><span class="material-symbols-outlined">public</span></a>
+<a class="text-on-surface-variant hover:text-secondary" href="#"><span class="material-symbols-outlined">mail</span></a>
+<a class="text-on-surface-variant hover:text-secondary" href="#"><span class="material-symbols-outlined">call</span></a>
+</div>
+</div>
+<div class="space-y-4">
+<h4 class="font-label-md text-label-md text-primary uppercase">Quick Links</h4>
+<ul class="space-y-2">
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary underline decoration-secondary" href="#">Mission</a></li>
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary underline decoration-secondary" href="#">Contact Us</a></li>
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary underline decoration-secondary" href="#">Privacy Policy</a></li>
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary underline decoration-secondary" href="#">Newsletter Signup</a></li>
+</ul>
+</div>
+<div class="space-y-4">
+<h4 class="font-label-md text-label-md text-primary uppercase">Programs</h4>
+<ul class="space-y-2">
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary" href="#">Youth Orchestra</a></li>
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary" href="#">Global Masterclasses</a></li>
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary" href="#">Cultural Exchanges</a></li>
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary" href="#">Grant Opportunities</a></li>
+</ul>
+</div>
+<div class="space-y-4">
+<h4 class="font-label-md text-label-md text-primary uppercase">Visit Us</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                123 Cultural Way<br/>
+                Adelaide, SA 5000<br/>
+                Australia
+            </p>
+</div>
+</div>
+<div class="max-w-container-max mx-auto px-margin-desktop py-8 border-t border-outline-variant/10">
+<p class="font-body-md text-body-md text-on-surface-variant text-center md:text-left">
+            © 2026 South Australian International Musicians Association. All rights reserved.
+        </p>
+</div>
+</footer>
+<script>
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+</script>
+</body></html>
