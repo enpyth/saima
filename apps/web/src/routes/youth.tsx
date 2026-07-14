@@ -1,39 +1,46 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { ArrowRight, Mic2, Piano, Theater } from 'lucide-react'
 
+import { useLanguage } from '../components/language-provider'
 import { Button } from '../components/ui/button'
-import { siteImages, youthShowcases } from '../lib/content'
+import { choirContent } from '../content/choir'
+import { siteImages } from '../content/shared'
+import { youthContent } from '../content/youth'
 
 export const Route = createFileRoute('/youth')({ component: Youth })
 
 function Youth() {
+  const { language } = useLanguage()
+  const content = youthContent[language]
+  const choir = choirContent[language]
   const icons = [Mic2, Piano, Theater]
 
   return (
     <main className="public-page">
       <section className="public-title">
-        <span className="eyebrow">Youth & Showcase</span>
-        <h1>Student Showcase: Young Voices and Performers</h1>
-        <p>
-          A public platform for young musicians to learn, rehearse, perform, and feel part of a
-          broader cultural community.
-        </p>
+        <span className="eyebrow">{content.hero.eyebrow}</span>
+        <h1>{content.hero.title}</h1>
+        <p>{content.hero.paragraphs[0]}</p>
+        <div className="actions centered-actions">
+          <Button asChild variant="outline">
+            <a href="/youth-details">
+              {content.detailsAction} <ArrowRight size={16} />
+            </a>
+          </Button>
+        </div>
       </section>
 
       <section className="public-section editorial-split reverse tone-band">
         <div className="image-offset">
-          <img src={siteImages.choirHall} alt="Warm rehearsal hall" />
+          <img src={siteImages.choirHall} alt="" />
         </div>
         <div className="section-copy">
-          <span className="eyebrow">Generations in harmony</span>
-          <h2>Parent-Child Choir Performances</h2>
-          <p>
-            Family participation gives young musicians a low-pressure entry point into ensemble
-            singing, listening, and shared stage confidence.
-          </p>
+          <span className="eyebrow">{choir.hero.eyebrow}</span>
+          <h2>{choir.hero.title}</h2>
+          <p>{choir.hero.paragraphs[0]}</p>
           <Button asChild variant="outline">
-            <a href="/choir">
-              Learn more about the choir <ArrowRight size={16} />
+            <a href="/choir-details">
+              {choir.detailsAction} <ArrowRight size={16} />
             </a>
           </Button>
         </div>
@@ -41,19 +48,19 @@ function Youth() {
 
       <section className="public-section">
         <div className="section-heading centered">
-          <span className="eyebrow">Showcase</span>
-          <h2>Young Artist Showcase</h2>
+          <span className="eyebrow">{content.hero.eyebrow}</span>
+          <h2>{content.hero.title}</h2>
         </div>
         <div className="youth-grid">
-          {youthShowcases.map((showcase, index) => {
+          {content.areas.map((area, index) => {
             const Icon = icons[index] ?? Mic2
             return (
-              <article className="youth-item" key={showcase.title}>
+              <article className="youth-item" key={area.title}>
                 <img src={index === 0 ? siteImages.choirHall : siteImages.youthPiano} alt="" />
                 <div>
                   <Icon size={24} aria-hidden="true" />
-                  <h3>{showcase.title}</h3>
-                  <p>{showcase.summary}</p>
+                  <h3>{area.title}</h3>
+                  <p>{area.summary}</p>
                 </div>
               </article>
             )
@@ -63,15 +70,12 @@ function Youth() {
 
       <section className="public-section dark-feature">
         <div>
-          <span className="eyebrow">Next generation</span>
-          <h2>Nurturing the next generation.</h2>
-          <p>
-            Students build confidence through repeated opportunities to prepare, listen, perform,
-            and receive encouragement from the SAIMA network.
-          </p>
+          <span className="eyebrow">{content.cta.eyebrow}</span>
+          <h2>{content.cta.title}</h2>
+          <p>{content.cta.text}</p>
         </div>
         <Button asChild data-tone="dark" variant="secondary">
-          <a href="/events">View upcoming recitals</a>
+          <a href="/events">{content.cta.action}</a>
         </Button>
       </section>
     </main>

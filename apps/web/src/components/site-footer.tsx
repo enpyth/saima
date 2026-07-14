@@ -1,40 +1,38 @@
 import { Link } from '@tanstack/react-router'
 import { Globe2, Mail, Phone } from 'lucide-react'
 
-import { publicNavItems } from '../lib/content'
-
-const programLinks = [
-  { label: 'Youth Orchestra', to: '/youth' },
-  { label: 'Parent-Child Choir', to: '/choir' },
-  { label: 'Global Masterclasses', to: '/courses' },
-  { label: 'Cultural Exchanges', to: '/events' },
-] as const
+import { useLanguage } from './language-provider'
+import { sharedContent } from '../content/shared'
 
 export function SiteFooter() {
+  const { language } = useLanguage()
+  const content = sharedContent[language]
+  const quickLinkPaths = new Set(['/about', '/events', '/membership', '/contact'])
+
   return (
     <footer className="site-footer">
       <div className="site-footer-grid">
         <div>
           <Link to="/" className="footer-brand">
-            SAIMA
+            {content.brand.name}
           </Link>
-          <p>Connecting cultures through the universal power of music in South Australia.</p>
-          <div className="footer-socials" aria-label="SAIMA contact links">
-            <Link to="/gallery" aria-label="View SAIMA gallery">
+          <p>{content.footer.summary}</p>
+          <div className="footer-socials" aria-label={content.footer.socialsLabel}>
+            <Link to="/gallery" aria-label={content.footer.galleryLabel}>
               <Globe2 size={18} aria-hidden="true" />
             </Link>
-            <Link to="/contact" aria-label="Email SAIMA">
+            <Link to="/contact" aria-label={content.footer.emailLabel}>
               <Mail size={18} aria-hidden="true" />
             </Link>
-            <Link to="/contact" aria-label="Call SAIMA">
+            <Link to="/contact" aria-label={content.footer.phoneLabel}>
               <Phone size={18} aria-hidden="true" />
             </Link>
           </div>
         </div>
         <div>
-          <h2>Quick links</h2>
+          <h2>{content.footer.quickLinksHeading}</h2>
           <ul>
-            {publicNavItems.filter((item) => ['About Us', 'Events', 'Join', 'Contact'].includes(item.label)).map((item) => (
+            {content.navItems.filter((item) => quickLinkPaths.has(item.to)).map((item) => (
               <li key={item.to}>
                 <Link to={item.to}>{item.label}</Link>
               </li>
@@ -42,9 +40,9 @@ export function SiteFooter() {
           </ul>
         </div>
         <div>
-          <h2>Programs</h2>
+          <h2>{content.footer.programsHeading}</h2>
           <ul>
-            {programLinks.map((item) => (
+            {content.footer.programs.map((item) => (
               <li key={item.to}>
                 <Link to={item.to}>{item.label}</Link>
               </li>
@@ -52,20 +50,23 @@ export function SiteFooter() {
           </ul>
         </div>
         <div>
-          <h2>Visit us</h2>
+          <h2>{content.footer.visitHeading}</h2>
           <p>
-            Adelaide, SA 5000
-            <br />
-            Australia
+            {content.footer.location.map((line) => (
+              <span key={line}>
+                {line}
+                <br />
+              </span>
+            ))}
           </p>
           <Link className="footer-action" to="/membership">
-            Become a member
+            {content.footer.action}
           </Link>
         </div>
       </div>
       <div className="site-footer-bottom">
-        <span>© 2026 South Australian International Musicians Association.</span>
-        <span>All rights reserved.</span>
+        <span>© 2026 {content.brand.fullName}.</span>
+        <span>{content.footer.rights}</span>
       </div>
     </footer>
   )

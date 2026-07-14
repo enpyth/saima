@@ -1,11 +1,15 @@
 import { useState } from 'react'
 
 import { api } from '../lib/orpc'
+import { membershipContent } from '../content/membership'
 import { useAuth } from './auth-provider'
+import { useLanguage } from './language-provider'
 import { Button } from './ui/button'
 
 export function MembershipApplicationForm({ onSubmitted }: { onSubmitted?: () => void }) {
   const { user } = useAuth()
+  const { language } = useLanguage()
+  const content = membershipContent[language].applicationForm
   const [fullName, setFullName] = useState('')
   const [instruments, setInstruments] = useState('')
   const [motivation, setMotivation] = useState('')
@@ -14,7 +18,7 @@ export function MembershipApplicationForm({ onSubmitted }: { onSubmitted?: () =>
 
   async function submitApplication() {
     if (!user?.email) {
-      setMessage('Sign in before submitting a membership application.')
+      setMessage(content.signInRequired)
       return
     }
 
@@ -24,7 +28,7 @@ export function MembershipApplicationForm({ onSubmitted }: { onSubmitted?: () =>
       .filter(Boolean)
 
     if (!fullName.trim() || parsedInstruments.length === 0 || !experience.trim() || !motivation.trim()) {
-      setMessage('Complete all application fields before submitting.')
+      setMessage(content.completeRequired)
       return
     }
 
@@ -36,35 +40,35 @@ export function MembershipApplicationForm({ onSubmitted }: { onSubmitted?: () =>
         experience: experience.trim(),
         motivation: motivation.trim(),
       })
-      setMessage('Application submitted for admin review.')
+      setMessage(content.submitted)
       onSubmitted?.()
     } catch (error) {
-      setMessage(error instanceof Error ? error.message : 'Application submission failed.')
+      setMessage(error instanceof Error ? error.message : content.failed)
     }
   }
 
   return (
     <form className="form">
       <div className="field">
-        <label htmlFor="membershipFullName">Full name</label>
+        <label htmlFor="membershipFullName">{content.fullName}</label>
         <input
           id="membershipFullName"
           value={fullName}
           onChange={(event) => setFullName(event.currentTarget.value)}
-          placeholder="Your full name"
+          placeholder={content.fullNamePlaceholder}
         />
       </div>
       <div className="field">
-        <label htmlFor="membershipInstruments">Instruments</label>
+        <label htmlFor="membershipInstruments">{content.instruments}</label>
         <input
           id="membershipInstruments"
           value={instruments}
           onChange={(event) => setInstruments(event.currentTarget.value)}
-          placeholder="Piano, violin, voice"
+          placeholder={content.instrumentsPlaceholder}
         />
       </div>
       <div className="field">
-        <label htmlFor="membershipExperience">Experience</label>
+        <label htmlFor="membershipExperience">{content.experience}</label>
         <textarea
           id="membershipExperience"
           value={experience}
@@ -72,7 +76,7 @@ export function MembershipApplicationForm({ onSubmitted }: { onSubmitted?: () =>
         />
       </div>
       <div className="field">
-        <label htmlFor="membershipMotivation">Why join SAIMA?</label>
+        <label htmlFor="membershipMotivation">{content.motivation}</label>
         <textarea
           id="membershipMotivation"
           value={motivation}
@@ -80,7 +84,7 @@ export function MembershipApplicationForm({ onSubmitted }: { onSubmitted?: () =>
         />
       </div>
       <Button type="button" onClick={submitApplication}>
-        Submit application
+        {content.submit}
       </Button>
       {message ? <p className="muted">{message}</p> : null}
     </form>

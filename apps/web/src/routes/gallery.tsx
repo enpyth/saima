@@ -1,58 +1,59 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { Camera, Images, Music } from 'lucide-react'
 
-import { galleryMoments, siteImages } from '../lib/content'
+import { useLanguage } from '../components/language-provider'
+import { galleryContent } from '../content/gallery'
+import { siteImages } from '../content/shared'
 
 export const Route = createFileRoute('/gallery')({ component: Gallery })
 
 function Gallery() {
+  const { language } = useLanguage()
+  const content = galleryContent[language]
+  const icons = [Camera, Music, Images]
+
   return (
     <main className="public-page">
       <section className="gallery-hero">
         <img src={siteImages.galleryPerformance} alt="" aria-hidden="true" />
         <div className="hero-scrim" />
         <div>
-          <span className="eyebrow">Gallery</span>
-          <h1>Scenes from the SAIMA community.</h1>
-          <p>
-            A visual archive of concerts, rehearsals, teaching moments, and public gatherings across
-            South Australia.
-          </p>
+          <span className="eyebrow">{content.hero.eyebrow}</span>
+          <h1>{content.hero.title}</h1>
+          <p>{content.hero.paragraphs[0]}</p>
         </div>
       </section>
 
       <section className="public-section gallery-strip">
         <div className="section-heading">
-          <span className="eyebrow">Archive</span>
-          <h2>Performance, learning, and collaboration.</h2>
+          <span className="eyebrow">{content.hero.eyebrow}</span>
+          <h2>{content.hero.paragraphs[1]}</h2>
+          <a className="text-link" href="/gallery-details">
+            {content.detailsAction}
+          </a>
         </div>
         <div className="masonry-grid">
-          {galleryMoments.concat(galleryMoments.slice(0, 2)).map((moment, index) => (
-            <article className="gallery-tile" data-size={index % 3 === 0 ? 'large' : 'default'} key={`${moment.title}-${index}`}>
-              <img src={moment.image} alt="" />
-              <span>{moment.category}</span>
-              <h3>{moment.title}</h3>
+          {content.groups.concat(content.groups.slice(0, 1)).map((group, index) => (
+            <article className="gallery-tile" data-size={index % 3 === 0 ? 'large' : 'default'} key={`${group.title}-${index}`}>
+              <img src={group.image} alt="" />
+              <span>{group.title}</span>
+              <h3>{group.summary}</h3>
             </article>
           ))}
         </div>
       </section>
 
       <section className="public-section gallery-stats">
-        <div>
-          <Camera size={28} aria-hidden="true" />
-          <strong>Concerts</strong>
-          <span>Public performances and seasonal showcases</span>
-        </div>
-        <div>
-          <Music size={28} aria-hidden="true" />
-          <strong>Workshops</strong>
-          <span>Teaching rooms, rehearsals, and member-led sessions</span>
-        </div>
-        <div>
-          <Images size={28} aria-hidden="true" />
-          <strong>Community</strong>
-          <span>Families, collaborators, and cultural exchange</span>
-        </div>
+        {content.stats.map((stat, index) => {
+          const Icon = icons[index] ?? Camera
+          return (
+            <div key={stat.title}>
+              <Icon size={28} aria-hidden="true" />
+              <strong>{stat.title}</strong>
+              <span>{stat.summary}</span>
+            </div>
+          )
+        })}
       </section>
     </main>
   )

@@ -1,0 +1,222 @@
+import type { Localized, TextBlock } from './types'
+
+type AboutContent = {
+  hero: {
+    eyebrow: string
+    title: string
+    paragraphs: string[]
+  }
+  sections: TextBlock[]
+  missionPreview: {
+    eyebrow: string
+    title: string
+    values: Array<{ title: string; summary: string }>
+  }
+  artistProfile: {
+    title: string
+    fields: Array<{ label: string; value: string }>
+  }
+  labels: {
+    artisticVision: string
+    aim: string
+  }
+  cta: {
+    title: string
+    primaryAction: string
+    secondaryAction: string
+  }
+  detailAction: string
+}
+
+export const aboutContent: Localized<AboutContent> = {
+  en: {
+    hero: {
+      eyebrow: 'About SAIMA',
+      title: 'About Us',
+      paragraphs: [
+        'South Australian International Musicians Association is a not-for-profit community arts organisation based in South Australia. We are dedicated to promoting music education, multicultural artistic exchange, youth performance opportunities, and community engagement through music.',
+        'Our association is supported by professional musicians, music educators, performers, artists, students, families, volunteers, and community members who share a passion for music, cultural exchange, and community connection.',
+        'We believe that music is more than performance. It is a way to bring people together, celebrate cultural diversity, support young talent, and create meaningful community experiences.',
+        'Through concerts, student showcases, charity performances, cultural exchange projects, workshops, masterclasses, and community collaborations, we aim to provide inclusive and meaningful musical opportunities for young people and the wider South Australian community.',
+        'We believe that artistic excellence exists in many places, not only within major institutions. Many highly skilled musicians, independent artists, migrant artists, and emerging performers have much to offer, but may not always have access to formal performance platforms.',
+        'South Australian International Musicians Association aims to create additional stages where musicians can be heard, seen, and valued. Through concerts, cultural projects, community events, and collaborative performances, we provide opportunities for artists to share their work with the public and contribute to the cultural life of South Australia.',
+      ],
+    },
+    sections: [
+      {
+        title: 'Founder & Artistic Director',
+        paragraphs: [
+          'Elsa Tian is the founder and Artistic Director of South Australian International Musicians Association. She is a vocalist, music educator, researcher, and community arts organiser whose work bridges classical music, music education, cultural heritage, cultural anthropology, and community engagement.',
+          'Trained in classical vocal performance in Germany and Australia, Elsa brings together European classical vocal traditions, Australian music education experience, and a deep engagement with Chinese cultural heritage.',
+          'Elsa is currently a PhD candidate at Griffith University. Her research draws on ethnomusicology, cultural anthropology, intangible cultural heritage studies, and ethnographic fieldwork. Her doctoral project focuses on Chinese traditional opera, music education, intergenerational transmission, and the lived experiences of young performers within systems of artistic training.',
+          'Through interviews, fieldwork, and cultural analysis, Elsa explores how artistic knowledge is passed between generations, how young performers are shaped through discipline and training, and how traditional music continues to find meaning in contemporary community life.',
+          'In South Australia, Elsa has built a strong profile as a vocal teacher and community music organiser. She has supported young singers through lessons, concerts, examinations, competitions, and public performances, helping them develop confidence, musical expression, stage presence, and a sense of artistic purpose.',
+          'Elsa founded South Australian International Musicians Association to create a professional, inclusive, and culturally meaningful platform for music education and community arts.',
+          'At the heart of Elsa’s work is a belief that music has the power to educate, connect, heal, and inspire.',
+        ],
+      },
+      {
+        title: 'Our Mission',
+        paragraphs: [
+          'South Australian International Musicians Association is dedicated to connecting people through music, education, culture, and community engagement.',
+          'Our mission is to create meaningful musical opportunities, support artistic development, promote multicultural exchange, and use music as a positive force for community connection and social good.',
+        ],
+        items: [
+          'Promote music education and artistic development for children, young people, students, professional musicians, and emerging artists.',
+          'Provide inclusive performance opportunities through concerts, showcases, workshops, charity performances, and community events.',
+          'Support multicultural arts, cultural exchange, and the sharing of diverse musical traditions.',
+          'Encourage collaboration between musicians, music educators, students, families, artists, sponsors, venues, and community organisations.',
+          'Use music to support charitable causes, strengthen community wellbeing, and bring people together across cultures and generations.',
+        ],
+      },
+      {
+        title: 'Our Artists, Educators and Community Members',
+        paragraphs: [
+          'South Australian International Musicians Association is supported by a growing network of professional musicians, music educators, performers, artists, students, families, volunteers, and community members.',
+          'Our artists and educators bring diverse experience in vocal performance, instrumental music, music education, musical theatre, classical music, contemporary music, multicultural performance, and community arts.',
+          'We also value the contribution of families, volunteers, sponsors, and community supporters. Their participation helps make our events possible and reflects the community spirit at the heart of the association.',
+          'By bringing together professional artists and the wider community, we aim to create a supportive, inclusive, and meaningful musical environment where people can learn, perform, collaborate, and connect.',
+        ],
+      },
+    ],
+    missionPreview: {
+      eyebrow: 'Mission',
+      title: 'A mission rooted in community.',
+      values: [
+        {
+          title: 'Inclusivity',
+          summary: 'A welcoming platform for artists, families, and listeners from many cultural roots.',
+        },
+        {
+          title: 'Excellence',
+          summary: 'Programs shaped with care for musical craft, teaching quality, and public presentation.',
+        },
+        {
+          title: 'Heritage',
+          summary:
+            'Respect for traditional practice, contemporary interpretation, and shared community memory.',
+        },
+      ],
+    },
+    artistProfile: {
+      title: 'Artist / Educator Profile',
+      fields: [
+        { label: 'Name', value: '[Name]' },
+        {
+          label: 'Role',
+          value:
+            '[Vocal Teacher / Pianist / Violinist / Flutist / Pipa Artist / Accompanist / Choir Leader / Volunteer Coordinator]',
+        },
+        {
+          label: 'About',
+          value:
+            '[Name] is a [musician / educator / performer / community arts supporter] with experience in [field]. They support South Australian International Musicians Association through performances, teaching, workshops, community events, and cultural projects.',
+        },
+      ],
+    },
+    labels: {
+      artisticVision: 'Artistic vision',
+      aim: 'Aim',
+    },
+    cta: {
+      title: 'Join the movement.',
+      primaryAction: 'Become a member',
+      secondaryAction: 'Support our mission',
+    },
+    detailAction: 'Read the detailed profile',
+  },
+  zh: {
+    hero: {
+      eyebrow: '关于 SAIMA',
+      title: '关于我们',
+      paragraphs: [
+        '南澳国际音乐协会是一家位于南澳大利亚的非营利性社区艺术组织。我们致力于通过音乐推动音乐教育、多元文化艺术交流、青少年表演机会以及社区参与。',
+        '本协会由专业音乐家、音乐教育工作者、表演者、艺术工作者、学生、家庭、志愿者及社区成员共同支持和参与。我们都热爱音乐、文化交流与社区连接。',
+        '我们相信，音乐不仅仅是舞台表演。音乐可以连接人与人，展现文化多样性，支持年轻艺术人才，并创造有意义的社区体验。',
+        '通过音乐会、学生展演、慈善演出、文化交流项目、工作坊、大师班及社区合作，我们希望为年轻人和更广泛的南澳社区提供包容而有意义的音乐机会。',
+        '我们相信，优秀的艺术并不只存在于大型机构之中。许多技艺精湛的音乐家、独立艺术家、移民艺术家和新兴表演者都拥有丰富的才华与艺术价值，但他们不一定总能获得正式的演出平台。',
+        '南澳国际音乐协会希望为音乐家创造更多能够被听见、被看见、被珍视的舞台。通过音乐会、文化项目、社区活动和合作演出，我们为艺术家提供向公众分享作品的机会，并共同丰富南澳的文化艺术生活。',
+      ],
+    },
+    sections: [
+      {
+        title: '创始人及艺术总监',
+        paragraphs: [
+          'Elsa Tian 是南澳国际音乐协会的创始人及艺术总监。她是一位声乐演唱者、音乐教育工作者、研究者及社区艺术活动策划者，其工作横跨古典音乐、音乐教育、文化遗产、文化人类学与社区艺术参与。',
+          'Elsa 曾在德国和澳大利亚接受古典声乐表演训练。她的专业背景融合了欧洲古典声乐传统、澳大利亚音乐教育经验，以及对中华文化遗产的深入关注。',
+          '目前，Elsa 是 Griffith University 的博士候选人。她的研究结合了民族音乐学、文化人类学、非物质文化遗产研究与民族志田野方法。她的博士课题关注中国传统戏曲、音乐教育、代际传承，以及年轻表演者在艺术训练体系中的真实经验。',
+          '通过访谈、田野调查与文化分析，Elsa 探索艺术知识如何在代际之间传递，年轻表演者如何在纪律与训练中成长，以及传统音乐如何在当代社区生活中继续获得意义。',
+          '在南澳大利亚，Elsa 作为声乐教师和社区音乐活动组织者，长期支持年轻歌者的发展。她通过课程、音乐会、考级、比赛及公开演出，帮助学生建立自信、发展音乐表达、积累舞台经验，并形成对艺术的责任感与目标感。',
+          'Elsa 创立南澳国际音乐协会，是希望建立一个专业、包容且具有文化意义的音乐教育与社区艺术平台。',
+          'Elsa 工作的核心，是相信音乐具有教育、连接、疗愈与启发的力量。',
+        ],
+      },
+      {
+        title: '我们的宗旨',
+        paragraphs: [
+          '南澳国际音乐协会致力于通过音乐、教育、文化与社区参与连接人与人。',
+          '我们的宗旨是创造有意义的音乐机会，支持艺术成长，推动多元文化交流，并让音乐成为促进社区连接与社会公益的积极力量。',
+        ],
+        items: [
+          '推动儿童、青少年、学生、专业音乐家及新兴艺术家的音乐教育与艺术发展。',
+          '通过音乐会、展演、工作坊、慈善演出和社区活动，提供包容性的表演机会。',
+          '支持多元文化艺术、文化交流，以及不同音乐传统之间的分享。',
+          '鼓励音乐家、音乐教育工作者、学生、家庭、艺术家、赞助商、演出场地和社区组织之间的合作。',
+          '通过音乐支持慈善公益，促进社区福祉，并连接不同文化与不同世代的人们。',
+        ],
+      },
+      {
+        title: '我们的艺术家、教育工作者与社区成员',
+        paragraphs: [
+          '南澳国际音乐协会由一个不断发展的网络共同支持，其中包括专业音乐家、音乐教育工作者、表演者、艺术家、学生、家庭、志愿者和社区成员。',
+          '我们的艺术家与教育工作者拥有声乐表演、器乐、音乐教育、音乐剧、古典音乐、当代音乐、多元文化表演和社区艺术等不同领域的经验。',
+          '我们也非常重视家庭、志愿者、赞助商和社区支持者的贡献。正是他们的参与，让我们的活动得以顺利开展，也体现了协会最核心的社区精神。',
+          '通过连接专业艺术家与更广泛的社区，我们希望创造一个支持性、包容性且有意义的音乐环境，让人们能够学习、表演、合作并建立连接。',
+        ],
+      },
+    ],
+    missionPreview: {
+      eyebrow: '使命',
+      title: '扎根于社区的音乐使命。',
+      values: [
+        {
+          title: '包容',
+          summary: '为来自不同文化背景的艺术家、家庭与听众提供开放而友善的平台。',
+        },
+        {
+          title: '卓越',
+          summary: '以严谨态度组织音乐项目，重视艺术品质、教学质量与公开呈现。',
+        },
+        {
+          title: '传承',
+          summary: '尊重传统实践、当代表达，以及社区共同记忆中的文化价值。',
+        },
+      ],
+    },
+    artistProfile: {
+      title: '艺术家 / 教育工作者简介',
+      fields: [
+        { label: '姓名', value: '[姓名]' },
+        {
+          label: '角色',
+          value: '[声乐教师 / 钢琴家 / 小提琴演奏者 / 长笛演奏者 / 琵琶演奏者 / 钢琴伴奏 / 合唱指导 / 志愿者协调人]',
+        },
+        {
+          label: '简介',
+          value:
+            '[姓名] 是一位 [音乐家 / 教育工作者 / 表演者 / 社区艺术支持者]，拥有 [领域] 相关经验。TA 通过演出、教学、工作坊、社区活动及文化项目支持南澳国际音乐协会的发展。',
+        },
+      ],
+    },
+    labels: {
+      artisticVision: '艺术愿景',
+      aim: '目标',
+    },
+    cta: {
+      title: '加入我们的行动。',
+      primaryAction: '成为会员',
+      secondaryAction: '支持我们的宗旨',
+    },
+    detailAction: '阅读详细介绍',
+  },
+} 

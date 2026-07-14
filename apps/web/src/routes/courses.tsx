@@ -5,7 +5,9 @@ import { ArrowDown, LayoutDashboard, Search } from 'lucide-react'
 import { Button } from '../components/ui/button'
 import { CourseSlotBoard } from '../components/course-slot-board'
 import { useAuth } from '../components/auth-provider'
-import { siteImages } from '../lib/content'
+import { useLanguage } from '../components/language-provider'
+import { coursesContent } from '../content/courses'
+import { siteImages } from '../content/shared'
 import { api } from '../lib/orpc'
 import { getSlotsByIds, toDateKey } from '../lib/slot-board'
 
@@ -32,6 +34,8 @@ type PublicCourse = {
 
 function Courses() {
   const { user } = useAuth()
+  const { language } = useLanguage()
+  const content = coursesContent[language]
   const [courses, setCourses] = useState<PublicCourse[]>([])
   const [loading, setLoading] = useState(true)
   const [message, setMessage] = useState('')
@@ -47,7 +51,7 @@ function Courses() {
         getSlotsByIds(rows as PublicCourse[], current).map((item) => item.slot.id),
       )
     } catch (error) {
-      setMessage(error instanceof Error ? error.message : 'Could not load courses.')
+      setMessage(error instanceof Error ? error.message : content.states.loadFailed)
       setCourses([])
     } finally {
       setLoading(false)
@@ -65,13 +69,13 @@ function Courses() {
     }
 
     if (selectedSlotIds.length === 0) {
-      setMessage('Select at least one slot before confirming.')
+      setMessage(content.states.selectRequired)
       return
     }
 
     try {
       await Promise.all(selectedSlotIds.map((slotId) => api.bookings.create({ slotId })))
-      setMessage(`${selectedSlotIds.length} bookings confirmed. You can review them in your dashboard.`)
+      setMessage(`${selectedSlotIds.length} ${content.states.bookedSuffix}`)
       setSelectedSlotIds([])
       await loadCourses()
     } catch (error) {
@@ -91,42 +95,39 @@ function Courses() {
     <main className="public-page">
       <section className="courses-hero">
         <div>
-        <span className="eyebrow">Courses</span>
+        <span className="eyebrow">{content.hero.eyebrow}</span>
         <h1>
-          Refine your art with <span>global maestros.</span>
+          {content.hero.title} <span>{content.hero.titleAccent}</span>
         </h1>
-        <p>
-          Browse published courses from SAIMA members. Sign in to reserve an available time and
-          manage your booking history from the visitor dashboard.
-        </p>
+        <p>{content.hero.text}</p>
         <div className="actions">
           <Button asChild>
             <a href="#browse-courses">
-              Browse courses <ArrowDown size={16} />
+              {content.hero.browseAction} <ArrowDown size={16} />
             </a>
           </Button>
           <Button asChild variant="outline">
             <a href="/dashboard">
-              Dashboard <LayoutDashboard size={16} />
+              {content.hero.dashboardAction} <LayoutDashboard size={16} />
             </a>
           </Button>
         </div>
         </div>
-        <img src={siteImages.mandateLesson} alt="Member-led music lesson" />
+        <img src={siteImages.mandateLesson} alt={content.hero.imageAlt} />
       </section>
 
-      <section className="course-filter-strip" aria-label="Course search preview">
+      <section className="course-filter-strip" aria-label={content.filterAriaLabel}>
         <div>
           <Search size={18} aria-hidden="true" />
-          <span>Filter by instrument, level, host, or available time from the live booking board.</span>
+          <span>{content.filter}</span>
         </div>
       </section>
 
       <section className="public-section" id="browse-courses">
         {message ? <p className="muted">{message}</p> : null}
-        {loading ? <p className="muted">Loading courses...</p> : null}
+        {loading ? <p className="muted">{content.states.loading}</p> : null}
         {!loading && courses.length === 0 ? (
-          <p className="muted">No published courses are available yet.</p>
+          <p className="muted">{content.states.empty}</p>
         ) : null}
         <CourseSlotBoard
           courses={courses}
@@ -139,7 +140,7 @@ function Courses() {
           }}
           onSlotToggle={toggleSlot}
           onConfirm={confirmBooking}
-          confirmLabel={user ? 'Confirm selected bookings' : 'Sign in to book'}
+          confirmLabel={user ? content.states.confirmSignedIn : content.states.confirmSignedOut}
         />
         {courses.length > 0 ? (
           <div className="course-card-grid">
@@ -150,8 +151,8 @@ function Courses() {
                   <h3>{course.title}</h3>
                   <p>{course.summary}</p>
                   <p className="muted">
-                    {course.level} · {course.location} · Host:{' '}
-                    {course.profiles?.full_name ?? 'SAIMA member'}
+                    {course.level} · {course.location} · {content.states.hostLabel}:{' '}
+                    {course.profiles?.full_name ?? content.states.hostFallback}
                   </p>
                 </div>
               </article>

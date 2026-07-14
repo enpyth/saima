@@ -2,6 +2,7 @@ import { HeadContent, Outlet, Scripts, createRootRoute, useLocation } from '@tan
 import type { ReactNode } from 'react'
 
 import { AuthProvider } from '../components/auth-provider'
+import { LanguageProvider } from '../components/language-provider'
 import { SiteFooter } from '../components/site-footer'
 import { SiteHeader } from '../components/site-header'
 import appCss from '../styles.css?url'
@@ -42,11 +43,13 @@ function App() {
     location.pathname.startsWith('/dashboard') || location.pathname.startsWith('/auth/callback')
 
   return (
-    <AuthProvider>
-      <SiteHeader />
-      <Outlet />
-      {hideFooter ? null : <SiteFooter />}
-    </AuthProvider>
+    <LanguageProvider>
+      <AuthProvider>
+        <SiteHeader />
+        <Outlet />
+        {hideFooter ? null : <SiteFooter />}
+      </AuthProvider>
+    </LanguageProvider>
   )
 }
 

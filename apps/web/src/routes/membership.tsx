@@ -4,14 +4,18 @@ import { ArrowRight, Handshake, Music, Sparkles, Users } from 'lucide-react'
 
 import { MembershipApplicationForm } from '../components/membership-application-form'
 import { useAuth } from '../components/auth-provider'
+import { useLanguage } from '../components/language-provider'
 import { Button } from '../components/ui/button'
-import { membershipBenefits, participationPaths, siteImages } from '../lib/content'
+import { membershipContent } from '../content/membership'
+import { siteImages } from '../content/shared'
 import { api } from '../lib/orpc'
 
 export const Route = createFileRoute('/membership')({ component: Membership })
 
 function Membership() {
   const { loading, role, user } = useAuth()
+  const { language } = useLanguage()
+  const content = membershipContent[language]
   const [applicationStatus, setApplicationStatus] = useState<string | null>(null)
 
   useEffect(() => {
@@ -37,29 +41,31 @@ function Membership() {
         <img src={siteImages.galleryPerformance} alt="" aria-hidden="true" />
         <div className="hero-scrim pale" />
         <div>
-        <span className="eyebrow">Membership</span>
-        <h1>Join SAIMA as a performer, teacher, collaborator, or supporter.</h1>
-        <p>
-          Membership applications are reviewed by admins. Approved applicants receive member access
-          to publish course availability and manage bookings.
-        </p>
-        {!loading && !user ? (
-          <div className="actions">
-            <Button asChild>
-              <a href="/login">Apply after sign-in</a>
-            </Button>
-          </div>
-        ) : null}
+          <span className="eyebrow">{content.hero.eyebrow}</span>
+          <h1>{content.hero.title}</h1>
+          <p>{content.hero.paragraphs[0]}</p>
+          {!loading && !user ? (
+            <div className="actions">
+              <Button asChild>
+                <a href="/login">{content.hero.signedOutAction}</a>
+              </Button>
+              <Button asChild variant="outline">
+                <a href="/membership-details">
+                  {content.detailsAction} <ArrowRight size={16} />
+                </a>
+              </Button>
+            </div>
+          ) : null}
         </div>
       </section>
 
       <section className="public-section">
         <div className="section-heading centered">
-          <span className="eyebrow">Join SAIMA</span>
-          <h2>Choose the membership path that fits your practice.</h2>
+          <span className="eyebrow">{content.pathsHeading.eyebrow}</span>
+          <h2>{content.pathsHeading.title}</h2>
         </div>
         <div className="participation-grid">
-          {participationPaths.map((path, index) => {
+          {content.paths.map((path, index) => {
             const Icon = [Sparkles, Handshake, Music, Users][index] ?? Sparkles
             return (
               <article className="participation-item" key={path.title}>
@@ -79,14 +85,16 @@ function Membership() {
         <section className="public-section application-section">
           <div className="section-grid">
             <div>
-              <span className="eyebrow">Application</span>
-              <h3>Membership application</h3>
+              <span className="eyebrow">{content.application.eyebrow}</span>
+              <h3>{content.application.title}</h3>
               {role === 'member' || role === 'admin' ? (
-                <p className="muted">Your account already has SAIMA member access.</p>
+                <p className="muted">{content.application.alreadyMember}</p>
               ) : applicationStatus ? (
-                <p className="muted">Your latest application status is `{applicationStatus}`.</p>
+                <p className="muted">
+                  {content.application.statusPrefix} `{applicationStatus}`.
+                </p>
               ) : (
-                <p className="muted">Submit your application for admin review.</p>
+                <p className="muted">{content.application.submitPrompt}</p>
               )}
             </div>
             <div>
@@ -97,19 +105,29 @@ function Membership() {
           </div>
         </section>
       ) : null}
+
       <section className="public-section">
         <div className="section-grid">
           <div>
-            <span className="eyebrow">Member benefits</span>
-            <h2>Support for musicians building a public practice.</h2>
+            <span className="eyebrow">{content.sponsorship.eyebrow}</span>
+            <h2>{content.sponsorship.title}</h2>
+            <p>{content.sponsorship.paragraphs[0]}</p>
           </div>
           <div className="plain-list">
-            {membershipBenefits.map((benefit) => (
-              <div className="list-row" key={benefit}>
-                <strong>Included</strong>
-                <span>{benefit}</span>
+            {content.sponsorship.items.slice(0, 4).map((item) => (
+              <div className="list-row" key={item}>
+                <strong>{content.sponsorship.itemLabel}</strong>
+                <span>{item}</span>
               </div>
             ))}
+            <div className="list-row">
+              <strong>{content.sponsorship.itemLabel}</strong>
+              <span>
+                <a className="text-link" href="/membership-details">
+                  {content.detailsAction} <ArrowRight size={15} />
+                </a>
+              </span>
+            </div>
           </div>
         </div>
       </section>

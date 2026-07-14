@@ -9,15 +9,22 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as YouthDetailsRouteImport } from './routes/youth-details'
 import { Route as YouthRouteImport } from './routes/youth'
+import { Route as PartnershipDetailsRouteImport } from './routes/partnership-details'
+import { Route as MembershipDetailsRouteImport } from './routes/membership-details'
 import { Route as MembershipRouteImport } from './routes/membership'
 import { Route as LoginRouteImport } from './routes/login'
+import { Route as GalleryDetailsRouteImport } from './routes/gallery-details'
 import { Route as GalleryRouteImport } from './routes/gallery'
+import { Route as EventsDetailsRouteImport } from './routes/events-details'
 import { Route as EventsRouteImport } from './routes/events'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as CoursesRouteImport } from './routes/courses'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as ChoirDetailsRouteImport } from './routes/choir-details'
 import { Route as ChoirRouteImport } from './routes/choir'
+import { Route as AboutDetailsRouteImport } from './routes/about-details'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as DashboardVisitorRouteImport } from './routes/dashboard.visitor'
@@ -35,9 +42,24 @@ import { Route as DashboardAdminEventsRouteImport } from './routes/dashboard.adm
 import { Route as DashboardAdminBookingsRouteImport } from './routes/dashboard.admin.bookings'
 import { Route as DashboardAdminApplicationsRouteImport } from './routes/dashboard.admin.applications'
 
+const YouthDetailsRoute = YouthDetailsRouteImport.update({
+  id: '/youth-details',
+  path: '/youth-details',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const YouthRoute = YouthRouteImport.update({
   id: '/youth',
   path: '/youth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PartnershipDetailsRoute = PartnershipDetailsRouteImport.update({
+  id: '/partnership-details',
+  path: '/partnership-details',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MembershipDetailsRoute = MembershipDetailsRouteImport.update({
+  id: '/membership-details',
+  path: '/membership-details',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MembershipRoute = MembershipRouteImport.update({
@@ -50,9 +72,19 @@ const LoginRoute = LoginRouteImport.update({
   path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
+const GalleryDetailsRoute = GalleryDetailsRouteImport.update({
+  id: '/gallery-details',
+  path: '/gallery-details',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const GalleryRoute = GalleryRouteImport.update({
   id: '/gallery',
   path: '/gallery',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EventsDetailsRoute = EventsDetailsRouteImport.update({
+  id: '/events-details',
+  path: '/events-details',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EventsRoute = EventsRouteImport.update({
@@ -75,9 +107,19 @@ const ContactRoute = ContactRouteImport.update({
   path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ChoirDetailsRoute = ChoirDetailsRouteImport.update({
+  id: '/choir-details',
+  path: '/choir-details',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ChoirRoute = ChoirRouteImport.update({
   id: '/choir',
   path: '/choir',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutDetailsRoute = AboutDetailsRouteImport.update({
+  id: '/about-details',
+  path: '/about-details',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AboutRoute = AboutRouteImport.update({
@@ -168,15 +210,22 @@ const DashboardAdminApplicationsRoute =
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/about-details': typeof AboutDetailsRoute
   '/choir': typeof ChoirRoute
+  '/choir-details': typeof ChoirDetailsRoute
   '/contact': typeof ContactRoute
   '/courses': typeof CoursesRoute
   '/dashboard': typeof DashboardRouteWithChildren
   '/events': typeof EventsRoute
+  '/events-details': typeof EventsDetailsRoute
   '/gallery': typeof GalleryRoute
+  '/gallery-details': typeof GalleryDetailsRoute
   '/login': typeof LoginRoute
   '/membership': typeof MembershipRoute
+  '/membership-details': typeof MembershipDetailsRoute
+  '/partnership-details': typeof PartnershipDetailsRoute
   '/youth': typeof YouthRoute
+  '/youth-details': typeof YouthDetailsRoute
   '/auth/callback': typeof AuthCallbackRoute
   '/dashboard/admin': typeof DashboardAdminRouteWithChildren
   '/dashboard/member': typeof DashboardMemberRouteWithChildren
@@ -195,15 +244,22 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/about-details': typeof AboutDetailsRoute
   '/choir': typeof ChoirRoute
+  '/choir-details': typeof ChoirDetailsRoute
   '/contact': typeof ContactRoute
   '/courses': typeof CoursesRoute
   '/dashboard': typeof DashboardRouteWithChildren
   '/events': typeof EventsRoute
+  '/events-details': typeof EventsDetailsRoute
   '/gallery': typeof GalleryRoute
+  '/gallery-details': typeof GalleryDetailsRoute
   '/login': typeof LoginRoute
   '/membership': typeof MembershipRoute
+  '/membership-details': typeof MembershipDetailsRoute
+  '/partnership-details': typeof PartnershipDetailsRoute
   '/youth': typeof YouthRoute
+  '/youth-details': typeof YouthDetailsRoute
   '/auth/callback': typeof AuthCallbackRoute
   '/dashboard/admin': typeof DashboardAdminRouteWithChildren
   '/dashboard/member': typeof DashboardMemberRouteWithChildren
@@ -223,15 +279,22 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/about-details': typeof AboutDetailsRoute
   '/choir': typeof ChoirRoute
+  '/choir-details': typeof ChoirDetailsRoute
   '/contact': typeof ContactRoute
   '/courses': typeof CoursesRoute
   '/dashboard': typeof DashboardRouteWithChildren
   '/events': typeof EventsRoute
+  '/events-details': typeof EventsDetailsRoute
   '/gallery': typeof GalleryRoute
+  '/gallery-details': typeof GalleryDetailsRoute
   '/login': typeof LoginRoute
   '/membership': typeof MembershipRoute
+  '/membership-details': typeof MembershipDetailsRoute
+  '/partnership-details': typeof PartnershipDetailsRoute
   '/youth': typeof YouthRoute
+  '/youth-details': typeof YouthDetailsRoute
   '/auth/callback': typeof AuthCallbackRoute
   '/dashboard/admin': typeof DashboardAdminRouteWithChildren
   '/dashboard/member': typeof DashboardMemberRouteWithChildren
@@ -252,15 +315,22 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about'
+    | '/about-details'
     | '/choir'
+    | '/choir-details'
     | '/contact'
     | '/courses'
     | '/dashboard'
     | '/events'
+    | '/events-details'
     | '/gallery'
+    | '/gallery-details'
     | '/login'
     | '/membership'
+    | '/membership-details'
+    | '/partnership-details'
     | '/youth'
+    | '/youth-details'
     | '/auth/callback'
     | '/dashboard/admin'
     | '/dashboard/member'
@@ -279,15 +349,22 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/about'
+    | '/about-details'
     | '/choir'
+    | '/choir-details'
     | '/contact'
     | '/courses'
     | '/dashboard'
     | '/events'
+    | '/events-details'
     | '/gallery'
+    | '/gallery-details'
     | '/login'
     | '/membership'
+    | '/membership-details'
+    | '/partnership-details'
     | '/youth'
+    | '/youth-details'
     | '/auth/callback'
     | '/dashboard/admin'
     | '/dashboard/member'
@@ -306,15 +383,22 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/about'
+    | '/about-details'
     | '/choir'
+    | '/choir-details'
     | '/contact'
     | '/courses'
     | '/dashboard'
     | '/events'
+    | '/events-details'
     | '/gallery'
+    | '/gallery-details'
     | '/login'
     | '/membership'
+    | '/membership-details'
+    | '/partnership-details'
     | '/youth'
+    | '/youth-details'
     | '/auth/callback'
     | '/dashboard/admin'
     | '/dashboard/member'
@@ -334,25 +418,53 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  AboutDetailsRoute: typeof AboutDetailsRoute
   ChoirRoute: typeof ChoirRoute
+  ChoirDetailsRoute: typeof ChoirDetailsRoute
   ContactRoute: typeof ContactRoute
   CoursesRoute: typeof CoursesRoute
   DashboardRoute: typeof DashboardRouteWithChildren
   EventsRoute: typeof EventsRoute
+  EventsDetailsRoute: typeof EventsDetailsRoute
   GalleryRoute: typeof GalleryRoute
+  GalleryDetailsRoute: typeof GalleryDetailsRoute
   LoginRoute: typeof LoginRoute
   MembershipRoute: typeof MembershipRoute
+  MembershipDetailsRoute: typeof MembershipDetailsRoute
+  PartnershipDetailsRoute: typeof PartnershipDetailsRoute
   YouthRoute: typeof YouthRoute
+  YouthDetailsRoute: typeof YouthDetailsRoute
   AuthCallbackRoute: typeof AuthCallbackRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/youth-details': {
+      id: '/youth-details'
+      path: '/youth-details'
+      fullPath: '/youth-details'
+      preLoaderRoute: typeof YouthDetailsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/youth': {
       id: '/youth'
       path: '/youth'
       fullPath: '/youth'
       preLoaderRoute: typeof YouthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/partnership-details': {
+      id: '/partnership-details'
+      path: '/partnership-details'
+      fullPath: '/partnership-details'
+      preLoaderRoute: typeof PartnershipDetailsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/membership-details': {
+      id: '/membership-details'
+      path: '/membership-details'
+      fullPath: '/membership-details'
+      preLoaderRoute: typeof MembershipDetailsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/membership': {
@@ -369,11 +481,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/gallery-details': {
+      id: '/gallery-details'
+      path: '/gallery-details'
+      fullPath: '/gallery-details'
+      preLoaderRoute: typeof GalleryDetailsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/gallery': {
       id: '/gallery'
       path: '/gallery'
       fullPath: '/gallery'
       preLoaderRoute: typeof GalleryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/events-details': {
+      id: '/events-details'
+      path: '/events-details'
+      fullPath: '/events-details'
+      preLoaderRoute: typeof EventsDetailsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/events': {
@@ -404,11 +530,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/choir-details': {
+      id: '/choir-details'
+      path: '/choir-details'
+      fullPath: '/choir-details'
+      preLoaderRoute: typeof ChoirDetailsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/choir': {
       id: '/choir'
       path: '/choir'
       fullPath: '/choir'
       preLoaderRoute: typeof ChoirRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about-details': {
+      id: '/about-details'
+      path: '/about-details'
+      fullPath: '/about-details'
+      preLoaderRoute: typeof AboutDetailsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/about': {
@@ -594,15 +734,22 @@ const DashboardRouteWithChildren = DashboardRoute._addFileChildren(
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  AboutDetailsRoute: AboutDetailsRoute,
   ChoirRoute: ChoirRoute,
+  ChoirDetailsRoute: ChoirDetailsRoute,
   ContactRoute: ContactRoute,
   CoursesRoute: CoursesRoute,
   DashboardRoute: DashboardRouteWithChildren,
   EventsRoute: EventsRoute,
+  EventsDetailsRoute: EventsDetailsRoute,
   GalleryRoute: GalleryRoute,
+  GalleryDetailsRoute: GalleryDetailsRoute,
   LoginRoute: LoginRoute,
   MembershipRoute: MembershipRoute,
+  MembershipDetailsRoute: MembershipDetailsRoute,
+  PartnershipDetailsRoute: PartnershipDetailsRoute,
   YouthRoute: YouthRoute,
+  YouthDetailsRoute: YouthDetailsRoute,
   AuthCallbackRoute: AuthCallbackRoute,
 }
 export const routeTree = rootRouteImport

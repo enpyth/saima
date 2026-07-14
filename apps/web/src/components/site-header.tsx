@@ -1,9 +1,10 @@
 import { Link, useNavigate } from '@tanstack/react-router'
-import { LayoutDashboard, LogIn, LogOut } from 'lucide-react'
+import { Globe2, LayoutDashboard, LogIn, LogOut } from 'lucide-react'
 import { useMemo } from 'react'
 
 import { useAuth } from './auth-provider'
-import { publicNavItems } from '../lib/content'
+import { useLanguage } from './language-provider'
+import { sharedContent } from '../content/shared'
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar'
 import { Button } from './ui/button'
 import {
@@ -18,12 +19,14 @@ import {
 export function SiteHeader() {
   const navigate = useNavigate()
   const { loading, user, profile, signOut: authSignOut } = useAuth()
+  const { language, setLanguage } = useLanguage()
+  const content = sharedContent[language]
 
   const displayName = useMemo(() => {
     const metadata = user?.user_metadata
     const name = profile?.full_name ?? metadata?.full_name ?? metadata?.name ?? user?.email
-    return typeof name === 'string' && name.trim() ? name : 'SAIMA user'
-  }, [profile?.full_name, user])
+    return typeof name === 'string' && name.trim() ? name : content.auth.fallbackUser
+  }, [content.auth.fallbackUser, profile?.full_name, user])
 
   const avatarUrl = useMemo(() => {
     const metadata = user?.user_metadata
@@ -47,25 +50,45 @@ export function SiteHeader() {
 
   return (
     <header className="site-header">
-      <Link to="/" className="brand" aria-label="SAIMA home">
+      <Link to="/" className="brand" aria-label={content.brand.ariaHome}>
         <span className="brand-mark">
           <img src="/logo.jpg" alt="" aria-hidden="true" />
         </span>
         <span>
-          <strong>SAIMA</strong>
-          <small>South Australian International Musicians Association</small>
+          <strong>{content.brand.name}</strong>
+          <small>{content.brand.fullName}</small>
         </span>
       </Link>
       <nav aria-label="Primary navigation">
-        {publicNavItems.map((item) => (
+        {content.navItems.map((item) => (
           <Link key={item.to} to={item.to} className="nav-link" activeProps={{ className: 'active' }}>
             {item.label}
           </Link>
         ))}
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button className="language-trigger" size="sm" variant="outline" aria-label={content.language.label}>
+              <Globe2 size={16} aria-hidden="true" />
+              {content.language.trigger}
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end">
+            <DropdownMenuLabel>{content.language.label}</DropdownMenuLabel>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem onSelect={() => setLanguage('en')}>
+              <span className="language-check">{language === 'en' ? '✓' : ''}</span>
+              {content.language.english}
+            </DropdownMenuItem>
+            <DropdownMenuItem onSelect={() => setLanguage('zh')}>
+              <span className="language-check">{language === 'zh' ? '✓' : ''}</span>
+              {content.language.chinese}
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
         {!loading && user ? (
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button className="rounded-full p-0" size="icon" variant="ghost" aria-label="Open user menu">
+              <Button className="rounded-full p-0" size="icon" variant="ghost" aria-label={content.auth.openUserMenu}>
                 <Avatar>
                   <AvatarImage alt={displayName} src={avatarUrl} />
                   <AvatarFallback>{initials || 'S'}</AvatarFallback>
@@ -81,12 +104,12 @@ export function SiteHeader() {
               <DropdownMenuItem asChild>
                 <Link to="/dashboard">
                   <LayoutDashboard size={16} aria-hidden="true" />
-                  Dashboard
+                  {content.auth.dashboard}
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuItem onSelect={signOut}>
                 <LogOut size={16} aria-hidden="true" />
-                Sign out
+                {content.auth.signOut}
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
@@ -94,7 +117,7 @@ export function SiteHeader() {
           <Button asChild size="sm">
             <Link to="/login">
               <LogIn size={16} aria-hidden="true" />
-              Login
+              {content.auth.login}
             </Link>
           </Button>
         )}
