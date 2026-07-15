@@ -1,0 +1,5 @@
+Callum McGing is a tenor and vocal coach from Adelaide, South Australia. A graduate of the Elder Conservatorium of music, he has worked regularly with State Opera South Australia since 2018, appearing in main-stage and festival productions and taking on the title role in their schools production of The Frog Prince.
+
+Callum works across languages and styles, working as an Australian Contemporary Opera Company Rising Artist in Melbourne, and recently appearing in Shandong Satellite Television's Spring Festival programme in 2025. He also represented South Australia in the 2016 9th Youth Chinese Bridge competition in Kunming, Yunnan. 
+
+Callum is passionate about expanding the operatic form in Australia and bringing young people of all backgrounds together through his music and Mandarin language education.

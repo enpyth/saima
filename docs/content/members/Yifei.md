@@ -1,0 +1,6 @@
+Yifei Chong – Biography
+ 
+Yifei Chong is an accomplished pianist, collaborative pianist and sought-after teacher. She graduated with a Master of Music in Piano Performance from the Elder Conservatorium of Music, under the guidance of Vivian Choi Milton. She holds a Bachelor and Masters degree in Piano Performance from the Xinghai Conservatory of Music in Guangzhou, China. She has additionally participated in masterclasses with internationally renowned pianists including Brendan Kinsella, Natasha Vlassenko, Hsing-Chwen Hsin.
+The winner of many prizes and awards, Yifei was recently awarded the Lunch Hour Award by Recital Australia in 2023 Spring Season and was the recipient of the prestigious National Scholarship in China in recognition of her academic and musical excellence.
+As a collaborative pianist, Yifei has worked for the Adelaide Eisteddfod in the Vocal and String Divisions and at the Xinghai Conservatory of Music in China as a staff accompanist.  
+Dedicated to music education, Yifei teaches students of all ages. Her students have achieved excellent results in both AMEB and ABRSM piano examinations, as well as competition and eisteddfods. She is in high demand as a teacher that tailors her teaching method to the individuals needs and goals of each student. 

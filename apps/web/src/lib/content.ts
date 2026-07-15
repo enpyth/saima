@@ -6,6 +6,7 @@ export { eventsContent } from '../content/events'
 export { galleryContent } from '../content/gallery'
 export { homeContent } from '../content/home'
 export { membershipContent } from '../content/membership'
+export { memberContent } from '../content/members'
 export { sharedContent, siteImages, publicRoutePaths } from '../content/shared'
 export { youthContent } from '../content/youth'
 

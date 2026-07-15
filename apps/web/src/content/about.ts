@@ -12,6 +12,7 @@ type AboutContent = {
     title: string
     values: Array<{ title: string; summary: string }>
   }
+  memberSlugs: string[]
   artistProfile: {
     title: string
     fields: Array<{ label: string; value: string }>
@@ -98,6 +99,13 @@ export const aboutContent: Localized<AboutContent> = {
         },
       ],
     },
+    memberSlugs: [
+      'elsa-yiyin-tian',
+      'callum-mcging',
+      'yueqi-queenie-li',
+      'tina-zhao',
+      'yifei-chong',
+    ],
     artistProfile: {
       title: 'Artist / Educator Profile',
       fields: [
@@ -193,6 +201,13 @@ export const aboutContent: Localized<AboutContent> = {
         },
       ],
     },
+    memberSlugs: [
+      'elsa-yiyin-tian',
+      'callum-mcging',
+      'yueqi-queenie-li',
+      'tina-zhao',
+      'yifei-chong',
+    ],
     artistProfile: {
       title: '艺术家 / 教育工作者简介',
       fields: [

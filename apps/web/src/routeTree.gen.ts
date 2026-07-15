@@ -27,6 +27,7 @@ import { Route as ChoirRouteImport } from './routes/choir'
 import { Route as AboutDetailsRouteImport } from './routes/about-details'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as MembersSlugRouteImport } from './routes/members.$slug'
 import { Route as DashboardVisitorRouteImport } from './routes/dashboard.visitor'
 import { Route as DashboardMemberRouteImport } from './routes/dashboard.member'
 import { Route as DashboardAdminRouteImport } from './routes/dashboard.admin'
@@ -132,6 +133,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MembersSlugRoute = MembersSlugRouteImport.update({
+  id: '/members/$slug',
+  path: '/members/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DashboardVisitorRoute = DashboardVisitorRouteImport.update({
   id: '/visitor',
   path: '/visitor',
@@ -230,6 +236,7 @@ export interface FileRoutesByFullPath {
   '/dashboard/admin': typeof DashboardAdminRouteWithChildren
   '/dashboard/member': typeof DashboardMemberRouteWithChildren
   '/dashboard/visitor': typeof DashboardVisitorRouteWithChildren
+  '/members/$slug': typeof MembersSlugRoute
   '/dashboard/admin/applications': typeof DashboardAdminApplicationsRoute
   '/dashboard/admin/bookings': typeof DashboardAdminBookingsRoute
   '/dashboard/admin/events': typeof DashboardAdminEventsRoute
@@ -264,6 +271,7 @@ export interface FileRoutesByTo {
   '/dashboard/admin': typeof DashboardAdminRouteWithChildren
   '/dashboard/member': typeof DashboardMemberRouteWithChildren
   '/dashboard/visitor': typeof DashboardVisitorRouteWithChildren
+  '/members/$slug': typeof MembersSlugRoute
   '/dashboard/admin/applications': typeof DashboardAdminApplicationsRoute
   '/dashboard/admin/bookings': typeof DashboardAdminBookingsRoute
   '/dashboard/admin/events': typeof DashboardAdminEventsRoute
@@ -299,6 +307,7 @@ export interface FileRoutesById {
   '/dashboard/admin': typeof DashboardAdminRouteWithChildren
   '/dashboard/member': typeof DashboardMemberRouteWithChildren
   '/dashboard/visitor': typeof DashboardVisitorRouteWithChildren
+  '/members/$slug': typeof MembersSlugRoute
   '/dashboard/admin/applications': typeof DashboardAdminApplicationsRoute
   '/dashboard/admin/bookings': typeof DashboardAdminBookingsRoute
   '/dashboard/admin/events': typeof DashboardAdminEventsRoute
@@ -335,6 +344,7 @@ export interface FileRouteTypes {
     | '/dashboard/admin'
     | '/dashboard/member'
     | '/dashboard/visitor'
+    | '/members/$slug'
     | '/dashboard/admin/applications'
     | '/dashboard/admin/bookings'
     | '/dashboard/admin/events'
@@ -369,6 +379,7 @@ export interface FileRouteTypes {
     | '/dashboard/admin'
     | '/dashboard/member'
     | '/dashboard/visitor'
+    | '/members/$slug'
     | '/dashboard/admin/applications'
     | '/dashboard/admin/bookings'
     | '/dashboard/admin/events'
@@ -403,6 +414,7 @@ export interface FileRouteTypes {
     | '/dashboard/admin'
     | '/dashboard/member'
     | '/dashboard/visitor'
+    | '/members/$slug'
     | '/dashboard/admin/applications'
     | '/dashboard/admin/bookings'
     | '/dashboard/admin/events'
@@ -435,6 +447,7 @@ export interface RootRouteChildren {
   YouthRoute: typeof YouthRoute
   YouthDetailsRoute: typeof YouthDetailsRoute
   AuthCallbackRoute: typeof AuthCallbackRoute
+  MembersSlugRoute: typeof MembersSlugRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -563,6 +576,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/members/$slug': {
+      id: '/members/$slug'
+      path: '/members/$slug'
+      fullPath: '/members/$slug'
+      preLoaderRoute: typeof MembersSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/dashboard/visitor': {
@@ -751,6 +771,7 @@ const rootRouteChildren: RootRouteChildren = {
   YouthRoute: YouthRoute,
   YouthDetailsRoute: YouthDetailsRoute,
   AuthCallbackRoute: AuthCallbackRoute,
+  MembersSlugRoute: MembersSlugRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

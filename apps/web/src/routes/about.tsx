@@ -4,24 +4,27 @@ import { ArrowRight, Award, HeartHandshake, Landmark, Users } from 'lucide-react
 import { useLanguage } from '../components/language-provider'
 import { Button } from '../components/ui/button'
 import { aboutContent } from '../content/about'
-import { galleryContent } from '../content/gallery'
-import { siteImages } from '../content/shared'
+import { memberContent } from '../content/members'
 
 export const Route = createFileRoute('/about')({ component: About })
 
 function About() {
   const { language } = useLanguage()
   const content = aboutContent[language]
-  const gallery = galleryContent[language].groups.slice(0, 4)
+  const membersContent = memberContent[language]
+  const members = content.memberSlugs
+    .map((slug) => membersContent.members.find((member) => member.slug === slug))
+    .filter((member): member is (typeof membersContent.members)[number] => Boolean(member))
+  const founder = members[0]
   const icons = [Users, Award, Landmark]
   const mission = content.missionPreview
 
   return (
     <main className="public-page">
-      <section className="public-title">
+      <section className="public-title about-page-title">
         <span className="eyebrow">{content.hero.eyebrow}</span>
         <h1>{content.hero.title}</h1>
-        <p>{content.hero.paragraphs[0]}</p>
+        <p className="about-page-intro">{content.hero.paragraphs[0]}</p>
         <div className="actions centered-actions">
           <Button asChild variant="outline">
             <a href="/about-details">
@@ -33,14 +36,19 @@ function About() {
 
       <section className="public-section editorial-split">
         <div className="portrait-stack">
-          <img src={siteImages.galleryPerformance} alt="" />
-          <p>{content.sections[0]?.title}</p>
+          <img src={founder?.image} alt={founder?.name ?? ''} />
+          <p>{founder?.role}</p>
         </div>
         <div className="section-copy">
           <span className="eyebrow">{content.labels.artisticVision}</span>
-          <h2>{content.sections[0]?.title}</h2>
-          <p className="lead dark">{content.sections[0]?.paragraphs?.[0]}</p>
-          <p>{content.hero.paragraphs[5]}</p>
+          <h2>{founder?.name}</h2>
+          <p className="lead dark">{founder?.specialty}</p>
+          <p>{founder?.summary}</p>
+          <Button asChild variant="outline">
+            <a href={founder?.href}>
+              {membersContent.labels.viewProfile} <ArrowRight size={16} />
+            </a>
+          </Button>
         </div>
       </section>
 
@@ -67,15 +75,22 @@ function About() {
 
       <section className="public-section gallery-strip">
         <div className="section-heading">
-          <span className="eyebrow">{galleryContent[language].hero.eyebrow}</span>
+          <span className="eyebrow">{membersContent.labels.eyebrow}</span>
           <h2>{content.sections[2]?.title}</h2>
+          <p>{content.sections[2]?.paragraphs?.[0]}</p>
         </div>
-        <div className="gallery-grid">
-          {gallery.map((moment) => (
-            <article className="gallery-tile" key={moment.title}>
-              <img src={moment.image} alt="" />
-              <span>{moment.title}</span>
-              <h3>{moment.summary}</h3>
+        <div className="member-grid">
+          {members.map((member) => (
+            <article className="member-card" key={member.slug}>
+              <a href={member.href}>
+                <img src={member.image} alt={member.name} />
+                <span>{member.role}</span>
+                <h3>{member.name}</h3>
+                <p>{member.summary}</p>
+                <strong>
+                  {membersContent.labels.viewProfile} <ArrowRight size={16} />
+                </strong>
+              </a>
             </article>
           ))}
         </div>

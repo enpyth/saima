@@ -8,6 +8,7 @@ import { eventsContent } from '../content/events'
 import { galleryContent } from '../content/gallery'
 import { homeContent } from '../content/home'
 import { membershipContent } from '../content/membership'
+import { memberContent } from '../content/members'
 import { sharedContent, siteImages, publicRoutePaths } from '../content/shared'
 import { youthContent } from '../content/youth'
 
@@ -132,5 +133,33 @@ describe('public site content', () => {
     expect(eventsContent.en.labels.details).toContain('details')
     expect(membershipContent.zh.detailsAction).toContain('详情')
     expect(contactContent.zh.detailsAction).toContain('详情')
+  })
+
+  it('keeps member profiles connected to local images and personal pages', () => {
+    expect(memberContent.en.members).toHaveLength(5)
+    expect(memberContent.zh.members).toHaveLength(5)
+
+    for (const language of ['en', 'zh'] as const) {
+      for (const member of memberContent[language].members) {
+        expect(member.slug).toMatch(/^[a-z0-9-]+$/)
+        expect(member.href).toBe(`/members/${member.slug}`)
+        expect(member.image).toMatch(/^\/images\/saima\/members\/.+\.jpg$/)
+        expect(member.name).toBeTruthy()
+        expect(member.role).toBeTruthy()
+        expect(member.summary).toBeTruthy()
+        expect(member.bio.length).toBeGreaterThan(0)
+      }
+    }
+
+    expect(memberContent.en.members.map((member) => member.slug)).toEqual([
+      'elsa-yiyin-tian',
+      'callum-mcging',
+      'yueqi-queenie-li',
+      'tina-zhao',
+      'yifei-chong',
+    ])
+    expect(aboutContent.en.sections[2]?.title).toBe('Our Artists, Educators and Community Members')
+    expect(aboutContent.en.memberSlugs).toEqual(memberContent.en.members.map((member) => member.slug))
+    expect(JSON.stringify(aboutContent.en)).not.toContain('Meet the people behind the music')
   })
 })
