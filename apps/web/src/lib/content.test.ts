@@ -136,11 +136,12 @@ describe('public site content', () => {
   })
 
   it('keeps member profiles connected to local images and personal pages', () => {
-    expect(memberContent.en.members).toHaveLength(5)
-    expect(memberContent.zh.members).toHaveLength(5)
+    expect(memberContent.en.members).toHaveLength(8)
+    expect(memberContent.zh.members).toHaveLength(8)
 
     for (const language of ['en', 'zh'] as const) {
       for (const member of memberContent[language].members) {
+        expect(member.order).toBeGreaterThan(0)
         expect(member.slug).toMatch(/^[a-z0-9-]+$/)
         expect(member.href).toBe(`/members/${member.slug}`)
         expect(member.image).toMatch(/^\/images\/saima\/members\/.+\.jpg$/)
@@ -157,9 +158,12 @@ describe('public site content', () => {
       'yueqi-queenie-li',
       'tina-zhao',
       'yifei-chong',
+      'baoshan-wu',
+      'sonya-chong',
+      'suraj-landge',
     ])
+    expect(memberContent.en.members.map((member) => member.order)).toEqual([1, 2, 3, 4, 5, 6, 7, 8])
     expect(aboutContent.en.sections[2]?.title).toBe('Our Artists, Educators and Community Members')
-    expect(aboutContent.en.memberSlugs).toEqual(memberContent.en.members.map((member) => member.slug))
     expect(JSON.stringify(aboutContent.en)).not.toContain('Meet the people behind the music')
   })
 })

@@ -12,9 +12,7 @@ function About() {
   const { language } = useLanguage()
   const content = aboutContent[language]
   const membersContent = memberContent[language]
-  const members = content.memberSlugs
-    .map((slug) => membersContent.members.find((member) => member.slug === slug))
-    .filter((member): member is (typeof membersContent.members)[number] => Boolean(member))
+  const members = [...membersContent.members].sort((left, right) => left.order - right.order)
   const founder = members[0]
   const icons = [Users, Award, Landmark]
   const mission = content.missionPreview
