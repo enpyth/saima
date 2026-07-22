@@ -93,7 +93,7 @@ export const memberContent: Localized<MemberContent> = {
         ],
       },
       {
-        order: 4,
+        order: 7,
         slug: 'yueqi-queenie-li',
         href: '/members/yueqi-queenie-li',
         name: 'Queenie Li',
@@ -114,7 +114,7 @@ export const memberContent: Localized<MemberContent> = {
         ],
       },
       {
-        order: 3,
+        order: 4,
         slug: 'tina-zhao',
         href: '/members/tina-zhao',
         name: 'Tina Zhao',
@@ -133,7 +133,7 @@ export const memberContent: Localized<MemberContent> = {
         ],
       },
       {
-        order: 5,
+        order: 6,
         slug: 'yifei-chong',
         href: '/members/yifei-chong',
         name: 'Evelyn Chong',
@@ -151,7 +151,7 @@ export const memberContent: Localized<MemberContent> = {
         ],
       },
       {
-        order: 6,
+        order: 8,
         slug: 'baoshan-wu',
         href: '/members/baoshan-wu',
         name: 'Baoshan Wu',
@@ -171,7 +171,7 @@ export const memberContent: Localized<MemberContent> = {
         ],
       },
       {
-        order: 7,
+        order: 3,
         slug: 'sonya-chong',
         href: '/members/sonya-chong',
         name: 'Sonya Chong',
@@ -191,7 +191,7 @@ export const memberContent: Localized<MemberContent> = {
         ],
       },
       {
-        order: 8,
+        order: 5,
         slug: 'suraj-landge',
         href: '/members/suraj-landge',
         name: 'Suraj Landge',
@@ -259,7 +259,7 @@ export const memberContent: Localized<MemberContent> = {
         ],
       },
       {
-        order: 3,
+        order: 7,
         slug: 'yueqi-queenie-li',
         href: '/members/yueqi-queenie-li',
         name: 'Yueqi Li',
@@ -297,7 +297,7 @@ export const memberContent: Localized<MemberContent> = {
         ],
       },
       {
-        order: 5,
+        order: 6,
         slug: 'yifei-chong',
         href: '/members/yifei-chong',
         name: 'Yifei Chong',
@@ -314,7 +314,7 @@ export const memberContent: Localized<MemberContent> = {
         ],
       },
       {
-        order: 6,
+        order: 8,
         slug: 'baoshan-wu',
         href: '/members/baoshan-wu',
         name: 'Baoshan Wu',
@@ -333,7 +333,7 @@ export const memberContent: Localized<MemberContent> = {
         ],
       },
       {
-        order: 7,
+        order: 3,
         slug: 'sonya-chong',
         href: '/members/sonya-chong',
         name: 'Sonya Chong',
@@ -352,7 +352,7 @@ export const memberContent: Localized<MemberContent> = {
         ],
       },
       {
-        order: 8,
+        order: 5,
         slug: 'suraj-landge',
         href: '/members/suraj-landge',
         name: 'Suraj Landge',
