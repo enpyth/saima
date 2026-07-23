@@ -38,6 +38,7 @@ const memberImages = {
   baoshan: '/images/saima/members/Baoshan.jpg',
   sonya: '/images/saima/members/Sonya.jpg',
   suraj: '/images/saima/members/Suraj.jpg',
+  teresa: '/images/saima/members/Teresa.jpg',
 } as const
 
 export const memberContent: Localized<MemberContent> = {
@@ -114,7 +115,7 @@ export const memberContent: Localized<MemberContent> = {
         ],
       },
       {
-        order: 4,
+        order: 5,
         slug: 'tina-zhao',
         href: '/members/tina-zhao',
         name: 'Tina Zhao',
@@ -191,7 +192,7 @@ export const memberContent: Localized<MemberContent> = {
         ],
       },
       {
-        order: 5,
+        order: 4,
         slug: 'suraj-landge',
         href: '/members/suraj-landge',
         name: 'Suraj Landge',
@@ -206,6 +207,24 @@ export const memberContent: Localized<MemberContent> = {
           'His artistic interests span live performance, improvisation, collaboration and the exploration of diverse musical traditions.',
           'Alongside his performing career, Suraj is also an experienced music educator, sharing his passion for music with students of all ages while continuing to develop his own artistic practice.',
           'Dedicated to artistic growth and cultural exchange, Suraj believes music is a powerful means of connecting people and enriching communities through performance.',
+        ],
+      },
+      {
+        order: 9,
+        slug: 'yishan-teresa-chen',
+        href: '/members/yishan-teresa-chen',
+        name: 'Teresa Chen',
+        role: 'Soprano and Voice Educator',
+        specialty: 'Classical voice / Opera / Voice lessons / AMEB music theory',
+        image: memberImages.teresa,
+        summary:
+          'A soprano and voice educator pursuing classical voice performance studies at the Elder Conservatorium of Music.',
+        bio: [
+          'Yishan (Teresa) Chen is a soprano currently pursuing a Master of Music in Performance Studies in Classical Voice at the Elder Conservatorium of Music, Adelaide University. She previously completed a Bachelor of Music in Voice Performance at South China Normal University.',
+          "Yishan has performed in a variety of operatic and concert settings. Her recent performances include Bellini's Norma with State Opera South Australia, the Act IV Finale of Mozart's Le nozze di Figaro as part of Big Sing at the Opera 2025, and solo and ensemble performances in the Elder Conservatorium's student concerts.",
+          "She is also a member of Recitals Australia's Fellowship Program 2026-2027.",
+          'In recognition of her artistic and academic achievements, Yishan was awarded the George Boland Scholarship, the Frederick Bevan Prize for Singing, and the Robert Whinham Prize by Adelaide University in 2026.',
+          "Alongside her performance career, Yishan is passionate about music education. She provides private voice lessons and AMEB music theory instruction, designing personalised learning plans to develop students' vocal technique, musicianship, and confidence.",
         ],
       },
     ],
@@ -279,7 +298,7 @@ export const memberContent: Localized<MemberContent> = {
         ],
       },
       {
-        order: 4,
+        order: 5,
         slug: 'tina-zhao',
         href: '/members/tina-zhao',
         name: 'Tina Zhao',
@@ -352,7 +371,7 @@ export const memberContent: Localized<MemberContent> = {
         ],
       },
       {
-        order: 5,
+        order: 4,
         slug: 'suraj-landge',
         href: '/members/suraj-landge',
         name: 'Suraj Landge',
@@ -366,6 +385,23 @@ export const memberContent: Localized<MemberContent> = {
           '他的艺术兴趣涵盖现场表演、即兴、合作以及多元音乐传统的探索。',
           '除表演之外，Suraj 也是经验丰富的音乐教育工作者，向不同年龄段学生分享他对音乐的热情，同时持续发展自己的艺术实践。',
           'Suraj 致力于艺术成长与文化交流，并相信音乐能够通过表演连接人与人、丰富社区生活。',
+        ],
+      },
+      {
+        order: 9,
+        slug: 'yishan-teresa-chen',
+        href: '/members/yishan-teresa-chen',
+        name: 'Yishan Chen',
+        role: '女高音及声乐教育工作者',
+        specialty: '古典声乐 / 歌剧 / 声乐课程 / AMEB 乐理',
+        image: memberImages.teresa,
+        summary: '女高音和声乐教育工作者，目前在 Elder Conservatorium of Music 攻读古典声乐表演方向硕士。',
+        bio: [
+          'Yishan Chen 是一位女高音，目前在阿德莱德大学 Elder Conservatorium of Music 攻读古典声乐表演方向的音乐硕士。她此前在华南师范大学完成声乐表演音乐学士学位。',
+          "Yishan 曾参与多种歌剧和音乐会演出。近期演出包括与 State Opera South Australia 合作的 Bellini 歌剧 Norma、Big Sing at the Opera 2025 中 Mozart 歌剧 Le nozze di Figaro 第四幕终曲，以及 Elder Conservatorium 学生音乐会中的独唱和重唱演出。",
+          "她也是 Recitals Australia 2026-2027 Fellowship Program 成员。",
+          '因其艺术和学术表现，Yishan 于 2026 年获得阿德莱德大学 George Boland Scholarship、Frederick Bevan Prize for Singing 和 Robert Whinham Prize。',
+          '除表演外，Yishan 也热爱音乐教育。她提供私人声乐课程和 AMEB 乐理教学，并根据学生情况设计个性化学习计划，帮助学生发展声乐技巧、音乐素养和自信。',
         ],
       },
     ],
