@@ -1,0 +1,5 @@
+Harper Ou began studying the guzheng at the age of five under the guidance of Mr. Liu Ge, a distinguished guzheng performer with the Hubei Provincial Song and Dance Theatre. Through years of dedicated training, she established a strong foundation in traditional Chinese instrumental performance.
+
+She later pursued a Bachelor of Music in Guzheng Performance at the Wuhan Conservatory of Music, where she studied under Associate Professor Hu Jing of the Department of Chinese Traditional Instruments. During her undergraduate studies, she received comprehensive professional training in guzheng performance, music interpretation, ensemble collaboration, stage performance, and Chinese traditional music.
+
+With nearly two decades of musical training, Harper combines solid technical proficiency with a deep understanding of Chinese musical traditions. Her educational background and performance experience provide a strong foundation for both concert performance and music education.

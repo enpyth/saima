@@ -136,8 +136,8 @@ describe('public site content', () => {
   })
 
   it('keeps member profiles connected to local images and personal pages', () => {
-    expect(memberContent.en.members).toHaveLength(9)
-    expect(memberContent.zh.members).toHaveLength(9)
+    expect(memberContent.en.members).toHaveLength(11)
+    expect(memberContent.zh.members).toHaveLength(11)
 
     for (const language of ['en', 'zh'] as const) {
       for (const member of memberContent[language].members) {
@@ -160,15 +160,17 @@ describe('public site content', () => {
       'elsa-yiyin-tian',
       'callum-mcging',
       'sonya-chong',
-      'tina-zhao',
       'suraj-landge',
+      'tina-zhao',
       'yifei-chong',
       'yueqi-queenie-li',
       'baoshan-wu',
       'yishan-teresa-chen',
+      'bowen-huang',
+      'harper-ou',
     ])
     expect([...memberContent.en.members].sort((left, right) => left.order - right.order).map((member) => member.order)).toEqual([
-      1, 2, 3, 4, 5, 6, 7, 8, 9,
+      1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11,
     ])
     expect(aboutContent.en.sections[2]?.title).toBe('Our Artists, Educators and Community Members')
     expect(JSON.stringify(aboutContent.en)).not.toContain('Meet the people behind the music')
