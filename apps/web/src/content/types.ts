@@ -9,10 +9,32 @@ export type TextBlock = {
 }
 
 export type EventArticle = TextBlock & {
+  id: string
+  href: string
+  startDate: string
   date?: string
   location?: string
   subtitle?: string
   highlights?: string[]
+  details?: Array<{
+    label: string
+    value: string
+  }>
+  galleryImages?: Array<{
+    id: string
+    img: string
+    url: string
+    height: number
+  }>
+  posterImage?: {
+    label: string
+    url: string
+  }
+  resources?: Array<{
+    label: string
+    type: 'pdf'
+    url: string
+  }>
 }
 
 export type ImageKey =

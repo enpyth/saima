@@ -4,7 +4,7 @@ import { aboutContent } from '../content/about'
 import { choirContent } from '../content/choir'
 import { contactContent } from '../content/contact'
 import { coursesContent } from '../content/courses'
-import { eventsContent } from '../content/events'
+import { eventAssetUrl, eventsContent, findEvent, getEventsByStatus, getEventStatus } from '../content/events'
 import { galleryContent } from '../content/gallery'
 import { homeContent } from '../content/home'
 import { membershipContent } from '../content/membership'
@@ -17,6 +17,8 @@ const implementedPublicRoutes = new Set([
   '/about',
   '/about-details',
   '/events',
+  '/events/20240930',
+  '/events/20261016',
   '/events-details',
   '/youth',
   '/youth-details',
@@ -101,17 +103,69 @@ describe('public site content', () => {
     expect(homeContent.en.hero.title).toContain('South Australian International Musicians Association')
     expect(homeContent.zh.hero.title).toBe('南澳国际音乐协会')
     expect(aboutContent.en.sections[0]?.title).toBe('Founder & Artistic Director')
-    expect(eventsContent.en.upcoming.events[0]?.title).toBe('A Dream for Every Child')
-    expect(eventsContent.zh.past.sections[0]?.events?.[0]?.title).toContain('中国印象')
+    expect(eventsContent.en.events[0]?.title).toBe('A Dream for Every Child')
+    expect(eventsContent.zh.events[1]?.title).toContain('中国印象')
     expect(membershipContent.en.expression.title).toContain('Expression of Interest')
     expect(contactContent.zh.partner.title).toBe('为什么与我们合作')
   })
 
-  it('keeps placeholder data bilingual for missing values', () => {
-    expect(sharedContent.en.placeholders.tba).toBe('To be announced')
-    expect(sharedContent.zh.placeholders.tba).toBe('待公布')
-    expect(eventsContent.en.upcoming.events[1]?.date).toBe(sharedContent.en.placeholders.tba)
-    expect(eventsContent.zh.upcoming.events[1]?.date).toBe(sharedContent.zh.placeholders.tba)
+  it('keeps public events limited to the two supplied event folders', () => {
+    expect(eventsContent.en.events.map((event) => event.id)).toEqual(['20261016', '20240930'])
+    expect(eventsContent.zh.events.map((event) => event.id)).toEqual(['20261016', '20240930'])
+
+    for (const event of eventsContent.en.events) {
+      expect(event.href).toBe(`/events/${event.id}`)
+      expect(implementedPublicRoutes.has(event.href)).toBe(true)
+    }
+  })
+
+  it('keeps event appendix media wired from the supplied READMD files', () => {
+    const charityConcert = findEvent('en', '20261016')
+    const culturalConcert = findEvent('en', '20240930')
+
+    expect(charityConcert?.posterImage).toEqual({
+      label: 'Concert Poster',
+      url: eventAssetUrl('20261016', 'poster.jpg'),
+    })
+    expect(charityConcert?.resources).toEqual([
+      {
+        label: 'Authority to Fundraise',
+        type: 'pdf',
+        url: eventAssetUrl('20261016', 'Authority.pdf'),
+      },
+    ])
+
+    expect(culturalConcert?.galleryImages).toHaveLength(12)
+    expect(culturalConcert?.galleryImages?.map((item) => item.img)).toEqual([
+      eventAssetUrl('20240930', 'web_1.jpg'),
+      eventAssetUrl('20240930', 'web_2.jpg'),
+      eventAssetUrl('20240930', 'web_Audiens.jpg'),
+      eventAssetUrl('20240930', 'web_Dance.jpg'),
+      eventAssetUrl('20240930', 'web_Elsa.jpg'),
+      eventAssetUrl('20240930', 'web_flute_solo.jpg'),
+      eventAssetUrl('20240930', 'web_Guzheng.jpg'),
+      eventAssetUrl('20240930', 'web_Hosts.jpg'),
+      eventAssetUrl('20240930', 'web_Irene.jpg'),
+      eventAssetUrl('20240930', 'web_poster.jpg'),
+      eventAssetUrl('20240930', 'web_Program.jpg'),
+      eventAssetUrl('20240930', 'web_view_1.jpg'),
+    ])
+  })
+
+  it('derives event status from today instead of fixed content buckets', () => {
+    const beforeCharityConcert = new Date(2026, 7, 1)
+    const afterCharityConcert = new Date(2026, 10, 1)
+    const culturalConcert = findEvent('en', '20240930')
+    const charityConcert = findEvent('en', '20261016')
+
+    expect(culturalConcert).toBeTruthy()
+    expect(charityConcert).toBeTruthy()
+    expect(getEventStatus(culturalConcert!, beforeCharityConcert)).toBe('past')
+    expect(getEventStatus(charityConcert!, beforeCharityConcert)).toBe('upcoming')
+    expect(getEventStatus(charityConcert!, afterCharityConcert)).toBe('past')
+
+    expect(getEventsByStatus('en', beforeCharityConcert).upcoming.map((event) => event.id)).toEqual(['20261016'])
+    expect(getEventsByStatus('en', beforeCharityConcert).past.map((event) => event.id)).toEqual(['20240930'])
   })
 
   it('keeps long-form supplied content reachable through detail page actions', () => {

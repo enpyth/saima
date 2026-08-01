@@ -3,7 +3,8 @@ import { ArrowRight, CalendarDays, MapPin } from 'lucide-react'
 
 import { useLanguage } from '../components/language-provider'
 import { Button } from '../components/ui/button'
-import { eventsContent } from '../content/events'
+import { eventsContent, getEventsByStatus } from '../content/events'
+import type { EventArticle } from '../content/types'
 import { galleryContent } from '../content/gallery'
 import { siteImages } from '../content/shared'
 
@@ -12,6 +13,7 @@ export const Route = createFileRoute('/events')({ component: Events })
 function Events() {
   const { language } = useLanguage()
   const content = eventsContent[language]
+  const eventGroups = getEventsByStatus(language)
   const moments = galleryContent[language].groups.slice(0, 3)
 
   return (
@@ -28,42 +30,24 @@ function Events() {
 
       <section className="public-section">
         <div className="section-heading">
-          <span className="eyebrow">{content.upcoming.title}</span>
-          <h2>{content.upcoming.paragraphs[1]}</h2>
+          <span className="eyebrow">{content.labels.upcoming}</span>
+          <h2>{content.sections.upcomingTitle}</h2>
+          <p>{content.sections.upcomingSummary}</p>
         </div>
-        <div className="event-list">
-          {content.upcoming.events.map((event) => (
-            <article className="event-row" key={event.title}>
-              <time>{event.date}</time>
-              <div>
-                <h3>{event.title}</h3>
-                <p>{event.subtitle}</p>
-                <p className="muted inline-meta">
-                  <MapPin size={16} aria-hidden="true" /> {event.location}
-                </p>
-              </div>
-              <Button asChild variant="outline">
-                <a href="/events-details">
-                  {content.labels.details} <ArrowRight size={16} />
-                </a>
-              </Button>
-            </article>
-          ))}
-        </div>
+        <EventList emptyLabel={content.labels.noEvents} events={eventGroups.upcoming} detailsLabel={content.labels.details} />
       </section>
 
       <section className="public-section dark-feature">
         <div>
           <span className="eyebrow">{content.labels.past}</span>
-          <h2>{content.past.title}</h2>
-          <p>{content.past.paragraphs[0]}</p>
+          <h2>{content.sections.pastTitle}</h2>
+          <p>{content.sections.pastSummary}</p>
         </div>
-        <Button asChild data-tone="dark" variant="secondary">
-          <a href="/events-details">
-            {content.labels.details} <ArrowRight size={16} />
-          </a>
-        </Button>
         <CalendarDays size={96} aria-hidden="true" />
+      </section>
+
+      <section className="public-section">
+        <EventList emptyLabel={content.labels.noEvents} events={eventGroups.past} detailsLabel={content.labels.details} />
       </section>
 
       <section className="public-section gallery-strip">
@@ -82,5 +66,41 @@ function Events() {
         </div>
       </section>
     </main>
+  )
+}
+
+function EventList({
+  detailsLabel,
+  emptyLabel,
+  events,
+}: {
+  detailsLabel: string
+  emptyLabel: string
+  events: EventArticle[]
+}) {
+  if (events.length === 0) {
+    return <p className="muted">{emptyLabel}</p>
+  }
+
+  return (
+    <div className="event-list">
+      {events.map((event) => (
+        <article className="event-row" key={event.id}>
+          <time>{event.date}</time>
+          <div>
+            <h3>{event.title}</h3>
+            <p>{event.subtitle}</p>
+            <p className="muted inline-meta">
+              <MapPin size={16} aria-hidden="true" /> {event.location}
+            </p>
+          </div>
+          <Button asChild variant="outline">
+            <a href={event.href}>
+              {detailsLabel} <ArrowRight size={16} />
+            </a>
+          </Button>
+        </article>
+      ))}
+    </div>
   )
 }

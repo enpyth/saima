@@ -3,7 +3,7 @@ import { ArrowRight, CalendarDays, Music, School, Users } from 'lucide-react'
 
 import { useLanguage } from '../components/language-provider'
 import { Button } from '../components/ui/button'
-import { eventsContent } from '../content/events'
+import { eventsContent, getEventsByStatus } from '../content/events'
 import { homeContent } from '../content/home'
 import { siteImages } from '../content/shared'
 
@@ -12,7 +12,7 @@ export const Route = createFileRoute('/')({ component: Home })
 function Home() {
   const { language } = useLanguage()
   const content = homeContent[language]
-  const events = eventsContent[language].upcoming.events
+  const events = getEventsByStatus(language).upcoming
   const icons = {
     music: Music,
     school: School,
@@ -81,7 +81,7 @@ function Home() {
       <section className="public-section event-preview">
         <div>
           <span className="eyebrow">{eventsContent[language].labels.upcoming}</span>
-          <h2>{eventsContent[language].upcoming.title}</h2>
+          <h2>{eventsContent[language].sections.upcomingTitle}</h2>
         </div>
         <div className="plain-list">
           {events.slice(0, 3).map((event) => (

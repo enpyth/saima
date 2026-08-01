@@ -9,118 +9,44 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as YouthDetailsRouteImport } from './routes/youth-details'
-import { Route as YouthRouteImport } from './routes/youth'
-import { Route as PartnershipDetailsRouteImport } from './routes/partnership-details'
-import { Route as MembershipDetailsRouteImport } from './routes/membership-details'
-import { Route as MembershipRouteImport } from './routes/membership'
-import { Route as LoginRouteImport } from './routes/login'
-import { Route as GalleryDetailsRouteImport } from './routes/gallery-details'
-import { Route as GalleryRouteImport } from './routes/gallery'
-import { Route as EventsDetailsRouteImport } from './routes/events-details'
-import { Route as EventsRouteImport } from './routes/events'
-import { Route as DashboardRouteImport } from './routes/dashboard'
-import { Route as CoursesRouteImport } from './routes/courses'
-import { Route as ContactRouteImport } from './routes/contact'
-import { Route as ChoirDetailsRouteImport } from './routes/choir-details'
-import { Route as ChoirRouteImport } from './routes/choir'
-import { Route as AboutDetailsRouteImport } from './routes/about-details'
-import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as MembersSlugRouteImport } from './routes/members.$slug'
-import { Route as DashboardVisitorRouteImport } from './routes/dashboard.visitor'
-import { Route as DashboardMemberRouteImport } from './routes/dashboard.member'
-import { Route as DashboardAdminRouteImport } from './routes/dashboard.admin'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as AboutDetailsRouteImport } from './routes/about-details'
+import { Route as ChoirRouteImport } from './routes/choir'
+import { Route as ChoirDetailsRouteImport } from './routes/choir-details'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as CoursesRouteImport } from './routes/courses'
+import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as EventsRouteImport } from './routes/events'
+import { Route as EventsDetailsRouteImport } from './routes/events-details'
+import { Route as GalleryRouteImport } from './routes/gallery'
+import { Route as GalleryDetailsRouteImport } from './routes/gallery-details'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as MembershipRouteImport } from './routes/membership'
+import { Route as MembershipDetailsRouteImport } from './routes/membership-details'
+import { Route as PartnershipDetailsRouteImport } from './routes/partnership-details'
+import { Route as YouthRouteImport } from './routes/youth'
+import { Route as YouthDetailsRouteImport } from './routes/youth-details'
 import { Route as AuthCallbackRouteImport } from './routes/auth.callback'
-import { Route as DashboardVisitorMembershipRouteImport } from './routes/dashboard.visitor.membership'
-import { Route as DashboardVisitorBookingsRouteImport } from './routes/dashboard.visitor.bookings'
-import { Route as DashboardMemberProfileRouteImport } from './routes/dashboard.member.profile'
-import { Route as DashboardMemberCoursesRouteImport } from './routes/dashboard.member.courses'
-import { Route as DashboardMemberBookingsRouteImport } from './routes/dashboard.member.bookings'
-import { Route as DashboardMemberAvailabilityRouteImport } from './routes/dashboard.member.availability'
-import { Route as DashboardAdminUsersRouteImport } from './routes/dashboard.admin.users'
-import { Route as DashboardAdminEventsRouteImport } from './routes/dashboard.admin.events'
-import { Route as DashboardAdminBookingsRouteImport } from './routes/dashboard.admin.bookings'
+import { Route as DashboardAdminRouteImport } from './routes/dashboard.admin'
+import { Route as DashboardMemberRouteImport } from './routes/dashboard.member'
+import { Route as DashboardVisitorRouteImport } from './routes/dashboard.visitor'
+import { Route as EventsEventIdRouteImport } from './routes/events_.$eventId'
+import { Route as MembersSlugRouteImport } from './routes/members.$slug'
 import { Route as DashboardAdminApplicationsRouteImport } from './routes/dashboard.admin.applications'
+import { Route as DashboardAdminBookingsRouteImport } from './routes/dashboard.admin.bookings'
+import { Route as DashboardAdminEventsRouteImport } from './routes/dashboard.admin.events'
+import { Route as DashboardAdminUsersRouteImport } from './routes/dashboard.admin.users'
+import { Route as DashboardMemberAvailabilityRouteImport } from './routes/dashboard.member.availability'
+import { Route as DashboardMemberBookingsRouteImport } from './routes/dashboard.member.bookings'
+import { Route as DashboardMemberCoursesRouteImport } from './routes/dashboard.member.courses'
+import { Route as DashboardMemberProfileRouteImport } from './routes/dashboard.member.profile'
+import { Route as DashboardVisitorBookingsRouteImport } from './routes/dashboard.visitor.bookings'
+import { Route as DashboardVisitorMembershipRouteImport } from './routes/dashboard.visitor.membership'
 
-const YouthDetailsRoute = YouthDetailsRouteImport.update({
-  id: '/youth-details',
-  path: '/youth-details',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const YouthRoute = YouthRouteImport.update({
-  id: '/youth',
-  path: '/youth',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PartnershipDetailsRoute = PartnershipDetailsRouteImport.update({
-  id: '/partnership-details',
-  path: '/partnership-details',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const MembershipDetailsRoute = MembershipDetailsRouteImport.update({
-  id: '/membership-details',
-  path: '/membership-details',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const MembershipRoute = MembershipRouteImport.update({
-  id: '/membership',
-  path: '/membership',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const LoginRoute = LoginRouteImport.update({
-  id: '/login',
-  path: '/login',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const GalleryDetailsRoute = GalleryDetailsRouteImport.update({
-  id: '/gallery-details',
-  path: '/gallery-details',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const GalleryRoute = GalleryRouteImport.update({
-  id: '/gallery',
-  path: '/gallery',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const EventsDetailsRoute = EventsDetailsRouteImport.update({
-  id: '/events-details',
-  path: '/events-details',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const EventsRoute = EventsRouteImport.update({
-  id: '/events',
-  path: '/events',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const DashboardRoute = DashboardRouteImport.update({
-  id: '/dashboard',
-  path: '/dashboard',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CoursesRoute = CoursesRouteImport.update({
-  id: '/courses',
-  path: '/courses',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ContactRoute = ContactRouteImport.update({
-  id: '/contact',
-  path: '/contact',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ChoirDetailsRoute = ChoirDetailsRouteImport.update({
-  id: '/choir-details',
-  path: '/choir-details',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ChoirRoute = ChoirRouteImport.update({
-  id: '/choir',
-  path: '/choir',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AboutDetailsRoute = AboutDetailsRouteImport.update({
-  id: '/about-details',
-  path: '/about-details',
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AboutRoute = AboutRouteImport.update({
@@ -128,19 +54,94 @@ const AboutRoute = AboutRouteImport.update({
   path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const AboutDetailsRoute = AboutDetailsRouteImport.update({
+  id: '/about-details',
+  path: '/about-details',
   getParentRoute: () => rootRouteImport,
 } as any)
-const MembersSlugRoute = MembersSlugRouteImport.update({
-  id: '/members/$slug',
-  path: '/members/$slug',
+const ChoirRoute = ChoirRouteImport.update({
+  id: '/choir',
+  path: '/choir',
   getParentRoute: () => rootRouteImport,
 } as any)
-const DashboardVisitorRoute = DashboardVisitorRouteImport.update({
-  id: '/visitor',
-  path: '/visitor',
+const ChoirDetailsRoute = ChoirDetailsRouteImport.update({
+  id: '/choir-details',
+  path: '/choir-details',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CoursesRoute = CoursesRouteImport.update({
+  id: '/courses',
+  path: '/courses',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardRoute = DashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EventsRoute = EventsRouteImport.update({
+  id: '/events',
+  path: '/events',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EventsDetailsRoute = EventsDetailsRouteImport.update({
+  id: '/events-details',
+  path: '/events-details',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GalleryRoute = GalleryRouteImport.update({
+  id: '/gallery',
+  path: '/gallery',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GalleryDetailsRoute = GalleryDetailsRouteImport.update({
+  id: '/gallery-details',
+  path: '/gallery-details',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MembershipRoute = MembershipRouteImport.update({
+  id: '/membership',
+  path: '/membership',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MembershipDetailsRoute = MembershipDetailsRouteImport.update({
+  id: '/membership-details',
+  path: '/membership-details',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PartnershipDetailsRoute = PartnershipDetailsRouteImport.update({
+  id: '/partnership-details',
+  path: '/partnership-details',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const YouthRoute = YouthRouteImport.update({
+  id: '/youth',
+  path: '/youth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const YouthDetailsRoute = YouthDetailsRouteImport.update({
+  id: '/youth-details',
+  path: '/youth-details',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthCallbackRoute = AuthCallbackRouteImport.update({
+  id: '/auth/callback',
+  path: '/auth/callback',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardAdminRoute = DashboardAdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
   getParentRoute: () => DashboardRoute,
 } as any)
 const DashboardMemberRoute = DashboardMemberRouteImport.update({
@@ -148,52 +149,30 @@ const DashboardMemberRoute = DashboardMemberRouteImport.update({
   path: '/member',
   getParentRoute: () => DashboardRoute,
 } as any)
-const DashboardAdminRoute = DashboardAdminRouteImport.update({
-  id: '/admin',
-  path: '/admin',
+const DashboardVisitorRoute = DashboardVisitorRouteImport.update({
+  id: '/visitor',
+  path: '/visitor',
   getParentRoute: () => DashboardRoute,
 } as any)
-const AuthCallbackRoute = AuthCallbackRouteImport.update({
-  id: '/auth/callback',
-  path: '/auth/callback',
+const EventsEventIdRoute = EventsEventIdRouteImport.update({
+  id: '/events_/$eventId',
+  path: '/events/$eventId',
   getParentRoute: () => rootRouteImport,
 } as any)
-const DashboardVisitorMembershipRoute =
-  DashboardVisitorMembershipRouteImport.update({
-    id: '/membership',
-    path: '/membership',
-    getParentRoute: () => DashboardVisitorRoute,
-  } as any)
-const DashboardVisitorBookingsRoute =
-  DashboardVisitorBookingsRouteImport.update({
-    id: '/bookings',
-    path: '/bookings',
-    getParentRoute: () => DashboardVisitorRoute,
-  } as any)
-const DashboardMemberProfileRoute = DashboardMemberProfileRouteImport.update({
-  id: '/profile',
-  path: '/profile',
-  getParentRoute: () => DashboardMemberRoute,
+const MembersSlugRoute = MembersSlugRouteImport.update({
+  id: '/members/$slug',
+  path: '/members/$slug',
+  getParentRoute: () => rootRouteImport,
 } as any)
-const DashboardMemberCoursesRoute = DashboardMemberCoursesRouteImport.update({
-  id: '/courses',
-  path: '/courses',
-  getParentRoute: () => DashboardMemberRoute,
-} as any)
-const DashboardMemberBookingsRoute = DashboardMemberBookingsRouteImport.update({
+const DashboardAdminApplicationsRoute =
+  DashboardAdminApplicationsRouteImport.update({
+    id: '/applications',
+    path: '/applications',
+    getParentRoute: () => DashboardAdminRoute,
+  } as any)
+const DashboardAdminBookingsRoute = DashboardAdminBookingsRouteImport.update({
   id: '/bookings',
   path: '/bookings',
-  getParentRoute: () => DashboardMemberRoute,
-} as any)
-const DashboardMemberAvailabilityRoute =
-  DashboardMemberAvailabilityRouteImport.update({
-    id: '/availability',
-    path: '/availability',
-    getParentRoute: () => DashboardMemberRoute,
-  } as any)
-const DashboardAdminUsersRoute = DashboardAdminUsersRouteImport.update({
-  id: '/users',
-  path: '/users',
   getParentRoute: () => DashboardAdminRoute,
 } as any)
 const DashboardAdminEventsRoute = DashboardAdminEventsRouteImport.update({
@@ -201,16 +180,43 @@ const DashboardAdminEventsRoute = DashboardAdminEventsRouteImport.update({
   path: '/events',
   getParentRoute: () => DashboardAdminRoute,
 } as any)
-const DashboardAdminBookingsRoute = DashboardAdminBookingsRouteImport.update({
-  id: '/bookings',
-  path: '/bookings',
+const DashboardAdminUsersRoute = DashboardAdminUsersRouteImport.update({
+  id: '/users',
+  path: '/users',
   getParentRoute: () => DashboardAdminRoute,
 } as any)
-const DashboardAdminApplicationsRoute =
-  DashboardAdminApplicationsRouteImport.update({
-    id: '/applications',
-    path: '/applications',
-    getParentRoute: () => DashboardAdminRoute,
+const DashboardMemberAvailabilityRoute =
+  DashboardMemberAvailabilityRouteImport.update({
+    id: '/availability',
+    path: '/availability',
+    getParentRoute: () => DashboardMemberRoute,
+  } as any)
+const DashboardMemberBookingsRoute = DashboardMemberBookingsRouteImport.update({
+  id: '/bookings',
+  path: '/bookings',
+  getParentRoute: () => DashboardMemberRoute,
+} as any)
+const DashboardMemberCoursesRoute = DashboardMemberCoursesRouteImport.update({
+  id: '/courses',
+  path: '/courses',
+  getParentRoute: () => DashboardMemberRoute,
+} as any)
+const DashboardMemberProfileRoute = DashboardMemberProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => DashboardMemberRoute,
+} as any)
+const DashboardVisitorBookingsRoute =
+  DashboardVisitorBookingsRouteImport.update({
+    id: '/bookings',
+    path: '/bookings',
+    getParentRoute: () => DashboardVisitorRoute,
+  } as any)
+const DashboardVisitorMembershipRoute =
+  DashboardVisitorMembershipRouteImport.update({
+    id: '/membership',
+    path: '/membership',
+    getParentRoute: () => DashboardVisitorRoute,
   } as any)
 
 export interface FileRoutesByFullPath {
@@ -236,6 +242,7 @@ export interface FileRoutesByFullPath {
   '/dashboard/admin': typeof DashboardAdminRouteWithChildren
   '/dashboard/member': typeof DashboardMemberRouteWithChildren
   '/dashboard/visitor': typeof DashboardVisitorRouteWithChildren
+  '/events/$eventId': typeof EventsEventIdRoute
   '/members/$slug': typeof MembersSlugRoute
   '/dashboard/admin/applications': typeof DashboardAdminApplicationsRoute
   '/dashboard/admin/bookings': typeof DashboardAdminBookingsRoute
@@ -271,6 +278,7 @@ export interface FileRoutesByTo {
   '/dashboard/admin': typeof DashboardAdminRouteWithChildren
   '/dashboard/member': typeof DashboardMemberRouteWithChildren
   '/dashboard/visitor': typeof DashboardVisitorRouteWithChildren
+  '/events/$eventId': typeof EventsEventIdRoute
   '/members/$slug': typeof MembersSlugRoute
   '/dashboard/admin/applications': typeof DashboardAdminApplicationsRoute
   '/dashboard/admin/bookings': typeof DashboardAdminBookingsRoute
@@ -307,6 +315,7 @@ export interface FileRoutesById {
   '/dashboard/admin': typeof DashboardAdminRouteWithChildren
   '/dashboard/member': typeof DashboardMemberRouteWithChildren
   '/dashboard/visitor': typeof DashboardVisitorRouteWithChildren
+  '/events_/$eventId': typeof EventsEventIdRoute
   '/members/$slug': typeof MembersSlugRoute
   '/dashboard/admin/applications': typeof DashboardAdminApplicationsRoute
   '/dashboard/admin/bookings': typeof DashboardAdminBookingsRoute
@@ -344,6 +353,7 @@ export interface FileRouteTypes {
     | '/dashboard/admin'
     | '/dashboard/member'
     | '/dashboard/visitor'
+    | '/events/$eventId'
     | '/members/$slug'
     | '/dashboard/admin/applications'
     | '/dashboard/admin/bookings'
@@ -379,6 +389,7 @@ export interface FileRouteTypes {
     | '/dashboard/admin'
     | '/dashboard/member'
     | '/dashboard/visitor'
+    | '/events/$eventId'
     | '/members/$slug'
     | '/dashboard/admin/applications'
     | '/dashboard/admin/bookings'
@@ -414,6 +425,7 @@ export interface FileRouteTypes {
     | '/dashboard/admin'
     | '/dashboard/member'
     | '/dashboard/visitor'
+    | '/events_/$eventId'
     | '/members/$slug'
     | '/dashboard/admin/applications'
     | '/dashboard/admin/bookings'
@@ -447,121 +459,17 @@ export interface RootRouteChildren {
   YouthRoute: typeof YouthRoute
   YouthDetailsRoute: typeof YouthDetailsRoute
   AuthCallbackRoute: typeof AuthCallbackRoute
+  EventsEventIdRoute: typeof EventsEventIdRoute
   MembersSlugRoute: typeof MembersSlugRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/youth-details': {
-      id: '/youth-details'
-      path: '/youth-details'
-      fullPath: '/youth-details'
-      preLoaderRoute: typeof YouthDetailsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/youth': {
-      id: '/youth'
-      path: '/youth'
-      fullPath: '/youth'
-      preLoaderRoute: typeof YouthRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/partnership-details': {
-      id: '/partnership-details'
-      path: '/partnership-details'
-      fullPath: '/partnership-details'
-      preLoaderRoute: typeof PartnershipDetailsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/membership-details': {
-      id: '/membership-details'
-      path: '/membership-details'
-      fullPath: '/membership-details'
-      preLoaderRoute: typeof MembershipDetailsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/membership': {
-      id: '/membership'
-      path: '/membership'
-      fullPath: '/membership'
-      preLoaderRoute: typeof MembershipRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/login': {
-      id: '/login'
-      path: '/login'
-      fullPath: '/login'
-      preLoaderRoute: typeof LoginRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/gallery-details': {
-      id: '/gallery-details'
-      path: '/gallery-details'
-      fullPath: '/gallery-details'
-      preLoaderRoute: typeof GalleryDetailsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/gallery': {
-      id: '/gallery'
-      path: '/gallery'
-      fullPath: '/gallery'
-      preLoaderRoute: typeof GalleryRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/events-details': {
-      id: '/events-details'
-      path: '/events-details'
-      fullPath: '/events-details'
-      preLoaderRoute: typeof EventsDetailsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/events': {
-      id: '/events'
-      path: '/events'
-      fullPath: '/events'
-      preLoaderRoute: typeof EventsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/dashboard': {
-      id: '/dashboard'
-      path: '/dashboard'
-      fullPath: '/dashboard'
-      preLoaderRoute: typeof DashboardRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/courses': {
-      id: '/courses'
-      path: '/courses'
-      fullPath: '/courses'
-      preLoaderRoute: typeof CoursesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/contact': {
-      id: '/contact'
-      path: '/contact'
-      fullPath: '/contact'
-      preLoaderRoute: typeof ContactRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/choir-details': {
-      id: '/choir-details'
-      path: '/choir-details'
-      fullPath: '/choir-details'
-      preLoaderRoute: typeof ChoirDetailsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/choir': {
-      id: '/choir'
-      path: '/choir'
-      fullPath: '/choir'
-      preLoaderRoute: typeof ChoirRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/about-details': {
-      id: '/about-details'
-      path: '/about-details'
-      fullPath: '/about-details'
-      preLoaderRoute: typeof AboutDetailsRouteImport
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/about': {
@@ -571,25 +479,130 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+    '/about-details': {
+      id: '/about-details'
+      path: '/about-details'
+      fullPath: '/about-details'
+      preLoaderRoute: typeof AboutDetailsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/members/$slug': {
-      id: '/members/$slug'
-      path: '/members/$slug'
-      fullPath: '/members/$slug'
-      preLoaderRoute: typeof MembersSlugRouteImport
+    '/choir': {
+      id: '/choir'
+      path: '/choir'
+      fullPath: '/choir'
+      preLoaderRoute: typeof ChoirRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/dashboard/visitor': {
-      id: '/dashboard/visitor'
-      path: '/visitor'
-      fullPath: '/dashboard/visitor'
-      preLoaderRoute: typeof DashboardVisitorRouteImport
+    '/choir-details': {
+      id: '/choir-details'
+      path: '/choir-details'
+      fullPath: '/choir-details'
+      preLoaderRoute: typeof ChoirDetailsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/courses': {
+      id: '/courses'
+      path: '/courses'
+      fullPath: '/courses'
+      preLoaderRoute: typeof CoursesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/events': {
+      id: '/events'
+      path: '/events'
+      fullPath: '/events'
+      preLoaderRoute: typeof EventsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/events-details': {
+      id: '/events-details'
+      path: '/events-details'
+      fullPath: '/events-details'
+      preLoaderRoute: typeof EventsDetailsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/gallery': {
+      id: '/gallery'
+      path: '/gallery'
+      fullPath: '/gallery'
+      preLoaderRoute: typeof GalleryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/gallery-details': {
+      id: '/gallery-details'
+      path: '/gallery-details'
+      fullPath: '/gallery-details'
+      preLoaderRoute: typeof GalleryDetailsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/membership': {
+      id: '/membership'
+      path: '/membership'
+      fullPath: '/membership'
+      preLoaderRoute: typeof MembershipRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/membership-details': {
+      id: '/membership-details'
+      path: '/membership-details'
+      fullPath: '/membership-details'
+      preLoaderRoute: typeof MembershipDetailsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/partnership-details': {
+      id: '/partnership-details'
+      path: '/partnership-details'
+      fullPath: '/partnership-details'
+      preLoaderRoute: typeof PartnershipDetailsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/youth': {
+      id: '/youth'
+      path: '/youth'
+      fullPath: '/youth'
+      preLoaderRoute: typeof YouthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/youth-details': {
+      id: '/youth-details'
+      path: '/youth-details'
+      fullPath: '/youth-details'
+      preLoaderRoute: typeof YouthDetailsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth/callback': {
+      id: '/auth/callback'
+      path: '/auth/callback'
+      fullPath: '/auth/callback'
+      preLoaderRoute: typeof AuthCallbackRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard/admin': {
+      id: '/dashboard/admin'
+      path: '/admin'
+      fullPath: '/dashboard/admin'
+      preLoaderRoute: typeof DashboardAdminRouteImport
       parentRoute: typeof DashboardRoute
     }
     '/dashboard/member': {
@@ -599,74 +612,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardMemberRouteImport
       parentRoute: typeof DashboardRoute
     }
-    '/dashboard/admin': {
-      id: '/dashboard/admin'
-      path: '/admin'
-      fullPath: '/dashboard/admin'
-      preLoaderRoute: typeof DashboardAdminRouteImport
+    '/dashboard/visitor': {
+      id: '/dashboard/visitor'
+      path: '/visitor'
+      fullPath: '/dashboard/visitor'
+      preLoaderRoute: typeof DashboardVisitorRouteImport
       parentRoute: typeof DashboardRoute
     }
-    '/auth/callback': {
-      id: '/auth/callback'
-      path: '/auth/callback'
-      fullPath: '/auth/callback'
-      preLoaderRoute: typeof AuthCallbackRouteImport
+    '/events_/$eventId': {
+      id: '/events_/$eventId'
+      path: '/events/$eventId'
+      fullPath: '/events/$eventId'
+      preLoaderRoute: typeof EventsEventIdRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/dashboard/visitor/membership': {
-      id: '/dashboard/visitor/membership'
-      path: '/membership'
-      fullPath: '/dashboard/visitor/membership'
-      preLoaderRoute: typeof DashboardVisitorMembershipRouteImport
-      parentRoute: typeof DashboardVisitorRoute
+    '/members/$slug': {
+      id: '/members/$slug'
+      path: '/members/$slug'
+      fullPath: '/members/$slug'
+      preLoaderRoute: typeof MembersSlugRouteImport
+      parentRoute: typeof rootRouteImport
     }
-    '/dashboard/visitor/bookings': {
-      id: '/dashboard/visitor/bookings'
-      path: '/bookings'
-      fullPath: '/dashboard/visitor/bookings'
-      preLoaderRoute: typeof DashboardVisitorBookingsRouteImport
-      parentRoute: typeof DashboardVisitorRoute
-    }
-    '/dashboard/member/profile': {
-      id: '/dashboard/member/profile'
-      path: '/profile'
-      fullPath: '/dashboard/member/profile'
-      preLoaderRoute: typeof DashboardMemberProfileRouteImport
-      parentRoute: typeof DashboardMemberRoute
-    }
-    '/dashboard/member/courses': {
-      id: '/dashboard/member/courses'
-      path: '/courses'
-      fullPath: '/dashboard/member/courses'
-      preLoaderRoute: typeof DashboardMemberCoursesRouteImport
-      parentRoute: typeof DashboardMemberRoute
-    }
-    '/dashboard/member/bookings': {
-      id: '/dashboard/member/bookings'
-      path: '/bookings'
-      fullPath: '/dashboard/member/bookings'
-      preLoaderRoute: typeof DashboardMemberBookingsRouteImport
-      parentRoute: typeof DashboardMemberRoute
-    }
-    '/dashboard/member/availability': {
-      id: '/dashboard/member/availability'
-      path: '/availability'
-      fullPath: '/dashboard/member/availability'
-      preLoaderRoute: typeof DashboardMemberAvailabilityRouteImport
-      parentRoute: typeof DashboardMemberRoute
-    }
-    '/dashboard/admin/users': {
-      id: '/dashboard/admin/users'
-      path: '/users'
-      fullPath: '/dashboard/admin/users'
-      preLoaderRoute: typeof DashboardAdminUsersRouteImport
-      parentRoute: typeof DashboardAdminRoute
-    }
-    '/dashboard/admin/events': {
-      id: '/dashboard/admin/events'
-      path: '/events'
-      fullPath: '/dashboard/admin/events'
-      preLoaderRoute: typeof DashboardAdminEventsRouteImport
+    '/dashboard/admin/applications': {
+      id: '/dashboard/admin/applications'
+      path: '/applications'
+      fullPath: '/dashboard/admin/applications'
+      preLoaderRoute: typeof DashboardAdminApplicationsRouteImport
       parentRoute: typeof DashboardAdminRoute
     }
     '/dashboard/admin/bookings': {
@@ -676,12 +647,61 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardAdminBookingsRouteImport
       parentRoute: typeof DashboardAdminRoute
     }
-    '/dashboard/admin/applications': {
-      id: '/dashboard/admin/applications'
-      path: '/applications'
-      fullPath: '/dashboard/admin/applications'
-      preLoaderRoute: typeof DashboardAdminApplicationsRouteImport
+    '/dashboard/admin/events': {
+      id: '/dashboard/admin/events'
+      path: '/events'
+      fullPath: '/dashboard/admin/events'
+      preLoaderRoute: typeof DashboardAdminEventsRouteImport
       parentRoute: typeof DashboardAdminRoute
+    }
+    '/dashboard/admin/users': {
+      id: '/dashboard/admin/users'
+      path: '/users'
+      fullPath: '/dashboard/admin/users'
+      preLoaderRoute: typeof DashboardAdminUsersRouteImport
+      parentRoute: typeof DashboardAdminRoute
+    }
+    '/dashboard/member/availability': {
+      id: '/dashboard/member/availability'
+      path: '/availability'
+      fullPath: '/dashboard/member/availability'
+      preLoaderRoute: typeof DashboardMemberAvailabilityRouteImport
+      parentRoute: typeof DashboardMemberRoute
+    }
+    '/dashboard/member/bookings': {
+      id: '/dashboard/member/bookings'
+      path: '/bookings'
+      fullPath: '/dashboard/member/bookings'
+      preLoaderRoute: typeof DashboardMemberBookingsRouteImport
+      parentRoute: typeof DashboardMemberRoute
+    }
+    '/dashboard/member/courses': {
+      id: '/dashboard/member/courses'
+      path: '/courses'
+      fullPath: '/dashboard/member/courses'
+      preLoaderRoute: typeof DashboardMemberCoursesRouteImport
+      parentRoute: typeof DashboardMemberRoute
+    }
+    '/dashboard/member/profile': {
+      id: '/dashboard/member/profile'
+      path: '/profile'
+      fullPath: '/dashboard/member/profile'
+      preLoaderRoute: typeof DashboardMemberProfileRouteImport
+      parentRoute: typeof DashboardMemberRoute
+    }
+    '/dashboard/visitor/bookings': {
+      id: '/dashboard/visitor/bookings'
+      path: '/bookings'
+      fullPath: '/dashboard/visitor/bookings'
+      preLoaderRoute: typeof DashboardVisitorBookingsRouteImport
+      parentRoute: typeof DashboardVisitorRoute
+    }
+    '/dashboard/visitor/membership': {
+      id: '/dashboard/visitor/membership'
+      path: '/membership'
+      fullPath: '/dashboard/visitor/membership'
+      preLoaderRoute: typeof DashboardVisitorMembershipRouteImport
+      parentRoute: typeof DashboardVisitorRoute
     }
   }
 }
@@ -771,6 +791,7 @@ const rootRouteChildren: RootRouteChildren = {
   YouthRoute: YouthRoute,
   YouthDetailsRoute: YouthDetailsRoute,
   AuthCallbackRoute: AuthCallbackRoute,
+  EventsEventIdRoute: EventsEventIdRoute,
   MembersSlugRoute: MembersSlugRoute,
 }
 export const routeTree = rootRouteImport
