@@ -36,6 +36,7 @@ import { Route as MembersSlugRouteImport } from './routes/members.$slug'
 import { Route as DashboardAdminApplicationsRouteImport } from './routes/dashboard.admin.applications'
 import { Route as DashboardAdminBookingsRouteImport } from './routes/dashboard.admin.bookings'
 import { Route as DashboardAdminEventsRouteImport } from './routes/dashboard.admin.events'
+import { Route as DashboardAdminTicketSalesRouteImport } from './routes/dashboard.admin.ticket-sales'
 import { Route as DashboardAdminUsersRouteImport } from './routes/dashboard.admin.users'
 import { Route as DashboardMemberAvailabilityRouteImport } from './routes/dashboard.member.availability'
 import { Route as DashboardMemberBookingsRouteImport } from './routes/dashboard.member.bookings'
@@ -43,6 +44,7 @@ import { Route as DashboardMemberCoursesRouteImport } from './routes/dashboard.m
 import { Route as DashboardMemberProfileRouteImport } from './routes/dashboard.member.profile'
 import { Route as DashboardVisitorBookingsRouteImport } from './routes/dashboard.visitor.bookings'
 import { Route as DashboardVisitorMembershipRouteImport } from './routes/dashboard.visitor.membership'
+import { Route as DashboardVisitorTicketsRouteImport } from './routes/dashboard.visitor.tickets'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -180,6 +182,12 @@ const DashboardAdminEventsRoute = DashboardAdminEventsRouteImport.update({
   path: '/events',
   getParentRoute: () => DashboardAdminRoute,
 } as any)
+const DashboardAdminTicketSalesRoute =
+  DashboardAdminTicketSalesRouteImport.update({
+    id: '/ticket-sales',
+    path: '/ticket-sales',
+    getParentRoute: () => DashboardAdminRoute,
+  } as any)
 const DashboardAdminUsersRoute = DashboardAdminUsersRouteImport.update({
   id: '/users',
   path: '/users',
@@ -218,6 +226,11 @@ const DashboardVisitorMembershipRoute =
     path: '/membership',
     getParentRoute: () => DashboardVisitorRoute,
   } as any)
+const DashboardVisitorTicketsRoute = DashboardVisitorTicketsRouteImport.update({
+  id: '/tickets',
+  path: '/tickets',
+  getParentRoute: () => DashboardVisitorRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -247,6 +260,7 @@ export interface FileRoutesByFullPath {
   '/dashboard/admin/applications': typeof DashboardAdminApplicationsRoute
   '/dashboard/admin/bookings': typeof DashboardAdminBookingsRoute
   '/dashboard/admin/events': typeof DashboardAdminEventsRoute
+  '/dashboard/admin/ticket-sales': typeof DashboardAdminTicketSalesRoute
   '/dashboard/admin/users': typeof DashboardAdminUsersRoute
   '/dashboard/member/availability': typeof DashboardMemberAvailabilityRoute
   '/dashboard/member/bookings': typeof DashboardMemberBookingsRoute
@@ -254,6 +268,7 @@ export interface FileRoutesByFullPath {
   '/dashboard/member/profile': typeof DashboardMemberProfileRoute
   '/dashboard/visitor/bookings': typeof DashboardVisitorBookingsRoute
   '/dashboard/visitor/membership': typeof DashboardVisitorMembershipRoute
+  '/dashboard/visitor/tickets': typeof DashboardVisitorTicketsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -283,6 +298,7 @@ export interface FileRoutesByTo {
   '/dashboard/admin/applications': typeof DashboardAdminApplicationsRoute
   '/dashboard/admin/bookings': typeof DashboardAdminBookingsRoute
   '/dashboard/admin/events': typeof DashboardAdminEventsRoute
+  '/dashboard/admin/ticket-sales': typeof DashboardAdminTicketSalesRoute
   '/dashboard/admin/users': typeof DashboardAdminUsersRoute
   '/dashboard/member/availability': typeof DashboardMemberAvailabilityRoute
   '/dashboard/member/bookings': typeof DashboardMemberBookingsRoute
@@ -290,6 +306,7 @@ export interface FileRoutesByTo {
   '/dashboard/member/profile': typeof DashboardMemberProfileRoute
   '/dashboard/visitor/bookings': typeof DashboardVisitorBookingsRoute
   '/dashboard/visitor/membership': typeof DashboardVisitorMembershipRoute
+  '/dashboard/visitor/tickets': typeof DashboardVisitorTicketsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -320,6 +337,7 @@ export interface FileRoutesById {
   '/dashboard/admin/applications': typeof DashboardAdminApplicationsRoute
   '/dashboard/admin/bookings': typeof DashboardAdminBookingsRoute
   '/dashboard/admin/events': typeof DashboardAdminEventsRoute
+  '/dashboard/admin/ticket-sales': typeof DashboardAdminTicketSalesRoute
   '/dashboard/admin/users': typeof DashboardAdminUsersRoute
   '/dashboard/member/availability': typeof DashboardMemberAvailabilityRoute
   '/dashboard/member/bookings': typeof DashboardMemberBookingsRoute
@@ -327,6 +345,7 @@ export interface FileRoutesById {
   '/dashboard/member/profile': typeof DashboardMemberProfileRoute
   '/dashboard/visitor/bookings': typeof DashboardVisitorBookingsRoute
   '/dashboard/visitor/membership': typeof DashboardVisitorMembershipRoute
+  '/dashboard/visitor/tickets': typeof DashboardVisitorTicketsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -358,6 +377,7 @@ export interface FileRouteTypes {
     | '/dashboard/admin/applications'
     | '/dashboard/admin/bookings'
     | '/dashboard/admin/events'
+    | '/dashboard/admin/ticket-sales'
     | '/dashboard/admin/users'
     | '/dashboard/member/availability'
     | '/dashboard/member/bookings'
@@ -365,6 +385,7 @@ export interface FileRouteTypes {
     | '/dashboard/member/profile'
     | '/dashboard/visitor/bookings'
     | '/dashboard/visitor/membership'
+    | '/dashboard/visitor/tickets'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -394,6 +415,7 @@ export interface FileRouteTypes {
     | '/dashboard/admin/applications'
     | '/dashboard/admin/bookings'
     | '/dashboard/admin/events'
+    | '/dashboard/admin/ticket-sales'
     | '/dashboard/admin/users'
     | '/dashboard/member/availability'
     | '/dashboard/member/bookings'
@@ -401,6 +423,7 @@ export interface FileRouteTypes {
     | '/dashboard/member/profile'
     | '/dashboard/visitor/bookings'
     | '/dashboard/visitor/membership'
+    | '/dashboard/visitor/tickets'
   id:
     | '__root__'
     | '/'
@@ -430,6 +453,7 @@ export interface FileRouteTypes {
     | '/dashboard/admin/applications'
     | '/dashboard/admin/bookings'
     | '/dashboard/admin/events'
+    | '/dashboard/admin/ticket-sales'
     | '/dashboard/admin/users'
     | '/dashboard/member/availability'
     | '/dashboard/member/bookings'
@@ -437,6 +461,7 @@ export interface FileRouteTypes {
     | '/dashboard/member/profile'
     | '/dashboard/visitor/bookings'
     | '/dashboard/visitor/membership'
+    | '/dashboard/visitor/tickets'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -654,6 +679,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardAdminEventsRouteImport
       parentRoute: typeof DashboardAdminRoute
     }
+    '/dashboard/admin/ticket-sales': {
+      id: '/dashboard/admin/ticket-sales'
+      path: '/ticket-sales'
+      fullPath: '/dashboard/admin/ticket-sales'
+      preLoaderRoute: typeof DashboardAdminTicketSalesRouteImport
+      parentRoute: typeof DashboardAdminRoute
+    }
     '/dashboard/admin/users': {
       id: '/dashboard/admin/users'
       path: '/users'
@@ -703,6 +735,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardVisitorMembershipRouteImport
       parentRoute: typeof DashboardVisitorRoute
     }
+    '/dashboard/visitor/tickets': {
+      id: '/dashboard/visitor/tickets'
+      path: '/tickets'
+      fullPath: '/dashboard/visitor/tickets'
+      preLoaderRoute: typeof DashboardVisitorTicketsRouteImport
+      parentRoute: typeof DashboardVisitorRoute
+    }
   }
 }
 
@@ -710,6 +749,7 @@ interface DashboardAdminRouteChildren {
   DashboardAdminApplicationsRoute: typeof DashboardAdminApplicationsRoute
   DashboardAdminBookingsRoute: typeof DashboardAdminBookingsRoute
   DashboardAdminEventsRoute: typeof DashboardAdminEventsRoute
+  DashboardAdminTicketSalesRoute: typeof DashboardAdminTicketSalesRoute
   DashboardAdminUsersRoute: typeof DashboardAdminUsersRoute
 }
 
@@ -717,6 +757,7 @@ const DashboardAdminRouteChildren: DashboardAdminRouteChildren = {
   DashboardAdminApplicationsRoute: DashboardAdminApplicationsRoute,
   DashboardAdminBookingsRoute: DashboardAdminBookingsRoute,
   DashboardAdminEventsRoute: DashboardAdminEventsRoute,
+  DashboardAdminTicketSalesRoute: DashboardAdminTicketSalesRoute,
   DashboardAdminUsersRoute: DashboardAdminUsersRoute,
 }
 
@@ -745,11 +786,13 @@ const DashboardMemberRouteWithChildren = DashboardMemberRoute._addFileChildren(
 interface DashboardVisitorRouteChildren {
   DashboardVisitorBookingsRoute: typeof DashboardVisitorBookingsRoute
   DashboardVisitorMembershipRoute: typeof DashboardVisitorMembershipRoute
+  DashboardVisitorTicketsRoute: typeof DashboardVisitorTicketsRoute
 }
 
 const DashboardVisitorRouteChildren: DashboardVisitorRouteChildren = {
   DashboardVisitorBookingsRoute: DashboardVisitorBookingsRoute,
   DashboardVisitorMembershipRoute: DashboardVisitorMembershipRoute,
+  DashboardVisitorTicketsRoute: DashboardVisitorTicketsRoute,
 }
 
 const DashboardVisitorRouteWithChildren =

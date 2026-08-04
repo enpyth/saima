@@ -6,6 +6,7 @@ import { Elysia } from 'elysia'
 import { createContext } from './context'
 import { env } from './env'
 import { router } from './router'
+import { handleStripeWebhook } from './stripe'
 
 const handler = new RPCHandler(router, {
   interceptors: [
@@ -24,6 +25,9 @@ const app = new Elysia()
     }),
   )
   .get('/health', () => ({ ok: true, name: 'saima-api' }))
+  .post('/webhooks/stripe', ({ request }) => handleStripeWebhook(request), {
+    parse: 'none',
+  })
   .all(
     '/rpc*',
     async ({ request }) => {

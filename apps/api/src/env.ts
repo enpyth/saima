@@ -17,6 +17,8 @@ export const env = {
   r2SecretAccessKey: Bun.env.R2_SECRET_ACCESS_KEY,
   r2Bucket: Bun.env.R2_BUCKET,
   r2PublicBaseUrl: Bun.env.R2_PUBLIC_BASE_URL?.replace(/\/$/, ''),
+  stripeSecretKey: Bun.env.STRIPE_SECRET_KEY,
+  stripeWebhookSecret: Bun.env.STRIPE_WEBHOOK_SECRET,
   adminEmails: new Set(
     (Bun.env.ADMIN_EMAILS ?? '')
       .split(',')

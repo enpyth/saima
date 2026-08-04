@@ -10,6 +10,7 @@ import {
 describe('dashboard navigation config', () => {
   it('returns the expected navigation items by role', () => {
     expect(getDashboardItems('admin').map((item) => item.id)).toEqual([
+      'ticket-sales',
       'applications',
       'users',
       'events',
@@ -22,6 +23,7 @@ describe('dashboard navigation config', () => {
       'profile',
     ])
     expect(getDashboardItems('visitor').map((item) => item.id)).toEqual([
+      'tickets',
       'bookings',
       'membership',
     ])
@@ -29,9 +31,9 @@ describe('dashboard navigation config', () => {
 
   it('keeps role dashboard defaults stable', () => {
     expect(dashboardDefaults).toEqual({
-      admin: '/dashboard/admin/applications',
+      admin: '/dashboard/admin/ticket-sales',
       member: '/dashboard/member/courses',
-      visitor: '/dashboard/visitor/bookings',
+      visitor: '/dashboard/visitor/tickets',
     })
   })
 

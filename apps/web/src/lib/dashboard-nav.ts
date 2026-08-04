@@ -10,6 +10,12 @@ export type DashboardNavItem = {
 export const dashboardNav = {
   admin: [
     {
+      id: 'ticket-sales',
+      label: 'Ticket sales',
+      description: 'Review sales statistics',
+      to: '/dashboard/admin/ticket-sales',
+    },
+    {
       id: 'applications',
       label: 'Applications',
       description: 'Review membership requests',
@@ -62,6 +68,12 @@ export const dashboardNav = {
   ],
   visitor: [
     {
+      id: 'tickets',
+      label: 'Tickets',
+      description: 'View event tickets',
+      to: '/dashboard/visitor/tickets',
+    },
+    {
       id: 'bookings',
       label: 'Bookings',
       description: 'View course reservations',
@@ -77,9 +89,9 @@ export const dashboardNav = {
 } satisfies Record<Role, DashboardNavItem[]>
 
 export const dashboardDefaults = {
-  admin: '/dashboard/admin/applications',
+  admin: '/dashboard/admin/ticket-sales',
   member: '/dashboard/member/courses',
-  visitor: '/dashboard/visitor/bookings',
+  visitor: '/dashboard/visitor/tickets',
 } satisfies Record<Role, DashboardNavItem['to']>
 
 export function getDashboardItems(role: Role) {
