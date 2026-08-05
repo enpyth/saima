@@ -22,11 +22,11 @@ Local web system for the South Australian International Musicians Association.
 2. Copy environment files:
 
    ```sh
-   cp .env.example apps/web/.env
-   cp .env.example apps/api/.env
+   cp apps/web/.env.example apps/web/.env
+   cp apps/api/.env.example apps/api/.env
    ```
 
-3. Fill the Supabase values in both env files. In Supabase Auth, enable Google and email magic link sign-in, then add:
+3. Fill the Supabase values in both env files and server-only values in `apps/api/.env`. In Supabase Auth, enable Google and email magic link sign-in, then add:
 
    ```text
    http://localhost:3000/auth/callback
