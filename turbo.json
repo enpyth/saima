@@ -9,7 +9,8 @@
     "VITE_API_URL",
     "ADMIN_EMAILS",
     "WEB_ORIGIN",
-    "PORT"
+    "PORT",
+    "VITE_R2_PUBLIC_BASE_URL"
   ],
   "tasks": {
     "dev": {
