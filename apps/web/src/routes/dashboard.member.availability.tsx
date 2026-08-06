@@ -1,4 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router'
+import type { CourseWithSlots } from '@saima/shared'
 import { CalendarDays } from 'lucide-react'
 import { useEffect, useState } from 'react'
 
@@ -16,24 +17,8 @@ export const Route = createFileRoute('/dashboard/member/availability')({
   component: MemberAvailability,
 })
 
-type MemberCourse = {
-  id: string
-  title: string
-  summary: string
-  instrument: string
-  level: string
-  location: string
-  status: 'draft' | 'published' | 'archived'
-  course_slots: Array<{
-    id: string
-    starts_at: string
-    ends_at: string
-    status: 'available' | 'booked'
-  }>
-}
-
 function MemberAvailability() {
-  const [courses, setCourses] = useState<MemberCourse[]>([])
+  const [courses, setCourses] = useState<CourseWithSlots[]>([])
   const [slotCourseId, setSlotCourseId] = useState('')
   const [availabilityDateKey, setAvailabilityDateKey] = useState(() => toDateKey(new Date()))
   const [selectedTimeKeys, setSelectedTimeKeys] = useState<string[]>([])
@@ -44,7 +29,7 @@ function MemberAvailability() {
   const selectedCourse = courses.find((course) => course.id === slotCourseId)
   const availabilityCells = buildAvailabilityDraftCells({
     dateKey: availabilityDateKey,
-    existingSlots: selectedCourse?.course_slots ?? [],
+    existingSlots: selectedCourse?.courseSlots ?? [],
     selectedTimeKeys,
     startHour: 8,
     endHour: 22,
@@ -54,10 +39,9 @@ function MemberAvailability() {
     setLoading(true)
     try {
       const rows = await api.courses.listMine()
-      const nextCourses = rows as MemberCourse[]
-      setCourses(nextCourses)
-      if (!slotCourseId && nextCourses[0]) {
-        setSlotCourseId(nextCourses[0].id)
+      setCourses(rows)
+      if (!slotCourseId && rows[0]) {
+        setSlotCourseId(rows[0].id)
       }
     } catch (error) {
       setMessage(error instanceof Error ? error.message : 'Could not load courses.')
@@ -225,13 +209,13 @@ function MemberAvailability() {
                     {course.instrument} · {course.level} · {course.location} · {course.status}
                   </p>
                   <div className="slot-list compact">
-                    {course.course_slots.length === 0 ? (
+                    {course.courseSlots.length === 0 ? (
                       <span className="muted">No upcoming slots.</span>
                     ) : (
-                      course.course_slots.map((slot) => (
+                      course.courseSlots.map((slot) => (
                         <div className="slot-row" key={slot.id}>
                           <span>
-                            {formatDateTime(slot.starts_at)} · {slot.status}
+                            {formatDateTime(slot.startsAt)} · {slot.status}
                           </span>
                           {slot.status === 'available' ? (
                             <Button type="button" size="sm" variant="outline" onClick={() => cancelSlot(slot.id)}>

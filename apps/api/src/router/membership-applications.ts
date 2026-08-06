@@ -1,20 +1,22 @@
 import { z } from 'zod'
 
 import { supabaseAdmin } from '../supabase'
+import { mapMembershipApplication, mapMembershipApplicationWithProfile } from './mappers'
 import { adminOnly, authed } from './procedures'
+import type { MembershipApplicationRow } from './rows'
 import { text, uuid } from './schemas'
 import { getRows } from './supabase-result'
 
 export const membershipApplicationsRouter = {
   mine: authed.handler(({ context }) =>
-    getRows(
+    getRows<MembershipApplicationRow[]>(
       supabaseAdmin
         .from('membership_applications')
         .select('*')
         .eq('user_id', context.user.id)
         .order('created_at', { ascending: false })
         .limit(1),
-    ),
+    ).then((applications) => applications.map(mapMembershipApplication)),
   ),
   create: authed
     .input(
@@ -27,7 +29,7 @@ export const membershipApplicationsRouter = {
       }),
     )
     .handler(({ context, input }) =>
-      getRows(
+      getRows<MembershipApplicationRow>(
         supabaseAdmin
           .from('membership_applications')
           .insert({
@@ -41,15 +43,15 @@ export const membershipApplicationsRouter = {
           })
           .select()
           .single(),
-      ),
+      ).then(mapMembershipApplication),
     ),
   list: adminOnly.handler(() =>
-    getRows(
+    getRows<MembershipApplicationRow[]>(
       supabaseAdmin
         .from('membership_applications')
         .select('*, profiles(id,email,full_name,role)')
         .order('created_at', { ascending: false }),
-    ),
+    ).then((applications) => applications.map(mapMembershipApplicationWithProfile)),
   ),
   decide: adminOnly
     .input(

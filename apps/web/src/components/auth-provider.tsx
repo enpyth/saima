@@ -1,17 +1,11 @@
 import type { User } from '@supabase/supabase-js'
+import type { Profile } from '@saima/shared'
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react'
 
 import { api } from '../lib/orpc'
 import { hasSupabaseConfig, supabase } from '../lib/supabase'
 
-export type AuthProfile = {
-  id: string
-  email: string
-  role: 'visitor' | 'member' | 'admin'
-  full_name?: string | null
-  avatar_url?: string | null
-  cover_image_url?: string | null
-}
+export type AuthProfile = Profile
 
 type AuthContextValue = {
   configured: boolean
@@ -45,7 +39,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
 
     try {
-      const synced = (await api.profile.sync()) as AuthProfile | null
+      const synced = await api.profile.sync()
       setProfile(synced)
       setError(null)
       return synced

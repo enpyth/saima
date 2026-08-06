@@ -99,6 +99,8 @@ Suggested upgrade:
 
 ### P3: API contracts mix database rows and shared camelCase types
 
+Status: Fixed
+
 Affected area: route return values and local row types
 
 Some routes return raw Supabase rows in snake_case while shared package types use camelCase. Frontend routes compensate with local casts, which weakens the value of `AppRouter` as the source of truth.

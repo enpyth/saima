@@ -1,4 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router'
+import type { CourseWithSlots } from '@saima/shared'
 import { useEffect, useState } from 'react'
 
 import { Button } from '../components/ui/button'
@@ -6,24 +7,8 @@ import { api } from '../lib/orpc'
 
 export const Route = createFileRoute('/dashboard/member/courses')({ component: MemberCourses })
 
-type MemberCourse = {
-  id: string
-  title: string
-  summary: string
-  instrument: string
-  level: string
-  location: string
-  status: 'draft' | 'published' | 'archived'
-  course_slots: Array<{
-    id: string
-    starts_at: string
-    ends_at: string
-    status: 'available' | 'booked'
-  }>
-}
-
 function MemberCourses() {
-  const [courses, setCourses] = useState<MemberCourse[]>([])
+  const [courses, setCourses] = useState<CourseWithSlots[]>([])
   const [title, setTitle] = useState('')
   const [summary, setSummary] = useState('')
   const [instrument, setInstrument] = useState('')
@@ -36,8 +21,7 @@ function MemberCourses() {
     setLoading(true)
     try {
       const rows = await api.courses.listMine()
-      const nextCourses = rows as MemberCourse[]
-      setCourses(nextCourses)
+      setCourses(rows)
     } catch (error) {
       setMessage(error instanceof Error ? error.message : 'Could not load courses.')
     } finally {
@@ -71,7 +55,7 @@ function MemberCourses() {
     }
   }
 
-  async function setCourseStatus(id: string, status: MemberCourse['status']) {
+  async function setCourseStatus(id: string, status: CourseWithSlots['status']) {
     try {
       await api.courses.setStatus({ id, status })
       await loadCourses()

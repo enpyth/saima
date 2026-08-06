@@ -3,6 +3,7 @@ import { z } from 'zod'
 
 import { supabaseAdmin } from '../supabase'
 import { attachSlots, getOwnedCourse, listPublicCourses, toHalfHourRange } from './course-helpers'
+import { mapCourseSlot, mapCourseWithSlots } from './mappers'
 import { adminOnly, memberOnly } from './procedures'
 import type { CourseRow, CourseSlotRow } from './rows'
 import { courseStatus, text, uuid } from './schemas'
@@ -36,7 +37,7 @@ export const coursesRouter = {
         .order('starts_at', { ascending: true }),
     )
 
-    return attachSlots(courses, slots)
+    return attachSlots(courses, slots).map(mapCourseWithSlots)
   }),
   listMine: memberOnly.handler(async ({ context }) => {
     const courses = await getRows<CourseRow[]>(
@@ -65,7 +66,7 @@ export const coursesRouter = {
         .order('starts_at', { ascending: true }),
     )
 
-    return attachSlots(courses, slots)
+    return attachSlots(courses, slots).map(mapCourseWithSlots)
   }),
   create: memberOnly
     .input(
@@ -79,7 +80,7 @@ export const coursesRouter = {
       }),
     )
     .handler(({ context, input }) =>
-      getRows(
+      getRows<CourseRow>(
         supabaseAdmin
           .from('courses')
           .insert({
@@ -93,7 +94,7 @@ export const coursesRouter = {
           })
           .select()
           .single(),
-      ),
+      ).then((course) => mapCourseWithSlots({ ...course, course_slots: [] })),
     ),
   update: memberOnly
     .input(
@@ -110,7 +111,7 @@ export const coursesRouter = {
     .handler(async ({ context, input }) => {
       await getOwnedCourse(input.id, context.user.id)
 
-      return getRows(
+      return getRows<CourseRow>(
         supabaseAdmin
           .from('courses')
           .update({
@@ -125,7 +126,7 @@ export const coursesRouter = {
           .eq('id', input.id)
           .select()
           .single(),
-      )
+      ).then((course) => mapCourseWithSlots({ ...course, course_slots: [] }))
     }),
   setStatus: memberOnly
     .input(
@@ -164,7 +165,7 @@ export const courseSlotsRouter = {
         return toHalfHourRange(start.toISOString(), end.toISOString())
       })
 
-      return getRows(
+      return getRows<CourseSlotRow[]>(
         supabaseAdmin
           .from('course_slots')
           .upsert(
@@ -178,7 +179,7 @@ export const courseSlotsRouter = {
             { onConflict: 'course_id,starts_at', ignoreDuplicates: true },
           )
           .select(),
-      )
+      ).then((slots) => slots.map(mapCourseSlot))
     }),
   createRange: memberOnly
     .input(
@@ -192,7 +193,7 @@ export const courseSlotsRouter = {
       await getOwnedCourse(input.courseId, context.user.id)
       const slots = toHalfHourRange(input.startsAt, input.endsAt)
 
-      return getRows(
+      return getRows<CourseSlotRow[]>(
         supabaseAdmin
           .from('course_slots')
           .upsert(
@@ -206,7 +207,7 @@ export const courseSlotsRouter = {
             { onConflict: 'course_id,starts_at', ignoreDuplicates: true },
           )
           .select(),
-      )
+      ).then((slots) => slots.map(mapCourseSlot))
     }),
   cancel: memberOnly.input(z.object({ id: uuid })).handler(async ({ context, input }) => {
     const slot = await getRows<{ id: string; member_id: string; status: string }>(
@@ -242,7 +243,7 @@ export const availabilitySlotsRouter = {
   listPublic: os.handler(async () => {
     const courses = await listPublicCourses()
     return courses.flatMap((course) =>
-      course.course_slots.map((slot) => ({
+      course.courseSlots.map((slot) => ({
         ...slot,
         title: course.title,
         location: course.location,
@@ -263,7 +264,7 @@ export const availabilitySlotsRouter = {
     .handler(async ({ context, input }) => {
       await getOwnedCourse(input.courseId, context.user.id)
       const [slot] = toHalfHourRange(input.startsAt, input.endsAt)
-      return getRows(
+      return getRows<CourseSlotRow>(
         supabaseAdmin
           .from('course_slots')
           .insert({
@@ -275,6 +276,6 @@ export const availabilitySlotsRouter = {
           })
           .select()
           .single(),
-      )
+      ).then(mapCourseSlot)
     }),
 }

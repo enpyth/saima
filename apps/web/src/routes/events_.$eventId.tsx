@@ -214,13 +214,13 @@ function TicketSaleModule({ eventPublicId }: { eventPublicId: string }) {
       }
 
   useEffect(() => {
-    if (profile?.full_name && !purchaserName) {
-      setPurchaserName(profile.full_name)
+    if (profile?.fullName && !purchaserName) {
+      setPurchaserName(profile.fullName)
     }
     if (user?.email && !purchaserEmail) {
       setPurchaserEmail(user.email)
     }
-  }, [profile?.full_name, purchaserEmail, purchaserName, user?.email])
+  }, [profile?.fullName, purchaserEmail, purchaserName, user?.email])
 
   useEffect(() => {
     let mounted = true

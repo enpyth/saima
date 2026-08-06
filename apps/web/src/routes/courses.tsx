@@ -1,4 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router'
+import type { CourseWithSlots } from '@saima/shared'
 import { useEffect, useState } from 'react'
 import { ArrowDown, LayoutDashboard, Search } from 'lucide-react'
 
@@ -13,30 +14,11 @@ import { getSlotsByIds, toDateKey } from '../lib/slot-board'
 
 export const Route = createFileRoute('/courses')({ component: Courses })
 
-type PublicCourse = {
-  id: string
-  title: string
-  summary: string
-  instrument: string
-  level: string
-  location: string
-  profiles?: {
-    full_name: string
-    avatar_url?: string | null
-  } | null
-  course_slots: Array<{
-    id: string
-    starts_at: string
-    ends_at: string
-    status: 'available' | 'booked'
-  }>
-}
-
 function Courses() {
   const { user } = useAuth()
   const { language } = useLanguage()
   const content = coursesContent[language]
-  const [courses, setCourses] = useState<PublicCourse[]>([])
+  const [courses, setCourses] = useState<CourseWithSlots[]>([])
   const [loading, setLoading] = useState(true)
   const [message, setMessage] = useState('')
   const [selectedDateKey, setSelectedDateKey] = useState(() => toDateKey(new Date()))
@@ -46,9 +28,9 @@ function Courses() {
     setLoading(true)
     try {
       const rows = await api.courses.listPublic()
-      setCourses(rows as PublicCourse[])
+      setCourses(rows)
       setSelectedSlotIds((current) =>
-        getSlotsByIds(rows as PublicCourse[], current).map((item) => item.slot.id),
+        getSlotsByIds(rows, current).map((item) => item.slot.id),
       )
     } catch (error) {
       setMessage(error instanceof Error ? error.message : content.states.loadFailed)
@@ -152,7 +134,7 @@ function Courses() {
                   <p>{course.summary}</p>
                   <p className="muted">
                     {course.level} · {course.location} · {content.states.hostLabel}:{' '}
-                    {course.profiles?.full_name ?? content.states.hostFallback}
+                    {course.profile?.fullName ?? content.states.hostFallback}
                   </p>
                 </div>
               </article>

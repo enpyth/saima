@@ -18,8 +18,8 @@ function MemberProfile() {
           <p className="muted">Update the public images used for your member profile.</p>
         </div>
       </header>
-      {profile?.avatar_url ? (
-        <img className="media-preview" src={profile.avatar_url} alt="Current profile avatar" />
+      {profile?.avatarUrl ? (
+        <img className="media-preview" src={profile.avatarUrl} alt="Current profile avatar" />
       ) : null}
       <div className="dashboard-two-column">
         <section className="panel">

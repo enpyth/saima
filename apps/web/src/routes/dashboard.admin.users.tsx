@@ -1,4 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router'
+import type { AdminUser } from '@saima/shared'
 import { useEffect, useState } from 'react'
 
 import { Button } from '../components/ui/button'
@@ -6,17 +7,8 @@ import { api } from '../lib/orpc'
 
 export const Route = createFileRoute('/dashboard/admin/users')({ component: AdminUsers })
 
-type UserRow = {
-  id: string
-  email: string
-  full_name: string
-  role: 'visitor' | 'member' | 'admin'
-  public_profile: boolean
-  created_at: string
-}
-
 function AdminUsers() {
-  const [users, setUsers] = useState<UserRow[]>([])
+  const [users, setUsers] = useState<AdminUser[]>([])
   const [message, setMessage] = useState('')
   const [loading, setLoading] = useState(false)
 
@@ -24,7 +16,7 @@ function AdminUsers() {
     setLoading(true)
     try {
       const rows = await api.adminUsers.list()
-      setUsers(rows as UserRow[])
+      setUsers(rows)
       setMessage(`Loaded ${rows.length} users.`)
     } catch (error) {
       setMessage(error instanceof Error ? error.message : 'Users could not be loaded.')
@@ -37,7 +29,7 @@ function AdminUsers() {
     void loadUsers()
   }, [])
 
-  async function setUserRole(id: string, role: UserRow['role']) {
+  async function setUserRole(id: string, role: AdminUser['role']) {
     try {
       await api.adminUsers.setRole({ id, role })
       await loadUsers()
@@ -67,7 +59,7 @@ function AdminUsers() {
           {users.map((user) => (
             <article className="admin-row" key={user.id}>
               <div>
-                <strong>{user.full_name}</strong>
+                <strong>{user.fullName}</strong>
                 <p className="muted">
                   {user.email} · current role: {user.role}
                 </p>

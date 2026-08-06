@@ -1,4 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router'
+import type { ApplicationStatus, MembershipApplicationWithProfile } from '@saima/shared'
 import { useEffect, useState } from 'react'
 
 import { Button } from '../components/ui/button'
@@ -8,26 +9,8 @@ export const Route = createFileRoute('/dashboard/admin/applications')({
   component: AdminApplications,
 })
 
-type ApplicationRow = {
-  id: string
-  user_id: string
-  full_name: string
-  email: string
-  instruments: string[]
-  experience: string
-  motivation: string
-  status: 'pending' | 'approved' | 'rejected' | 'needs_info'
-  created_at: string
-  profiles?: {
-    id: string
-    email: string
-    full_name: string
-    role: 'visitor' | 'member' | 'admin'
-  } | null
-}
-
 function AdminApplications() {
-  const [applications, setApplications] = useState<ApplicationRow[]>([])
+  const [applications, setApplications] = useState<MembershipApplicationWithProfile[]>([])
   const [message, setMessage] = useState('')
   const [loading, setLoading] = useState(false)
 
@@ -35,7 +18,7 @@ function AdminApplications() {
     setLoading(true)
     try {
       const rows = await api.membershipApplications.list()
-      setApplications(rows as ApplicationRow[])
+      setApplications(rows)
       setMessage(`Loaded ${rows.length} applications.`)
     } catch (error) {
       setMessage(error instanceof Error ? error.message : 'Applications could not be loaded.')
@@ -50,7 +33,7 @@ function AdminApplications() {
 
   async function decideApplication(
     id: string,
-    status: 'approved' | 'rejected' | 'needs_info',
+    status: Extract<ApplicationStatus, 'approved' | 'rejected' | 'needs_info'>,
   ) {
     try {
       await api.membershipApplications.decide({ id, status })
@@ -81,7 +64,7 @@ function AdminApplications() {
           {applications.map((application) => (
             <article className="admin-row" key={application.id}>
               <div>
-                <strong>{application.full_name}</strong>
+                <strong>{application.fullName}</strong>
                 <p className="muted">
                   {application.email} · {application.status}
                 </p>

@@ -1,6 +1,7 @@
 import { ORPCError } from '@orpc/server'
 
 import { supabaseAdmin } from '../supabase'
+import { mapCourseWithSlots } from './mappers'
 import type { CourseRow, CourseSlotRow } from './rows'
 import { getRows } from './supabase-result'
 
@@ -107,5 +108,5 @@ export async function listPublicCourses() {
       .order('starts_at', { ascending: true }),
   )
 
-  return attachSlots(courses, slots)
+  return attachSlots(courses, slots).map(mapCourseWithSlots)
 }

@@ -1,4 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router'
+import type { TicketOrderWithDetails } from '@saima/shared'
 import { CalendarDays, MapPin, Ticket } from 'lucide-react'
 import { useEffect, useState } from 'react'
 
@@ -8,29 +9,8 @@ import { api } from '../lib/orpc'
 
 export const Route = createFileRoute('/dashboard/visitor/tickets')({ component: VisitorTickets })
 
-type VisitorTicketOrder = {
-  id: string
-  event_public_id: string
-  purchaser_name: string
-  purchaser_email: string
-  quantity: number
-  total_price_cents: number
-  status: string
-  paid_at: string | null
-  created_at: string
-  ticket_types?: {
-    name: string
-    description: string | null
-  } | null
-  events?: {
-    title: string
-    starts_at: string
-    location: string
-  } | null
-}
-
 function VisitorTickets() {
-  const [tickets, setTickets] = useState<VisitorTicketOrder[]>([])
+  const [tickets, setTickets] = useState<TicketOrderWithDetails[]>([])
   const [message, setMessage] = useState('')
   const [loading, setLoading] = useState(false)
 
@@ -43,7 +23,7 @@ function VisitorTickets() {
         window.history.replaceState({}, '', '/dashboard/visitor/tickets')
       }
       const rows = await api.tickets.mine()
-      setTickets(rows as VisitorTicketOrder[])
+      setTickets(rows)
       setMessage(`Loaded ${rows.length} ticket order${rows.length === 1 ? '' : 's'}.`)
     } catch (error) {
       setMessage(error instanceof Error ? error.message : 'Could not load tickets.')
@@ -84,15 +64,15 @@ function VisitorTickets() {
             <article className="admin-row ticket-dashboard-row" key={ticket.id}>
               <div>
                 <span className="eyebrow">{ticket.status}</span>
-                <h3>{ticket.events?.title ?? 'Event ticket'}</h3>
+                <h3>{ticket.event?.title ?? 'Event ticket'}</h3>
                 <p className="muted">
-                  {ticket.ticket_types?.name ?? 'Ticket'} · {ticket.quantity} ticket{ticket.quantity === 1 ? '' : 's'} · {formatMoney(ticket.total_price_cents)}
+                  {ticket.ticketType?.name ?? 'Ticket'} · {ticket.quantity} ticket{ticket.quantity === 1 ? '' : 's'} · {formatMoney(ticket.totalPriceCents)}
                 </p>
                 <p className="muted inline-meta">
-                  <CalendarDays size={16} aria-hidden="true" /> {formatDateTime(ticket.events?.starts_at)}
+                  <CalendarDays size={16} aria-hidden="true" /> {formatDateTime(ticket.event?.startsAt)}
                 </p>
                 <p className="muted inline-meta">
-                  <MapPin size={16} aria-hidden="true" /> {ticket.events?.location ?? 'Location unavailable'}
+                  <MapPin size={16} aria-hidden="true" /> {ticket.event?.location ?? 'Location unavailable'}
                 </p>
               </div>
               <div className="ticket-qr-placeholder" aria-hidden="true">

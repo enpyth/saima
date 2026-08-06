@@ -6,6 +6,7 @@ import { z } from 'zod'
 import { env } from '../env'
 import { supabaseAdmin } from '../supabase'
 import { confirmTicketOrderFromSession, getStripeClient } from '../stripe'
+import { mapTicketOrderWithDetails } from './mappers'
 import { adminOnly, authed } from './procedures'
 import type { EventRow, TicketOrderRow, TicketTypeRow } from './rows'
 import { text, uuid } from './schemas'
@@ -283,11 +284,13 @@ export const ticketsRouter = {
       ),
     ])
 
-    return orders.map((order) => ({
-      ...order,
-      ticket_types: ticketTypes.find((ticketType) => ticketType.id === order.ticket_type_id) ?? null,
-      events: events.find((event) => event.public_id === order.event_public_id) ?? null,
-    }))
+    return orders.map((order) =>
+      mapTicketOrderWithDetails({
+        ...order,
+        ticket_types: ticketTypes.find((ticketType) => ticketType.id === order.ticket_type_id) ?? null,
+        events: events.find((event) => event.public_id === order.event_public_id) ?? null,
+      }),
+    )
   }),
   salesStats: adminOnly.handler(async (): Promise<TicketSaleStat[]> => {
     const [events, ticketTypes] = await Promise.all([

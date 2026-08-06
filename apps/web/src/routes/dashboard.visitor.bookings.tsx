@@ -1,4 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router'
+import type { BookingWithDetails } from '@saima/shared'
 import { useEffect, useState } from 'react'
 
 import { Button } from '../components/ui/button'
@@ -9,29 +10,8 @@ export const Route = createFileRoute('/dashboard/visitor/bookings')({
   component: VisitorBookings,
 })
 
-type VisitorBooking = {
-  id: string
-  status: string
-  created_at: string
-  courses?: {
-    title: string
-    instrument: string
-    level: string
-    location: string
-    profiles?: {
-      full_name: string
-      email: string
-    } | null
-  } | null
-  course_slots?: {
-    starts_at: string
-    ends_at: string
-    status: string
-  } | null
-}
-
 function VisitorBookings() {
-  const [bookings, setBookings] = useState<VisitorBooking[]>([])
+  const [bookings, setBookings] = useState<BookingWithDetails[]>([])
   const [message, setMessage] = useState('')
   const [loading, setLoading] = useState(false)
 
@@ -39,7 +19,7 @@ function VisitorBookings() {
     setLoading(true)
     try {
       const rows = await api.bookings.mine()
-      setBookings(rows as VisitorBooking[])
+      setBookings(rows)
       setMessage(`Loaded ${rows.length} bookings.`)
     } catch (error) {
       setMessage(error instanceof Error ? error.message : 'Could not load bookings.')
@@ -77,16 +57,16 @@ function VisitorBookings() {
           {bookings.map((booking) => (
             <article className="admin-row" key={booking.id}>
               <div>
-                <strong>{booking.courses?.title ?? 'Course'}</strong>
+                <strong>{booking.course?.title ?? 'Course'}</strong>
                 <p className="muted">
-                  {formatDateTime(booking.course_slots?.starts_at)} · {booking.status}
+                  {formatDateTime(booking.courseSlot?.startsAt)} · {booking.status}
                 </p>
                 <p>
-                  {booking.courses?.instrument ?? 'Music'} · {booking.courses?.level ?? 'All levels'} ·{' '}
-                  {booking.courses?.location ?? 'Location unavailable'}
+                  {booking.course?.instrument ?? 'Music'} · {booking.course?.level ?? 'All levels'} ·{' '}
+                  {booking.course?.location ?? 'Location unavailable'}
                 </p>
                 <p className="muted">
-                  Member: {booking.courses?.profiles?.full_name ?? 'SAIMA member'}
+                  Member: {booking.course?.profile?.fullName ?? 'SAIMA member'}
                 </p>
               </div>
             </article>

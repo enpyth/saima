@@ -18,7 +18,7 @@ function AdminBookings() {
     setLoading(true)
     try {
       const rows = await api.courses.listAll()
-      setCourses(rows as SlotBoardCourse[])
+      setCourses(rows)
       setMessage(`Loaded ${rows.length} courses.`)
     } catch (error) {
       setMessage(error instanceof Error ? error.message : 'Could not load course operations.')

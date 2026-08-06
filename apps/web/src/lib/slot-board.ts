@@ -1,23 +1,14 @@
-export type SlotStatus = 'available' | 'booked'
+import type { CourseWithSlots, SlotStatus } from '@saima/shared'
 
 export type SlotBoardSlot = {
   id: string
-  starts_at: string
-  ends_at: string
+  startsAt: string
+  endsAt: string
   status: SlotStatus
 }
 
-export type SlotBoardCourse = {
-  id: string
-  title: string
-  instrument: string
-  level: string
-  location: string
-  profiles?: {
-    full_name?: string | null
-    email?: string | null
-  } | null
-  course_slots: SlotBoardSlot[]
+export type SlotBoardCourse = Pick<CourseWithSlots, 'id' | 'title' | 'instrument' | 'level' | 'location' | 'profile'> & {
+  courseSlots: SlotBoardSlot[]
 }
 
 export type SlotBoardCell = {
@@ -86,12 +77,12 @@ export function buildDateOptions(startDateKey: string, count = 7) {
   })
 }
 
-export function getSlotDateKey(slot: Pick<SlotBoardSlot, 'starts_at'>) {
-  return toDateKey(new Date(slot.starts_at))
+export function getSlotDateKey(slot: Pick<SlotBoardSlot, 'startsAt'>) {
+  return toDateKey(new Date(slot.startsAt))
 }
 
-export function getSlotTimeKey(slot: Pick<SlotBoardSlot, 'starts_at'>) {
-  return formatSlotTime(new Date(slot.starts_at))
+export function getSlotTimeKey(slot: Pick<SlotBoardSlot, 'startsAt'>) {
+  return formatSlotTime(new Date(slot.startsAt))
 }
 
 export function buildHalfHourTimeKeys(startHour = 8, endHour = 22) {
@@ -157,7 +148,7 @@ export function buildSlotBoard(courses: SlotBoardCourse[], dateKey: string) {
   const rowsWithSlots = courses
     .map((course) => ({
       course,
-      slots: course.course_slots.filter((slot) => getSlotDateKey(slot) === dateKey),
+      slots: course.courseSlots.filter((slot) => getSlotDateKey(slot) === dateKey),
     }))
     .filter((row) => row.slots.length > 0)
 
@@ -181,7 +172,7 @@ export function buildSlotBoard(courses: SlotBoardCourse[], dateKey: string) {
 
 export function getSlotById(courses: SlotBoardCourse[], slotId: string) {
   for (const course of courses) {
-    const slot = course.course_slots.find((slot) => slot.id === slotId)
+    const slot = course.courseSlots.find((slot) => slot.id === slotId)
     if (slot) {
       return { course, slot }
     }

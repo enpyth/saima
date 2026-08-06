@@ -2,19 +2,21 @@ import { os } from '@orpc/server'
 import { z } from 'zod'
 
 import { supabaseAdmin } from '../supabase'
+import { mapPublicEvent } from './mappers'
 import { adminOnly } from './procedures'
+import type { PublicEventRow } from './rows'
 import { text, uuid } from './schemas'
 import { getRows } from './supabase-result'
 
 export const eventsRouter = {
   listPublic: os.handler(() =>
-    getRows(
+    getRows<PublicEventRow[]>(
       supabaseAdmin
         .from('events')
         .select('id,public_id,title,summary,starts_at,location,is_published,cover_image_key,cover_image_url')
         .eq('is_published', true)
         .order('starts_at', { ascending: true }),
-    ),
+    ).then((events) => events.map(mapPublicEvent)),
   ),
   create: adminOnly
     .input(
@@ -30,7 +32,7 @@ export const eventsRouter = {
       }),
     )
     .handler(({ input }) =>
-      getRows(
+      getRows<PublicEventRow>(
         supabaseAdmin
           .from('events')
           .insert({
@@ -45,7 +47,7 @@ export const eventsRouter = {
           })
           .select()
           .single(),
-      ),
+      ).then(mapPublicEvent),
     ),
   setCover: adminOnly
     .input(
@@ -56,7 +58,7 @@ export const eventsRouter = {
       }),
     )
     .handler(({ input }) =>
-      getRows(
+      getRows<PublicEventRow>(
         supabaseAdmin
           .from('events')
           .update({
@@ -66,6 +68,6 @@ export const eventsRouter = {
           .eq('id', input.id)
           .select()
           .single(),
-      ),
+      ).then(mapPublicEvent),
     ),
 }

@@ -2,19 +2,21 @@ import { ORPCError } from '@orpc/server'
 import { z } from 'zod'
 
 import { supabaseAdmin } from '../supabase'
+import { mapBookingWithDetails } from './mappers'
 import { authed, memberOnly } from './procedures'
+import type { BookingRow } from './rows'
 import { uuid } from './schemas'
 import { getRows } from './supabase-result'
 
 export const bookingsRouter = {
   mine: authed.handler(({ context }) =>
-    getRows(
+    getRows<BookingRow[]>(
       supabaseAdmin
         .from('bookings')
         .select('*, courses(id,title,summary,instrument,level,location,member_id,profiles(id,full_name,email)), course_slots(id,starts_at,ends_at,status)')
         .eq('visitor_id', context.user.id)
         .order('created_at', { ascending: false }),
-    ),
+    ).then((bookings) => bookings.map(mapBookingWithDetails)),
   ),
   forMember: memberOnly.handler(async ({ context }) => {
     const courses = await getRows<Array<{ id: string }>>(
@@ -25,7 +27,7 @@ export const bookingsRouter = {
       return []
     }
 
-    return getRows(
+    return getRows<BookingRow[]>(
       supabaseAdmin
         .from('bookings')
         .select('*, profiles(id,email,full_name), courses(id,title,location), course_slots(id,starts_at,ends_at,status)')
@@ -34,7 +36,7 @@ export const bookingsRouter = {
           courses.map((course) => course.id),
         )
         .order('created_at', { ascending: false }),
-    )
+    ).then((bookings) => bookings.map(mapBookingWithDetails))
   }),
   create: authed.input(z.object({ slotId: uuid })).handler(async ({ context, input }) => {
     const slot = await getRows<{ id: string; status: string; member_id: string }>(

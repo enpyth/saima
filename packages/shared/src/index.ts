@@ -67,8 +67,17 @@ export type Profile = {
   coverImageUrl?: string | null
 }
 
+export type ProfileSummary = {
+  id: string
+  email?: string | null
+  fullName: string
+  avatarUrl?: string | null
+  role?: Role
+}
+
 export type PublicEvent = {
   id: string
+  publicId: string
   title: string
   summary: string
   startsAt: string
@@ -88,6 +97,10 @@ export type MembershipApplication = {
   motivation: string
   status: ApplicationStatus
   createdAt: string
+}
+
+export type MembershipApplicationWithProfile = MembershipApplication & {
+  profile?: ProfileSummary | null
 }
 
 export type Course = {
@@ -112,6 +125,12 @@ export type CourseSlot = {
   startsAt: string
   endsAt: string
   status: SlotStatus
+  createdAt?: string
+}
+
+export type CourseWithSlots = Course & {
+  profile?: ProfileSummary | null
+  courseSlots: CourseSlot[]
 }
 
 export type Booking = {
@@ -120,6 +139,44 @@ export type Booking = {
   slotId: string
   visitorId: string
   status: BookingStatus
+  createdAt: string
+}
+
+export type BookingWithDetails = Booking & {
+  profile?: ProfileSummary | null
+  course?: Pick<Course, 'id' | 'title' | 'summary' | 'instrument' | 'level' | 'location' | 'memberId'> & {
+    profile?: ProfileSummary | null
+  } | null
+  courseSlot?: CourseSlot | null
+}
+
+export type TicketOrderWithDetails = {
+  id: string
+  ticketTypeId: string
+  eventPublicId: string
+  purchaserUserId?: string | null
+  purchaserName: string
+  purchaserEmail: string
+  purchaserPhone?: string | null
+  quantity: number
+  unitPriceCents: number
+  totalPriceCents: number
+  status: TicketOrderStatus
+  stripeCheckoutSessionId?: string | null
+  stripePaymentIntentId?: string | null
+  paidAt?: string | null
+  createdAt: string
+  ticketType?: Pick<TicketType, 'id' | 'name' | 'description'> | null
+  event?: {
+    publicId: string
+    title: string
+    startsAt: string
+    location: string
+  } | null
+}
+
+export type AdminUser = Pick<Profile, 'id' | 'email' | 'role' | 'publicProfile'> & {
+  fullName: string
   createdAt: string
 }
 

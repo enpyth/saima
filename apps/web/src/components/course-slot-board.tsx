@@ -33,7 +33,7 @@ function formatSelection(courses: SlotBoardCourse[], slotIds: string[]) {
   }
 
   if (selected.length === 1 && selected[0]) {
-    return `${selected[0].course.title} · ${formatSlotDateTime(selected[0].slot.starts_at)}`
+    return `${selected[0].course.title} · ${formatSlotDateTime(selected[0].slot.startsAt)}`
   }
 
   return `${selected.length} slots selected`
@@ -102,7 +102,7 @@ export function CourseSlotBoard({
                 <div className="slot-board-course">
                   <strong>{row.course.title}</strong>
                   <span>
-                    {row.course.profiles?.full_name ?? 'SAIMA member'} · {row.course.location}
+                    {row.course.profile?.fullName ?? 'SAIMA member'} · {row.course.location}
                   </span>
                 </div>
                 {row.cells.map((cell) => {

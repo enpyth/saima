@@ -2,7 +2,9 @@ import { z } from 'zod'
 
 import { syncProfileForUser } from '../profile-sync'
 import { supabaseAdmin } from '../supabase'
+import { mapProfile } from './mappers'
 import { authed } from './procedures'
+import type { ProfileRow } from './rows'
 import { text } from './schemas'
 import { getRows } from './supabase-result'
 
@@ -13,7 +15,7 @@ export const profileRouter = {
       try {
         const profile = await syncProfileForUser(data.user)
         if (profile) {
-          return profile
+          return mapProfile(profile)
         }
       } catch (syncError) {
         console.error('Profile sync failed:', syncError)
@@ -24,18 +26,19 @@ export const profileRouter = {
       id: context.user.id,
       email: context.user.email,
       role: context.user.role,
-      full_name: context.user.fullName,
-      avatar_url: context.user.avatarUrl,
+      fullName: context.user.fullName,
+      publicProfile: false,
+      avatarUrl: context.user.avatarUrl,
     }
   }),
   me: authed.handler(({ context }) =>
-    getRows(
+    getRows<ProfileRow>(
       supabaseAdmin
         .from('profiles')
         .select('*')
         .eq('id', context.user.id)
         .single(),
-    ),
+    ).then(mapProfile),
   ),
   update: authed
     .input(
@@ -49,7 +52,7 @@ export const profileRouter = {
       }),
     )
     .handler(({ context, input }) =>
-      getRows(
+      getRows<ProfileRow>(
         supabaseAdmin
           .from('profiles')
           .update({
@@ -63,7 +66,7 @@ export const profileRouter = {
           .eq('id', context.user.id)
           .select()
           .single(),
-      ),
+      ).then(mapProfile),
     ),
   updateMedia: authed
     .input(
@@ -75,7 +78,7 @@ export const profileRouter = {
       }),
     )
     .handler(({ context, input }) =>
-      getRows(
+      getRows<ProfileRow>(
         supabaseAdmin
           .from('profiles')
           .update({
@@ -87,6 +90,6 @@ export const profileRouter = {
           .eq('id', context.user.id)
           .select()
           .single(),
-      ),
+      ).then(mapProfile),
     ),
 }

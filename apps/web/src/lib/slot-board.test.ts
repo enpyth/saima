@@ -19,18 +19,18 @@ const courses: SlotBoardCourse[] = [
     instrument: 'Piano',
     level: 'Intermediate',
     location: 'Studio A',
-    profiles: { full_name: 'Ada Member' },
-    course_slots: [
+    profile: { id: 'member-1', fullName: 'Ada Member' },
+    courseSlots: [
       {
         id: 'slot-1',
-        starts_at: new Date(2026, 6, 4, 10, 0).toISOString(),
-        ends_at: new Date(2026, 6, 4, 10, 30).toISOString(),
+        startsAt: new Date(2026, 6, 4, 10, 0).toISOString(),
+        endsAt: new Date(2026, 6, 4, 10, 30).toISOString(),
         status: 'available',
       },
       {
         id: 'slot-2',
-        starts_at: new Date(2026, 6, 4, 10, 30).toISOString(),
-        ends_at: new Date(2026, 6, 4, 11, 0).toISOString(),
+        startsAt: new Date(2026, 6, 4, 10, 30).toISOString(),
+        endsAt: new Date(2026, 6, 4, 11, 0).toISOString(),
         status: 'booked',
       },
     ],
@@ -41,12 +41,12 @@ const courses: SlotBoardCourse[] = [
     instrument: 'Violin',
     level: 'All levels',
     location: 'Room B',
-    profiles: { full_name: 'Grace Member' },
-    course_slots: [
+    profile: { id: 'member-2', fullName: 'Grace Member' },
+    courseSlots: [
       {
         id: 'slot-3',
-        starts_at: new Date(2026, 6, 5, 10, 0).toISOString(),
-        ends_at: new Date(2026, 6, 5, 10, 30).toISOString(),
+        startsAt: new Date(2026, 6, 5, 10, 0).toISOString(),
+        endsAt: new Date(2026, 6, 5, 10, 30).toISOString(),
         status: 'available',
       },
     ],
@@ -115,7 +115,7 @@ describe('slot-board helpers', () => {
   it('marks existing and selected availability picker cells', () => {
     const cells = buildAvailabilityDraftCells({
       dateKey: '2026-07-04',
-      existingSlots: courses[0]?.course_slots ?? [],
+      existingSlots: courses[0]?.courseSlots ?? [],
       selectedTimeKeys: ['11:00'],
       startHour: 10,
       endHour: 12,

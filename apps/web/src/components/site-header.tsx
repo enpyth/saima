@@ -24,15 +24,15 @@ export function SiteHeader() {
 
   const displayName = useMemo(() => {
     const metadata = user?.user_metadata
-    const name = profile?.full_name ?? metadata?.full_name ?? metadata?.name ?? user?.email
+    const name = profile?.fullName ?? metadata?.full_name ?? metadata?.name ?? user?.email
     return typeof name === 'string' && name.trim() ? name : content.auth.fallbackUser
-  }, [content.auth.fallbackUser, profile?.full_name, user])
+  }, [content.auth.fallbackUser, profile?.fullName, user])
 
   const avatarUrl = useMemo(() => {
     const metadata = user?.user_metadata
-    const image = profile?.avatar_url ?? metadata?.avatar_url ?? metadata?.picture
+    const image = profile?.avatarUrl ?? metadata?.avatar_url ?? metadata?.picture
     return typeof image === 'string' && image.trim() ? image : undefined
-  }, [profile?.avatar_url, user])
+  }, [profile?.avatarUrl, user])
 
   const initials = useMemo(() => {
     return displayName
