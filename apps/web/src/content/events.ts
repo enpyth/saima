@@ -32,7 +32,7 @@ type EventsContent = {
 }
 
 const eventHref = (id: string) => `/events/${id}`
-const r2PublicBaseUrl = (import.meta.env.R2_PUBLIC_BASE_URL as string | undefined)?.replace(/\/$/, '')
+const r2PublicBaseUrl = (import.meta.env.VITE_R2_PUBLIC_BASE_URL as string | undefined)?.replace(/\/$/, '')
 
 export function eventAssetUrl(eventId: string, file: string) {
   const encodedFile = file
