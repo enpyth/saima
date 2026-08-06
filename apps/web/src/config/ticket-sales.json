@@ -1,0 +1,36 @@
+[
+  {
+    "eventPublicId": "20261016",
+    "currency": "AUD",
+    "capacity": 500,
+    "saleStartsAt": "2026-08-01T00:00:00+09:30",
+    "saleEndsAt": "2026-10-16T19:30:00+10:30",
+    "isActive": true,
+    "ticketTypes": [
+      {
+        "slug": "general",
+        "name": "General admission",
+        "description": "Standard reserved ticket for A Dream for Every Child.",
+        "priceCents": 3500,
+        "capacityUnitsPerTicket": 1,
+        "sortOrder": 10
+      },
+      {
+        "slug": "student",
+        "name": "Student",
+        "description": "Discounted reserved ticket for students.",
+        "priceCents": 2500,
+        "capacityUnitsPerTicket": 1,
+        "sortOrder": 20
+      },
+      {
+        "slug": "family",
+        "name": "Family",
+        "description": "Reserved family ticket for two adults and two children.",
+        "priceCents": 9000,
+        "capacityUnitsPerTicket": 4,
+        "sortOrder": 30
+      }
+    ]
+  }
+]

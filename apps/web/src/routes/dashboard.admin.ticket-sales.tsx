@@ -45,7 +45,7 @@ function AdminTicketSales() {
       </header>
 
       <div className="sales-stat-grid">
-        <SalesStat icon={<Ticket size={20} />} label="Tickets sold" value={String(overview.totalSold)} />
+        <SalesStat icon={<Ticket size={20} />} label="Capacity used" value={String(overview.totalSold)} />
         <SalesStat icon={<Users size={20} />} label="Remaining" value={String(overview.totalRemaining)} />
         <SalesStat icon={<DollarSign size={20} />} label="Revenue" value={formatMoney(overview.totalRevenueCents, 'AUD')} />
         <SalesStat icon={<BarChart3 size={20} />} label="Sell-through" value={`${overview.sellThroughRate}%`} />

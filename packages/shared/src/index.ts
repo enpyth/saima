@@ -20,12 +20,30 @@ export type TicketType = {
   priceCents: number
   currency: string
   capacity: number
+  capacityUnitsPerTicket: number
   sold: number
   reserved: number
   remaining: number
   saleStartsAt?: string | null
   saleEndsAt?: string | null
   isActive: boolean
+}
+
+export type TicketInventory = {
+  eventPublicId: string
+  ticketTypeId: string
+  slug: string
+  sold: number
+  reserved: number
+  remaining: number
+}
+
+export type TicketSaleInventory = {
+  eventPublicId: string
+  eventTitle: string
+  startsAt: string
+  capacity: number
+  ticketInventories: TicketInventory[]
 }
 
 export type TicketSaleStat = {
@@ -37,6 +55,7 @@ export type TicketSaleStat = {
   priceCents: number
   currency: string
   capacity: number
+  capacityUnitsPerTicket: number
   sold: number
   reserved: number
   remaining: number
@@ -181,22 +200,30 @@ export type AdminUser = Pick<Profile, 'id' | 'email' | 'role' | 'publicProfile'>
 }
 
 export function calculateTicketSaleOverview(stats: TicketSaleStat[]): TicketSaleOverview {
-  const overview = stats.reduce(
-    (totals, stat) => ({
-      totalCapacity: totals.totalCapacity + stat.capacity,
-      totalSold: totals.totalSold + stat.sold,
-      totalRemaining: totals.totalRemaining + stat.remaining,
-      totalRevenueCents: totals.totalRevenueCents + stat.revenueCents,
-      sellThroughRate: 0,
-    }),
-    {
-      totalCapacity: 0,
-      totalSold: 0,
-      totalRemaining: 0,
-      totalRevenueCents: 0,
-      sellThroughRate: 0,
-    },
-  )
+  const eventInventory = new Map<string, Pick<TicketSaleStat, 'capacity' | 'remaining'>>()
+
+  for (const stat of stats) {
+    const current = eventInventory.get(stat.eventPublicId)
+    if (!current || stat.capacity > current.capacity) {
+      eventInventory.set(stat.eventPublicId, {
+        capacity: stat.capacity,
+        remaining: stat.remaining,
+      })
+    }
+  }
+
+  const totalCapacity = [...eventInventory.values()].reduce((total, stat) => total + stat.capacity, 0)
+  const totalRemaining = [...eventInventory.values()].reduce((total, stat) => total + stat.remaining, 0)
+  const totalSold = stats.reduce((total, stat) => total + stat.sold * stat.capacityUnitsPerTicket, 0)
+  const totalRevenueCents = stats.reduce((total, stat) => total + stat.revenueCents, 0)
+
+  const overview = {
+    totalCapacity,
+    totalSold,
+    totalRemaining,
+    totalRevenueCents,
+    sellThroughRate: 0,
+  }
 
   return {
     ...overview,

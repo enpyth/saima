@@ -6,6 +6,7 @@
       "#/*": ["./src/*"],
       "@/*": ["./src/*"]
     },
+    "resolveJsonModule": true,
     "types": ["vite/client"],
     "noUncheckedSideEffectImports": true
   }

@@ -34,20 +34,6 @@ export type CourseSlotRow = {
   created_at: string
 }
 
-export type TicketTypeRow = {
-  id: string
-  event_public_id: string
-  name: string
-  description: string | null
-  price_cents: number
-  currency: string
-  capacity: number
-  sale_starts_at: string | null
-  sale_ends_at: string | null
-  is_active: boolean
-  created_at: string
-}
-
 export type TicketOrderRow = {
   id: string
   ticket_type_id: string
@@ -57,6 +43,7 @@ export type TicketOrderRow = {
   purchaser_email: string
   purchaser_phone: string | null
   quantity: number
+  capacity_units_per_ticket: number
   unit_price_cents: number
   total_price_cents: number
   status: 'pending_payment' | 'confirmed' | 'cancelled'

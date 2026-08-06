@@ -1,5 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router'
-import type { TicketType } from '@saima/shared'
+import type { TicketInventory } from '@saima/shared'
 import { ArrowLeft, ExternalLink, FileText, MapPin, Ticket } from 'lucide-react'
 import { useEffect, useMemo, useState, type FormEvent } from 'react'
 
@@ -9,6 +9,7 @@ import Masonry from '../components/Masonry'
 import { Button } from '../components/ui/button'
 import { eventsContent, findEvent, getEventStatus } from '../content/events'
 import { api } from '../lib/orpc'
+import { getTicketSaleConfig, getTicketSaleOptions, type TicketSaleConfigOption } from '../lib/ticket-sales-config'
 
 export const Route = createFileRoute('/events_/$eventId')({ component: EventPage })
 
@@ -163,8 +164,10 @@ function EventPage() {
 function TicketSaleModule({ eventPublicId }: { eventPublicId: string }) {
   const { language } = useLanguage()
   const { profile, user } = useAuth()
-  const [ticketTypes, setTicketTypes] = useState<TicketType[]>([])
-  const [selectedTicketTypeId, setSelectedTicketTypeId] = useState('')
+  const ticketSale = useMemo(() => getTicketSaleConfig(eventPublicId), [eventPublicId])
+  const ticketOptions = useMemo(() => getTicketSaleOptions(eventPublicId), [eventPublicId])
+  const [ticketInventories, setTicketInventories] = useState<TicketInventory[]>([])
+  const [selectedTicketTypeSlug, setSelectedTicketTypeSlug] = useState('')
   const [quantity, setQuantity] = useState(1)
   const [purchaserName, setPurchaserName] = useState('')
   const [purchaserEmail, setPurchaserEmail] = useState('')
@@ -188,7 +191,9 @@ function TicketSaleModule({ eventPublicId }: { eventPublicId: string }) {
         checkout: '前往 Stripe 安全付款',
         signIn: '请先登录后购票。',
         soldOut: '门票已售罄',
+        checking: '正在确认余票',
         remaining: '剩余',
+        seatsPerTicket: '每张占用名额',
         total: '合计',
         success: '正在跳转到 Stripe 安全付款页面。',
         unavailable: '当前没有可售票种。',
@@ -207,7 +212,9 @@ function TicketSaleModule({ eventPublicId }: { eventPublicId: string }) {
         checkout: 'Continue to secure Stripe payment',
         signIn: 'Sign in before buying tickets.',
         soldOut: 'Sold out',
+        checking: 'Checking availability',
         remaining: 'remaining',
+        seatsPerTicket: 'seats per ticket',
         total: 'Total',
         success: 'Redirecting to Stripe secure payment.',
         unavailable: 'No ticket types are currently available.',
@@ -223,6 +230,16 @@ function TicketSaleModule({ eventPublicId }: { eventPublicId: string }) {
   }, [profile?.fullName, purchaserEmail, purchaserName, user?.email])
 
   useEffect(() => {
+    if (ticketOptions.length === 0) {
+      setSelectedTicketTypeSlug('')
+      return
+    }
+    if (!ticketOptions.some((ticketOption) => ticketOption.slug === selectedTicketTypeSlug)) {
+      setSelectedTicketTypeSlug(ticketOptions[0]?.slug ?? '')
+    }
+  }, [selectedTicketTypeSlug, ticketOptions])
+
+  useEffect(() => {
     let mounted = true
 
     async function loadSale() {
@@ -232,8 +249,7 @@ function TicketSaleModule({ eventPublicId }: { eventPublicId: string }) {
         if (!mounted) {
           return
         }
-        setTicketTypes(sale.ticketTypes)
-        setSelectedTicketTypeId(sale.ticketTypes[0]?.id ?? '')
+        setTicketInventories(sale.ticketInventories)
       } catch (error) {
         if (mounted) {
           setMessage(error instanceof Error ? error.message : labels.unavailable)
@@ -252,16 +268,30 @@ function TicketSaleModule({ eventPublicId }: { eventPublicId: string }) {
     }
   }, [eventPublicId, labels.unavailable])
 
+  const ticketRows = useMemo(() => mergeTicketRows(ticketOptions, ticketInventories, ticketSale?.currency ?? 'AUD'), [
+    ticketInventories,
+    ticketOptions,
+    ticketSale?.currency,
+  ])
   const selectedTicketType = useMemo(
-    () => ticketTypes.find((ticketType) => ticketType.id === selectedTicketTypeId),
-    [selectedTicketTypeId, ticketTypes],
+    () => ticketRows.find((ticketType) => ticketType.slug === selectedTicketTypeSlug),
+    [selectedTicketTypeSlug, ticketRows],
   )
-  const maxQuantity = Math.min(selectedTicketType?.remaining ?? 1, 10)
+  const maxQuantity = Math.min(selectedTicketType?.remainingTicketQuantity ?? 0, 10)
   const total = (selectedTicketType?.priceCents ?? 0) * quantity
+  const selectedTicketTypeUnavailable =
+    !selectedTicketType?.ticketTypeId ||
+    selectedTicketType.remaining === null ||
+    selectedTicketType.remaining < selectedTicketType.capacityUnitsPerTicket ||
+    quantity > maxQuantity
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
-    if (!selectedTicketType || selectedTicketType.remaining <= 0) {
+    if (!selectedTicketType?.ticketTypeId || selectedTicketType.remaining === null) {
+      setMessage(labels.unavailable)
+      return
+    }
+    if (selectedTicketType.remaining < selectedTicketType.capacityUnitsPerTicket * quantity) {
       setMessage(labels.soldOut)
       return
     }
@@ -274,7 +304,7 @@ function TicketSaleModule({ eventPublicId }: { eventPublicId: string }) {
     setSubmitting(true)
     try {
       const session = await api.tickets.createCheckoutSession({
-        ticketTypeId: selectedTicketType.id,
+        ticketTypeId: selectedTicketType.ticketTypeId,
         purchaserName,
         purchaserEmail,
         purchaserPhone: purchaserPhone || undefined,
@@ -300,16 +330,25 @@ function TicketSaleModule({ eventPublicId }: { eventPublicId: string }) {
         <div className="ticket-sale-summary">
           <Ticket size={42} aria-hidden="true" />
           {loading ? <p>{labels.loading}</p> : null}
-          {!loading && ticketTypes.length === 0 ? <p>{labels.unavailable}</p> : null}
-          {ticketTypes.map((ticketType) => (
-            <div className="ticket-type-row" key={ticketType.id}>
+          {!loading && ticketRows.length === 0 ? <p>{labels.unavailable}</p> : null}
+          {ticketRows.map((ticketType) => (
+            <div className="ticket-type-row" key={ticketType.slug}>
               <div>
                 <strong>{ticketType.name}</strong>
                 {ticketType.description ? <span>{ticketType.description}</span> : null}
+                {ticketType.capacityUnitsPerTicket > 1 ? (
+                  <span>{ticketType.capacityUnitsPerTicket} {labels.seatsPerTicket}</span>
+                ) : null}
               </div>
               <div>
                 <strong>{formatMoney(ticketType.priceCents, ticketType.currency)}</strong>
-                <span>{ticketType.remaining > 0 ? `${ticketType.remaining} ${labels.remaining}` : labels.soldOut}</span>
+                <span>
+                  {ticketType.remaining === null
+                    ? labels.checking
+                    : ticketType.remainingTicketQuantity > 0
+                      ? `${ticketType.remainingTicketQuantity} ${labels.remaining}`
+                      : labels.soldOut}
+                </span>
               </div>
             </div>
           ))}
@@ -320,15 +359,19 @@ function TicketSaleModule({ eventPublicId }: { eventPublicId: string }) {
             <label htmlFor="ticketType">{labels.ticketType}</label>
             <select
               id="ticketType"
-              value={selectedTicketTypeId}
+              value={selectedTicketTypeSlug}
               onChange={(event) => {
-                setSelectedTicketTypeId(event.currentTarget.value)
+                setSelectedTicketTypeSlug(event.currentTarget.value)
                 setQuantity(1)
               }}
               required
             >
-              {ticketTypes.map((ticketType) => (
-                <option key={ticketType.id} value={ticketType.id} disabled={ticketType.remaining <= 0}>
+              {ticketRows.map((ticketType) => (
+                <option
+                  key={ticketType.slug}
+                  value={ticketType.slug}
+                  disabled={!ticketType.ticketTypeId || ticketType.remainingTicketQuantity < 1}
+                >
                   {ticketType.name}
                 </option>
               ))}
@@ -342,7 +385,7 @@ function TicketSaleModule({ eventPublicId }: { eventPublicId: string }) {
               min="1"
               max={Math.max(maxQuantity, 1)}
               value={quantity}
-              onChange={(event) => setQuantity(Number(event.currentTarget.value))}
+              onChange={(event) => setQuantity(Math.max(Number(event.currentTarget.value), 1))}
               required
             />
           </div>
@@ -363,13 +406,45 @@ function TicketSaleModule({ eventPublicId }: { eventPublicId: string }) {
             <strong>{formatMoney(total, selectedTicketType?.currency ?? 'AUD')}</strong>
           </div>
           {message ? <p className="muted">{message}</p> : null}
-          <Button type="submit" disabled={submitting || !selectedTicketType || selectedTicketType.remaining <= 0}>
+          <Button type="submit" disabled={submitting || selectedTicketTypeUnavailable}>
             {submitting ? labels.loading : labels.checkout}
           </Button>
         </form>
       </div>
     </section>
   )
+}
+
+type TicketSaleRow = TicketSaleConfigOption & {
+  currency: string
+  ticketTypeId: string | null
+  sold: number
+  reserved: number
+  remaining: number | null
+  remainingTicketQuantity: number
+}
+
+function mergeTicketRows(
+  ticketOptions: TicketSaleConfigOption[],
+  ticketInventories: TicketInventory[],
+  currency: string,
+): TicketSaleRow[] {
+  const inventoriesBySlug = new Map(ticketInventories.map((inventory) => [inventory.slug, inventory]))
+
+  return ticketOptions.map((ticketOption) => {
+    const inventory = inventoriesBySlug.get(ticketOption.slug)
+    const remaining = inventory?.remaining ?? null
+
+    return {
+      ...ticketOption,
+      currency,
+      ticketTypeId: inventory?.ticketTypeId ?? null,
+      sold: inventory?.sold ?? 0,
+      reserved: inventory?.reserved ?? 0,
+      remaining,
+      remainingTicketQuantity: remaining === null ? 0 : Math.floor(remaining / ticketOption.capacityUnitsPerTicket),
+    }
+  })
 }
 
 function formatMoney(cents: number, currency: string) {

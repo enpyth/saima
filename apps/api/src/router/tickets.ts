@@ -1,77 +1,77 @@
 import { ORPCError, os } from '@orpc/server'
-import type { TicketSaleStat, TicketType } from '@saima/shared'
+import type { TicketSaleInventory, TicketSaleStat } from '@saima/shared'
 import type Stripe from 'stripe'
 import { z } from 'zod'
 
 import { env } from '../env'
 import { supabaseAdmin } from '../supabase'
 import { confirmTicketOrderFromSession, getStripeClient } from '../stripe'
+import {
+  getConfiguredTicketTypeById,
+  getConfiguredTicketTypes,
+  summarizeConfiguredTicketTypes,
+  summarizeTicketInventory,
+} from '../tickets/ticket-types'
 import { mapTicketOrderWithDetails } from './mappers'
 import { adminOnly, authed } from './procedures'
-import type { EventRow, TicketOrderRow, TicketTypeRow } from './rows'
+import type { EventRow, TicketOrderRow } from './rows'
 import { text, uuid } from './schemas'
 import { getRows } from './supabase-result'
 
-function summarizeTicketTypes(
-  ticketTypes: TicketTypeRow[],
-  orders: Pick<TicketOrderRow, 'ticket_type_id' | 'quantity' | 'status'>[],
-): TicketType[] {
-  return ticketTypes.map((ticketType) => {
-    const sold = orders
-      .filter((order) => order.ticket_type_id === ticketType.id && order.status === 'confirmed')
-      .reduce((total, order) => total + order.quantity, 0)
-    const reserved = orders
-      .filter((order) => order.ticket_type_id === ticketType.id && order.status === 'pending_payment')
-      .reduce((total, order) => total + order.quantity, 0)
-
-    return {
-      id: ticketType.id,
-      eventPublicId: ticketType.event_public_id,
-      name: ticketType.name,
-      description: ticketType.description,
-      priceCents: ticketType.price_cents,
-      currency: ticketType.currency,
-      capacity: ticketType.capacity,
-      sold,
-      reserved,
-      remaining: Math.max(ticketType.capacity - sold - reserved, 0),
-      saleStartsAt: ticketType.sale_starts_at,
-      saleEndsAt: ticketType.sale_ends_at,
-      isActive: ticketType.is_active,
-    }
-  })
-}
-
 async function getTicketTypeSummaries(eventPublicId?: string) {
-  let query = supabaseAdmin
-    .from('ticket_types')
-    .select('id,event_public_id,name,description,price_cents,currency,capacity,sale_starts_at,sale_ends_at,is_active,created_at')
-    .order('created_at', { ascending: true })
-
-  if (eventPublicId) {
-    query = query.eq('event_public_id', eventPublicId)
-  }
-
-  const ticketTypes = await getRows<TicketTypeRow[]>(query)
+  const ticketTypes = getConfiguredTicketTypes(eventPublicId)
   if (ticketTypes.length === 0) {
     return []
   }
 
-  const orders = await getRows<Pick<TicketOrderRow, 'ticket_type_id' | 'quantity' | 'status'>[]>(
-    supabaseAdmin
-      .from('ticket_orders')
-      .select('ticket_type_id,quantity,status')
-      .in(
-        'ticket_type_id',
-        ticketTypes.map((ticketType) => ticketType.id),
-      ),
-  )
+  const orders = await getTicketOrderQuantities([...new Set(ticketTypes.map((ticketType) => ticketType.eventPublicId))])
 
-  return summarizeTicketTypes(ticketTypes, orders)
+  return summarizeConfiguredTicketTypes(ticketTypes, orders)
+}
+
+async function getTicketInventory(eventPublicId: string) {
+  const ticketTypes = getConfiguredTicketTypes(eventPublicId).filter((ticketType) => ticketType.isActive)
+  if (ticketTypes.length === 0) {
+    return []
+  }
+
+  const orders = await getTicketOrderQuantities([eventPublicId])
+
+  return summarizeTicketInventory(ticketTypes, orders)
+}
+
+async function getTicketOrderQuantities(eventPublicIds: string[]) {
+  const query = supabaseAdmin
+    .from('ticket_orders')
+    .select('event_public_id,ticket_type_id,quantity,capacity_units_per_ticket,status')
+
+  try {
+    return await getRows<
+      Pick<TicketOrderRow, 'event_public_id' | 'ticket_type_id' | 'quantity' | 'capacity_units_per_ticket' | 'status'>[]
+    >(eventPublicIds.length === 1 ? query.eq('event_public_id', eventPublicIds[0] ?? '') : query.in('event_public_id', eventPublicIds))
+  } catch (error) {
+    if (!isMissingCapacityUnitsColumnError(error)) {
+      throw error
+    }
+  }
+
+  const fallbackQuery = supabaseAdmin
+    .from('ticket_orders')
+    .select('event_public_id,ticket_type_id,quantity,status')
+
+  return getRows<Pick<TicketOrderRow, 'event_public_id' | 'ticket_type_id' | 'quantity' | 'status'>[]>(
+    eventPublicIds.length === 1
+      ? fallbackQuery.eq('event_public_id', eventPublicIds[0] ?? '')
+      : fallbackQuery.in('event_public_id', eventPublicIds),
+  )
+}
+
+function isMissingCapacityUnitsColumnError(error: unknown) {
+  return error instanceof Error && error.message.includes('capacity_units_per_ticket') && error.message.includes('does not exist')
 }
 
 export const ticketsRouter = {
-  saleForEvent: os.input(z.object({ eventPublicId: text })).handler(async ({ input }) => {
+  saleForEvent: os.input(z.object({ eventPublicId: text })).handler(async ({ input }): Promise<TicketSaleInventory> => {
     const event = await getRows<EventRow>(
       supabaseAdmin
         .from('events')
@@ -80,13 +80,14 @@ export const ticketsRouter = {
         .eq('is_published', true)
         .single(),
     )
-    const ticketTypes = (await getTicketTypeSummaries(input.eventPublicId)).filter((ticketType) => ticketType.isActive)
+    const configuredSale = getConfiguredTicketTypes(input.eventPublicId)[0]
 
     return {
       eventPublicId: event.public_id,
       eventTitle: event.title,
       startsAt: event.starts_at,
-      ticketTypes,
+      capacity: configuredSale?.capacity ?? 0,
+      ticketInventories: await getTicketInventory(input.eventPublicId),
     }
   }),
   createCheckoutSession: authed
@@ -100,6 +101,11 @@ export const ticketsRouter = {
       }),
     )
     .handler(async ({ context, input }) => {
+      const ticketType = getConfiguredTicketTypeById(input.ticketTypeId)
+      if (!ticketType) {
+        throw new ORPCError('BAD_REQUEST', { message: 'Ticket type not found.' })
+      }
+
       let stripe
       try {
         stripe = getStripeClient()
@@ -112,19 +118,19 @@ export const ticketsRouter = {
       const order = await getRows<TicketOrderRow>(
         supabaseAdmin.rpc('create_pending_ticket_order', {
           p_ticket_type_id: input.ticketTypeId,
+          p_event_public_id: ticketType.eventPublicId,
+          p_unit_price_cents: ticketType.priceCents,
+          p_capacity: ticketType.capacity,
+          p_capacity_units_per_ticket: ticketType.capacityUnitsPerTicket,
+          p_sale_starts_at: ticketType.saleStartsAt,
+          p_sale_ends_at: ticketType.saleEndsAt,
+          p_is_active: ticketType.isActive,
           p_purchaser_user_id: context.user.id,
           p_purchaser_name: input.purchaserName,
           p_purchaser_email: input.purchaserEmail,
           p_purchaser_phone: input.purchaserPhone ?? null,
           p_quantity: input.quantity,
         }),
-      )
-      const ticketType = await getRows<TicketTypeRow>(
-        supabaseAdmin
-          .from('ticket_types')
-          .select('id,event_public_id,name,description,price_cents,currency,capacity,sale_starts_at,sale_ends_at,is_active,created_at')
-          .eq('id', order.ticket_type_id)
-          .single(),
       )
       const event = await getRows<EventRow>(
         supabaseAdmin
@@ -158,7 +164,7 @@ export const ticketsRouter = {
             {
               price_data: {
                 currency: ticketType.currency.toLowerCase(),
-                unit_amount: ticketType.price_cents,
+                unit_amount: ticketType.priceCents,
                 product_data: {
                   name: `${event.title} - ${ticketType.name}`,
                   description: ticketType.description ?? undefined,
@@ -263,26 +269,16 @@ export const ticketsRouter = {
       return []
     }
 
-    const [ticketTypes, events] = await Promise.all([
-      getRows<Array<Pick<TicketTypeRow, 'id' | 'name' | 'description'>>>(
-        supabaseAdmin
-          .from('ticket_types')
-          .select('id,name,description')
-          .in(
-            'id',
-            [...new Set(orders.map((order) => order.ticket_type_id))],
-          ),
-      ),
-      getRows<Array<EventRow & { location: string }>>(
-        supabaseAdmin
-          .from('events')
-          .select('public_id,title,starts_at,location')
-          .in(
-            'public_id',
-            [...new Set(orders.map((order) => order.event_public_id))],
-          ),
-      ),
-    ])
+    const events = await getRows<Array<EventRow & { location: string }>>(
+      supabaseAdmin
+        .from('events')
+        .select('public_id,title,starts_at,location')
+        .in(
+          'public_id',
+          [...new Set(orders.map((order) => order.event_public_id))],
+        ),
+    )
+    const ticketTypes = orders.map((order) => getConfiguredTicketTypeById(order.ticket_type_id)).filter((ticketType) => ticketType !== null)
 
     return orders.map((order) =>
       mapTicketOrderWithDetails({
@@ -315,6 +311,7 @@ export const ticketsRouter = {
         priceCents: ticketType.priceCents,
         currency: ticketType.currency,
         capacity: ticketType.capacity,
+        capacityUnitsPerTicket: ticketType.capacityUnitsPerTicket,
         sold: ticketType.sold,
         reserved: ticketType.reserved,
         remaining: ticketType.remaining,

@@ -5,6 +5,9 @@ drop function if exists public.handle_new_user();
 drop function if exists public.book_course_slot(uuid, uuid);
 drop function if exists public.create_ticket_order(uuid, uuid, text, text, text, integer);
 drop function if exists public.create_pending_ticket_order(uuid, uuid, text, text, text, integer);
+drop function if exists public.create_pending_ticket_order(uuid, text, integer, integer, timestamptz, timestamptz, boolean, uuid, text, text, text, integer);
+drop function if exists public.create_pending_ticket_order(text, text, integer, integer, timestamptz, timestamptz, boolean, uuid, text, text, text, integer);
+drop function if exists public.create_pending_ticket_order(uuid, text, integer, integer, integer, timestamptz, timestamptz, boolean, uuid, text, text, text, integer);
 
 drop table if exists public.ticket_orders cascade;
 drop table if exists public.ticket_types cascade;

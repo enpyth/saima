@@ -163,6 +163,7 @@ describe('router response mappers', () => {
         purchaser_email: 'visitor@example.com',
         purchaser_phone: null,
         quantity: 2,
+        capacity_units_per_ticket: 1,
         unit_price_cents: 2500,
         total_price_cents: 5000,
         status: 'confirmed',
