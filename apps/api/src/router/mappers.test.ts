@@ -170,6 +170,11 @@ describe('router response mappers', () => {
         stripe_checkout_session_id: 'cs_1',
         stripe_payment_intent_id: 'pi_1',
         paid_at: '2026-01-05T00:00:00.000Z',
+        qr_token: 'ticket-token',
+        confirmation_email_sent_at: '2026-01-05T00:01:00.000Z',
+        confirmation_email_resend_id: 'email-1',
+        checked_in_at: '2026-10-16T08:30:00.000Z',
+        checked_in_by: 'admin-1',
         created_at: '2026-01-04T00:00:00.000Z',
         ticket_types: { id: 'ticket-1', name: 'Adult', description: null },
         events: {
@@ -186,6 +191,11 @@ describe('router response mappers', () => {
       purchaserName: 'Visitor One',
       totalPriceCents: 5000,
       paidAt: '2026-01-05T00:00:00.000Z',
+      qrToken: 'ticket-token',
+      confirmationEmailSentAt: '2026-01-05T00:01:00.000Z',
+      confirmationEmailResendId: 'email-1',
+      checkedInAt: '2026-10-16T08:30:00.000Z',
+      checkedInBy: 'admin-1',
       ticketType: { id: 'ticket-1', name: 'Adult' },
       event: { publicId: '20261016', startsAt: '2026-10-16T09:00:00.000Z' },
     })

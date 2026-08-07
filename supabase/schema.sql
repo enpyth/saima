@@ -54,6 +54,11 @@ create table public.ticket_orders (
   stripe_checkout_session_id text unique,
   stripe_payment_intent_id text,
   paid_at timestamptz,
+  qr_token text not null unique default encode(gen_random_bytes(32), 'hex'),
+  confirmation_email_sent_at timestamptz,
+  confirmation_email_resend_id text,
+  checked_in_at timestamptz,
+  checked_in_by uuid references public.profiles(id) on delete set null,
   created_at timestamptz not null default now()
 );
 
@@ -198,6 +203,9 @@ on public.ticket_orders (event_public_id, status);
 
 create index ticket_orders_purchaser_status_created_at_idx
 on public.ticket_orders (purchaser_user_id, status, created_at desc);
+
+create index ticket_orders_qr_token_idx
+on public.ticket_orders (qr_token);
 
 create index courses_member_status_idx
 on public.courses (member_id, status);

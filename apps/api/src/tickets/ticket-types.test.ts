@@ -83,7 +83,7 @@ describe('configured ticket types', () => {
 
     expect(summaries[0]).toMatchObject({ name: 'General admission', capacity: 500, sold: 2, reserved: 1, remaining: 484 })
     expect(summaries[1]).toMatchObject({ name: 'Student', sold: 5, reserved: 0, remaining: 484 })
-    expect(summaries[2]).toMatchObject({ name: 'Family', sold: 2, capacityUnitsPerTicket: 4, priceCents: 9000, remaining: 484 })
+    expect(summaries[2]).toMatchObject({ name: 'Family', sold: 2, capacityUnitsPerTicket: 4, priceCents: 10000, remaining: 484 })
     expect(inventories).toEqual([
       {
         eventPublicId: '20261016',

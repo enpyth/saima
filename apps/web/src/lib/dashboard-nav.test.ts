@@ -11,6 +11,7 @@ describe('dashboard navigation config', () => {
   it('returns the expected navigation items by role', () => {
     expect(getDashboardItems('admin').map((item) => item.id)).toEqual([
       'ticket-sales',
+      'ticket-checkin',
       'applications',
       'users',
       'events',

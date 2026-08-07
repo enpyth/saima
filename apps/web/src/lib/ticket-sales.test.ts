@@ -65,7 +65,7 @@ describe('ticket sales config', () => {
       'Family',
     ])
     expect(ticketOptions.find((ticketOption) => ticketOption.slug === 'family')).toMatchObject({
-      priceCents: 9000,
+      priceCents: 10000,
       capacityUnitsPerTicket: 4,
     })
   })

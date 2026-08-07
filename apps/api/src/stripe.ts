@@ -2,6 +2,7 @@ import Stripe from 'stripe'
 
 import { env } from './env'
 import { supabaseAdmin } from './supabase'
+import { sendTicketConfirmationEmail } from './tickets/ticket-email'
 
 let stripeClient: Stripe | null = null
 
@@ -79,6 +80,14 @@ export async function confirmTicketOrderFromSession(session: Stripe.Checkout.Ses
 
   if (error) {
     throw error
+  }
+
+  if (data) {
+    try {
+      await sendTicketConfirmationEmail(data)
+    } catch (error) {
+      console.error('Ticket confirmation email failed:', error)
+    }
   }
 
   return data
