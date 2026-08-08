@@ -203,7 +203,7 @@ function readTicketTypes(value: unknown): ConfiguredTicketOption[] {
       name: readString(ticketType, 'name'),
       description: readNullableString(ticketType, 'description'),
       priceCents: readNonNegativeInteger(ticketType, 'priceCents'),
-      capacityUnitsPerTicket: readPositiveInteger(ticketType, 'capacityUnitsPerTicket'),
+      capacityUnitsPerTicket: readNonNegativeInteger(ticketType, 'capacityUnitsPerTicket'),
       sortOrder: readNonNegativeInteger(ticketType, 'sortOrder'),
     }
   })

@@ -1,5 +1,5 @@
 import { ORPCError, os } from '@orpc/server'
-import type { TicketSaleInventory, TicketSaleStat } from '@saima/shared'
+import type { TicketCheckInResult, TicketSaleInventory, TicketSaleStat } from '@saima/shared'
 import type Stripe from 'stripe'
 import { z } from 'zod'
 
@@ -12,6 +12,7 @@ import {
   summarizeConfiguredTicketTypes,
   summarizeTicketInventory,
 } from '../tickets/ticket-types'
+import { buildInvalidTicketCheckInResult, buildTicketCheckInResult } from '../tickets/ticket-checkin'
 import { mapTicketOrderWithDetails } from './mappers'
 import { adminOnly, authed } from './procedures'
 import type { EventRow, TicketOrderRow } from './rows'
@@ -319,4 +320,67 @@ export const ticketsRouter = {
       }
     })
   }),
+  checkInByToken: adminOnly
+    .input(z.object({ token: text }))
+    .handler(async ({ context, input }): Promise<TicketCheckInResult> => {
+      const order = await getRows<TicketOrderRow | null>(
+        supabaseAdmin
+          .from('ticket_orders')
+          .select('*')
+          .eq('qr_token', input.token)
+          .maybeSingle(),
+      )
+
+      if (!order) {
+        return buildInvalidTicketCheckInResult()
+      }
+
+      if (order.status !== 'confirmed') {
+        return buildInvalidTicketCheckInResult('Ticket has not been paid.')
+      }
+
+      const [event, ticketType] = await Promise.all([
+        getRows<(EventRow & { location: string }) | null>(
+          supabaseAdmin
+            .from('events')
+            .select('public_id,title,starts_at,location')
+            .eq('public_id', order.event_public_id)
+            .maybeSingle(),
+        ),
+        Promise.resolve(getConfiguredTicketTypeById(order.ticket_type_id)),
+      ])
+      const mappedTicketType = ticketType
+        ? { id: ticketType.id, name: ticketType.name, description: ticketType.description ?? null }
+        : null
+
+      if (order.checked_in_at) {
+        return buildTicketCheckInResult({
+          status: 'already_checked_in',
+          order,
+          event,
+          ticketType: mappedTicketType,
+        })
+      }
+
+      const checkedInOrder = await getRows<TicketOrderRow | null>(
+        supabaseAdmin
+          .from('ticket_orders')
+          .update({
+            checked_in_at: new Date().toISOString(),
+            checked_in_by: context.user.id,
+          })
+          .eq('id', order.id)
+          .eq('status', 'confirmed')
+          .is('checked_in_at', null)
+          .select('*')
+          .maybeSingle(),
+      )
+
+      return buildTicketCheckInResult({
+        status: checkedInOrder ? 'checked_in' : 'already_checked_in',
+        order: checkedInOrder ?? order,
+        event,
+        ticketType: mappedTicketType,
+      })
+    }),
 }

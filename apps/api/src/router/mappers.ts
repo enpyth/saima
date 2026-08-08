@@ -180,6 +180,11 @@ export function mapTicketOrderWithDetails(
     stripeCheckoutSessionId: row.stripe_checkout_session_id,
     stripePaymentIntentId: row.stripe_payment_intent_id,
     paidAt: row.paid_at,
+    qrToken: row.qr_token,
+    confirmationEmailSentAt: row.confirmation_email_sent_at,
+    confirmationEmailResendId: row.confirmation_email_resend_id,
+    checkedInAt: row.checked_in_at,
+    checkedInBy: row.checked_in_by,
     createdAt: row.created_at,
     ticketType: row.ticket_types
       ? {

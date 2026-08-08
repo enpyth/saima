@@ -719,6 +719,39 @@ p {
   width: 76px;
 }
 
+.checkin-status {
+  align-items: center;
+  border: 1px solid rgba(25, 23, 21, 0.12);
+  display: flex;
+  gap: 10px;
+  margin: 16px 0;
+  padding: 14px 16px;
+}
+
+.checkin-status-valid {
+  background: rgba(30, 110, 72, 0.1);
+  color: #1e6e48;
+}
+
+.checkin-status-warning {
+  background: rgba(201, 137, 22, 0.14);
+  color: #8a5b00;
+}
+
+.checkin-status-invalid {
+  background: rgba(154, 55, 41, 0.1);
+  color: #9a3729;
+}
+
+.checkin-detail-row {
+  grid-template-columns: minmax(220px, 0.8fr) minmax(260px, 1fr);
+}
+
+.checkin-detail-grid {
+  display: grid;
+  gap: 8px;
+}
+
 .panel-wide {
   grid-column: 1 / -1;
 }

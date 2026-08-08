@@ -12,6 +12,8 @@ export type BookingStatus = 'confirmed' | 'cancelled' | 'completed'
 
 export type TicketOrderStatus = 'pending_payment' | 'confirmed' | 'cancelled'
 
+export type TicketCheckInStatus = 'checked_in' | 'already_checked_in' | 'invalid'
+
 export type TicketType = {
   id: string
   eventPublicId: string
@@ -184,6 +186,11 @@ export type TicketOrderWithDetails = {
   stripeCheckoutSessionId?: string | null
   stripePaymentIntentId?: string | null
   paidAt?: string | null
+  qrToken?: string | null
+  confirmationEmailSentAt?: string | null
+  confirmationEmailResendId?: string | null
+  checkedInAt?: string | null
+  checkedInBy?: string | null
   createdAt: string
   ticketType?: Pick<TicketType, 'id' | 'name' | 'description'> | null
   event?: {
@@ -192,6 +199,12 @@ export type TicketOrderWithDetails = {
     startsAt: string
     location: string
   } | null
+}
+
+export type TicketCheckInResult = {
+  status: TicketCheckInStatus
+  message: string
+  ticket?: TicketOrderWithDetails
 }
 
 export type AdminUser = Pick<Profile, 'id' | 'email' | 'role' | 'publicProfile'> & {

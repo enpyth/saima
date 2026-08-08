@@ -30,6 +30,14 @@
         "priceCents": 10000,
         "capacityUnitsPerTicket": 4,
         "sortOrder": 30
+      },
+      {
+        "slug": "price-adjustment",
+        "name": "Price adjustment",
+        "description": "Manual price adjustment.",
+        "priceCents": 100,
+        "capacityUnitsPerTicket": 0,
+        "sortOrder": 40
       }
     ]
   }

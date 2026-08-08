@@ -50,6 +50,11 @@ export type TicketOrderRow = {
   stripe_checkout_session_id: string | null
   stripe_payment_intent_id: string | null
   paid_at: string | null
+  qr_token: string | null
+  confirmation_email_sent_at: string | null
+  confirmation_email_resend_id: string | null
+  checked_in_at: string | null
+  checked_in_by: string | null
   created_at: string
 }
 
