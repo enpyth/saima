@@ -1,5 +1,5 @@
 import { ORPCError, os } from '@orpc/server'
-import type { TicketCheckInResult, TicketSaleInventory, TicketSaleStat } from '@saima/shared'
+import { getTicketQuantityLimit, type TicketCheckInResult, type TicketSaleInventory, type TicketSaleStat } from '@saima/shared'
 import type Stripe from 'stripe'
 import { z } from 'zod'
 
@@ -98,13 +98,16 @@ export const ticketsRouter = {
         purchaserName: text,
         purchaserEmail: z.string().trim().email(),
         purchaserPhone: z.string().trim().optional(),
-        quantity: z.number().int().min(1).max(10),
+        quantity: z.number().int().min(1).max(100),
       }),
     )
     .handler(async ({ context, input }) => {
       const ticketType = getConfiguredTicketTypeById(input.ticketTypeId)
       if (!ticketType) {
         throw new ORPCError('BAD_REQUEST', { message: 'Ticket type not found.' })
+      }
+      if (input.quantity > getTicketQuantityLimit(ticketType.capacityUnitsPerTicket)) {
+        throw new ORPCError('BAD_REQUEST', { message: 'Choose a valid quantity for this ticket type.' })
       }
 
       let stripe

@@ -1,4 +1,4 @@
-import { calculateTicketSaleOverview, type TicketSaleStat } from '@saima/shared'
+import { calculateTicketSaleOverview, getTicketQuantityLimit, type TicketSaleStat } from '@saima/shared'
 import { describe, expect, it } from 'vitest'
 
 import { getTicketSaleConfig, getTicketSaleOptions } from './ticket-sales-config'
@@ -78,6 +78,7 @@ describe('ticket sales config', () => {
       priceCents: 100,
       capacityUnitsPerTicket: 0,
     })
+    expect(getTicketQuantityLimit(ticketOptions.find((ticketOption) => ticketOption.slug === 'price-adjustment')?.capacityUnitsPerTicket ?? 1)).toBe(100)
   })
 
   it('returns empty options for events without a ticket config', () => {

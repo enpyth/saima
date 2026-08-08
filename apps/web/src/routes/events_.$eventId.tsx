@@ -1,5 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router'
-import type { TicketInventory } from '@saima/shared'
+import { getTicketQuantityLimit, type TicketInventory } from '@saima/shared'
 import { ArrowLeft, ExternalLink, FileText, MapPin, Ticket } from 'lucide-react'
 import { useEffect, useMemo, useState, type FormEvent } from 'react'
 
@@ -277,7 +277,10 @@ function TicketSaleModule({ eventPublicId }: { eventPublicId: string }) {
     () => ticketRows.find((ticketType) => ticketType.slug === selectedTicketTypeSlug),
     [selectedTicketTypeSlug, ticketRows],
   )
-  const maxQuantity = Math.min(selectedTicketType?.remainingTicketQuantity ?? 0, 10)
+  const maxQuantity = Math.min(
+    selectedTicketType?.remainingTicketQuantity ?? 0,
+    getTicketQuantityLimit(selectedTicketType?.capacityUnitsPerTicket ?? 1),
+  )
   const total = (selectedTicketType?.priceCents ?? 0) * quantity
   const selectedCapacityUnits = selectedTicketType?.capacityUnitsPerTicket ?? 1
   const selectedTicketTypeUnavailable =
@@ -439,7 +442,7 @@ function mergeTicketRows(
       remaining === null
         ? 0
         : ticketOption.capacityUnitsPerTicket === 0
-          ? 10
+          ? getTicketQuantityLimit(ticketOption.capacityUnitsPerTicket)
           : Math.floor(remaining / ticketOption.capacityUnitsPerTicket)
 
     return {

@@ -72,6 +72,13 @@ export type TicketSaleOverview = {
   sellThroughRate: number
 }
 
+export const defaultTicketQuantityLimit = 10
+export const zeroCapacityTicketQuantityLimit = 100
+
+export function getTicketQuantityLimit(capacityUnitsPerTicket: number) {
+  return capacityUnitsPerTicket === 0 ? zeroCapacityTicketQuantityLimit : defaultTicketQuantityLimit
+}
+
 export type Profile = {
   id: string
   email: string

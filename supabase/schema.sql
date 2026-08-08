@@ -287,10 +287,6 @@ declare
   sold_quantity integer;
   created_order public.ticket_orders%rowtype;
 begin
-  if p_quantity < 1 or p_quantity > 10 then
-    raise exception 'Choose between 1 and 10 tickets.' using errcode = '22023';
-  end if;
-
   if p_unit_price_cents is null or p_unit_price_cents < 0 then
     raise exception 'Ticket price is invalid.' using errcode = '22023';
   end if;
@@ -301,6 +297,14 @@ begin
 
   if p_capacity_units_per_ticket is null or p_capacity_units_per_ticket < 0 then
     raise exception 'Ticket capacity unit value is invalid.' using errcode = '22023';
+  end if;
+
+  if p_quantity is null
+    or p_quantity < 1
+    or (p_capacity_units_per_ticket = 0 and p_quantity > 100)
+    or (p_capacity_units_per_ticket > 0 and p_quantity > 10)
+  then
+    raise exception 'Choose a valid quantity for this ticket type.' using errcode = '22023';
   end if;
 
   perform pg_advisory_xact_lock(hashtextextended(p_event_public_id, 0));
