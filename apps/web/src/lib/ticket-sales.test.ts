@@ -58,15 +58,25 @@ describe('ticket sales config', () => {
       capacity: 500,
       isActive: true,
     })
-    expect(ticketOptions.map((ticketOption) => ticketOption.slug)).toEqual(['general', 'student', 'family'])
+    expect(ticketOptions.map((ticketOption) => ticketOption.slug)).toEqual([
+      'general',
+      'student',
+      'family',
+      'price-adjustment',
+    ])
     expect(ticketOptions.map((ticketOption) => ticketOption.name)).toEqual([
       'General admission',
       'Student',
       'Family',
+      'Price adjustment',
     ])
     expect(ticketOptions.find((ticketOption) => ticketOption.slug === 'family')).toMatchObject({
       priceCents: 10000,
       capacityUnitsPerTicket: 4,
+    })
+    expect(ticketOptions.find((ticketOption) => ticketOption.slug === 'price-adjustment')).toMatchObject({
+      priceCents: 100,
+      capacityUnitsPerTicket: 0,
     })
   })
 

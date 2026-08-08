@@ -47,7 +47,7 @@ create table public.ticket_orders (
   purchaser_email text not null,
   purchaser_phone text,
   quantity integer not null check (quantity > 0),
-  capacity_units_per_ticket integer not null default 1 check (capacity_units_per_ticket > 0),
+  capacity_units_per_ticket integer not null default 1 check (capacity_units_per_ticket >= 0),
   unit_price_cents integer not null check (unit_price_cents >= 0),
   total_price_cents integer not null check (total_price_cents >= 0),
   status public.ticket_order_status not null default 'pending_payment',
@@ -299,7 +299,7 @@ begin
     raise exception 'Ticket capacity is invalid.' using errcode = '22023';
   end if;
 
-  if p_capacity_units_per_ticket is null or p_capacity_units_per_ticket < 1 then
+  if p_capacity_units_per_ticket is null or p_capacity_units_per_ticket < 0 then
     raise exception 'Ticket capacity unit value is invalid.' using errcode = '22023';
   end if;
 

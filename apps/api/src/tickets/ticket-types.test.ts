@@ -22,13 +22,20 @@ describe('configured ticket types', () => {
       'General admission',
       'Student',
       'Family',
+      'Price adjustment',
     ])
-    expect(eventTicketTypes.map((ticketType) => ticketType.slug)).toEqual(['general', 'student', 'family'])
-    expect(eventTicketTypes.map((ticketType) => ticketType.capacityUnitsPerTicket)).toEqual([1, 1, 4])
+    expect(eventTicketTypes.map((ticketType) => ticketType.slug)).toEqual([
+      'general',
+      'student',
+      'family',
+      'price-adjustment',
+    ])
+    expect(eventTicketTypes.map((ticketType) => ticketType.capacityUnitsPerTicket)).toEqual([1, 1, 4, 0])
     expect(eventTicketTypes.map((ticketType) => ticketType.id)).toEqual([
       '2ff47892-1776-583d-8c45-212d3d6f83e9',
       '586a71dc-7174-5956-9ea9-1de251755657',
       'da7b82ae-3575-5a29-9cac-940bcab50406',
+      '8faec920-2464-598d-9c9d-dbef0d63f3da',
     ])
     expect(eventTicketTypes.map((ticketType) => ticketType.id).every((id) => /^[0-9a-f]{8}-[0-9a-f]{4}-5[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/.test(id))).toBe(true)
     expect(eventTicketTypes.every((ticketType) => ticketType.capacity === 500)).toBe(true)
@@ -47,7 +54,7 @@ describe('configured ticket types', () => {
   })
 
   it('summarizes type sales against shared event capacity units', () => {
-    const [general, student, family] = getConfiguredTicketTypes('20261016')
+    const [general, student, family, priceAdjustment] = getConfiguredTicketTypes('20261016')
     const orders = [
       {
         event_public_id: '20261016',
@@ -77,6 +84,13 @@ describe('configured ticket types', () => {
         capacity_units_per_ticket: 4,
         status: 'confirmed',
       },
+      {
+        event_public_id: '20261016',
+        ticket_type_id: priceAdjustment?.id ?? '',
+        quantity: 3,
+        capacity_units_per_ticket: 0,
+        status: 'confirmed',
+      },
     ]
     const summaries = summarizeConfiguredTicketTypes(getConfiguredTicketTypes('20261016'), orders)
     const inventories = summarizeTicketInventory(getConfiguredTicketTypes('20261016'), orders)
@@ -84,6 +98,7 @@ describe('configured ticket types', () => {
     expect(summaries[0]).toMatchObject({ name: 'General admission', capacity: 500, sold: 2, reserved: 1, remaining: 484 })
     expect(summaries[1]).toMatchObject({ name: 'Student', sold: 5, reserved: 0, remaining: 484 })
     expect(summaries[2]).toMatchObject({ name: 'Family', sold: 2, capacityUnitsPerTicket: 4, priceCents: 10000, remaining: 484 })
+    expect(summaries[3]).toMatchObject({ name: 'Price adjustment', sold: 3, capacityUnitsPerTicket: 0, priceCents: 100, remaining: 484 })
     expect(inventories).toEqual([
       {
         eventPublicId: '20261016',
@@ -106,6 +121,14 @@ describe('configured ticket types', () => {
         ticketTypeId: family?.id,
         slug: 'family',
         sold: 2,
+        reserved: 0,
+        remaining: 484,
+      },
+      {
+        eventPublicId: '20261016',
+        ticketTypeId: priceAdjustment?.id,
+        slug: 'price-adjustment',
+        sold: 3,
         reserved: 0,
         remaining: 484,
       },

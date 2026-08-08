@@ -279,10 +279,11 @@ function TicketSaleModule({ eventPublicId }: { eventPublicId: string }) {
   )
   const maxQuantity = Math.min(selectedTicketType?.remainingTicketQuantity ?? 0, 10)
   const total = (selectedTicketType?.priceCents ?? 0) * quantity
+  const selectedCapacityUnits = selectedTicketType?.capacityUnitsPerTicket ?? 1
   const selectedTicketTypeUnavailable =
     !selectedTicketType?.ticketTypeId ||
     selectedTicketType.remaining === null ||
-    selectedTicketType.remaining < selectedTicketType.capacityUnitsPerTicket ||
+    selectedTicketType.remaining < selectedCapacityUnits ||
     quantity > maxQuantity
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -434,6 +435,12 @@ function mergeTicketRows(
   return ticketOptions.map((ticketOption) => {
     const inventory = inventoriesBySlug.get(ticketOption.slug)
     const remaining = inventory?.remaining ?? null
+    const remainingTicketQuantity =
+      remaining === null
+        ? 0
+        : ticketOption.capacityUnitsPerTicket === 0
+          ? 10
+          : Math.floor(remaining / ticketOption.capacityUnitsPerTicket)
 
     return {
       ...ticketOption,
@@ -442,7 +449,7 @@ function mergeTicketRows(
       sold: inventory?.sold ?? 0,
       reserved: inventory?.reserved ?? 0,
       remaining,
-      remainingTicketQuantity: remaining === null ? 0 : Math.floor(remaining / ticketOption.capacityUnitsPerTicket),
+      remainingTicketQuantity,
     }
   })
 }
