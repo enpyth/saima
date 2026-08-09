@@ -40,11 +40,6 @@ const app = new Elysia()
     {
       parse: 'none',
     },
-  )
-
-if (import.meta.main) {
-  app.listen(env.port)
-  console.log(`SAIMA API running at http://localhost:${app.server?.port}`)
-}
+)
 
 export default app

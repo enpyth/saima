@@ -6,9 +6,9 @@
     "./router": "./src/router.ts"
   },
   "scripts": {
-    "dev": "bun --watch src/index.ts",
+    "dev": "bun --watch src/dev.ts",
     "build": "bun build --target bun --outdir dist src/index.ts",
-    "start": "bun src/index.ts",
+    "start": "bun src/dev.ts",
     "typecheck": "tsc --noEmit",
     "lint": "tsc --noEmit",
     "test": "bun test src/**/*.test.ts && tsc --noEmit"
