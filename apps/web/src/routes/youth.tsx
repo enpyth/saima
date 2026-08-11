@@ -31,22 +31,6 @@ function Youth() {
         </div>
       </section>
 
-      <section className="public-section editorial-split reverse tone-band">
-        <div className="image-offset">
-          <img src={siteImages.choirHall} alt="" />
-        </div>
-        <div className="section-copy">
-          <span className="eyebrow">{choir.hero.eyebrow}</span>
-          <h2>{choir.hero.title}</h2>
-          <p>{choir.hero.paragraphs[0]}</p>
-          <Button asChild variant="outline">
-            <a href="/choir-details">
-              {choir.detailsAction} <ArrowRight size={16} />
-            </a>
-          </Button>
-        </div>
-      </section>
-
       <section className="public-section">
         <div className="section-heading centered">
           <span className="eyebrow">{content.hero.eyebrow}</span>

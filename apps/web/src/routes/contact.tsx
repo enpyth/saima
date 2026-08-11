@@ -15,7 +15,7 @@ function Contact() {
   return (
     <main className="public-page">
       <section className="page-hero image-hero compact">
-        <img src={siteImages.choirHall} alt="" aria-hidden="true" />
+        <img src={siteImages.galleryPerformance} alt="" aria-hidden="true" />
         <div className="hero-scrim pale" />
         <div>
           <span className="eyebrow">{content.hero.eyebrow}</span>

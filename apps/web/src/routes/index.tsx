@@ -22,7 +22,7 @@ function Home() {
   return (
     <main className="public-page">
       <section className="home-hero">
-        <img src={siteImages.heroStage} alt="" aria-hidden="true" />
+        <img src={siteImages.performersElderHall} alt="" aria-hidden="true" />
         <div className="hero-scrim" />
         <div className="hero-content">
           <span className="eyebrow">{content.hero.eyebrow}</span>
@@ -54,7 +54,7 @@ function Home() {
           </a>
         </div>
         <div className="image-offset">
-          <img src={siteImages.mandateLesson} alt="" />
+          <img src={siteImages.consulate} alt="" />
         </div>
       </section>
 

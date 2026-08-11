@@ -38,7 +38,9 @@ export type EventArticle = TextBlock & {
 }
 
 export type ImageKey =
-  | 'heroStage'
+  | 'consulate'
+  | 'dunhuangDance'
+  | 'performersElderHall'
   | 'mandateLesson'
   | 'eventsConcert'
   | 'youthPiano'

@@ -39,7 +39,7 @@ export const galleryContent: Localized<GalleryContent> = {
       {
         title: 'Concert Highlights',
         summary: 'Selected moments from our multicultural concerts and major public performances.',
-        image: siteImages.heroStage,
+        image: siteImages.performersElderHall,
       },
       {
         title: 'Charity & Community Moments',
@@ -84,7 +84,7 @@ export const galleryContent: Localized<GalleryContent> = {
       {
         title: '音乐会精彩瞬间',
         summary: '多元文化音乐会和重要公共演出的精选瞬间。',
-        image: siteImages.heroStage,
+        image: siteImages.performersElderHall,
       },
       {
         title: '慈善与社区瞬间',

@@ -7,7 +7,9 @@ export function isPublicRouteEnabled(path: string) {
 }
 
 export const siteImages: Record<ImageKey, string> = {
-  heroStage: '/images/saima/hero.png',
+  consulate: '/images/saima/consulate.jpg',
+  dunhuangDance: '/images/saima/dunhuang-dance.jpg',
+  performersElderHall: '/images/saima/performers-elder-hall.jpg',
   mandateLesson: '/images/saima/mandate-lesson.jpg',
   eventsConcert: '/images/saima/events-concert.jpg',
   youthPiano: '/images/saima/youth-piano.jpg',
