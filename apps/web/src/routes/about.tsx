@@ -50,7 +50,7 @@ function About() {
         </div>
       </section>
 
-      <section className="public-section tone-band values-band">
+      {/*<section className="public-section tone-band values-band">
         <div className="section-heading centered">
           <span className="eyebrow">{mission.eyebrow}</span>
           <h2>{mission.title}</h2>
@@ -69,7 +69,7 @@ function About() {
             )
           })}
         </div>
-      </section>
+      </section>*/}
 
       <section className="public-section gallery-strip">
         <div className="section-heading">

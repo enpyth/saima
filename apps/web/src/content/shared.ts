@@ -1,6 +1,6 @@
 import type { ImageKey, Localized } from './types'
 
-export const temporarilyDisabledPublicRoutes = ['/gallery'] as const
+export const temporarilyDisabledPublicRoutes = ['/gallery', '/courses'] as const
 
 export function isPublicRouteEnabled(path: string) {
   return !(temporarilyDisabledPublicRoutes as readonly string[]).includes(path)
@@ -30,7 +30,7 @@ export const sharedContent = {
       { label: 'Youth', to: '/youth' },
       { label: 'Choir', to: '/choir' },
       ...(isPublicRouteEnabled('/gallery') ? [{ label: 'Gallery', to: '/gallery' }] : []),
-      { label: 'Courses', to: '/courses' },
+      ...(isPublicRouteEnabled('/courses') ? [{ label: 'Courses', to: '/courses' }] : []),
       { label: 'Join', to: '/membership' },
       { label: 'Contact', to: '/contact' },
     ],

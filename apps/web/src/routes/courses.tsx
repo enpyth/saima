@@ -1,4 +1,4 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, redirect } from '@tanstack/react-router'
 import type { CourseWithSlots } from '@saima/shared'
 import { useEffect, useState } from 'react'
 import { ArrowDown, LayoutDashboard, Search } from 'lucide-react'
@@ -8,11 +8,18 @@ import { CourseSlotBoard } from '../components/course-slot-board'
 import { useAuth } from '../components/auth-provider'
 import { useLanguage } from '../components/language-provider'
 import { coursesContent } from '../content/courses'
-import { siteImages } from '../content/shared'
+import { isPublicRouteEnabled, siteImages } from '../content/shared'
 import { api } from '../lib/orpc'
 import { getSlotsByIds, toDateKey } from '../lib/slot-board'
 
-export const Route = createFileRoute('/courses')({ component: Courses })
+export const Route = createFileRoute('/courses')({
+  beforeLoad: () => {
+    if (!isPublicRouteEnabled('/courses')) {
+      throw redirect({ to: '/', replace: true })
+    }
+  },
+  component: Courses,
+})
 
 function Courses() {
   const { user } = useAuth()
