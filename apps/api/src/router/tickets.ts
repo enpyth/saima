@@ -1,11 +1,12 @@
 import { ORPCError, os } from '@orpc/server'
-import { getTicketQuantityLimit, type TicketCheckInResult, type TicketSaleInventory, type TicketSaleStat } from '@saima/shared'
+import type { TicketCheckInResult, TicketSaleInventory, TicketSaleStat } from '@saima/shared'
 import type Stripe from 'stripe'
 import { z } from 'zod'
 
 import { env } from '../env'
 import { supabaseAdmin } from '../supabase'
 import { confirmTicketOrderFromSession, getStripeClient } from '../stripe'
+import { getTicketQuantityLimit } from '../tickets/ticket-quantity'
 import {
   getConfiguredTicketTypeById,
   getConfiguredTicketTypes,
