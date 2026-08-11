@@ -99,7 +99,7 @@ export const eventsContent: Localized<EventsContent> = {
   en: {
     hero: {
       eyebrow: 'Events',
-      title: 'Two signature projects across culture, community, and care.',
+      title: 'Signature projects across culture, community, and care.',
       paragraphs: [
         'South Australian International Musicians Association presents focused projects that connect music with multicultural exchange, youth performance, and charitable community service.',
         'Event status is based on the event date, so the same event will move from upcoming to past once its date has passed.',
@@ -208,7 +208,7 @@ export const eventsContent: Localized<EventsContent> = {
   zh: {
     hero: {
       eyebrow: '活动',
-      title: '两个连接文化、社区与公益关怀的重点项目。',
+      title: '文化、社区与公益关怀的重点项目。',
       paragraphs: [
         '南澳国际音乐协会通过音乐项目连接多元文化交流、青少年表演机会与社区公益服务。',
         '活动状态会根据活动日期自动判断；日期尚未到来的活动显示为即将举办，日期已过去的活动显示为已举办。',

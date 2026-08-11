@@ -1,11 +1,18 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, redirect } from '@tanstack/react-router'
 import { Camera, Images, Music } from 'lucide-react'
 
 import { useLanguage } from '../components/language-provider'
 import { galleryContent } from '../content/gallery'
-import { siteImages } from '../content/shared'
+import { isPublicRouteEnabled, siteImages } from '../content/shared'
 
-export const Route = createFileRoute('/gallery')({ component: Gallery })
+export const Route = createFileRoute('/gallery')({
+  beforeLoad: () => {
+    if (!isPublicRouteEnabled('/gallery')) {
+      throw redirect({ to: '/', replace: true })
+    }
+  },
+  component: Gallery,
+})
 
 function Gallery() {
   const { language } = useLanguage()

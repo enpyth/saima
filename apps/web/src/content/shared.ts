@@ -1,10 +1,17 @@
 import type { ImageKey, Localized } from './types'
 
+export const temporarilyDisabledPublicRoutes = ['/gallery'] as const
+
+export function isPublicRouteEnabled(path: string) {
+  return !(temporarilyDisabledPublicRoutes as readonly string[]).includes(path)
+}
+
 export const siteImages: Record<ImageKey, string> = {
-  heroStage: '/images/saima/hero-stage.jpg',
+  heroStage: '/images/saima/hero.png',
   mandateLesson: '/images/saima/mandate-lesson.jpg',
   eventsConcert: '/images/saima/events-concert.jpg',
   youthPiano: '/images/saima/youth-piano.jpg',
+  instrumentalPerformance: '/images/saima/instrumental_performance.jpeg',
   galleryPerformance: '/images/saima/gallery-performance.jpg',
   choirHall: '/images/saima/choir-hall.jpg',
 }
@@ -22,7 +29,7 @@ export const sharedContent = {
       { label: 'Events', to: '/events' },
       { label: 'Youth', to: '/youth' },
       { label: 'Choir', to: '/choir' },
-      { label: 'Gallery', to: '/gallery' },
+      ...(isPublicRouteEnabled('/gallery') ? [{ label: 'Gallery', to: '/gallery' }] : []),
       { label: 'Courses', to: '/courses' },
       { label: 'Join', to: '/membership' },
       { label: 'Contact', to: '/contact' },
@@ -78,7 +85,7 @@ export const sharedContent = {
       { label: '活动', to: '/events' },
       { label: '青少年', to: '/youth' },
       { label: '亲子合唱团', to: '/choir' },
-      { label: '照片与媒体', to: '/gallery' },
+      ...(isPublicRouteEnabled('/gallery') ? [{ label: '照片与媒体', to: '/gallery' }] : []),
       { label: '课程', to: '/courses' },
       { label: '加入我们', to: '/membership' },
       { label: '联系我们', to: '/contact' },

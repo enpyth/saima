@@ -5,7 +5,6 @@ import { useLanguage } from '../components/language-provider'
 import { Button } from '../components/ui/button'
 import { eventsContent, getEventsByStatus } from '../content/events'
 import type { EventArticle } from '../content/types'
-import { galleryContent } from '../content/gallery'
 import { siteImages } from '../content/shared'
 
 export const Route = createFileRoute('/events')({ component: Events })
@@ -14,7 +13,6 @@ function Events() {
   const { language } = useLanguage()
   const content = eventsContent[language]
   const eventGroups = getEventsByStatus(language)
-  const moments = galleryContent[language].groups.slice(0, 3)
 
   return (
     <main className="public-page">
@@ -50,7 +48,7 @@ function Events() {
         <EventList emptyLabel={content.labels.noEvents} events={eventGroups.past} detailsLabel={content.labels.details} />
       </section>
 
-      <section className="public-section gallery-strip">
+      {/* <section className="public-section gallery-strip">
         <div className="section-heading centered">
           <span className="eyebrow">{galleryContent[language].hero.eyebrow}</span>
           <h2>{galleryContent[language].hero.title}</h2>
@@ -64,7 +62,7 @@ function Events() {
             </article>
           ))}
         </div>
-      </section>
+      </section> */}
     </main>
   )
 }

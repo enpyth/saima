@@ -9,7 +9,7 @@ import { galleryContent } from '../content/gallery'
 import { homeContent } from '../content/home'
 import { membershipContent } from '../content/membership'
 import { memberContent } from '../content/members'
-import { sharedContent, siteImages, publicRoutePaths } from '../content/shared'
+import { isPublicRouteEnabled, publicRoutePaths, sharedContent, siteImages, temporarilyDisabledPublicRoutes } from '../content/shared'
 import { youthContent } from '../content/youth'
 
 const implementedPublicRoutes = new Set([
@@ -60,7 +60,6 @@ describe('public site content', () => {
       'Events',
       'Youth',
       'Choir',
-      'Gallery',
       'Courses',
       'Join',
       'Contact',
@@ -72,7 +71,6 @@ describe('public site content', () => {
       '活动',
       '青少年',
       '亲子合唱团',
-      '照片与媒体',
       '课程',
       '加入我们',
       '联系我们',
@@ -89,10 +87,20 @@ describe('public site content', () => {
     expect(new Set(publicRoutePaths).size).toBe(publicRoutePaths.length)
   })
 
+  it('keeps temporarily disabled public routes out of navigation', () => {
+    expect(temporarilyDisabledPublicRoutes).toContain('/gallery')
+    expect(isPublicRouteEnabled('/gallery')).toBe(false)
+    expect(publicRoutePaths).not.toContain('/gallery')
+    expect(sharedContent.en.navItems.some((item) => item.to === '/gallery')).toBe(false)
+    expect(sharedContent.zh.navItems.some((item) => item.to === '/gallery')).toBe(false)
+  })
+
   it('uses local image assets for public pages', () => {
     for (const path of Object.values(siteImages)) {
-      expect(path).toMatch(/^\/images\/saima\/.+\.(jpg|png|webp)$/)
+      expect(path).toMatch(/^\/images\/saima\/.+\.(jpe?g|png|webp)$/)
     }
+
+    expect(siteImages.instrumentalPerformance).toBe('/images/saima/instrumental_performance.jpeg')
 
     for (const group of galleryContent.en.groups) {
       expect(Object.values(siteImages)).toContain(group.image)

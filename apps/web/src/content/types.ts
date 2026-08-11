@@ -42,5 +42,6 @@ export type ImageKey =
   | 'mandateLesson'
   | 'eventsConcert'
   | 'youthPiano'
+  | 'instrumentalPerformance'
   | 'galleryPerformance'
   | 'choirHall'

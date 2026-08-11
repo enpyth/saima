@@ -14,6 +14,7 @@ function Youth() {
   const content = youthContent[language]
   const choir = choirContent[language]
   const icons = [Mic2, Piano, Theater]
+  const areaImages = [siteImages.choirHall, siteImages.instrumentalPerformance, siteImages.youthPiano]
 
   return (
     <main className="public-page">
@@ -56,7 +57,7 @@ function Youth() {
             const Icon = icons[index] ?? Mic2
             return (
               <article className="youth-item" key={area.title}>
-                <img src={index === 0 ? siteImages.choirHall : siteImages.youthPiano} alt="" />
+                <img src={areaImages[index] ?? siteImages.youthPiano} alt="" />
                 <div>
                   <Icon size={24} aria-hidden="true" />
                   <h3>{area.title}</h3>
