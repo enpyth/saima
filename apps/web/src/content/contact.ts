@@ -71,8 +71,6 @@ export const contactContent: Localized<ContactContent> = {
       methods: [
         { label: 'Email', value: 'info@saima.com.au' },
         { label: 'Phone', value: '0424882911 (SMS)' },
-        { label: 'Website', value: 'Website to be confirmed' },
-        { label: 'Social Media', value: 'ins/fb' },
       ],
       response: 'We aim to respond to enquiries as soon as possible.',
     },
@@ -115,8 +113,6 @@ export const contactContent: Localized<ContactContent> = {
       methods: [
         { label: '邮箱', value: 'info@saima.com.au' },
         { label: '电话', value: '0424882911 (SMS)' },
-        { label: '网站', value: '网站待确认' },
-        { label: '社交媒体', value: 'ins/fb' },
       ],
       response: '我们会尽快回复您的咨询。',
     },

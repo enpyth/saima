@@ -64,14 +64,12 @@ export const sharedContent = {
       programs: [
         { label: 'Young Artist Showcase', to: '/youth' },
         { label: 'Parent-Child Choir', to: '/choir' },
-        { label: 'Courses', to: '/courses' },
         { label: 'Cultural Exchanges', to: '/events' },
       ],
     },
     placeholders: {
       tba: 'To be announced',
       email: 'Email to be confirmed',
-      website: 'Website to be confirmed',
       social: 'Social media to be confirmed',
     },
   },
@@ -120,14 +118,12 @@ export const sharedContent = {
       programs: [
         { label: '优秀青年艺术学员展演', to: '/youth' },
         { label: '亲子合唱团', to: '/choir' },
-        { label: '课程', to: '/courses' },
         { label: '文化交流', to: '/events' },
       ],
     },
     placeholders: {
       tba: '待公布',
       email: '邮箱待确认',
-      website: '网站待确认',
       social: '社交媒体待确认',
     },
   },
@@ -154,7 +150,7 @@ export const sharedContent = {
     rights: string
     programs: Array<{ label: string; to: string }>
   }
-  placeholders: Record<'tba' | 'email' | 'website' | 'social', string>
+  placeholders: Record<'tba' | 'email' | 'social', string>
 }>
 
 export const publicRoutePaths = sharedContent.en.navItems.map((item) => item.to)
