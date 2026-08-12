@@ -3,7 +3,6 @@ import { ArrowRight, Mic2, Piano, Theater } from 'lucide-react'
 
 import { useLanguage } from '../components/language-provider'
 import { Button } from '../components/ui/button'
-import { choirContent } from '../content/choir'
 import { siteImages } from '../content/shared'
 import { youthContent } from '../content/youth'
 
@@ -12,7 +11,6 @@ export const Route = createFileRoute('/youth')({ component: Youth })
 function Youth() {
   const { language } = useLanguage()
   const content = youthContent[language]
-  const choir = choirContent[language]
   const icons = [Mic2, Piano, Theater]
   const areaImages = [siteImages.choirHall, siteImages.instrumentalPerformance, siteImages.youthPiano]
 

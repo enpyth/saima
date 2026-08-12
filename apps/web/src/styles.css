@@ -2193,3 +2193,688 @@ nav {
     column-count: 1;
   }
 }
+
+@media (max-width: 1080px) {
+  body {
+    overflow-x: hidden;
+  }
+
+  img,
+  video,
+  canvas,
+  svg {
+    max-width: 100%;
+  }
+
+  .site-header {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .brand {
+    min-width: 0;
+  }
+
+  .brand > span:last-child {
+    min-width: 0;
+  }
+
+  nav {
+    flex-wrap: nowrap;
+    max-width: 100%;
+    overscroll-behavior-inline: contain;
+    padding-bottom: 4px;
+    scrollbar-width: thin;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .nav-link,
+  .language-trigger,
+  nav > button,
+  nav > a {
+    flex: 0 0 auto;
+  }
+
+  .public-page,
+  .workspace,
+  .dashboard-main,
+  .main-panel,
+  .panel,
+  .form,
+  .admin-table {
+    min-width: 0;
+  }
+
+  .public-section,
+  .public-title,
+  .courses-hero,
+  .site-footer-grid,
+  .site-footer-bottom {
+    padding-left: var(--saima-gutter);
+    padding-right: var(--saima-gutter);
+  }
+
+  .public-section,
+  .public-title,
+  .section-copy,
+  .panel,
+  .form,
+  .admin-row,
+  .event-resource,
+  .ticket-type-row,
+  .contact-methods p {
+    overflow-wrap: anywhere;
+  }
+
+  .image-offset::before {
+    border-radius: 18px;
+    inset: -10px;
+  }
+
+  .image-offset img,
+  .courses-hero img,
+  .portrait-stack img,
+  .member-detail-photo img {
+    border-width: 3px;
+    border-radius: 18px;
+  }
+
+  .dashboard-workspace,
+  .workspace {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .dashboard-sidebar,
+  .sidebar {
+    border-bottom: 1px solid rgba(25, 23, 21, 0.1);
+    border-right: 0;
+  }
+
+  .dashboard-nav {
+    display: flex;
+    flex-wrap: nowrap;
+    max-width: 100%;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    padding-bottom: 6px;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .dashboard-nav-item {
+    flex: 0 0 min(220px, 72vw);
+  }
+
+  .dashboard-section-header {
+    align-items: start;
+    display: grid;
+  }
+
+  .admin-actions {
+    justify-content: flex-start;
+  }
+
+  .admin-row,
+  .ticket-dashboard-row,
+  .ticket-sales-row,
+  .checkin-detail-row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .ticket-sales-metrics {
+    justify-items: start;
+    text-align: left;
+  }
+
+  .sales-stat-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .slot-board,
+  .slot-board-scroll {
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .slot-board-scroll {
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    padding-bottom: 4px;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .slot-board-footer,
+  .slot-confirm {
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+
+  .availability-grid {
+    grid-template-columns: repeat(auto-fill, minmax(64px, 1fr));
+  }
+
+  .event-masonry {
+    height: min(3600px, 760vw);
+  }
+}
+
+@media (max-width: 820px) {
+  :root {
+    --saima-gutter: clamp(16px, 5vw, 32px);
+  }
+
+  h2 {
+    font-size: clamp(32px, 10vw, 46px);
+  }
+
+  h3 {
+    font-size: clamp(22px, 6vw, 28px);
+  }
+
+  .site-header {
+    min-height: auto;
+    padding-bottom: 10px;
+    padding-top: 10px;
+  }
+
+  .brand strong {
+    font-size: 24px;
+  }
+
+  .brand-mark {
+    height: 30px;
+    width: 58px;
+  }
+
+  .home-hero,
+  .page-hero.image-hero,
+  .gallery-hero,
+  .choir-hero {
+    min-height: min(620px, calc(100svh - 112px));
+  }
+
+  .page-hero.image-hero,
+  .page-hero.image-hero.compact,
+  .gallery-hero {
+    min-height: min(540px, calc(88svh - 112px));
+  }
+
+  .hero-content,
+  .page-hero.image-hero > div:last-child,
+  .gallery-hero > div:last-child,
+  .choir-hero > div:last-child {
+    max-width: 720px;
+    padding-bottom: clamp(42px, 10vw, 70px);
+    padding-top: clamp(42px, 10vw, 70px);
+  }
+
+  .hero-scrim,
+  .hero-scrim.warm {
+    background: linear-gradient(90deg, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.64), rgba(15, 23, 42, 0.26));
+  }
+
+  .hero-scrim.pale {
+    background: linear-gradient(90deg, rgba(248, 245, 241, 0.97), rgba(248, 245, 241, 0.86), rgba(248, 245, 241, 0.46));
+  }
+
+  .public-section {
+    padding-bottom: clamp(52px, 12vw, 78px);
+    padding-top: clamp(52px, 12vw, 78px);
+  }
+
+  .public-title {
+    padding-bottom: clamp(28px, 8vw, 48px);
+    padding-top: clamp(54px, 12vw, 82px);
+  }
+
+  .section-heading {
+    margin-bottom: clamp(24px, 8vw, 44px);
+  }
+
+  .pillar-card,
+  .participation-item,
+  .course-card,
+  .program-note,
+  .contact-panel,
+  .form,
+  .cta-panel > div {
+    border-radius: 14px;
+    padding: clamp(20px, 6vw, 30px);
+  }
+
+  .pillar-card {
+    min-height: 220px;
+  }
+
+  .event-row {
+    align-items: start;
+    gap: 14px;
+    padding: 22px 0;
+  }
+
+  .event-row time {
+    font-size: 28px;
+  }
+
+  .event-detail-list div {
+    gap: 6px;
+    padding: 16px 0;
+  }
+
+  .event-resource-file {
+    min-height: 150px;
+  }
+
+  .ticket-type-row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .ticket-total-row {
+    align-items: flex-start;
+    display: grid;
+    gap: 4px;
+  }
+
+  .courses-hero {
+    padding-bottom: clamp(46px, 11vw, 72px);
+    padding-top: clamp(46px, 11vw, 72px);
+  }
+
+  .course-filter-strip {
+    position: static;
+  }
+
+  .main-panel {
+    padding: clamp(22px, 6vw, 42px);
+  }
+
+  .sidebar {
+    padding: clamp(20px, 6vw, 30px);
+  }
+
+  .dashboard-sidebar h2 {
+    font-size: 30px;
+  }
+
+  .dashboard-two-column,
+  .panel-grid,
+  .sales-stat-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .slot-board-grid {
+    --course-column-width: 168px;
+  }
+
+  .slot-board-footer,
+  .slot-confirm,
+  .slot-legend {
+    display: grid;
+    gap: 10px;
+  }
+
+  .slot-confirm {
+    width: 100%;
+  }
+
+  .site-footer-grid {
+    gap: 26px;
+  }
+}
+
+@media (max-width: 640px) {
+  :root {
+    --saima-gutter: clamp(14px, 4.8vw, 22px);
+  }
+
+  body {
+    background-size: 22px 22px;
+  }
+
+  h1 {
+    font-size: clamp(38px, 13vw, 54px);
+    line-height: 1.02;
+  }
+
+  h2 {
+    font-size: clamp(30px, 10vw, 42px);
+  }
+
+  p {
+    line-height: 1.58;
+  }
+
+  .lead,
+  .page-hero p,
+  .public-title p {
+    font-size: clamp(16px, 4.8vw, 19px);
+  }
+
+  .site-header {
+    gap: 10px;
+  }
+
+  nav {
+    gap: 6px;
+    margin-left: calc(var(--saima-gutter) * -1);
+    margin-right: calc(var(--saima-gutter) * -1);
+    padding-left: var(--saima-gutter);
+    padding-right: var(--saima-gutter);
+  }
+
+  .nav-link {
+    font-size: 12px;
+    min-height: 38px;
+    padding: 9px 10px;
+  }
+
+  .home-hero,
+  .choir-hero {
+    min-height: min(560px, calc(100svh - 112px));
+  }
+
+  .page-hero.image-hero,
+  .page-hero.image-hero.compact,
+  .gallery-hero {
+    min-height: min(500px, calc(86svh - 112px));
+  }
+
+  .home-hero > img {
+    transform: scale(1.04);
+  }
+
+  .hero-content,
+  .page-hero.image-hero > div:last-child,
+  .gallery-hero > div:last-child,
+  .choir-hero > div:last-child {
+    padding-bottom: clamp(34px, 10vw, 54px);
+    padding-top: clamp(34px, 10vw, 54px);
+  }
+
+  .actions {
+    align-items: stretch;
+    gap: 10px;
+    margin-top: 22px;
+  }
+
+  .actions > *,
+  .actions a,
+  .actions button {
+    min-width: 0;
+  }
+
+  .public-section {
+    padding-bottom: clamp(44px, 12vw, 64px);
+    padding-top: clamp(44px, 12vw, 64px);
+  }
+
+  .editorial-split,
+  .event-preview,
+  .contact-layout,
+  .courses-hero,
+  .section-grid,
+  .member-detail-hero,
+  .ticket-sale-layout {
+    gap: 28px;
+  }
+
+  .image-offset img,
+  .courses-hero img {
+    aspect-ratio: 4 / 3;
+  }
+
+  .gallery-tile img,
+  .member-card img {
+    border-radius: 14px;
+  }
+
+  .member-card a,
+  .gallery-tile {
+    gap: 6px;
+  }
+
+  .member-card h3,
+  .gallery-tile h3,
+  .event-resource h3,
+  .course-card h3 {
+    font-size: 24px;
+  }
+
+  .event-highlights {
+    padding: 14px;
+  }
+
+  .event-poster img {
+    max-height: none;
+    width: 100%;
+  }
+
+  .event-resource {
+    padding: 14px;
+  }
+
+  .ticket-sale-section {
+    padding-left: var(--saima-gutter);
+    padding-right: var(--saima-gutter);
+  }
+
+  .ticket-sale-section > .section-heading,
+  .ticket-sale-layout {
+    max-width: 100%;
+  }
+
+  .form {
+    gap: 12px;
+  }
+
+  .field input,
+  .field textarea,
+  .field select {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .auth-box {
+    margin-top: 20px;
+    padding: 20px;
+  }
+
+  .dashboard-nav {
+    margin-left: calc(clamp(20px, 6vw, 30px) * -1);
+    margin-right: calc(clamp(20px, 6vw, 30px) * -1);
+    padding-left: clamp(20px, 6vw, 30px);
+    padding-right: clamp(20px, 6vw, 30px);
+  }
+
+  .dashboard-nav-item {
+    flex-basis: min(190px, 78vw);
+  }
+
+  .dashboard-section {
+    gap: 18px;
+  }
+
+  .admin-row {
+    gap: 12px;
+    padding: 16px 0;
+  }
+
+  .admin-actions {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    width: 100%;
+  }
+
+  .admin-actions .inline-flex,
+  .admin-actions button,
+  .admin-actions a {
+    width: 100%;
+  }
+
+  .sales-stat {
+    padding: 14px;
+  }
+
+  .date-jump {
+    width: 100%;
+  }
+
+  .date-jump input {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .slot-date-strip {
+    margin-left: calc(var(--saima-gutter) * -1);
+    margin-right: calc(var(--saima-gutter) * -1);
+    padding-left: var(--saima-gutter);
+    padding-right: var(--saima-gutter);
+  }
+
+  .slot-board-grid {
+    --course-column-width: 150px;
+    grid-template-columns: var(--course-column-width) repeat(var(--slot-columns), 36px);
+  }
+
+  .slot-square {
+    height: 36px;
+    width: 36px;
+  }
+
+  .slot-board-course {
+    padding: 7px 8px;
+  }
+
+  .availability-grid {
+    grid-template-columns: repeat(auto-fill, minmax(58px, 1fr));
+  }
+
+  .availability-cell {
+    min-height: 38px;
+    padding: 0 6px;
+  }
+
+  .availability-cell span,
+  .slot-board-course span {
+    font-size: 12px;
+  }
+
+  .cta-panel > div {
+    border-radius: 18px;
+  }
+
+  .site-footer-bottom {
+    gap: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: clamp(34px, 12vw, 46px);
+  }
+
+  .brand {
+    gap: 9px;
+  }
+
+  .brand strong {
+    font-size: 22px;
+  }
+
+  .brand-mark {
+    width: 50px;
+  }
+
+  .home-hero,
+  .choir-hero {
+    min-height: min(520px, calc(100svh - 108px));
+  }
+
+  .page-hero.image-hero,
+  .page-hero.image-hero.compact,
+  .gallery-hero {
+    min-height: min(460px, calc(82svh - 108px));
+  }
+
+  .hero-content,
+  .page-hero.image-hero > div:last-child,
+  .gallery-hero > div:last-child,
+  .choir-hero > div:last-child {
+    padding-bottom: 34px;
+    padding-top: 34px;
+  }
+
+  .actions,
+  .centered-actions {
+    align-items: stretch;
+    display: grid;
+    justify-content: stretch;
+  }
+
+  .actions > .inline-flex,
+  .actions a,
+  .actions button,
+  .form > .inline-flex,
+  .form > button,
+  .ticket-sale-form > .inline-flex,
+  .ticket-sale-form > button,
+  .slot-confirm > .inline-flex,
+  .slot-confirm > button {
+    width: 100%;
+  }
+
+  .plain-list,
+  .event-list,
+  .admin-table {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .list-row,
+  .course-row,
+  .event-row {
+    gap: 10px;
+  }
+
+  .course-card-grid,
+  .panel-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .course-filter-strip {
+    padding-bottom: 14px;
+    padding-top: 14px;
+  }
+
+  .course-filter-strip > div {
+    align-items: flex-start;
+  }
+
+  .ticket-qr-placeholder {
+    height: 64px;
+    width: 64px;
+  }
+
+  .ticket-type-row > div:last-child,
+  .ticket-sales-metrics {
+    text-align: left;
+  }
+
+  .inline-meta,
+  .contact-methods p,
+  .check-list p {
+    align-items: flex-start;
+  }
+
+  .inline-meta svg,
+  .contact-methods svg,
+  .check-list svg {
+    margin-top: 3px;
+  }
+
+  .event-masonry {
+    height: 4200px;
+  }
+
+  .site-footer-grid {
+    gap: 22px;
+  }
+}

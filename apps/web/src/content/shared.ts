@@ -88,7 +88,7 @@ export const sharedContent = {
       { label: '青少年', to: '/youth' },
       { label: '亲子合唱团', to: '/choir' },
       ...(isPublicRouteEnabled('/gallery') ? [{ label: '照片与媒体', to: '/gallery' }] : []),
-      { label: '课程', to: '/courses' },
+      ...(isPublicRouteEnabled('/courses') ? [{ label: '课程', to: '/courses' }] : []),
       { label: '加入我们', to: '/membership' },
       { label: '联系我们', to: '/contact' },
     ],

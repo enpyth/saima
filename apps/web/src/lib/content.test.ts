@@ -60,7 +60,6 @@ describe('public site content', () => {
       'Events',
       'Youth',
       'Choir',
-      'Courses',
       'Join',
       'Contact',
     ])
@@ -71,7 +70,6 @@ describe('public site content', () => {
       '活动',
       '青少年',
       '亲子合唱团',
-      '课程',
       '加入我们',
       '联系我们',
     ])
@@ -88,11 +86,13 @@ describe('public site content', () => {
   })
 
   it('keeps temporarily disabled public routes out of navigation', () => {
-    expect(temporarilyDisabledPublicRoutes).toContain('/gallery')
-    expect(isPublicRouteEnabled('/gallery')).toBe(false)
-    expect(publicRoutePaths).not.toContain('/gallery')
-    expect(sharedContent.en.navItems.some((item) => item.to === '/gallery')).toBe(false)
-    expect(sharedContent.zh.navItems.some((item) => item.to === '/gallery')).toBe(false)
+    for (const route of ['/gallery', '/courses'] as const) {
+      expect(temporarilyDisabledPublicRoutes).toContain(route)
+      expect(isPublicRouteEnabled(route)).toBe(false)
+      expect(publicRoutePaths).not.toContain(route)
+      expect(sharedContent.en.navItems.some((item) => item.to === route)).toBe(false)
+      expect(sharedContent.zh.navItems.some((item) => item.to === route)).toBe(false)
+    }
   })
 
   it('uses local image assets for public pages', () => {

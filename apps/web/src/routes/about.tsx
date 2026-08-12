@@ -1,5 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { ArrowRight, Award, HeartHandshake, Landmark, Users } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 
 import { useLanguage } from '../components/language-provider'
 import { Button } from '../components/ui/button'
@@ -14,8 +14,6 @@ function About() {
   const membersContent = memberContent[language]
   const members = [...membersContent.members].sort((left, right) => left.order - right.order)
   const founder = members[0]
-  const icons = [Users, Award, Landmark]
-  const mission = content.missionPreview
 
   return (
     <main className="public-page">
