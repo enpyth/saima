@@ -306,6 +306,7 @@ export const eventsContent: Localized<EventsContent> = {
           '通过多元文化与社区艺术平台，展示中华文化遗产。',
         ],
         galleryImages: impressionsOfChinaImages,
+        videos: [ { embedId: 'v9QqS4z8tIo' } ]
       },
     ],
   },
