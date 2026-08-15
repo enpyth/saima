@@ -20,6 +20,9 @@ export type EventArticle = TextBlock & {
     label: string
     value: string
   }>
+  videos?: Array<{
+    embedId: string
+  }>
   galleryImages?: Array<{
     id: string
     img: string

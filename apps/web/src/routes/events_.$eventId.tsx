@@ -136,6 +136,19 @@ function EventPage() {
         </section>
       ) : null}
 
+      {event.videos? (
+          <section className="public-section">
+            <div className="section-heading">
+              <h2>{content.labels.videos}</h2>
+            </div>
+            {event.videos.map((video) => (
+              <iframe key={video.embedId} width="560" height="315" src={`https://www.youtube.com/embed/${video.embedId}`} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen>
+              </iframe>
+            ))}
+          </section>
+
+      ) : null}
+
       {event.galleryImages ? (
         <section className="public-section">
           <div className="section-heading">

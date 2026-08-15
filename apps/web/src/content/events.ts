@@ -20,6 +20,7 @@ type EventsContent = {
     highlights: string
     details: string
     backToEvents: string
+    videos: string
     eventDetails: string
     notFoundTitle: string
     notFoundSummary: string
@@ -122,6 +123,7 @@ export const eventsContent: Localized<EventsContent> = {
       notFoundSummary: 'This event page is not available.',
       noEvents: 'No events in this section.',
       gallery: 'Event Gallery',
+      videos: 'Videos',
       resources: 'Event Resources',
       openResource: 'Open resource',
     },
@@ -202,6 +204,7 @@ export const eventsContent: Localized<EventsContent> = {
           'Presented Chinese cultural heritage through a multicultural and community-focused artistic platform.',
         ],
         galleryImages: impressionsOfChinaImages,
+        videos: [ { embedId: 'v9QqS4z8tIo' } ]
       },
     ],
   },
@@ -231,6 +234,7 @@ export const eventsContent: Localized<EventsContent> = {
       notFoundSummary: '该活动页面暂不可用。',
       noEvents: '此分类下暂无活动。',
       gallery: '活动图片',
+      videos: '视频',
       resources: '活动资料',
       openResource: '打开资料',
     },
