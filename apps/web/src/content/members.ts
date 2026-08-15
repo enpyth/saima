@@ -12,6 +12,10 @@ export type MemberProfile = {
   image: string
   summary: string
   bio: string[]
+  videos?: Array<{
+    embedId: string
+  }>
+  moreVideos?: string
 }
 
 type MemberContent = {
@@ -25,6 +29,8 @@ type MemberContent = {
     website: string
     notFoundTitle: string
     notFoundSummary: string
+    videos: string
+    moreVideos: string
   }
   members: MemberProfile[]
 }
@@ -56,6 +62,8 @@ export const memberContent: Localized<MemberContent> = {
       website: 'Website',
       notFoundTitle: 'Member profile not found',
       notFoundSummary: 'This member profile is not available yet.',
+      videos: 'Videos',
+      moreVideos: 'More Videos',
     },
     members: [
       {
@@ -77,6 +85,11 @@ export const memberContent: Localized<MemberContent> = {
           'Elsa is also an experienced cultural event organiser. She has conceived, directed, and delivered major concerts, community performances, cross-cultural initiatives, and charitable projects, including Impressions of China in 2024 and A Journey of Brilliance: From the Silk Road to the Renaissance in 2025.',
           'Under her leadership, SAIMA has developed a strong commitment to high-quality performance, community service and charitable engagement. Elsa founded the Association to create an arts platform centred on musicians, music students and the wider community.',
         ],
+        videos: [
+          { embedId: 'Pd2HLYB1sA0'},
+          { embedId: 'HBbTgeLTQDw'}
+        ],
+        moreVideos: 'https://www.youtube.com/@elsatian172',
       },
       {
         order: 2,
@@ -86,6 +99,7 @@ export const memberContent: Localized<MemberContent> = {
         role: 'Vice President',
         specialty: 'Opera / Vocal coaching / Mandarin language education',
         image: memberImages.callum,
+        website: 'https://www.callummcging.com.au/',
         summary:
           'An Adelaide tenor and vocal coach who works across opera, contemporary performance, language and youth music education.',
         bio: [
@@ -280,6 +294,8 @@ export const memberContent: Localized<MemberContent> = {
       website: '网站',
       notFoundTitle: '未找到成员介绍',
       notFoundSummary: '该成员介绍暂未开放。',
+      videos: '视频',
+      moreVideos: '更多视频',
     },
     members: [
       {
@@ -300,6 +316,11 @@ export const memberContent: Localized<MemberContent> = {
           '她经常指导学生参加 South Australian Eisteddfod 等声乐与表演活动。每年，她的学生在古典声乐、音乐剧和流行演唱等不同组别中共获得超过 25 个奖项。',
           'Elsa 也是经验丰富的文化活动组织者，曾策划并执行大型音乐会、社区演出、跨文化项目和慈善活动，包括 2024 年的 Impressions of China 和 2025 年在 Elder Hall 呈现的 A Journey of Brilliance: From the Silk Road to the Renaissance。',
         ],
+        videos: [
+          { embedId: 'Pd2HLYB1sA0'},
+          { embedId: 'HBbTgeLTQDw'}
+        ],
+        moreVideos: 'https://www.youtube.com/@elsatian172',
       },
       {
         order: 2,
@@ -309,6 +330,7 @@ export const memberContent: Localized<MemberContent> = {
         role: '副主席',
         specialty: '歌剧 / 声乐指导 / 中文语言教育',
         image: memberImages.callum,
+        website: 'https://www.callummcging.com.au/',
         summary: '来自阿德莱德的男高音和声乐指导，活跃于歌剧、当代表演、语言教育和青少年音乐教育领域。',
         bio: [
           'Callum McGing 是来自南澳阿德莱德的男高音和声乐指导。他毕业于 Elder Conservatorium of Music，自 2018 年起长期与 State Opera South Australia 合作，参与主舞台和艺术节制作，并在学校制作 The Frog Prince 中担任标题角色。',

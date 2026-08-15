@@ -74,6 +74,41 @@ function MemberProfilePage() {
           ))}
         </div>
       </section>
+
+      {member.videos? (
+          <section className="public-section member-bio-section">
+            <div className="section-heading">
+              <h2>{content.labels.videos}</h2>
+            </div>
+            {member.videos.map((video) => (
+              <div className="video-container" key={video.embedId}>
+                <iframe src={`https://www.youtube.com/embed/${video.embedId}`} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen>
+                </iframe>
+              </div>
+            ))}
+            {member.moreVideos ? (
+              <div className="actions centered-actions">
+                <Button asChild variant="outline">
+                  <a href={member.moreVideos} rel="noreferrer" target="_blank">
+                    {content.labels.moreVideos}
+                  </a>
+                </Button>
+              </div>
+            ) : null}
+          </section>
+      ) : (
+        member.moreVideos ? (
+          <div className="actions centered-actions">
+            <Button asChild variant="outline">
+              <a href={member.moreVideos} rel="noreferrer" target="_blank">
+                {content.labels.videos}
+              </a>
+            </Button>
+          </div>
+        ) : null
+      )}
+
+      
     </main>
   )
 }
