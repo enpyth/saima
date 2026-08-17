@@ -180,6 +180,33 @@ export const eventsContent: Localized<EventsContent> = {
         ],
       },
       {
+        id: '20250413',
+        href: eventHref('20250413'),
+        startDate: '2025-04-13',
+        title: 'A Journey of Brilliance: From the Silk Road to the Renaissance',
+        subtitle: 'A Musical Odyssey Across Time and Cultures',
+        date: '13 Apr 2025',
+        location: 'Elder Hall',
+        paragraphs: [
+          'A Journey of Brilliance: From the Silk Road to the Renaissance was a multicultural concert presented at Elder Hall, Adelaide, on 13 April 2025. Organised by South Australian International Musicians Association, the concert was designed as an immersive musical journey across history, geography, and culture.',
+          'The concert followed the spirit of the ancient Silk Road, beginning from the eastern city of Chang’an and travelling through Dunhuang, the Taklamakan Desert, Kashgar, Samarkand, Constantinople, and into the cultural landscapes of Europe. Through music, dance, and storytelling, the program explored the movement of people, ideas, art, and cultural memory across civilizations.',
+          'The concert brought together young performers, professional musicians, dancers, and community artists. It combined Eastern and Western musical traditions, presenting works inspired by Chinese history, Central Asian cultural routes, European poetry, courtly music, and the Italian Renaissance. The event highlighted how music can carry history, connect cultures, and create dialogue between different artistic traditions.',
+          'Young performers played an important role in the concert, sharing the stage with musicians and artists from conservatorium and professional backgrounds. This reflected the association’s commitment to creating meaningful performance opportunities for young people while also presenting high-quality artistic programs for the wider community.',
+          'The event was supported by community partners and cultural organisations, with special sponsorship from the Consulate-General of the People’s Republic of China in Adelaide. The concert was also promoted through local Chinese-language and community media platforms.',
+          'A Journey of Brilliance was more than a concert. It was a cross-cultural artistic project that invited audiences to experience the Silk Road not only as a historical route, but also as a living symbol of cultural exchange, artistic connection, and shared human creativity.'
+        ],
+        highlights: [
+          'Presented at Elder Hall, Adelaide, on 13 April 2025.',
+          'Designed as an immersive musical journey from the Silk Road to the European Renaissance.',
+          'Explored cultural routes including Chang’an, Dunhuang, the Taklamakan Desert, Kashgar, Samarkand, Constantinople, and Europe.',
+          'Brought together young performers, professional musicians, dancers, and community artists.',
+          'Combined Eastern and Western musical traditions through music, dance, storytelling, and cultural imagery.',
+          'Supported by community partners and cultural organisations.',
+          'Promoted through local Chinese-language and community media platforms.'
+        ],
+        videos: [ { embedId: 'bsuz1ki2CD0' }, { embedId: 'FYeHWYvIblE' }]
+      },
+      {
         id: '20240930',
         href: eventHref('20240930'),
         startDate: '2024-09-30',
@@ -280,6 +307,33 @@ export const eventsContent: Localized<EventsContent> = {
             url: eventAssetUrl('20261016', 'Authority.pdf'),
           },
         ],
+      },
+      {
+        id: '20250413',
+        href: eventHref('20250413'),
+        startDate: '2025-04-13',
+        title: '《辉煌之旅：从丝绸之路到文艺复兴》',
+        subtitle: '一场跨越时空与文化的音乐之旅',
+        date: '2025年4月13日',
+        location: 'Elder Hall',
+        paragraphs: [
+          '《辉煌之旅：从丝绸之路到文艺复兴》是一场于2025年4月13日在阿德莱德 Elder Hall 举办的多元文化音乐会。本场音乐会由南澳国际音乐家协会主办，以沉浸式音乐旅程的形式，带领观众穿越历史、地域与文化。',
+          '音乐会以古代丝绸之路为灵感，从东方古都长安出发，途经敦煌、塔克拉玛干沙漠、喀什、撒马尔罕、君士坦丁堡，并最终抵达欧洲文明与文艺复兴的文化景观。通过音乐、舞蹈与叙事，节目展现了人类文明中人员、思想、艺术与文化记忆的流动。',
+          '本场音乐会汇聚了年轻表演者、专业音乐家、舞蹈家及社区艺术工作者，融合东方与西方音乐传统，呈现了受中国历史、中亚文化路线、欧洲诗意、宫廷音乐及意大利文艺复兴启发的艺术内容。活动展现了音乐如何承载历史、连接文化，并在不同艺术传统之间建立对话。',
+          '年轻表演者在本场音乐会中扮演了重要角色。他们与来自音乐学院及专业艺术团体背景的音乐家和舞蹈家同台演出。这体现了协会致力于为年轻人创造有意义的舞台机会，同时也为更广泛社区呈现高质量艺术项目的宗旨。',
+          '本场活动获得了社区伙伴及文化组织的支持，并得到中华人民共和国驻阿德莱德总领事馆的特别赞助。音乐会也通过本地中文媒体与社区媒体平台进行了宣传。',
+          '《辉煌之旅》不仅是一场音乐会，也是一项跨文化艺术项目。它邀请观众将丝绸之路视为一条历史路线，也视为文化交流、艺术连接与人类共同创造力的鲜活象征。'
+        ],
+        highlights: [
+          '于2025年4月13日在阿德莱德 Elder Hall 举办。',
+          '以“从丝绸之路到欧洲文艺复兴”为主题，打造沉浸式音乐旅程。',
+          '内容涵盖长安、敦煌、塔克拉玛干沙漠、喀什、撒马尔罕、君士坦丁堡及欧洲等文化路线。',
+          '汇聚年轻表演者、专业音乐家、舞蹈家及社区艺术工作者。',
+          '通过音乐、舞蹈、叙事与文化意象融合东方与西方音乐传统。',
+          '获得社区伙伴与文化组织支持。',
+          '通过本地中文媒体与社区媒体平台进行宣传。'
+        ],
+        videos: [ { embedId: 'bsuz1ki2CD0' }, {embedId: 'FYeHWYvIblE' }]
       },
       {
         id: '20240930',
