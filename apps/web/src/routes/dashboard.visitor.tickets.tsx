@@ -56,7 +56,9 @@ function VisitorTickets() {
 
       {message ? <p className="muted">{message}</p> : null}
 
-      {tickets.length === 0 ? (
+      {loading ? (
+        <p className="muted">Loading your tickets...</p>
+      ) : tickets.length === 0 ? (
         <p className="muted">No paid tickets yet.</p>
       ) : (
         <div className="admin-table">
