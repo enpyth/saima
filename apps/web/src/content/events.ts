@@ -180,6 +180,20 @@ export const eventsContent: Localized<EventsContent> = {
         ],
       },
       {
+        id: '20261024',
+        href: eventHref('20261024'),
+        startDate: '2026-10-24',
+        title: 'Voices Beyond Borders',
+        subtitle: 'A Film Music Concert in Remembrance of World War II',
+        date: '24 Oct 2026',
+        location: 'Elder Hall',
+        paragraphs: [
+          'Not celebration, but remembrance.',
+          'Not victory, but reflection.',
+          'Not nations, but human lives.'
+        ]
+      },
+      {
         id: '20250413',
         href: eventHref('20250413'),
         startDate: '2025-04-13',
@@ -307,6 +321,20 @@ export const eventsContent: Localized<EventsContent> = {
             url: eventAssetUrl('20261016', 'Authority.pdf'),
           },
         ],
+      },
+      {
+        id: '20261024',
+        href: eventHref('20261024'),
+        startDate: '2026-10-24',
+        title: 'Voices Beyond Borders',
+        subtitle: 'A Film Music Concert in Remembrance of World War II',
+        date: '24 Oct 2026',
+        location: 'Elder Hall',
+        paragraphs: [
+          'Not celebration, but remembrance.',
+          'Not victory, but reflection.',
+          'Not nations, but human lives.'
+        ]
       },
       {
         id: '20250413',
