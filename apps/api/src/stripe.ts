@@ -30,7 +30,7 @@ export async function handleStripeWebhook(request: Request) {
   let event: Stripe.Event
 
   try {
-    event = stripe.webhooks.constructEvent(payload, signature, env.stripeWebhookSecret)
+    event = await stripe.webhooks.constructEventAsync(payload, signature, env.stripeWebhookSecret)
   } catch (error) {
     const message = error instanceof Error ? error.message : 'Invalid Stripe signature.'
     return new Response(message, { status: 400 })
