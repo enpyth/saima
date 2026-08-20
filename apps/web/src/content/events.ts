@@ -218,7 +218,7 @@ export const eventsContent: Localized<EventsContent> = {
           'Supported by community partners and cultural organisations.',
           'Promoted through local Chinese-language and community media platforms.'
         ],
-        videos: [ { embedId: 'bsuz1ki2CD0' }, { embedId: 'FYeHWYvIblE' }]
+        videos: [ { embedId: '30Lyqw0Ezrw'}, { embedId: 'Pd2HLYB1sA0'}, { embedId: 'HBbTgeLTQDw' }, { embedId: 'bsuz1ki2CD0' }, { embedId: 'FYeHWYvIblE' }]
       },
       {
         id: '20240930',
@@ -361,7 +361,7 @@ export const eventsContent: Localized<EventsContent> = {
           '获得社区伙伴与文化组织支持。',
           '通过本地中文媒体与社区媒体平台进行宣传。'
         ],
-        videos: [ { embedId: 'bsuz1ki2CD0' }, {embedId: 'FYeHWYvIblE' }]
+        videos: [ { embedId: '30Lyqw0Ezrw'}, { embedId: 'Pd2HLYB1sA0'}, { embedId: 'HBbTgeLTQDw' }, { embedId: 'bsuz1ki2CD0' }, { embedId: 'FYeHWYvIblE' }]
       },
       {
         id: '20240930',

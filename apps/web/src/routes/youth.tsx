@@ -4,7 +4,7 @@ import { ArrowRight, Mic2, Piano, Theater } from 'lucide-react'
 import { useLanguage } from '../components/language-provider'
 import { Button } from '../components/ui/button'
 import { siteImages } from '../content/shared'
-import { youthContent } from '../content/youth'
+import { youthContent, youthVideos } from '../content/youth'
 
 export const Route = createFileRoute('/youth')({ component: Youth })
 
@@ -50,6 +50,21 @@ function Youth() {
           })}
         </div>
       </section>
+
+      {youthVideos? (
+          <section className="public-section">
+            <div className="section-heading">
+              <h2>{content.labels.videos}</h2>
+            </div>
+            {youthVideos.map((video) => (
+              <div className="video-container" key={video.embedId}>
+                <iframe src={`https://www.youtube.com/embed/${video.embedId}`} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen>
+                </iframe>
+              </div>
+            ))}
+          </section>
+
+      ) : null}
 
       <section className="public-section dark-feature">
         <div>

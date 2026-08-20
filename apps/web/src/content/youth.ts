@@ -15,9 +15,16 @@ type YouthContent = {
     title: string
     text: string
     action: string
-  }
+  },
+  labels: {
+    videos: string
+  },
   detailsAction: string
 }
+
+export const youthVideos: Array<{ embedId: string }> = [
+  { embedId: '_y0KW99fk4A'},
+];
 
 export const youthContent: Localized<YouthContent> = {
   en: {
@@ -52,6 +59,9 @@ export const youthContent: Localized<YouthContent> = {
       text: 'SAIMA supports young musicians as they build confidence, musical understanding, expressive ability, and stage experience.',
       action: 'View upcoming recitals',
     },
+    labels: {
+      videos: 'Videos'
+    },
     detailsAction: 'Read showcase details',
   },
   zh: {
@@ -85,6 +95,9 @@ export const youthContent: Localized<YouthContent> = {
       title: '年轻表演者应该被听见、被看见、被鼓励和被庆祝。',
       text: 'SAIMA 支持年轻音乐人在舞台经验、音乐理解、表达能力和自信心上持续成长。',
       action: '查看即将举办的展演',
+    },
+    labels: {
+      videos: '视频'
     },
     detailsAction: '阅读展演详情',
   },
