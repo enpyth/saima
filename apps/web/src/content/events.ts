@@ -44,6 +44,27 @@ export function eventAssetUrl(eventId: string, file: string) {
   return `${r2PublicBaseUrl ?? ''}/events/${eventId}/${encodedFile}`
 }
 
+const silkRoadImages = [
+  { file: 'web_Audience.jpg', height: 400 },
+  { file: 'web_Choir.jpg', height: 520 },
+  { file: 'web_Dance.jpg', height: 640 },
+  { file: 'web_Flute.jpg', height: 430 },
+  { file: 'web_Guqin.jpg', height: 520 },
+  { file: 'web_Guzheng.jpg', height: 520 },
+  { file: 'web_Huqin.jpg', height: 520 },
+  { file: 'web_MC.jpg', height: 450 },
+  { file: 'web_MC2.jpg', height: 520 }
+].map(({ file, height }, index) => {
+  const url = eventAssetUrl('20250413', file)
+
+  return {
+    id: `20250413-image-${index + 1}`,
+    img: url,
+    url,
+    height,
+  }
+})
+
 const impressionsOfChinaImages = [
   { file: 'web_1.jpg', height: 520 },
   { file: 'web_2.jpg', height: 440 },
@@ -184,13 +205,19 @@ export const eventsContent: Localized<EventsContent> = {
         href: eventHref('20261024'),
         startDate: '2026-10-24',
         title: 'Voices Beyond Borders',
-        subtitle: 'A Film Music Concert in Remembrance of World War II',
+        subtitle: 'An Anti-War Film Music Concert for Peace, Memory and Human Dignity',
         date: '24 Oct 2026',
         location: 'Elder Hall',
         paragraphs: [
+          'South Australian International Musicians Association is preparing Voices Beyond Borders, an anti-war film music concert exploring peace, memory, human dignity, and the human cost of conflict through live music performance.',
+          'This concert uses film music from different cultural and historical contexts to create a shared space for listening, remembering, and reflection. Rather than focusing on military history, political positions, or national narratives, the project places human lives, emotional memory, and the longing for peace at the centre.',
+          'The curatorial principles of the concert are:',
           'Not celebration, but remembrance.',
           'Not victory, but reflection.',
-          'Not nations, but human lives.'
+          'Not nations, but human lives.',
+          'Through live performance, familiar film music becomes more than a soundtrack. It becomes a way of expressing what words often cannot: fear, loss, resilience, compassion, and the hope for a world beyond violence.',
+          'The proposed program brings together music associated with films and stories from different parts of the world. These works reflect the experiences of children, civilians, artists, families, survivors, and ordinary people affected by war and conflict.',
+          'Presented as a chamber concert featuring solo and small ensemble works, Voices Beyond Borders is designed for the general public, students, cultural communities, and audiences interested in music, film, peace, memory, and cross-cultural understanding.'
         ]
       },
       {
@@ -218,6 +245,11 @@ export const eventsContent: Localized<EventsContent> = {
           'Supported by community partners and cultural organisations.',
           'Promoted through local Chinese-language and community media platforms.'
         ],
+        posterImage: {
+          label: 'Concert Poster',
+          url: eventAssetUrl('20250413', 'web_Poster.jpg'),
+        },
+        galleryImages: silkRoadImages,
         videos: [ { embedId: '30Lyqw0Ezrw'}, { embedId: 'Pd2HLYB1sA0'}, { embedId: 'HBbTgeLTQDw' }, { embedId: 'bsuz1ki2CD0' }, { embedId: 'FYeHWYvIblE' }]
       },
       {
@@ -326,14 +358,20 @@ export const eventsContent: Localized<EventsContent> = {
         id: '20261024',
         href: eventHref('20261024'),
         startDate: '2026-10-24',
-        title: 'Voices Beyond Borders',
-        subtitle: 'A Film Music Concert in Remembrance of World War II',
-        date: '24 Oct 2026',
+        title: '跨越国界的声音',
+        subtitle: '一场关于和平、记忆与人类尊严的反战电影音乐会',
+        date: '2026年10月24日',
         location: 'Elder Hall',
         paragraphs: [
-          'Not celebration, but remembrance.',
-          'Not victory, but reflection.',
-          'Not nations, but human lives.'
+          '南澳国际音乐协会正在筹备 《跨越国界的声音》。这是一场以电影音乐现场演奏为核心的反战音乐会，旨在通过音乐探索和平、记忆、人类尊严，以及战争与冲突对普通生命造成的代价。',
+          '本场音乐会通过来自不同文化与历史背景的电影音乐，为观众创造一个共同聆听、记忆与反思的空间。它不以军事历史、政治立场或国家叙事为中心，而是将人的生命经验、情感记忆与对和平的渴望放在核心位置。',
+          '本场音乐会的策展原则是：',
+          '不是庆祝，而是纪念。',
+          '不是胜利，而是反思。',
+          '不是国家叙事，而是人的生命经验。',
+          '通过现场演奏，观众熟悉的电影音乐不再只是电影配乐，而成为一种表达那些语言难以承载之物的方式：恐惧、失去、坚韧、同情，以及对远离暴力世界的希望。',
+          '拟定节目将汇集来自世界不同地区、不同故事背景的电影音乐。这些作品关注儿童、平民、艺术家、家庭、幸存者，以及在战争与冲突中受到影响的普通人。',
+          '本项目将以室内音乐会形式呈现，以独奏与小型重奏为主，面向普通公众、青年学生、文化社群，以及关注音乐、电影、和平、记忆与跨文化理解的观众。'
         ]
       },
       {
@@ -361,6 +399,11 @@ export const eventsContent: Localized<EventsContent> = {
           '获得社区伙伴与文化组织支持。',
           '通过本地中文媒体与社区媒体平台进行宣传。'
         ],
+        posterImage: {
+          label: '音乐会海报',
+          url: eventAssetUrl('20250413', 'web_Poster.jpg'),
+        },
+        galleryImages: silkRoadImages,
         videos: [ { embedId: '30Lyqw0Ezrw'}, { embedId: 'Pd2HLYB1sA0'}, { embedId: 'HBbTgeLTQDw' }, { embedId: 'bsuz1ki2CD0' }, { embedId: 'FYeHWYvIblE' }]
       },
       {
