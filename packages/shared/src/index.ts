@@ -64,6 +64,18 @@ export type TicketSaleStat = {
   revenueCents: number
 }
 
+export type FreeTicketRecipient = {
+  id: string
+  email: string
+  fullName: string
+}
+
+export type FreeTicketOrderResult = {
+  orderId: string
+  emailSent: boolean
+  emailError?: string
+}
+
 export type TicketSaleOverview = {
   totalCapacity: number
   totalSold: number

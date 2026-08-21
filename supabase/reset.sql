@@ -8,6 +8,7 @@ drop function if exists public.create_pending_ticket_order(uuid, uuid, text, tex
 drop function if exists public.create_pending_ticket_order(uuid, text, integer, integer, timestamptz, timestamptz, boolean, uuid, text, text, text, integer);
 drop function if exists public.create_pending_ticket_order(text, text, integer, integer, timestamptz, timestamptz, boolean, uuid, text, text, text, integer);
 drop function if exists public.create_pending_ticket_order(uuid, text, integer, integer, integer, timestamptz, timestamptz, boolean, uuid, text, text, text, integer);
+drop function if exists public.create_free_ticket_order(uuid, text, integer, integer, uuid, text, text, text, integer);
 
 drop table if exists public.ticket_orders cascade;
 drop table if exists public.ticket_types cascade;

@@ -372,6 +372,96 @@ begin
 end;
 $$;
 
+create or replace function public.create_free_ticket_order(
+  p_ticket_type_id uuid,
+  p_event_public_id text,
+  p_capacity integer,
+  p_capacity_units_per_ticket integer,
+  p_purchaser_user_id uuid,
+  p_purchaser_name text,
+  p_purchaser_email text,
+  p_purchaser_phone text,
+  p_quantity integer
+)
+returns public.ticket_orders
+language plpgsql
+security definer set search_path = public
+as $$
+declare
+  sold_quantity integer;
+  created_order public.ticket_orders%rowtype;
+begin
+  if p_capacity is null or p_capacity < 0 then
+    raise exception 'Ticket capacity is invalid.' using errcode = '22023';
+  end if;
+
+  if p_capacity_units_per_ticket is null or p_capacity_units_per_ticket < 0 then
+    raise exception 'Ticket capacity unit value is invalid.' using errcode = '22023';
+  end if;
+
+  if p_quantity is null
+    or p_quantity < 1
+    or (p_capacity_units_per_ticket = 0 and p_quantity > 100)
+    or (p_capacity_units_per_ticket > 0 and p_quantity > 10)
+  then
+    raise exception 'Choose a valid quantity for this ticket type.' using errcode = '22023';
+  end if;
+
+  perform pg_advisory_xact_lock(hashtextextended(p_event_public_id, 0));
+
+  if not exists (
+    select 1
+    from public.events
+    where public_id = p_event_public_id
+      and is_published = true
+  ) then
+    raise exception 'Event not found.' using errcode = 'P0002';
+  end if;
+
+  select coalesce(sum(quantity * capacity_units_per_ticket), 0)
+  into sold_quantity
+  from public.ticket_orders
+  where event_public_id = p_event_public_id
+    and status in ('pending_payment', 'confirmed');
+
+  if sold_quantity + (p_quantity * p_capacity_units_per_ticket) > p_capacity then
+    raise exception 'Not enough tickets remaining.' using errcode = '23505';
+  end if;
+
+  insert into public.ticket_orders (
+    ticket_type_id,
+    event_public_id,
+    purchaser_user_id,
+    purchaser_name,
+    purchaser_email,
+    purchaser_phone,
+    quantity,
+    capacity_units_per_ticket,
+    unit_price_cents,
+    total_price_cents,
+    status,
+    paid_at
+  )
+  values (
+    p_ticket_type_id,
+    p_event_public_id,
+    p_purchaser_user_id,
+    trim(p_purchaser_name),
+    lower(trim(p_purchaser_email)),
+    nullif(trim(coalesce(p_purchaser_phone, '')), ''),
+    p_quantity,
+    p_capacity_units_per_ticket,
+    0,
+    0,
+    'confirmed',
+    now()
+  )
+  returning * into created_order;
+
+  return created_order;
+end;
+$$;
+
 alter table public.profiles enable row level security;
 alter table public.events enable row level security;
 alter table public.ticket_orders enable row level security;

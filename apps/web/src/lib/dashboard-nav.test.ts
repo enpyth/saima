@@ -11,6 +11,7 @@ describe('dashboard navigation config', () => {
   it('returns the expected navigation items by role', () => {
     expect(getDashboardItems('admin').map((item) => item.id)).toEqual([
       'ticket-sales',
+      'free-tickets',
       'ticket-checkin',
       'applications',
       'users',
@@ -40,6 +41,7 @@ describe('dashboard navigation config', () => {
 
   it('finds the active item from the current URL', () => {
     expect(getActiveDashboardItem('admin', '/dashboard/admin/users')?.id).toBe('users')
+    expect(getActiveDashboardItem('admin', '/dashboard/admin/free-tickets')?.id).toBe('free-tickets')
     expect(getActiveDashboardItem('member', '/dashboard/member/courses')?.id).toBe('courses')
     expect(getActiveDashboardItem('visitor', '/dashboard/visitor/membership')?.id).toBe(
       'membership',

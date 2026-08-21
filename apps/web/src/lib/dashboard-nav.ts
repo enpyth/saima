@@ -16,6 +16,12 @@ export const dashboardNav = {
       to: '/dashboard/admin/ticket-sales',
     },
     {
+      id: 'free-tickets',
+      label: 'Free Tickets',
+      description: 'Issue complimentary tickets',
+      to: '/dashboard/admin/free-tickets',
+    },
+    {
       id: 'ticket-checkin',
       label: 'Ticket check-in',
       description: 'Validate QR tickets',

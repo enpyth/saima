@@ -1,11 +1,18 @@
 import { ORPCError, os } from '@orpc/server'
-import type { TicketCheckInResult, TicketSaleInventory, TicketSaleStat } from '@saima/shared'
+import type { FreeTicketOrderResult, FreeTicketRecipient, TicketCheckInResult, TicketSaleInventory, TicketSaleStat } from '@saima/shared'
 import type Stripe from 'stripe'
 import { z } from 'zod'
 
 import { env } from '../env'
 import { supabaseAdmin } from '../supabase'
 import { confirmTicketOrderFromSession, getStripeClient } from '../stripe'
+import {
+  assertFreeTicketCapacity,
+  assertFreeTicketQuantity,
+  assertFreeTicketRecipientAllowed,
+  filterFreeTicketRecipientProfiles,
+} from '../tickets/free-tickets'
+import { sendTicketConfirmationEmail } from '../tickets/ticket-email'
 import { getTicketQuantityLimit } from '../tickets/ticket-quantity'
 import {
   getConfiguredTicketTypeById,
@@ -16,7 +23,7 @@ import {
 import { buildInvalidTicketCheckInResult, buildTicketCheckInResult } from '../tickets/ticket-checkin'
 import { mapTicketOrderWithDetails } from './mappers'
 import { adminOnly, authed } from './procedures'
-import type { EventRow, TicketOrderRow } from './rows'
+import type { EventRow, ProfileRow, TicketOrderRow } from './rows'
 import { text, uuid } from './schemas'
 import { getRows } from './supabase-result'
 
@@ -308,6 +315,23 @@ export const ticketsRouter = {
       ),
       getTicketTypeSummaries(),
     ])
+    const confirmedOrders = ticketTypes.length === 0
+      ? []
+      : await getRows<Pick<TicketOrderRow, 'ticket_type_id' | 'total_price_cents'>[]>(
+          supabaseAdmin
+            .from('ticket_orders')
+            .select('ticket_type_id,total_price_cents')
+            .in('ticket_type_id', ticketTypes.map((ticketType) => ticketType.id))
+            .eq('status', 'confirmed'),
+        )
+    const revenueByTicketTypeId = new Map<string, number>()
+
+    for (const order of confirmedOrders) {
+      revenueByTicketTypeId.set(
+        order.ticket_type_id,
+        (revenueByTicketTypeId.get(order.ticket_type_id) ?? 0) + order.total_price_cents,
+      )
+    }
 
     return ticketTypes.map((ticketType) => {
       const event = events.find((eventRow) => eventRow.public_id === ticketType.eventPublicId)
@@ -325,10 +349,74 @@ export const ticketsRouter = {
         sold: ticketType.sold,
         reserved: ticketType.reserved,
         remaining: ticketType.remaining,
-        revenueCents: ticketType.sold * ticketType.priceCents,
+        revenueCents: revenueByTicketTypeId.get(ticketType.id) ?? 0,
       }
     })
   }),
+  freeTicketRecipients: adminOnly.handler(async (): Promise<FreeTicketRecipient[]> => {
+    if (env.adminEmails.size === 0) {
+      return []
+    }
+
+    const profiles = await getRows<Pick<ProfileRow, 'id' | 'email' | 'full_name'>[]>(
+      supabaseAdmin
+        .from('profiles')
+        .select('id,email,full_name')
+        .order('full_name', { ascending: true }),
+    )
+
+    return filterFreeTicketRecipientProfiles(profiles, env.adminEmails)
+  }),
+  createFreeTicketOrder: adminOnly
+    .input(
+      z.object({
+        recipientProfileId: uuid,
+        ticketTypeId: uuid,
+        quantity: z.number().int().min(1).max(100),
+      }),
+    )
+    .handler(async ({ input }): Promise<FreeTicketOrderResult> => {
+      const ticketType = getConfiguredTicketTypeById(input.ticketTypeId)
+      if (!ticketType) {
+        throw new ORPCError('BAD_REQUEST', { message: 'Ticket type not found.' })
+      }
+      assertFreeTicketQuantity(ticketType, input.quantity)
+
+      const recipient = await getRows<Pick<ProfileRow, 'id' | 'email' | 'full_name' | 'phone'> | null>(
+        supabaseAdmin
+          .from('profiles')
+          .select('id,email,full_name,phone')
+          .eq('id', input.recipientProfileId)
+          .maybeSingle(),
+      )
+      assertFreeTicketRecipientAllowed(recipient, env.adminEmails)
+
+      const orders = await getTicketOrderQuantities([ticketType.eventPublicId])
+      assertFreeTicketCapacity(ticketType, input.quantity, orders)
+
+      const order = await getRows<TicketOrderRow>(
+        supabaseAdmin.rpc('create_free_ticket_order', {
+          p_ticket_type_id: input.ticketTypeId,
+          p_event_public_id: ticketType.eventPublicId,
+          p_capacity: ticketType.capacity,
+          p_capacity_units_per_ticket: ticketType.capacityUnitsPerTicket,
+          p_purchaser_user_id: recipient.id,
+          p_purchaser_name: recipient.full_name,
+          p_purchaser_email: recipient.email,
+          p_purchaser_phone: recipient.phone ?? null,
+          p_quantity: input.quantity,
+        }),
+      )
+
+      try {
+        await sendTicketConfirmationEmail(order)
+        return { orderId: order.id, emailSent: true }
+      } catch (error) {
+        const emailError = error instanceof Error ? error.message : 'Ticket confirmation email failed.'
+        console.error('Free ticket confirmation email failed:', error)
+        return { orderId: order.id, emailSent: false, emailError }
+      }
+    }),
   checkInByToken: adminOnly
     .input(z.object({ token: text }))
     .handler(async ({ context, input }): Promise<TicketCheckInResult> => {
