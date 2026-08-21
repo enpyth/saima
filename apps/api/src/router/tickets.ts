@@ -74,14 +74,19 @@ function isMissingCapacityUnitsColumnError(error: unknown) {
 
 export const ticketsRouter = {
   saleForEvent: os.input(z.object({ eventPublicId: text })).handler(async ({ input }): Promise<TicketSaleInventory> => {
-    const event = await getRows<EventRow>(
-      supabaseAdmin
-        .from('events')
-        .select('public_id,title,starts_at')
-        .eq('public_id', input.eventPublicId)
-        .eq('is_published', true)
-        .single(),
-    )
+    const { data: event, error } = await supabaseAdmin
+      .from('events')
+      .select('public_id,title,starts_at')
+      .eq('public_id', input.eventPublicId)
+      .eq('is_published', true)
+      .maybeSingle()
+    if (error) {
+      throw new ORPCError('INTERNAL_SERVER_ERROR', { message: error.message })
+    }
+    if (!event) {
+      throw new ORPCError('NOT_FOUND', { message: 'Event not found.' })
+    }
+
     const configuredSale = getConfiguredTicketTypes(input.eventPublicId)[0]
 
     return {

@@ -81,6 +81,36 @@ describe('ticket sales config', () => {
     expect(getTicketQuantityLimit(ticketOptions.find((ticketOption) => ticketOption.slug === 'price-adjustment')?.capacityUnitsPerTicket ?? 1)).toBe(100)
   })
 
+  it('loads 20261024 ticket options from the web config file', () => {
+    const sale = getTicketSaleConfig('20261024')
+    const ticketOptions = getTicketSaleOptions('20261024')
+
+    expect(sale).toMatchObject({
+      eventPublicId: '20261024',
+      currency: 'AUD',
+      capacity: 500,
+      isActive: true,
+    })
+    expect(ticketOptions.map((ticketOption) => ticketOption.slug)).toEqual([
+      'family',
+      'general',
+      'concession',
+      'child',
+      'early-bird',
+    ])
+    expect(ticketOptions.map((ticketOption) => ticketOption.priceCents)).toEqual([10000, 3800, 2800, 1800, 3000])
+    expect(ticketOptions.find((ticketOption) => ticketOption.slug === 'family')).toMatchObject({
+      name: 'Family',
+      capacityUnitsPerTicket: 4,
+    })
+    expect(ticketOptions.find((ticketOption) => ticketOption.slug === 'early-bird')).toMatchObject({
+      name: 'Early Bird',
+      description: 'Available until 20 September 2026.',
+      capacityUnitsPerTicket: 1,
+      saleEndsAt: '2026-09-20T23:59:59+09:30',
+    })
+  })
+
   it('returns empty options for events without a ticket config', () => {
     expect(getTicketSaleConfig('missing-event')).toBeNull()
     expect(getTicketSaleOptions('missing-event')).toEqual([])

@@ -12,6 +12,8 @@ export type ConfiguredTicketOption = {
   priceCents: number
   capacityUnitsPerTicket: number
   sortOrder: number
+  saleStartsAt?: string | null
+  saleEndsAt?: string | null
 }
 
 export type ConfiguredTicketSale = {
@@ -79,8 +81,8 @@ export function getConfiguredTicketTypes(eventPublicId?: string): ConfiguredTick
         currency: sale.currency,
         capacity: sale.capacity,
         capacityUnitsPerTicket: ticketType.capacityUnitsPerTicket,
-        saleStartsAt: sale.saleStartsAt,
-        saleEndsAt: sale.saleEndsAt,
+        saleStartsAt: ticketType.saleStartsAt === undefined ? sale.saleStartsAt : ticketType.saleStartsAt,
+        saleEndsAt: ticketType.saleEndsAt === undefined ? sale.saleEndsAt : ticketType.saleEndsAt,
         isActive: sale.isActive,
       })),
     )
@@ -205,6 +207,8 @@ function readTicketTypes(value: unknown): ConfiguredTicketOption[] {
       priceCents: readNonNegativeInteger(ticketType, 'priceCents'),
       capacityUnitsPerTicket: readNonNegativeInteger(ticketType, 'capacityUnitsPerTicket'),
       sortOrder: readNonNegativeInteger(ticketType, 'sortOrder'),
+      saleStartsAt: readOptionalNullableString(ticketType, 'saleStartsAt'),
+      saleEndsAt: readOptionalNullableString(ticketType, 'saleEndsAt'),
     }
   })
 }
@@ -232,6 +236,10 @@ function readNullableString(value: Record<string, unknown>, key: string): string
   }
 
   return field
+}
+
+function readOptionalNullableString(value: Record<string, unknown>, key: string): string | null | undefined {
+  return key in value ? readNullableString(value, key) : undefined
 }
 
 function readBoolean(value: Record<string, unknown>, key: string): boolean {

@@ -7,6 +7,8 @@ export type TicketSaleConfigOption = {
   priceCents: number
   capacityUnitsPerTicket: number
   sortOrder: number
+  saleStartsAt?: string | null
+  saleEndsAt?: string | null
 }
 
 export type TicketSaleConfig = {

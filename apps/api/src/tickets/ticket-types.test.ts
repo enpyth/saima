@@ -12,8 +12,8 @@ describe('configured ticket types', () => {
   it('stores 20261016 as one sale with simple ticket option slugs', () => {
     const eventTicketTypes = getConfiguredTicketTypes('20261016')
 
-    expect(configuredTicketSales).toHaveLength(1)
-    expect(configuredTicketSales[0]).toMatchObject({
+    expect(configuredTicketSales).toHaveLength(2)
+    expect(configuredTicketSales.find((sale) => sale.eventPublicId === '20261016')).toMatchObject({
       eventPublicId: '20261016',
       capacity: 500,
       currency: 'AUD',
@@ -38,6 +38,32 @@ describe('configured ticket types', () => {
       '8faec920-2464-598d-9c9d-dbef0d63f3da',
     ])
     expect(eventTicketTypes.map((ticketType) => ticketType.id).every((id) => /^[0-9a-f]{8}-[0-9a-f]{4}-5[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/.test(id))).toBe(true)
+    expect(eventTicketTypes.every((ticketType) => ticketType.capacity === 500)).toBe(true)
+  })
+
+  it('stores 20261024 ticket options for Voices Beyond Borders', () => {
+    const eventTicketTypes = getConfiguredTicketTypes('20261024')
+
+    expect(configuredTicketSales.find((sale) => sale.eventPublicId === '20261024')).toMatchObject({
+      eventPublicId: '20261024',
+      capacity: 500,
+      currency: 'AUD',
+      isActive: true,
+    })
+    expect(eventTicketTypes.map((ticketType) => ticketType.slug)).toEqual([
+      'family',
+      'general',
+      'concession',
+      'child',
+      'early-bird',
+    ])
+    expect(eventTicketTypes.map((ticketType) => ticketType.priceCents)).toEqual([10000, 3800, 2800, 1800, 3000])
+    expect(eventTicketTypes.map((ticketType) => ticketType.capacityUnitsPerTicket)).toEqual([4, 1, 1, 1, 1])
+    expect(eventTicketTypes.find((ticketType) => ticketType.slug === 'early-bird')).toMatchObject({
+      name: 'Early Bird',
+      description: 'Available until 20 September 2026.',
+      saleEndsAt: '2026-09-20T23:59:59+09:30',
+    })
     expect(eventTicketTypes.every((ticketType) => ticketType.capacity === 500)).toBe(true)
   })
 
