@@ -192,6 +192,10 @@ export const eventsContent: Localized<EventsContent> = {
           label: 'Concert Poster',
           url: eventAssetUrl('20261016', 'poster.jpg'),
         },
+        programImage: {
+          label: 'Concert Program',
+          url: eventAssetUrl('20261016', 'program.jpg'),
+        },
         resources: [
           {
             label: 'Authority to Fundraise',
@@ -345,6 +349,10 @@ export const eventsContent: Localized<EventsContent> = {
         posterImage: {
           label: '音乐会海报',
           url: eventAssetUrl('20261016', 'poster.jpg'),
+        },
+        programImage: {
+          label: '音乐会节目单',
+          url: eventAssetUrl('20261016', 'program.jpg'),
         },
         resources: [
           {

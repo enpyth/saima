@@ -33,6 +33,10 @@ export type EventArticle = TextBlock & {
     label: string
     url: string
   }
+  programImage?: {
+    label: string
+    url: string
+  }
   resources?: Array<{
     label: string
     type: 'pdf'

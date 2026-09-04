@@ -35,6 +35,7 @@ function EventPage() {
       {ticketSale?.isActive ? <TicketSaleModule eventPublicId={event.id} /> : null}
       {event.details ? <EventDetailsSection details={event.details} labels={content.labels} /> : null}
       {event.posterImage ? <EventPosterSection posterImage={event.posterImage} /> : null}
+      {event.programImage ? <EventProgramSection programImage={event.programImage} /> : null}
       {event.resources ? <EventResourcesSection labels={content.labels} resources={event.resources} /> : null}
       {event.videos ? <EventVideosSection labels={content.labels} videos={event.videos} /> : null}
       {event.galleryImages ? <EventGallerySection galleryImages={event.galleryImages} labels={content.labels} /> : null}
@@ -132,6 +133,17 @@ function EventPosterSection({ posterImage }: { posterImage: NonNullable<EventArt
       <SectionHeading eyebrow={posterImage.label} title={posterImage.label} />
       <div className="event-poster">
         <img src={posterImage.url} alt={posterImage.label} />
+      </div>
+    </section>
+  )
+}
+
+function EventProgramSection({ programImage }: { programImage: NonNullable<EventArticle['programImage']> }) {
+  return (
+    <section className="public-section">
+      <SectionHeading eyebrow={programImage.label} title={programImage.label} />
+      <div className="event-poster">
+        <img src={programImage.url} alt={programImage.label} />
       </div>
     </section>
   )

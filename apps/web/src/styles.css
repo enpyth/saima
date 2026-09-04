@@ -1638,9 +1638,11 @@ nav {
 
 .event-poster img {
   border: 1px solid var(--saima-border);
+  height: auto;
   max-height: min(78vh, 980px);
+  max-width: min(100%, 720px);
   object-fit: contain;
-  width: min(100%, 720px);
+  width: auto;
 }
 
 .event-resource-grid {
@@ -2653,8 +2655,10 @@ nav {
   }
 
   .event-poster img {
+    height: auto;
     max-height: none;
-    width: 100%;
+    max-width: 100%;
+    width: auto;
   }
 
   .event-resource {

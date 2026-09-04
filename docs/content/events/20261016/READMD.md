@@ -10,3 +10,7 @@ For details, refer to document intro.md
 
 2. Authority to Fundraise
    Preview this file when the user clicks. https://pub-51349ba358244889889234b209966c9a.r2.dev/events/20261016/Authority.pdf
+
+3. Program
+   Display the charity concert program. https://pub-51349ba358244889889234b209966c9a.r2.dev/events/20261016/program.jpg
+
