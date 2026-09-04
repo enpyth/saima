@@ -117,6 +117,316 @@ function toDateKey(date: Date) {
   return `${year}-${month}-${day}`
 }
 
+const charityConcertPerformersEn = {
+  eyebrow: 'Young Performer Spotlight',
+  title: 'Meet Our Young Performers',
+  subtitle:
+    'Prize-winning young singers. Major scholarship recipients. State Opera experience. A programme of musical-theatre favourites, performed in support of children and families affected by cancer.',
+  note: 'All competition results below are from the Adelaide Eisteddfod Vocal Division.',
+  quote: {
+    heading: 'Young Voices. Real Achievement. A Meaningful Cause.',
+    subheading: 'No child. No family. No one should face the journey alone.',
+    footer: 'An Evening of Musical Theatre | Children, dreams, courage, dignity and community',
+  },
+  list: [
+    {
+      name: 'Isabelle Duong',
+      achievements: [
+        '2026 – 1st Prize, 10 & Under Character Solo',
+        'Highly Commended, Contemporary Solo',
+      ],
+      songs: ['“Naughty” – Matilda'],
+    },
+    {
+      name: 'Clara Cutri',
+      achievements: [
+        '2026 – 1st Prize, Classical English Solo',
+        '2026 – 1st Prize, Classical LOTE Solo',
+        '2025 – 1st Prize, LOTE Solo',
+      ],
+      songs: [
+        '“Can You Feel the Love Tonight” – The Lion King',
+        '“Heart of Stone” – SIX',
+        '“When We’re Together” – Frozen',
+        '“A Million Dreams” – The Greatest Showman',
+      ],
+    },
+    {
+      name: 'Heather Fa',
+      achievements: ['2026 – 3rd Prize, 10 & Under Character Solo'],
+      songs: ['“When I Grow Up” – Matilda', '“Castle on a Cloud” – Les Misérables'],
+    },
+    {
+      name: 'Analia Wang',
+      achievements: ['2026 – 1st Prize, 10 & Under Contemporary Solo'],
+      songs: ['“Once Upon a December” – Anastasia'],
+    },
+    {
+      name: 'Aimee Chloe Cui',
+      achievements: ['2026 – 1st Prize, 10 & Under Contemporary Solo'],
+      songs: ['“Electricity” – Billy Elliot'],
+    },
+    {
+      name: 'Phillip Yufu Cheng',
+      achievements: [
+        '2025 Young Virtuoso Vocal Section Winner',
+        'Grace Barbara Turner Award for Excellence in Performance',
+        '2024 & 2025 – 1st Prize, Open Art Song Solo',
+        'Selected by State Opera South Australia as one of the Three Boys in Mozart’s The Magic Flute',
+      ],
+      songs: ['“Think of Me” – The Phantom of the Opera'],
+    },
+    {
+      name: 'Chloe Evelyn Mu',
+      achievements: [
+        'St Peter’s Girls’ School scholarship (at least 50%)',
+        '2025 – 1st Prize, Duet',
+        '2026 – 2nd Prize, Contemporary Solo',
+        '2026 – 3rd Prize, Jazz / Blues / Gospel Solo',
+      ],
+      songs: [
+        '“Part of Your World” – The Little Mermaid',
+        '“I’ll Give My Life for You” – Miss Saigon',
+        '“This Is Me” – The Greatest Showman',
+      ],
+    },
+    {
+      name: 'Anya Wu',
+      achievements: ['2025 – Highly Commended, 10 & Under Classical Voice Solo'],
+      songs: ['“Do You Want to Build a Snowman?” – Frozen'],
+    },
+    {
+      name: 'Scarlett Ng',
+      achievements: ['Featured young performer in this concert programme'],
+      songs: ['“How Far I’ll Go” – Moana'],
+    },
+    {
+      name: 'Celine Yuan',
+      achievements: [
+        '100% Principal’s Scholarship at St Ignatius’ College',
+        '2026 Lady Anne Miller Award',
+        'Four 1st Prizes at the 2026 Adelaide Eisteddfod',
+        'Selected by State Opera South Australia as one of the Three Boys in Mozart’s The Magic Flute',
+      ],
+      songs: [
+        '“On My Own” – Les Misérables',
+        '“The Next Right Thing” – Frozen',
+        '“When We’re Together” – Frozen',
+        '“A Million Dreams” – The Greatest Showman',
+      ],
+    },
+    {
+      name: 'Owen Wu',
+      achievements: [
+        '2025 – 1st Prize, 12 & Under LOTE Solo',
+        '2025 – 3rd Prize, Duet',
+        '2024 – 3rd Prize, Character Solo & Contemporary Solo',
+      ],
+      songs: ['“Can You Feel the Love Tonight” – The Lion King'],
+    },
+  ],
+}
+
+const charityConcertScheduleEn = {
+  eyebrow: 'Concert Programme',
+  title: 'Charity Concert Programme',
+  subtitle: 'Artistic Director, Music Director & Vocal Coach: Yiyin Elsa Tian',
+  sections: [
+    {
+      part: 'Part I',
+      theme: 'Children, Dreams & Possibility',
+      items: [
+        { number: 1, work: 'Matilda', song: 'Naughty', performer: 'Isabelle Duong' },
+        { number: 2, work: 'Matilda', song: 'When I Grow Up', performer: 'Heather Fa' },
+        { number: 3, work: 'Billy Elliot', song: 'Electricity', performer: 'Aimee Chloe Cui', notes: 'The Dream of Growing Up' },
+        { number: 4, work: 'The Little Mermaid', song: 'Part of Your World', performer: 'Chloe Mu' },
+        { number: 5, work: 'Moana', song: 'How Far I’ll Go', performer: 'Scarlett Ng', notes: 'Bravely Finding Your Own World' },
+        { work: 'Special Message', song: 'Why We Are Here', performer: 'SAIMA Community' },
+        { number: 7, work: 'Coco', song: 'Everyone Knows Juanita', performer: 'Performer TBC', notes: 'Special version with additional lyrics written for this concert' },
+      ],
+    },
+    {
+      part: 'Part II',
+      theme: 'When the World Changes',
+      items: [
+        { number: 8, work: 'Anastasia', song: 'Once Upon a December', performer: 'Analia Wang', notes: 'Memory' },
+        { number: 9, work: 'The Phantom of the Opera', song: 'Think of Me', performer: 'Phillip Cheng', notes: 'Longing' },
+        { number: 10, work: 'Les Misérables', song: 'Castle on a Cloud', performer: 'Heather Fa', notes: 'A Child’s Safe World' },
+        { number: 11, work: 'Frozen', song: 'Do You Want to Build a Snowman?', performer: 'Anya Wu', notes: 'Loneliness' },
+        { number: 12, work: 'Les Misérables', song: 'On My Own', performer: 'Celine Yuan' },
+        { number: 13, work: 'Frozen', song: 'The Next Right Thing', performer: 'Celine Yuan', notes: 'Keep Walking Through the Dark' },
+        { number: 14, work: 'SIX', song: 'Heart of Stone', performer: 'Clara Cutri', notes: 'Love Does Not Change' },
+        { number: 15, work: 'Miss Saigon', song: 'I’ll Give My Life for You', performer: 'Chloe Mu', notes: 'A Parent’s Love' },
+      ],
+    },
+    {
+      part: 'Part III',
+      theme: 'Together',
+      items: [
+        { number: 16, work: 'Frozen / Olaf’s Frozen Adventure', song: 'When We’re Together', performer: 'Clara Cutri & Celine Yuan' },
+        { number: 17, work: 'The Greatest Showman', song: 'A Million Dreams', performer: 'Celine Yuan & Clara Cutri', notes: 'Dreaming Still' },
+        { number: 18, work: 'The Greatest Showman', song: 'This Is Me', performer: 'Chloe Mu', notes: 'Courage, Dignity & Strength' },
+        { number: 19, work: 'Finale: We Stand Together', song: 'We Are Australian', performer: 'Full Cast' },
+      ],
+    },
+  ],
+}
+
+const charityConcertPerformersZh = {
+  eyebrow: '青年演员特写',
+  title: '走近青年小歌者',
+  subtitle:
+    '获奖年轻声乐人才、重要奖学金获得者、南澳州歌剧院演出经历。精选经典音乐剧唱段，为患癌儿童及家庭送去温暖与支持。',
+  note: '以下所有赛事获奖成绩均来自阿德莱德音乐节（Adelaide Eisteddfod）声乐组比赛。',
+  quote: {
+    heading: '年轻的声音 · 卓越的才华 · 深刻的意义',
+    subheading: '每一个孩子，每一个家庭，都不应独自面对艰难旅程。',
+    footer: '音乐剧慈善之夜 | 纯真童年 · 梦想力量 · 勇敢坚韧 · 社区温暖',
+  },
+  list: [
+    {
+      name: 'Isabelle Duong',
+      achievements: [
+        '2026年 10岁及以下角色独唱 第一名',
+        '当代独唱 优秀奖（Highly Commended）',
+      ],
+      songs: ['《Naughty》– 音乐剧《Matilda》'],
+    },
+    {
+      name: 'Clara Cutri',
+      achievements: [
+        '2026年 古典英语独唱 第一名',
+        '2026年 外语古典独唱（LOTE）第一名',
+        '2025年 外语独唱（LOTE）第一名',
+      ],
+      songs: [
+        '《Can You Feel the Love Tonight》– 《狮子王》',
+        '《Heart of Stone》– 《SIX》',
+        '《When We’re Together》– 《冰雪奇缘》',
+        '《A Million Dreams》– 《马戏之王》',
+      ],
+    },
+    {
+      name: 'Heather Fa',
+      achievements: ['2026年 10岁及以下角色独唱 第三名'],
+      songs: ['《When I Grow Up》– 《Matilda》', '《Castle on a Cloud》– 《悲惨世界》'],
+    },
+    {
+      name: 'Analia Wang',
+      achievements: ['2026年 10岁及以下当代独唱 第一名'],
+      songs: ['《Once Upon a December》– 《真假公主/安娜斯塔西娅》'],
+    },
+    {
+      name: 'Aimee Chloe Cui',
+      achievements: ['2026年 10岁及以下当代独唱 第一名'],
+      songs: ['《Electricity》– 《跳出我天地/比利·艾略特》'],
+    },
+    {
+      name: 'Phillip Yufu Cheng',
+      achievements: [
+        '2025年 青年大师声乐组（Young Virtuoso）优胜者',
+        'Grace Barbara Turner 杰出表演奖',
+        '2024 & 2025年 公开组艺术歌曲独唱 第一名',
+        '入选南澳州歌剧院在莫扎特《魔笛》中饰演“三神童”之一',
+      ],
+      songs: ['《Think of Me》– 《歌剧魅影》'],
+    },
+    {
+      name: 'Chloe Evelyn Mu',
+      achievements: [
+        '圣彼得女子学校奖学金（至少50%）',
+        '2025年 重唱/二重唱 第一名',
+        '2026年 当代独唱 第二名',
+        '2026年 爵士/蓝调/福音独唱 第三名',
+      ],
+      songs: [
+        '《Part of Your World》– 《小美人鱼》',
+        '《I’ll Give My Life for You》– 《西贡小姐》',
+        '《This Is Me》– 《马戏之王》',
+      ],
+    },
+    {
+      name: 'Anya Wu',
+      achievements: ['2025年 10岁及以下古典独唱 优秀奖（Highly Commended）'],
+      songs: ['《Do You Want to Build a Snowman?》– 《冰雪奇缘》'],
+    },
+    {
+      name: 'Scarlett Ng',
+      achievements: ['本次慈善音乐会特邀青年演出者'],
+      songs: ['《How Far I’ll Go》– 《海洋奇缘》'],
+    },
+    {
+      name: 'Celine Yuan',
+      achievements: [
+        '圣伊格内修斯学院 100% 校长全额奖学金',
+        '2026年 Lady Anne Miller 奖获得者',
+        '2026年 阿德莱德音乐节 四项第一名',
+        '入选南澳州歌剧院在莫扎特《魔笛》中饰演“三神童”之一',
+      ],
+      songs: [
+        '《On My Own》– 《悲惨世界》',
+        '《The Next Right Thing》– 《冰雪奇缘》',
+        '《When We’re Together》– 《冰雪奇缘》',
+        '《A Million Dreams》– 《马戏之王》',
+      ],
+    },
+    {
+      name: 'Owen Wu',
+      achievements: [
+        '2025年 12岁及以下外语独唱（LOTE）第一名',
+        '2025年 二重唱 第三名',
+        '2024年 角色独唱与当代独唱 第三名',
+      ],
+      songs: ['《Can You Feel the Love Tonight》– 《狮子王》'],
+    },
+  ],
+}
+
+const charityConcertScheduleZh = {
+  eyebrow: '音乐会节目单',
+  title: '慈善音乐会完整曲目单',
+  subtitle: '艺术总监、音乐指导与声乐指导：田依因（Yiyin Elsa Tian）',
+  sections: [
+    {
+      part: '第一部分',
+      theme: '纯真、梦想与可能（Children, Dreams & Possibility）',
+      items: [
+        { number: 1, work: '《Matilda》', song: 'Naughty', performer: 'Isabelle Duong' },
+        { number: 2, work: '《Matilda》', song: 'When I Grow Up', performer: 'Heather Fa' },
+        { number: 3, work: '《Billy Elliot》', song: 'Electricity', performer: 'Aimee Chloe Cui', notes: '成长的梦想' },
+        { number: 4, work: '《The Little Mermaid》', song: 'Part of Your World', performer: 'Chloe Mu' },
+        { number: 5, work: '《Moana》', song: 'How Far I’ll Go', performer: 'Scarlett Ng', notes: '勇敢探索自己的世界' },
+        { work: '特别分享', song: 'Why We Are Here（我们为何相聚）', performer: 'SAIMA 社群' },
+        { number: 7, work: '《Coco》', song: 'Everyone Knows Juanita', performer: '待定', notes: '为本场音乐会特别创作扩展歌词版本' },
+      ],
+    },
+    {
+      part: '第二部分',
+      theme: '世界改变的时刻（When the World Changes）',
+      items: [
+        { number: 8, work: '《Anastasia》', song: 'Once Upon a December', performer: 'Analia Wang', notes: '记忆' },
+        { number: 9, work: '《歌剧魅影》', song: 'Think of Me', performer: 'Phillip Cheng', notes: '渴望与怀念' },
+        { number: 10, work: '《悲惨世界》', song: 'Castle on a Cloud', performer: 'Heather Fa', notes: '孩子的安全庇护所' },
+        { number: 11, work: '《冰雪奇缘》', song: 'Do You Want to Build a Snowman?', performer: 'Anya Wu', notes: '孤单' },
+        { number: 12, work: '《悲惨世界》', song: 'On My Own', performer: 'Celine Yuan' },
+        { number: 13, work: '《冰雪奇缘》', song: 'The Next Right Thing', performer: 'Celine Yuan', notes: '在黑暗中继续前行' },
+        { number: 14, work: '《SIX》', song: 'Heart of Stone', performer: 'Clara Cutri', notes: '永恒不变的爱' },
+        { number: 15, work: '《西贡小姐》', song: 'I’ll Give My Life for You', performer: 'Chloe Mu', notes: '父母之爱' },
+      ],
+    },
+    {
+      part: '第三部分',
+      theme: '心手相连（Together）',
+      items: [
+        { number: 16, work: '《冰雪奇缘》', song: 'When We’re Together', performer: 'Clara Cutri & Celine Yuan' },
+        { number: 17, work: '《马戏之王》', song: 'A Million Dreams', performer: 'Celine Yuan & Clara Cutri', notes: '依然怀揣梦想' },
+        { number: 18, work: '《马戏之王》', song: 'This Is Me', performer: 'Chloe Mu', notes: '勇气、尊严与力量' },
+        { number: 19, work: '终曲：并肩前行', song: 'We Are Australian', performer: '全体演职人员' },
+      ],
+    },
+  ],
+}
+
 export const eventsContent: Localized<EventsContent> = {
   en: {
     hero: {
@@ -166,28 +476,25 @@ export const eventsContent: Localized<EventsContent> = {
           'This event will also give young singers a meaningful opportunity to use their talents for a charitable cause. By standing on stage for other children, students will learn that music is not only about performance, but also about empathy, responsibility, and bringing hope to others.',
         ],
         details: [
-          { label: 'Project Name', value: 'Elsa & Her Children - A Dream for Every Child' },
+          { label: 'Project Name', value: 'Elsa & Her Children – A Dream for Every Child' },
           { label: 'Date', value: '16 October 2026' },
           { label: 'Venue', value: 'Royalty Theatre' },
           { label: 'Presenter', value: 'South Australia International Musicians Association' },
-          { label: 'Performers', value: 'Approximately 18-20 award-winning young vocalists aged 8-15' },
+          { label: 'Performers', value: 'Approximately 18–20 award-winning young vocalists aged 8–15' },
           {
             label: 'Artistic Standard',
             value:
               'All invited performers have previously achieved top-three placings in vocal competitions, with more than half being First Prize winners at the Adelaide Eisteddfod.',
           },
-          { label: 'Audience', value: 'Approximately 500 people' },
-          {
-            label: 'Volunteers',
-            value: 'Approximately 20-25 people, including teachers, parents, committee members, front of house and helpers',
-          },
+          { label: 'Audience Capacity', value: 'Approximately 500 seats' },
           {
             label: 'Purpose',
             value:
               'To inspire young people to serve the community through music while raising funds to support families affected by childhood cancer.',
           },
-          { label: 'Funding Requested', value: '$3,300' },
         ],
+        performers: charityConcertPerformersEn,
+        programSchedule: charityConcertScheduleEn,
         posterImage: {
           label: 'Concert Poster',
           url: eventAssetUrl('20261016', 'poster.jpg'),
@@ -332,20 +639,20 @@ export const eventsContent: Localized<EventsContent> = {
           '这场活动也将为年轻歌者提供一个有意义的舞台，让他们能够用自己的才华支持公益事业。当孩子们为了其他孩子站上舞台时，他们将学习到：音乐不仅是表演，也是同理心、责任感，以及为他人带去希望的方式。',
         ],
         details: [
-          { label: '项目名称', value: 'Elsa & Her Children - A Dream for Every Child' },
+          { label: '项目名称', value: 'Elsa & Her Children – A Dream for Every Child' },
           { label: '日期', value: '2026年10月16日' },
           { label: '地点', value: 'Royalty Theatre' },
           { label: '主办', value: '南澳国际音乐协会' },
-          { label: '表演者', value: '约18-20名8-15岁获奖青少年声乐表演者' },
+          { label: '表演者', value: '约18–20名8–15岁获奖青少年声乐表演者' },
           {
             label: '艺术水准',
             value: '所有受邀表演者均曾在声乐比赛中获得前三名，其中超过半数曾获得 Adelaide Eisteddfod 第一名。',
           },
-          { label: '预计观众', value: '约500人' },
-          { label: '志愿者', value: '约20-25人，包括教师、家长、委员会成员、前台及协助人员' },
+          { label: '观众容量', value: '约500席' },
           { label: '宗旨', value: '鼓励青少年通过音乐服务社区，同时为受儿童癌症影响的家庭筹集善款。' },
-          { label: '申请资助', value: '$3,300' },
         ],
+        performers: charityConcertPerformersZh,
+        programSchedule: charityConcertScheduleZh,
         posterImage: {
           label: '音乐会海报',
           url: eventAssetUrl('20261016', 'poster.jpg'),

@@ -1,5 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { ArrowLeft, ExternalLink, FileText, MapPin } from 'lucide-react'
+import { ArrowLeft, ExternalLink, FileText, MapPin, Music, Sparkles } from 'lucide-react'
 
 import { useLanguage } from '../components/language-provider'
 import Masonry from '../components/Masonry'
@@ -33,9 +33,16 @@ function EventPage() {
       <EventOverview event={event} labels={content.labels} />
 
       {ticketSale?.isActive ? <TicketSaleModule eventPublicId={event.id} /> : null}
-      {event.details ? <EventDetailsSection details={event.details} labels={content.labels} /> : null}
+      {event.performers ? <EventPerformersSection performers={event.performers} /> : null}
+      {event.programImage || event.programSchedule ? (
+        <EventProgramSection
+          programImage={event.programImage}
+          programSchedule={event.programSchedule}
+          language={language}
+        />
+      ) : null}
       {event.posterImage ? <EventPosterSection posterImage={event.posterImage} /> : null}
-      {event.programImage ? <EventProgramSection programImage={event.programImage} /> : null}
+      {event.details ? <EventDetailsSection details={event.details} labels={content.labels} /> : null}
       {event.resources ? <EventResourcesSection labels={content.labels} resources={event.resources} /> : null}
       {event.videos ? <EventVideosSection labels={content.labels} videos={event.videos} /> : null}
       {event.galleryImages ? <EventGallerySection galleryImages={event.galleryImages} labels={content.labels} /> : null}
@@ -138,12 +145,144 @@ function EventPosterSection({ posterImage }: { posterImage: NonNullable<EventArt
   )
 }
 
-function EventProgramSection({ programImage }: { programImage: NonNullable<EventArticle['programImage']> }) {
+function EventPerformersSection({
+  performers,
+}: {
+  performers: NonNullable<EventArticle['performers']>
+}) {
   return (
     <section className="public-section">
-      <SectionHeading eyebrow={programImage.label} title={programImage.label} />
-      <div className="event-poster">
-        <img src={programImage.url} alt={programImage.label} />
+      <div className="section-heading">
+        <span className="eyebrow">{performers.eyebrow}</span>
+        <h2>{performers.title}</h2>
+        <p className="performer-section-subtitle">{performers.subtitle}</p>
+        {performers.note ? <p className="performer-note">{performers.note}</p> : null}
+      </div>
+
+      <div className="performer-grid">
+        {performers.list.map((performer) => (
+          <article className="performer-card" key={performer.name}>
+            <div className="performer-header">
+              <div className="performer-avatar-placeholder" aria-hidden="true">
+                <Sparkles size={18} />
+              </div>
+              <h3 className="performer-name">{performer.name}</h3>
+            </div>
+
+            <div className="performer-achievements">
+              <span className="performer-badge-label">Honours & Experience</span>
+              <ul>
+                {performer.achievements.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="performer-songs">
+              <span className="performer-badge-label">On Stage</span>
+              <div className="performer-song-tags">
+                {performer.songs.map((song) => (
+                  <span className="performer-song-tag" key={song}>
+                    <Music size={13} aria-hidden="true" />
+                    {song}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      {performers.quote ? (
+        <div className="performer-quote-banner">
+          <h4>{performers.quote.heading}</h4>
+          <p className="performer-quote-highlight">“{performers.quote.subheading}”</p>
+          <p className="performer-quote-footer">{performers.quote.footer}</p>
+        </div>
+      ) : null}
+    </section>
+  )
+}
+
+function EventProgramSection({
+  programImage,
+  programSchedule,
+  language,
+}: {
+  programImage?: EventArticle['programImage']
+  programSchedule?: EventArticle['programSchedule']
+  language: Language
+}) {
+  const openFullImageLabel = language === 'zh' ? '查看原图（高清大图）' : 'View Full Resolution'
+  const sectionTitle = programSchedule?.title ?? programImage?.label ?? 'Concert Programme'
+  const eyebrow = programSchedule?.eyebrow ?? programImage?.label ?? 'Programme'
+
+  return (
+    <section className="public-section">
+      <SectionHeading eyebrow={eyebrow} title={sectionTitle} />
+      {programSchedule?.subtitle ? (
+        <p className="program-director-subtitle">{programSchedule.subtitle}</p>
+      ) : null}
+
+      <div className="program-showcase-layout">
+        {programImage ? (
+          <div className="program-image-column">
+            <div className="program-image-frame">
+              <a
+                href={programImage.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                title={openFullImageLabel}
+                className="program-image-link"
+              >
+                <img src={programImage.url} alt={programImage.label} className="program-flyer-img" />
+                <span className="program-image-zoom-hint">
+                  <ExternalLink size={14} aria-hidden="true" /> {openFullImageLabel}
+                </span>
+              </a>
+            </div>
+            <div className="program-image-actions">
+              <Button asChild variant="outline" size="sm">
+                <a href={programImage.url} target="_blank" rel="noopener noreferrer">
+                  <ExternalLink size={14} /> {openFullImageLabel}
+                </a>
+              </Button>
+            </div>
+          </div>
+        ) : null}
+
+        {programSchedule ? (
+          <div className="program-schedule-column">
+            {programSchedule.sections.map((section) => (
+              <div className="program-schedule-part" key={section.part}>
+                <div className="program-part-header">
+                  <span className="program-part-tag">{section.part}</span>
+                  {section.theme ? <h3 className="program-part-theme">{section.theme}</h3> : null}
+                </div>
+
+                <div className="program-items-list">
+                  {section.items.map((item, index) => (
+                    <div className="program-item-row" key={`${item.work}-${item.song}-${index}`}>
+                      <div className="program-item-number">
+                        {item.number ? String(item.number).padStart(2, '0') : '—'}
+                      </div>
+                      <div className="program-item-content">
+                        {item.notes ? <span className="program-item-note">{item.notes}</span> : null}
+                        <div className="program-item-main">
+                          <strong className="program-item-work">{item.work}</strong>
+                          <span className="program-item-song">“{item.song}”</span>
+                        </div>
+                        <div className="program-item-performer">
+                          <span className="program-performer-name">{item.performer}</span>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : null}
       </div>
     </section>
   )

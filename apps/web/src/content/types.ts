@@ -37,6 +37,38 @@ export type EventArticle = TextBlock & {
     label: string
     url: string
   }
+  performers?: {
+    eyebrow: string
+    title: string
+    subtitle: string
+    note?: string
+    quote?: {
+      heading: string
+      subheading: string
+      footer: string
+    }
+    list: Array<{
+      name: string
+      achievements: string[]
+      songs: string[]
+    }>
+  }
+  programSchedule?: {
+    eyebrow: string
+    title: string
+    subtitle?: string
+    sections: Array<{
+      part: string
+      theme?: string
+      items: Array<{
+        number?: number
+        work: string
+        song: string
+        performer: string
+        notes?: string
+      }>
+    }>
+  }
   resources?: Array<{
     label: string
     type: 'pdf'
