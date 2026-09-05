@@ -230,7 +230,7 @@ const charityConcertPerformersEn = {
 const charityConcertScheduleEn = {
   eyebrow: 'Concert Programme',
   title: 'Charity Concert Programme',
-  subtitle: 'Artistic Director, Music Director & Vocal Coach: Yiyin Elsa Tian',
+  subtitle: 'Concert & Artistic Director, Music Director & Vocal Coach: Yiyin Elsa Tian',
   sections: [
     {
       part: 'Part I',
@@ -385,7 +385,7 @@ const charityConcertPerformersZh = {
 const charityConcertScheduleZh = {
   eyebrow: '音乐会节目单',
   title: '慈善音乐会完整曲目单',
-  subtitle: '艺术总监、音乐指导与声乐指导：田依因（Yiyin Elsa Tian）',
+  subtitle: '音乐会与艺术总监、音乐指导与声乐指导：田依因（Yiyin Elsa Tian）',
   sections: [
     {
       part: '第一部分',
