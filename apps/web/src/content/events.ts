@@ -35,13 +35,14 @@ type EventsContent = {
 const eventHref = (id: string) => `/events/${id}`
 const r2PublicBaseUrl = (import.meta.env.VITE_R2_PUBLIC_BASE_URL as string | undefined)?.replace(/\/$/, '')
 
-export function eventAssetUrl(eventId: string, file: string) {
+export function eventAssetUrl(eventId: string, file: string, version?: string) {
   const encodedFile = file
     .split('/')
     .map((segment) => encodeURIComponent(segment))
     .join('/')
 
-  return `${r2PublicBaseUrl ?? ''}/events/${eventId}/${encodedFile}`
+  const query = version ? `?v=${encodeURIComponent(version)}` : ''
+  return `${r2PublicBaseUrl ?? ''}/events/${eventId}/${encodedFile}${query}`
 }
 
 const silkRoadImages = [
@@ -497,11 +498,11 @@ export const eventsContent: Localized<EventsContent> = {
         programSchedule: charityConcertScheduleEn,
         posterImage: {
           label: 'Concert Poster',
-          url: eventAssetUrl('20261016', 'poster.jpg'),
+          url: eventAssetUrl('20261016', 'poster-v2.jpg', '20260906'),
         },
         programImage: {
           label: 'Concert Program',
-          url: eventAssetUrl('20261016', 'program.jpg'),
+          url: eventAssetUrl('20261016', 'program-v2.jpg', '20260906'),
         },
         resources: [
           {
@@ -655,11 +656,11 @@ export const eventsContent: Localized<EventsContent> = {
         programSchedule: charityConcertScheduleZh,
         posterImage: {
           label: '音乐会海报',
-          url: eventAssetUrl('20261016', 'poster.jpg'),
+          url: eventAssetUrl('20261016', 'poster-v2.jpg', '20260906'),
         },
         programImage: {
           label: '音乐会节目单',
-          url: eventAssetUrl('20261016', 'program.jpg'),
+          url: eventAssetUrl('20261016', 'program-v2.jpg', '20260906'),
         },
         resources: [
           {

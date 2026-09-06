@@ -133,11 +133,11 @@ describe('public site content', () => {
 
     expect(charityConcert?.posterImage).toEqual({
       label: 'Concert Poster',
-      url: eventAssetUrl('20261016', 'poster.jpg'),
+      url: eventAssetUrl('20261016', 'poster-v2.jpg', '20260906'),
     })
     expect(charityConcert?.programImage).toEqual({
       label: 'Concert Program',
-      url: eventAssetUrl('20261016', 'program.jpg'),
+      url: eventAssetUrl('20261016', 'program-v2.jpg', '20260906'),
     })
     expect(charityConcert?.resources).toEqual([
       {
