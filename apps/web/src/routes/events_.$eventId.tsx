@@ -32,6 +32,7 @@ function EventPage() {
       <EventHeader event={event} labels={content.labels} statusLabel={statusLabel} />
       <EventOverview event={event} labels={content.labels} />
 
+      {event.posterImage ? <EventPosterSection posterImage={event.posterImage} /> : null}
       {ticketSale?.isActive ? <TicketSaleModule eventPublicId={event.id} /> : null}
       {event.performers ? <EventPerformersSection performers={event.performers} /> : null}
       {event.programImage || event.programSchedule ? (
@@ -41,7 +42,6 @@ function EventPage() {
           language={language}
         />
       ) : null}
-      {event.posterImage ? <EventPosterSection posterImage={event.posterImage} /> : null}
       {event.details ? <EventDetailsSection details={event.details} labels={content.labels} /> : null}
       {event.resources ? <EventResourcesSection labels={content.labels} resources={event.resources} /> : null}
       {event.videos ? <EventVideosSection labels={content.labels} videos={event.videos} /> : null}
