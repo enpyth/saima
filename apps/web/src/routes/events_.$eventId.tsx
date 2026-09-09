@@ -1,5 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { ArrowLeft, ExternalLink, FileText, MapPin, Music, Sparkles } from 'lucide-react'
+import { useEffect } from 'react'
 
 import { useLanguage } from '../components/language-provider'
 import Masonry from '../components/Masonry'
@@ -9,7 +10,46 @@ import { eventsContent, findEvent, getEventStatus } from '../content/events'
 import type { EventArticle, Language } from '../content/types'
 import { getTicketSaleConfig } from '../lib/ticket-sales-config'
 
-export const Route = createFileRoute('/events_/$eventId')({ component: EventPage })
+export const Route = createFileRoute('/events_/$eventId')({
+  head: ({ params }) => {
+    const event = findEvent('en', params.eventId)
+    const title =
+      event?.seoTitle ??
+      (event ? `${event.title} | SAIMA` : 'SAIMA | South Australian International Musicians Association')
+    const description =
+      event?.seoDescription ??
+      'SAIMA supports international musicians in South Australia through events, membership, courses, and community connection.'
+
+    return {
+      meta: [
+        {
+          title,
+        },
+        {
+          name: 'description',
+          content: description,
+        },
+        {
+          property: 'og:title',
+          content: title,
+        },
+        {
+          property: 'og:description',
+          content: description,
+        },
+        {
+          name: 'twitter:title',
+          content: title,
+        },
+        {
+          name: 'twitter:description',
+          content: description,
+        },
+      ],
+    }
+  },
+  component: EventPage,
+})
 
 type EventContent = (typeof eventsContent)[Language]
 type EventLabels = EventContent['labels']
@@ -19,6 +59,28 @@ function EventPage() {
   const { language } = useLanguage()
   const content = eventsContent[language]
   const event = findEvent(language, eventId)
+
+  useEffect(() => {
+    if (!event) return
+    const title = event.seoTitle ?? `${event.title} | SAIMA`
+    const description = event.seoDescription
+    document.title = title
+
+    if (description) {
+      const metaDescription = document.querySelector('meta[name="description"]')
+      if (metaDescription) {
+        metaDescription.setAttribute('content', description)
+      }
+      const ogTitle = document.querySelector('meta[property="og:title"]')
+      if (ogTitle) {
+        ogTitle.setAttribute('content', title)
+      }
+      const ogDescription = document.querySelector('meta[property="og:description"]')
+      if (ogDescription) {
+        ogDescription.setAttribute('content', description)
+      }
+    }
+  }, [event])
 
   if (!event) {
     return <EventNotFound content={content} />

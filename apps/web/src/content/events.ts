@@ -467,6 +467,9 @@ export const eventsContent: Localized<EventsContent> = {
         title: 'A Dream for Every Child',
         subtitle:
           'Elsa and Her Students: A Charity Musical Theatre Concert Supporting Children with Cancer and Their Families',
+        seoTitle: 'A Dream for Every Child | Adelaide Charity Concert | 16 October 2026',
+        seoDescription:
+          'An award-winning cast of young vocalists performs musical theatre favourites at Adelaide’s Royalty Theatre, raising funds for children and families affected by cancer. Tickets from $25.',
         date: '16 Oct 2026',
         location: 'Royalty Theatre',
         paragraphs: [
@@ -630,6 +633,9 @@ export const eventsContent: Localized<EventsContent> = {
         startDate: '2026-10-16',
         title: '《每个孩子都应有梦想》',
         subtitle: 'Elsa 和她的孩子们：支持儿童癌症家庭慈善音乐剧音乐会',
+        seoTitle: 'A Dream for Every Child | Adelaide Charity Concert | 16 October 2026',
+        seoDescription:
+          'An award-winning cast of young vocalists performs musical theatre favourites at Adelaide’s Royalty Theatre, raising funds for children and families affected by cancer. Tickets from $25.',
         date: '2026年10月16日',
         location: 'Royalty Theatre',
         paragraphs: [

@@ -139,6 +139,12 @@ describe('public site content', () => {
       label: 'Concert Program',
       url: eventAssetUrl('20261016', 'program-v2.jpg', '20260906'),
     })
+    expect(charityConcert?.seoTitle).toBe(
+      'A Dream for Every Child | Adelaide Charity Concert | 16 October 2026',
+    )
+    expect(charityConcert?.seoDescription).toBe(
+      'An award-winning cast of young vocalists performs musical theatre favourites at Adelaide’s Royalty Theatre, raising funds for children and families affected by cancer. Tickets from $25.',
+    )
     expect(charityConcert?.resources).toEqual([
       {
         label: 'Authority to Fundraise',

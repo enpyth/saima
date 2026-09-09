@@ -15,6 +15,8 @@ export type EventArticle = TextBlock & {
   date?: string
   location?: string
   subtitle?: string
+  seoTitle?: string
+  seoDescription?: string
   highlights?: string[]
   details?: Array<{
     label: string
