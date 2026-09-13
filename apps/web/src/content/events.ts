@@ -135,6 +135,7 @@ const charityConcertPerformersEn = {
       achievements: [
         '2026 – 1st Prize, 10 & Under Character Solo',
         'Highly Commended, Contemporary Solo',
+        '2026 – 3rd Prize, Sydney Eisteddfod 8&u Musical Theatre vocal section'
       ],
       songs: ['“Naughty” – Matilda'],
     },
@@ -180,7 +181,6 @@ const charityConcertPerformersEn = {
     {
       name: 'Chloe Evelyn Mu',
       achievements: [
-        'St Peter’s Girls’ School scholarship (at least 50%)',
         '2025 – 1st Prize, Duet',
         '2026 – 2nd Prize, Contemporary Solo',
         '2026 – 3rd Prize, Jazz / Blues / Gospel Solo',
@@ -204,7 +204,6 @@ const charityConcertPerformersEn = {
     {
       name: 'Celine Yuan',
       achievements: [
-        '100% Principal’s Scholarship at St Ignatius’ College',
         '2026 Lady Anne Miller Award',
         'Four 1st Prizes at the 2026 Adelaide Eisteddfod',
         'Selected by State Opera South Australia as one of the Three Boys in Mozart’s The Magic Flute',
