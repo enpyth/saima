@@ -265,6 +265,8 @@ function TicketSaleSummary({
 }
 
 function TicketTypeRow({ labels, ticketType }: { labels: TicketSaleLabels; ticketType: TicketSaleRow }) {
+  const availability = getAvailabilityLabel(ticketType, labels)
+
   return (
     <div className="ticket-type-row">
       <div>
@@ -278,7 +280,7 @@ function TicketTypeRow({ labels, ticketType }: { labels: TicketSaleLabels; ticke
       </div>
       <div>
         <strong>{formatMoney(ticketType.priceCents, ticketType.currency)}</strong>
-        <span>{getAvailabilityLabel(ticketType, labels)}</span>
+        {availability ? <span>{availability}</span> : null}
       </div>
     </div>
   )
@@ -397,10 +399,10 @@ function mergeTicketRows(
 
 function getAvailabilityLabel(ticketType: TicketSaleRow, labels: TicketSaleLabels) {
   if (ticketType.remaining === null) {
-    return labels.checking
+    return null
   }
 
-  return ticketType.remainingTicketQuantity > 0 ? `${ticketType.remainingTicketQuantity} ${labels.remaining}` : labels.soldOut
+  return ticketType.remainingTicketQuantity > 0 ? null : labels.soldOut
 }
 
 function formatMoney(cents: number, currency: string) {
