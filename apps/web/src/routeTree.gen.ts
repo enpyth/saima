@@ -47,6 +47,7 @@ import { Route as DashboardMemberProfileRouteImport } from './routes/dashboard.m
 import { Route as DashboardVisitorBookingsRouteImport } from './routes/dashboard.visitor.bookings'
 import { Route as DashboardVisitorMembershipRouteImport } from './routes/dashboard.visitor.membership'
 import { Route as DashboardVisitorTicketsRouteImport } from './routes/dashboard.visitor.tickets'
+import { Route as EventsEventIdTicketsStatusRouteImport } from './routes/events_.$eventId_.tickets-status'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -245,6 +246,12 @@ const DashboardVisitorTicketsRoute = DashboardVisitorTicketsRouteImport.update({
   path: '/tickets',
   getParentRoute: () => DashboardVisitorRoute,
 } as any)
+const EventsEventIdTicketsStatusRoute =
+  EventsEventIdTicketsStatusRouteImport.update({
+    id: '/events_/$eventId_/tickets-status',
+    path: '/events/$eventId/tickets-status',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -285,6 +292,7 @@ export interface FileRoutesByFullPath {
   '/dashboard/visitor/bookings': typeof DashboardVisitorBookingsRoute
   '/dashboard/visitor/membership': typeof DashboardVisitorMembershipRoute
   '/dashboard/visitor/tickets': typeof DashboardVisitorTicketsRoute
+  '/events/$eventId/tickets-status': typeof EventsEventIdTicketsStatusRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -325,6 +333,7 @@ export interface FileRoutesByTo {
   '/dashboard/visitor/bookings': typeof DashboardVisitorBookingsRoute
   '/dashboard/visitor/membership': typeof DashboardVisitorMembershipRoute
   '/dashboard/visitor/tickets': typeof DashboardVisitorTicketsRoute
+  '/events/$eventId/tickets-status': typeof EventsEventIdTicketsStatusRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -366,6 +375,7 @@ export interface FileRoutesById {
   '/dashboard/visitor/bookings': typeof DashboardVisitorBookingsRoute
   '/dashboard/visitor/membership': typeof DashboardVisitorMembershipRoute
   '/dashboard/visitor/tickets': typeof DashboardVisitorTicketsRoute
+  '/events_/$eventId_/tickets-status': typeof EventsEventIdTicketsStatusRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -408,6 +418,7 @@ export interface FileRouteTypes {
     | '/dashboard/visitor/bookings'
     | '/dashboard/visitor/membership'
     | '/dashboard/visitor/tickets'
+    | '/events/$eventId/tickets-status'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -448,6 +459,7 @@ export interface FileRouteTypes {
     | '/dashboard/visitor/bookings'
     | '/dashboard/visitor/membership'
     | '/dashboard/visitor/tickets'
+    | '/events/$eventId/tickets-status'
   id:
     | '__root__'
     | '/'
@@ -488,6 +500,7 @@ export interface FileRouteTypes {
     | '/dashboard/visitor/bookings'
     | '/dashboard/visitor/membership'
     | '/dashboard/visitor/tickets'
+    | '/events_/$eventId_/tickets-status'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -512,6 +525,7 @@ export interface RootRouteChildren {
   AuthCallbackRoute: typeof AuthCallbackRoute
   EventsEventIdRoute: typeof EventsEventIdRoute
   MembersSlugRoute: typeof MembersSlugRoute
+  EventsEventIdTicketsStatusRoute: typeof EventsEventIdTicketsStatusRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -782,6 +796,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardVisitorTicketsRouteImport
       parentRoute: typeof DashboardVisitorRoute
     }
+    '/events_/$eventId_/tickets-status': {
+      id: '/events_/$eventId_/tickets-status'
+      path: '/events/$eventId/tickets-status'
+      fullPath: '/events/$eventId/tickets-status'
+      preLoaderRoute: typeof EventsEventIdTicketsStatusRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -880,6 +901,7 @@ const rootRouteChildren: RootRouteChildren = {
   AuthCallbackRoute: AuthCallbackRoute,
   EventsEventIdRoute: EventsEventIdRoute,
   MembersSlugRoute: MembersSlugRoute,
+  EventsEventIdTicketsStatusRoute: EventsEventIdTicketsStatusRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

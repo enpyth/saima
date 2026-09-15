@@ -1,4 +1,4 @@
-import { calculateTicketSaleOverview, getTicketQuantityLimit, type TicketSaleStat } from '@saima/shared'
+import { calculateTicketSaleOverview, type TicketSaleStat } from '@saima/shared'
 import { describe, expect, it } from 'vitest'
 
 import { getTicketSaleConfig, getTicketSaleOptions } from './ticket-sales-config'
@@ -57,28 +57,22 @@ describe('ticket sales config', () => {
       currency: 'AUD',
       capacity: 500,
       isActive: true,
+      secretKey: 'saima-20261016-status',
     })
     expect(ticketOptions.map((ticketOption) => ticketOption.slug)).toEqual([
       'general',
       'student',
       'family',
-      'price-adjustment',
     ])
     expect(ticketOptions.map((ticketOption) => ticketOption.name)).toEqual([
       'General admission',
       'Student',
       'Family',
-      'Price adjustment',
     ])
     expect(ticketOptions.find((ticketOption) => ticketOption.slug === 'family')).toMatchObject({
       priceCents: 10000,
       capacityUnitsPerTicket: 4,
     })
-    expect(ticketOptions.find((ticketOption) => ticketOption.slug === 'price-adjustment')).toMatchObject({
-      priceCents: 100,
-      capacityUnitsPerTicket: 0,
-    })
-    expect(getTicketQuantityLimit(ticketOptions.find((ticketOption) => ticketOption.slug === 'price-adjustment')?.capacityUnitsPerTicket ?? 1)).toBe(100)
   })
 
   it('loads 20261024 ticket options from the web config file', () => {

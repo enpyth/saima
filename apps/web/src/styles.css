@@ -3261,3 +3261,163 @@ nav {
     gap: 22px;
   }
 }
+
+/* Ticket status secret link */
+.ticket-status-wrapper {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: clamp(32px, 5vw, 64px) var(--saima-gutter);
+  display: grid;
+  gap: 32px;
+}
+
+.ticket-status-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  flex-wrap: wrap;
+  border-bottom: 1px solid rgba(25, 23, 21, 0.12);
+  padding-bottom: 24px;
+}
+
+.ticket-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(154, 55, 41, 0.12);
+  color: #9a3729;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 8px;
+}
+
+.ticket-status-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.ticket-status-table-wrapper {
+  overflow-x: auto;
+  border: 1px solid rgba(25, 23, 21, 0.12);
+  border-radius: 8px;
+  background: #fff8ee;
+}
+
+.ticket-status-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.ticket-status-table th {
+  background: rgba(25, 23, 21, 0.05);
+  padding: 14px 18px;
+  text-align: left;
+  font-size: 12px;
+  font-weight: 600;
+  color: #71665b;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border-bottom: 1px solid rgba(25, 23, 21, 0.12);
+}
+
+.ticket-status-table td {
+  padding: 16px 18px;
+  border-bottom: 1px solid rgba(25, 23, 21, 0.08);
+  font-size: 14px;
+  vertical-align: middle;
+}
+
+.ticket-status-table tr:last-child td {
+  border-bottom: none;
+}
+
+.ticket-status-tier-title {
+  font-weight: 600;
+  font-size: 15px;
+  color: #191715;
+}
+
+.ticket-status-tier-desc {
+  font-size: 13px;
+  color: #71665b;
+  margin-top: 2px;
+}
+
+.ticket-status-remaining-highlight {
+  font-size: 18px;
+  font-weight: 700;
+  color: #166534;
+}
+
+.ticket-status-remaining-highlight.sold-out {
+  color: #9a3729;
+}
+
+.ticket-status-badge-avail {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  background: #dcfce7;
+  color: #166534;
+}
+
+.ticket-status-badge-soldout {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.passkey-card {
+  max-width: 480px;
+  margin: 60px auto;
+  background: #fff8ee;
+  border: 1px solid rgba(25, 23, 21, 0.12);
+  border-radius: 12px;
+  padding: 36px 28px;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.passkey-icon-wrapper {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: rgba(154, 55, 41, 0.1);
+  color: #9a3729;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.passkey-form {
+  display: grid;
+  gap: 16px;
+  margin-top: 24px;
+  text-align: left;
+}
+
+.passkey-error {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #fef2f2;
+  border: 1px solid #f87171;
+  color: #991b1b;
+  padding: 10px 14px;
+  border-radius: 6px;
+  font-size: 14px;
+}
