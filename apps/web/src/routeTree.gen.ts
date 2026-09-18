@@ -37,6 +37,7 @@ import { Route as DashboardAdminApplicationsRouteImport } from './routes/dashboa
 import { Route as DashboardAdminBookingsRouteImport } from './routes/dashboard.admin.bookings'
 import { Route as DashboardAdminEventsRouteImport } from './routes/dashboard.admin.events'
 import { Route as DashboardAdminFreeTicketsRouteImport } from './routes/dashboard.admin.free-tickets'
+import { Route as DashboardAdminFreeTicketsListRouteImport } from './routes/dashboard.admin.free-tickets-list'
 import { Route as DashboardAdminTicketCheckinRouteImport } from './routes/dashboard.admin.ticket-checkin'
 import { Route as DashboardAdminTicketSalesRouteImport } from './routes/dashboard.admin.ticket-sales'
 import { Route as DashboardAdminUsersRouteImport } from './routes/dashboard.admin.users'
@@ -191,6 +192,12 @@ const DashboardAdminFreeTicketsRoute =
     path: '/free-tickets',
     getParentRoute: () => DashboardAdminRoute,
   } as any)
+const DashboardAdminFreeTicketsListRoute =
+  DashboardAdminFreeTicketsListRouteImport.update({
+    id: '/free-tickets-list',
+    path: '/free-tickets-list',
+    getParentRoute: () => DashboardAdminRoute,
+  } as any)
 const DashboardAdminTicketCheckinRoute =
   DashboardAdminTicketCheckinRouteImport.update({
     id: '/ticket-checkin',
@@ -282,6 +289,7 @@ export interface FileRoutesByFullPath {
   '/dashboard/admin/bookings': typeof DashboardAdminBookingsRoute
   '/dashboard/admin/events': typeof DashboardAdminEventsRoute
   '/dashboard/admin/free-tickets': typeof DashboardAdminFreeTicketsRoute
+  '/dashboard/admin/free-tickets-list': typeof DashboardAdminFreeTicketsListRoute
   '/dashboard/admin/ticket-checkin': typeof DashboardAdminTicketCheckinRoute
   '/dashboard/admin/ticket-sales': typeof DashboardAdminTicketSalesRoute
   '/dashboard/admin/users': typeof DashboardAdminUsersRoute
@@ -323,6 +331,7 @@ export interface FileRoutesByTo {
   '/dashboard/admin/bookings': typeof DashboardAdminBookingsRoute
   '/dashboard/admin/events': typeof DashboardAdminEventsRoute
   '/dashboard/admin/free-tickets': typeof DashboardAdminFreeTicketsRoute
+  '/dashboard/admin/free-tickets-list': typeof DashboardAdminFreeTicketsListRoute
   '/dashboard/admin/ticket-checkin': typeof DashboardAdminTicketCheckinRoute
   '/dashboard/admin/ticket-sales': typeof DashboardAdminTicketSalesRoute
   '/dashboard/admin/users': typeof DashboardAdminUsersRoute
@@ -365,6 +374,7 @@ export interface FileRoutesById {
   '/dashboard/admin/bookings': typeof DashboardAdminBookingsRoute
   '/dashboard/admin/events': typeof DashboardAdminEventsRoute
   '/dashboard/admin/free-tickets': typeof DashboardAdminFreeTicketsRoute
+  '/dashboard/admin/free-tickets-list': typeof DashboardAdminFreeTicketsListRoute
   '/dashboard/admin/ticket-checkin': typeof DashboardAdminTicketCheckinRoute
   '/dashboard/admin/ticket-sales': typeof DashboardAdminTicketSalesRoute
   '/dashboard/admin/users': typeof DashboardAdminUsersRoute
@@ -408,6 +418,7 @@ export interface FileRouteTypes {
     | '/dashboard/admin/bookings'
     | '/dashboard/admin/events'
     | '/dashboard/admin/free-tickets'
+    | '/dashboard/admin/free-tickets-list'
     | '/dashboard/admin/ticket-checkin'
     | '/dashboard/admin/ticket-sales'
     | '/dashboard/admin/users'
@@ -449,6 +460,7 @@ export interface FileRouteTypes {
     | '/dashboard/admin/bookings'
     | '/dashboard/admin/events'
     | '/dashboard/admin/free-tickets'
+    | '/dashboard/admin/free-tickets-list'
     | '/dashboard/admin/ticket-checkin'
     | '/dashboard/admin/ticket-sales'
     | '/dashboard/admin/users'
@@ -490,6 +502,7 @@ export interface FileRouteTypes {
     | '/dashboard/admin/bookings'
     | '/dashboard/admin/events'
     | '/dashboard/admin/free-tickets'
+    | '/dashboard/admin/free-tickets-list'
     | '/dashboard/admin/ticket-checkin'
     | '/dashboard/admin/ticket-sales'
     | '/dashboard/admin/users'
@@ -726,6 +739,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardAdminFreeTicketsRouteImport
       parentRoute: typeof DashboardAdminRoute
     }
+    '/dashboard/admin/free-tickets-list': {
+      id: '/dashboard/admin/free-tickets-list'
+      path: '/free-tickets-list'
+      fullPath: '/dashboard/admin/free-tickets-list'
+      preLoaderRoute: typeof DashboardAdminFreeTicketsListRouteImport
+      parentRoute: typeof DashboardAdminRoute
+    }
     '/dashboard/admin/ticket-checkin': {
       id: '/dashboard/admin/ticket-checkin'
       path: '/ticket-checkin'
@@ -811,6 +831,7 @@ interface DashboardAdminRouteChildren {
   DashboardAdminBookingsRoute: typeof DashboardAdminBookingsRoute
   DashboardAdminEventsRoute: typeof DashboardAdminEventsRoute
   DashboardAdminFreeTicketsRoute: typeof DashboardAdminFreeTicketsRoute
+  DashboardAdminFreeTicketsListRoute: typeof DashboardAdminFreeTicketsListRoute
   DashboardAdminTicketCheckinRoute: typeof DashboardAdminTicketCheckinRoute
   DashboardAdminTicketSalesRoute: typeof DashboardAdminTicketSalesRoute
   DashboardAdminUsersRoute: typeof DashboardAdminUsersRoute
@@ -821,6 +842,7 @@ const DashboardAdminRouteChildren: DashboardAdminRouteChildren = {
   DashboardAdminBookingsRoute: DashboardAdminBookingsRoute,
   DashboardAdminEventsRoute: DashboardAdminEventsRoute,
   DashboardAdminFreeTicketsRoute: DashboardAdminFreeTicketsRoute,
+  DashboardAdminFreeTicketsListRoute: DashboardAdminFreeTicketsListRoute,
   DashboardAdminTicketCheckinRoute: DashboardAdminTicketCheckinRoute,
   DashboardAdminTicketSalesRoute: DashboardAdminTicketSalesRoute,
   DashboardAdminUsersRoute: DashboardAdminUsersRoute,

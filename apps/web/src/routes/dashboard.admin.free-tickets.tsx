@@ -106,7 +106,7 @@ function AdminFreeTickets() {
     <div className="dashboard-section">
       <header className="dashboard-section-header">
         <div>
-          <span className="eyebrow">Free Tickets</span>
+          <span className="eyebrow">Issue Free Tickets</span>
           <h2>Issue complimentary tickets</h2>
           <p className="muted">Create confirmed zero-dollar tickets for existing ADMIN_EMAILS profiles.</p>
         </div>

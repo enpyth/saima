@@ -17,9 +17,15 @@ export const dashboardNav = {
     },
     {
       id: 'free-tickets',
-      label: 'Free Tickets',
+      label: 'Issue Free Tickets',
       description: 'Issue complimentary tickets',
       to: '/dashboard/admin/free-tickets',
+    },
+    {
+      id: 'free-tickets-list',
+      label: 'Free Tickets List',
+      description: 'View/Print complimentary tickets',
+      to: '/dashboard/admin/free-tickets-list',
     },
     {
       id: 'ticket-checkin',
