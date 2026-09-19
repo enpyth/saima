@@ -45,6 +45,9 @@ export async function handleStripeWebhook(request: Request) {
     case 'checkout.session.expired':
       await cancelPendingTicketOrder(event.data.object as Stripe.Checkout.Session)
       break
+    case 'charge.refunded':
+      await cancelRefundedTicket(event.data.object as Stripe.Charge)
+      break
   }
 
   return Response.json({ received: true })
@@ -91,6 +94,24 @@ export async function confirmTicketOrderFromSession(session: Stripe.Checkout.Ses
   }
 
   return data
+}
+
+async function cancelRefundedTicket(charge: Stripe.Charge) {
+  const orderId = charge.metadata?.ticket_order_id;
+  if(!orderId) {
+    return
+  }
+
+  const { error } = await supabaseAdmin
+    .from('ticket_orders')
+    .update({
+      status: 'cancelled',
+    })
+    .eq('id', orderId);
+
+  if (error) {
+    throw error
+  }
 }
 
 async function cancelPendingTicketOrder(session: Stripe.Checkout.Session) {
