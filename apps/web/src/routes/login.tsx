@@ -3,7 +3,7 @@ import { Mail } from 'lucide-react'
 import { useState } from 'react'
 
 import { Button } from '../components/ui/button'
-import { authRedirectTo, hasSupabaseConfig, supabase } from '../lib/supabase'
+import { authRedirectTo, authRedirectQuery, hasSupabaseConfig, supabase } from '../lib/supabase'
 
 export const Route = createFileRoute('/login')({
   validateSearch: (search) => ({
@@ -21,7 +21,8 @@ function Login() {
     await supabase.auth.signInWithOAuth({
       provider: 'google',
       options: {
-        redirectTo: authRedirectTo(redirect),
+        redirectTo: authRedirectTo(),
+        queryParams: authRedirectQuery(redirect)
       },
     })
   }
@@ -31,7 +32,7 @@ function Login() {
     const { error } = await supabase.auth.signInWithOtp({
       email,
       options: {
-        emailRedirectTo: authRedirectTo(redirect),
+        emailRedirectTo: authRedirectTo(),
       },
     })
     setMessage(error ? error.message : 'Check your email for the SAIMA sign-in link.')
