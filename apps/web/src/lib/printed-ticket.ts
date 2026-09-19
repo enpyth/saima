@@ -40,9 +40,6 @@ async function checkInFromToken(qrToken: string)
 
 export async function printTicket(order: TicketOrderWithDetails)
 {
-    const printWindow = window.open('', '_blank', 'width=800,height=600');
-     if (!printWindow) { return }
-
     const checkIn = order.qrToken ? await checkInFromToken(order.qrToken) : undefined;
     const html = buildTicketPrintHtml({
         checkIn: checkIn,
@@ -59,14 +56,25 @@ export async function printTicket(order: TicketOrderWithDetails)
         }
     });
 
-    printWindow.document.write(html);
-    printWindow.document.close();
+    const iframe = document.createElement('iframe')
+	  iframe.setAttribute('sandbox', 'allow-modals allow-same-origin allow-scripts')
+	  iframe.setAttribute('src', '/print.html')
+	  iframe.setAttribute('style', 'display: none')
 
-    printWindow.addEventListener('load', () => { 
-        printWindow.focus(); 
-        printWindow.print(); 
-        printWindow.close(); 
-    });
+	  document.body.appendChild(iframe)
+	  const teardown = () => {
+		  // Safari crashes without a timeout.
+		  setTimeout(() => document.body.removeChild(iframe), 0);	  
+    }
+	  setTimeout(() => {
+		  iframe.contentDocument!.write(html)
+
+		  setTimeout(() => {
+        iframe.contentWindow!.addEventListener('afterprint', teardown);
+			  iframe.contentWindow!.focus()
+			  iframe.contentWindow!.print()
+		  }, 50);
+	  }, 0);
 }
 
 
