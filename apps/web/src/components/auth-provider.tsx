@@ -65,10 +65,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         if (!mounted) return
 
         setUser(data.session?.user ?? null)
-        setLoading(false)
 
         if (data.session) {
-          void refreshProfile()
+          void refreshProfile().finally(() => setLoading(false))
+        } else {
+          setLoading(false);
         }
       } catch (sessionError) {
         if (!mounted) return
