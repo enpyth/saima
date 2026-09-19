@@ -10,4 +10,12 @@ export const supabase = isBrowser && hasSupabaseConfig
   ? createClient(supabaseUrl!, supabaseAnonKey!)
   : null
 
-export const authRedirectTo = isBrowser ? `${window.location.origin}/auth/callback` : undefined
+export function authRedirectTo(redirect?: string) {
+  const url = new URL('/auth/callback', window.location.origin)
+
+  if (redirect) {
+    url.searchParams.set('redirect', redirect)
+  }
+
+  return url.toString()
+}

@@ -5,9 +5,14 @@ import { useState } from 'react'
 import { Button } from '../components/ui/button'
 import { authRedirectTo, hasSupabaseConfig, supabase } from '../lib/supabase'
 
-export const Route = createFileRoute('/login')({ component: Login })
-
+export const Route = createFileRoute('/login')({
+  validateSearch: (search) => ({
+    redirect: typeof search.redirect === 'string' ? search.redirect : undefined,
+  }),
+  component: Login,
+})
 function Login() {
+  const { redirect } = Route.useSearch()
   const [email, setEmail] = useState('')
   const [message, setMessage] = useState('')
 
@@ -16,7 +21,7 @@ function Login() {
     await supabase.auth.signInWithOAuth({
       provider: 'google',
       options: {
-        redirectTo: authRedirectTo,
+        redirectTo: authRedirectTo(redirect),
       },
     })
   }
@@ -26,7 +31,7 @@ function Login() {
     const { error } = await supabase.auth.signInWithOtp({
       email,
       options: {
-        emailRedirectTo: authRedirectTo,
+        emailRedirectTo: authRedirectTo(redirect),
       },
     })
     setMessage(error ? error.message : 'Check your email for the SAIMA sign-in link.')

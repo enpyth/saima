@@ -80,20 +80,47 @@ export function TicketSaleModule({ eventPublicId }: { eventPublicId: string }) {
   const { language } = useLanguage()
   const labels = ticketSaleLabelsByLanguage[language]
   const ticketSale = useTicketSale(eventPublicId, labels)
+  const { user } = useAuth()
 
-  return (
-    <section className="public-section ticket-sale-section" id="tickets">
-      <div className="section-heading">
-        <span className="eyebrow">{labels.eyebrow}</span>
-        <h2>{labels.title}</h2>
-        <p>{labels.summary}</p>
-      </div>
-      <div className="ticket-sale-layout">
-        <TicketSaleSummary labels={labels} loading={ticketSale.loading} ticketRows={ticketSale.ticketRows} />
-        <TicketSaleForm labels={labels} ticketSale={ticketSale} />
-      </div>
-    </section>
-  )
+  if(user)
+  {
+    return (
+      <section className="public-section ticket-sale-section" id="tickets">
+        <div className="section-heading">
+          <span className="eyebrow">{labels.eyebrow}</span>
+          <h2>{labels.title}</h2>
+          <p>{labels.summary}</p>
+        </div>
+        <div className="ticket-sale-layout">
+          <TicketSaleSummary labels={labels} loading={ticketSale.loading} ticketRows={ticketSale.ticketRows} />
+          <TicketSaleForm labels={labels} ticketSale={ticketSale} />
+        </div>
+      </section>
+    )
+  }
+  else
+  {
+    const loginUrl = `/login?${new URLSearchParams({
+      redirect: window.location.pathname + window.location.search,
+    }).toString()}`
+    return (
+      <section className="public-section ticket-sale-section" id="tickets">
+        <div className="section-heading">
+          <span className="eyebrow">{labels.eyebrow}</span>
+          <h2>{labels.title}</h2>
+          <p>{labels.summary}</p>
+        </div>
+        <div className="ticket-sale-layout">
+          <TicketSaleSummary labels={labels} loading={ticketSale.loading} ticketRows={ticketSale.ticketRows} />
+          <a href={loginUrl}>
+            <Button type="button">
+              {labels.signIn}
+            </Button>
+          </a>
+        </div>
+      </section>
+    )
+  }
 }
 
 type TicketSaleState = ReturnType<typeof useTicketSale>

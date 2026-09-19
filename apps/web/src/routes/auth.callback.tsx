@@ -16,14 +16,28 @@ function AuthCallback() {
         setMessage('Supabase is not configured.')
         return
       }
+
       const { error } = await supabase.auth.getSession()
+
       if (error) {
         setMessage(error.message)
         return
       }
+
       await api.profile.sync()
-      await navigate({ to: '/dashboard' })
+
+      const params = new URLSearchParams(window.location.search)
+      const redirect = params.get('redirect')
+
+      // Only allow redirects to paths within this application.
+      const destination =
+        redirect && redirect.startsWith('/') && !redirect.startsWith('//')
+          ? redirect
+          : '/dashboard'
+
+      await navigate({ to: destination })
     }
+
     void finish()
   }, [navigate])
 
