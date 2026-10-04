@@ -18,7 +18,9 @@ const implementedPublicRoutes = new Set([
   '/about-details',
   '/events',
   '/events/20240930',
+  '/events/20250413',
   '/events/20261016',
+  '/events/20261024',
   '/events-details',
   '/youth',
   '/youth-details',
@@ -112,14 +114,24 @@ describe('public site content', () => {
     expect(homeContent.zh.hero.title).toBe('南澳国际音乐协会')
     expect(aboutContent.en.sections[0]?.title).toBe('Founder & Artistic Director')
     expect(eventsContent.en.events[0]?.title).toBe('A Dream for Every Child')
-    expect(eventsContent.zh.events[1]?.title).toContain('中国印象')
+    expect(eventsContent.zh.events.find((e) => e.id === '20240930')?.title).toContain('中国印象')
     expect(membershipContent.en.expression.title).toContain('Expression of Interest')
     expect(contactContent.zh.partner.title).toBe('为什么与我们合作')
   })
 
-  it('keeps public events limited to the two supplied event folders', () => {
-    expect(eventsContent.en.events.map((event) => event.id)).toEqual(['20261016', '20240930'])
-    expect(eventsContent.zh.events.map((event) => event.id)).toEqual(['20261016', '20240930'])
+  it('keeps public events matching configured event articles', () => {
+    expect(eventsContent.en.events.map((event) => event.id)).toEqual([
+      '20261016',
+      '20261024',
+      '20250413',
+      '20240930',
+    ])
+    expect(eventsContent.zh.events.map((event) => event.id)).toEqual([
+      '20261016',
+      '20261024',
+      '20250413',
+      '20240930',
+    ])
 
     for (const event of eventsContent.en.events) {
       expect(event.href).toBe(`/events/${event.id}`)
@@ -182,8 +194,14 @@ describe('public site content', () => {
     expect(getEventStatus(charityConcert!, beforeCharityConcert)).toBe('upcoming')
     expect(getEventStatus(charityConcert!, afterCharityConcert)).toBe('past')
 
-    expect(getEventsByStatus('en', beforeCharityConcert).upcoming.map((event) => event.id)).toEqual(['20261016'])
-    expect(getEventsByStatus('en', beforeCharityConcert).past.map((event) => event.id)).toEqual(['20240930'])
+    expect(getEventsByStatus('en', beforeCharityConcert).upcoming.map((event) => event.id)).toEqual([
+      '20261016',
+      '20261024',
+    ])
+    expect(getEventsByStatus('en', beforeCharityConcert).past.map((event) => event.id)).toEqual([
+      '20250413',
+      '20240930',
+    ])
   })
 
   it('keeps long-form supplied content reachable through detail page actions', () => {

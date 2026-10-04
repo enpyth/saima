@@ -1,6 +1,10 @@
 const required = (name: string) => {
   const value = Bun.env[name]
   if (!value) {
+    if (Bun.env.NODE_ENV === 'test' || process.env.NODE_ENV === 'test') {
+      if (name.includes('URL')) return 'https://mock.supabase.co'
+      return `test_${name.toLowerCase()}`
+    }
     throw new Error(`Missing required environment variable: ${name}`)
   }
   return value

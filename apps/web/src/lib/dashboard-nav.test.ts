@@ -12,6 +12,7 @@ describe('dashboard navigation config', () => {
     expect(getDashboardItems('admin').map((item) => item.id)).toEqual([
       'ticket-sales',
       'free-tickets',
+      'free-tickets-list',
       'ticket-checkin',
       'applications',
       'users',

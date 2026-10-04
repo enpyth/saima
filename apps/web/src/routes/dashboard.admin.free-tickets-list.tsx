@@ -1,6 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router'
 import type { TicketOrderWithDetails } from '@saima/shared'
-import { CalendarDays, MapPin, Ticket } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { Button } from '../components/ui/button'
 import { formatDateTime } from '../lib/date-format'

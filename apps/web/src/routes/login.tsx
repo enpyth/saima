@@ -6,7 +6,7 @@ import { Button } from '../components/ui/button'
 import { authRedirectTo, authRedirectQuery, hasSupabaseConfig, supabase } from '../lib/supabase'
 
 export const Route = createFileRoute('/login')({
-  validateSearch: (search) => ({
+  validateSearch: (search: Record<string, unknown>): { redirect?: string } => ({
     redirect: typeof search.redirect === 'string' ? search.redirect : undefined,
   }),
   component: Login,

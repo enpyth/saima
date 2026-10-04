@@ -11,7 +11,7 @@
     "start": "bun src/dev.ts",
     "typecheck": "tsc --noEmit",
     "lint": "tsc --noEmit",
-    "test": "bun test src/**/*.test.ts && tsc --noEmit"
+    "test": "NODE_ENV=test bun test src/**/*.test.ts && tsc --noEmit"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.1079.0",
