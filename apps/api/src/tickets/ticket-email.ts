@@ -58,14 +58,16 @@ export function shouldSendTicketConfirmationEmail(order: {
 
 export function buildTicketConfirmationEmail(input: ConfirmationEmailInput) {
   const eventDate = formatDateTime(input.event.startsAt)
-  const total = formatMoney(input.order.totalPriceCents)
+  const total = input.order.totalPriceCents === 0 ? 'Free ($0.00)' : formatMoney(input.order.totalPriceCents)
+  const confirmationMessage =
+    input.order.totalPriceCents === 0 ? 'your ticket order has been confirmed.' : 'your payment was successful.'
   const subject = `Your ticket for ${input.event.title}`
 
   const html = `<!doctype html>
 <html>
   <body style="font-family: Arial, sans-serif; color: #191715; line-height: 1.5;">
     <h1 style="font-size: 24px;">${escapeHtml(subject)}</h1>
-    <p>Hi ${escapeHtml(input.order.purchaserName)}, your payment was successful.</p>
+    <p>Hi ${escapeHtml(input.order.purchaserName)}, ${confirmationMessage}</p>
     <p>
       <strong>${escapeHtml(input.event.title)}</strong><br>
       ${escapeHtml(input.ticketType.name)} x ${input.order.quantity}<br>
@@ -82,7 +84,7 @@ export function buildTicketConfirmationEmail(input: ConfirmationEmailInput) {
   const text = [
     subject,
     '',
-    `Hi ${input.order.purchaserName}, your payment was successful.`,
+    `Hi ${input.order.purchaserName}, ${confirmationMessage}`,
     `${input.event.title}`,
     `${input.ticketType.name} x ${input.order.quantity}`,
     eventDate,

@@ -23,6 +23,8 @@ export type ConfiguredTicketSale = {
   saleStartsAt: string | null
   saleEndsAt: string | null
   isActive: boolean
+  secretKey?: string
+  freeTicketsSecretKey?: string
   ticketTypes: ConfiguredTicketOption[]
 }
 
@@ -186,6 +188,8 @@ function parseTicketSale(value: unknown): ConfiguredTicketSale {
     saleStartsAt: readNullableString(value, 'saleStartsAt'),
     saleEndsAt: readNullableString(value, 'saleEndsAt'),
     isActive: readBoolean(value, 'isActive'),
+    secretKey: readOptionalNullableString(value, 'secretKey') ?? undefined,
+    freeTicketsSecretKey: readOptionalNullableString(value, 'freeTicketsSecretKey') ?? undefined,
     ticketTypes: readTicketTypes(value.ticketTypes),
   }
 }

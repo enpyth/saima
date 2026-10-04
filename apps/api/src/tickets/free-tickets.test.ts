@@ -5,6 +5,7 @@ import {
   assertFreeTicketCapacity,
   assertFreeTicketQuantity,
   assertFreeTicketRecipientAllowed,
+  assertFreeTicketsSecretAllowed,
   filterFreeTicketRecipientProfiles,
 } from './free-tickets'
 import { getConfiguredTicketTypes, type TicketOrderQuantity } from './ticket-types'
@@ -35,13 +36,20 @@ describe('free ticket helpers', () => {
 
   it('rejects invalid free ticket quantities', () => {
     const general = getConfiguredTicketTypes('20261016').find((ticketType) => ticketType.slug === 'general')
-    const priceAdjustment = getConfiguredTicketTypes('20261016').find((ticketType) => ticketType.slug === 'price-adjustment')
 
     expect(general).toBeTruthy()
-    expect(priceAdjustment).toBeTruthy()
     expect(() => assertFreeTicketQuantity(general!, 0)).toThrow(ORPCError)
     expect(() => assertFreeTicketQuantity(general!, 11)).toThrow(ORPCError)
-    expect(() => assertFreeTicketQuantity(priceAdjustment!, 100)).not.toThrow()
+    expect(() => assertFreeTicketQuantity(general!, 5)).not.toThrow()
+  })
+
+  it('validates free tickets secret key and rejects invalid or missing keys', () => {
+    expect(() => assertFreeTicketsSecretAllowed('saima-20261016-free', 'saima-20261016-free')).not.toThrow()
+    expect(() => assertFreeTicketsSecretAllowed('saima-20261016-free', '  SAIMA-20261016-FREE  ')).not.toThrow()
+    expect(() => assertFreeTicketsSecretAllowed('saima-20261016-free', 'wrong-key')).toThrow(ORPCError)
+    expect(() => assertFreeTicketsSecretAllowed('saima-20261016-free', '')).toThrow(ORPCError)
+    expect(() => assertFreeTicketsSecretAllowed('saima-20261016-free', null)).toThrow(ORPCError)
+    expect(() => assertFreeTicketsSecretAllowed(undefined, 'any-key')).toThrow(ORPCError)
   })
 
   it('rejects free tickets when there is not enough remaining capacity', () => {

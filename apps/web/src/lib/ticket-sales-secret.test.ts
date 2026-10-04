@@ -3,6 +3,7 @@ import { describe, expect, it } from 'vitest'
 
 import {
   calculateTicketAvailabilitySummary,
+  verifyFreeTicketsSecret,
   verifyTicketSaleSecret,
 } from './ticket-sales-config'
 
@@ -32,6 +33,39 @@ describe('verifyTicketSaleSecret', () => {
   it('returns false for an unknown event or an event without a configured secret key', () => {
     expect(verifyTicketSaleSecret('non-existent-event', 'saima-20261016-status')).toBe(false)
     expect(verifyTicketSaleSecret('20261024', 'any-key')).toBe(false)
+  })
+})
+
+describe('verifyFreeTicketsSecret', () => {
+  it('returns true for a valid secret key matching the free tickets configuration', () => {
+    expect(verifyFreeTicketsSecret('20261016', 'saima-20261016-free')).toBe(true)
+  })
+
+  it('trims whitespace around the provided key', () => {
+    expect(verifyFreeTicketsSecret('20261016', '  saima-20261016-free  ')).toBe(true)
+  })
+
+  it('is case-insensitive for user convenience', () => {
+    expect(verifyFreeTicketsSecret('20261016', 'SAIMA-20261016-FREE')).toBe(true)
+  })
+
+  it('returns false for an incorrect key', () => {
+    expect(verifyFreeTicketsSecret('20261016', 'wrong-free-key')).toBe(false)
+  })
+
+  it('returns false for status key used as free tickets key', () => {
+    expect(verifyFreeTicketsSecret('20261016', 'saima-20261016-status')).toBe(false)
+  })
+
+  it('returns false for empty, null, or undefined keys', () => {
+    expect(verifyFreeTicketsSecret('20261016', '')).toBe(false)
+    expect(verifyFreeTicketsSecret('20261016', null)).toBe(false)
+    expect(verifyFreeTicketsSecret('20261016', undefined)).toBe(false)
+  })
+
+  it('returns false for events without a configured freeTicketsSecretKey', () => {
+    expect(verifyFreeTicketsSecret('20261024', 'saima-20261016-free')).toBe(false)
+    expect(verifyFreeTicketsSecret('non-existent', 'any-key')).toBe(false)
   })
 })
 

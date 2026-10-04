@@ -76,6 +76,19 @@ export type FreeTicketOrderResult = {
   emailError?: string
 }
 
+export type ClaimFreeTicketsResult = {
+  orderId: string
+  ticketTypeName: string
+  eventPublicId: string
+  quantity: number
+  purchaserName: string
+  purchaserEmail: string
+  qrToken: string
+  qrCodeDataUrl?: string
+  emailSent: boolean
+  emailError?: string
+}
+
 export type TicketSaleOverview = {
   totalCapacity: number
   totalSold: number

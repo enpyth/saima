@@ -35,6 +35,19 @@ export function assertFreeTicketRecipientAllowed<T extends Pick<FreeTicketRecipi
   }
 }
 
+export function assertFreeTicketsSecretAllowed(
+  configuredSecret: string | undefined | null,
+  providedSecret: string | undefined | null,
+) {
+  if (
+    !configuredSecret ||
+    !providedSecret ||
+    configuredSecret.trim().toLowerCase() !== providedSecret.trim().toLowerCase()
+  ) {
+    throw new ORPCError('FORBIDDEN', { message: 'Invalid or missing secret key.' })
+  }
+}
+
 export function assertFreeTicketQuantity(ticketType: Pick<ConfiguredTicketType, 'capacityUnitsPerTicket'>, quantity: number) {
   if (!Number.isInteger(quantity) || quantity < 1 || quantity > getTicketQuantityLimit(ticketType.capacityUnitsPerTicket)) {
     throw new ORPCError('BAD_REQUEST', { message: 'Choose a valid quantity for this ticket type.' })
