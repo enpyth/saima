@@ -48,7 +48,6 @@ import { Route as DashboardMemberProfileRouteImport } from './routes/dashboard.m
 import { Route as DashboardVisitorBookingsRouteImport } from './routes/dashboard.visitor.bookings'
 import { Route as DashboardVisitorMembershipRouteImport } from './routes/dashboard.visitor.membership'
 import { Route as DashboardVisitorTicketsRouteImport } from './routes/dashboard.visitor.tickets'
-import { Route as EventsEventIdFreeTicketsRouteImport } from './routes/events_.$eventId_.free-tickets'
 import { Route as EventsEventIdTicketsStatusRouteImport } from './routes/events_.$eventId_.tickets-status'
 
 const IndexRoute = IndexRouteImport.update({
@@ -254,12 +253,6 @@ const DashboardVisitorTicketsRoute = DashboardVisitorTicketsRouteImport.update({
   path: '/tickets',
   getParentRoute: () => DashboardVisitorRoute,
 } as any)
-const EventsEventIdFreeTicketsRoute =
-  EventsEventIdFreeTicketsRouteImport.update({
-    id: '/events_/$eventId_/free-tickets',
-    path: '/events/$eventId/free-tickets',
-    getParentRoute: () => rootRouteImport,
-  } as any)
 const EventsEventIdTicketsStatusRoute =
   EventsEventIdTicketsStatusRouteImport.update({
     id: '/events_/$eventId_/tickets-status',
@@ -307,7 +300,6 @@ export interface FileRoutesByFullPath {
   '/dashboard/visitor/bookings': typeof DashboardVisitorBookingsRoute
   '/dashboard/visitor/membership': typeof DashboardVisitorMembershipRoute
   '/dashboard/visitor/tickets': typeof DashboardVisitorTicketsRoute
-  '/events/$eventId/free-tickets': typeof EventsEventIdFreeTicketsRoute
   '/events/$eventId/tickets-status': typeof EventsEventIdTicketsStatusRoute
 }
 export interface FileRoutesByTo {
@@ -350,7 +342,6 @@ export interface FileRoutesByTo {
   '/dashboard/visitor/bookings': typeof DashboardVisitorBookingsRoute
   '/dashboard/visitor/membership': typeof DashboardVisitorMembershipRoute
   '/dashboard/visitor/tickets': typeof DashboardVisitorTicketsRoute
-  '/events/$eventId/free-tickets': typeof EventsEventIdFreeTicketsRoute
   '/events/$eventId/tickets-status': typeof EventsEventIdTicketsStatusRoute
 }
 export interface FileRoutesById {
@@ -394,7 +385,6 @@ export interface FileRoutesById {
   '/dashboard/visitor/bookings': typeof DashboardVisitorBookingsRoute
   '/dashboard/visitor/membership': typeof DashboardVisitorMembershipRoute
   '/dashboard/visitor/tickets': typeof DashboardVisitorTicketsRoute
-  '/events_/$eventId_/free-tickets': typeof EventsEventIdFreeTicketsRoute
   '/events_/$eventId_/tickets-status': typeof EventsEventIdTicketsStatusRoute
 }
 export interface FileRouteTypes {
@@ -439,7 +429,6 @@ export interface FileRouteTypes {
     | '/dashboard/visitor/bookings'
     | '/dashboard/visitor/membership'
     | '/dashboard/visitor/tickets'
-    | '/events/$eventId/free-tickets'
     | '/events/$eventId/tickets-status'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -482,7 +471,6 @@ export interface FileRouteTypes {
     | '/dashboard/visitor/bookings'
     | '/dashboard/visitor/membership'
     | '/dashboard/visitor/tickets'
-    | '/events/$eventId/free-tickets'
     | '/events/$eventId/tickets-status'
   id:
     | '__root__'
@@ -525,7 +513,6 @@ export interface FileRouteTypes {
     | '/dashboard/visitor/bookings'
     | '/dashboard/visitor/membership'
     | '/dashboard/visitor/tickets'
-    | '/events_/$eventId_/free-tickets'
     | '/events_/$eventId_/tickets-status'
   fileRoutesById: FileRoutesById
 }
@@ -551,7 +538,6 @@ export interface RootRouteChildren {
   AuthCallbackRoute: typeof AuthCallbackRoute
   EventsEventIdRoute: typeof EventsEventIdRoute
   MembersSlugRoute: typeof MembersSlugRoute
-  EventsEventIdFreeTicketsRoute: typeof EventsEventIdFreeTicketsRoute
   EventsEventIdTicketsStatusRoute: typeof EventsEventIdTicketsStatusRoute
 }
 
@@ -830,13 +816,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardVisitorTicketsRouteImport
       parentRoute: typeof DashboardVisitorRoute
     }
-    '/events_/$eventId_/free-tickets': {
-      id: '/events_/$eventId_/free-tickets'
-      path: '/events/$eventId/free-tickets'
-      fullPath: '/events/$eventId/free-tickets'
-      preLoaderRoute: typeof EventsEventIdFreeTicketsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/events_/$eventId_/tickets-status': {
       id: '/events_/$eventId_/tickets-status'
       path: '/events/$eventId/tickets-status'
@@ -944,7 +923,6 @@ const rootRouteChildren: RootRouteChildren = {
   AuthCallbackRoute: AuthCallbackRoute,
   EventsEventIdRoute: EventsEventIdRoute,
   MembersSlugRoute: MembersSlugRoute,
-  EventsEventIdFreeTicketsRoute: EventsEventIdFreeTicketsRoute,
   EventsEventIdTicketsStatusRoute: EventsEventIdTicketsStatusRoute,
 }
 export const routeTree = rootRouteImport

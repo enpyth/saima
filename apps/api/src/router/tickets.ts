@@ -1,6 +1,5 @@
 import { ORPCError, os } from '@orpc/server'
-import type { ClaimFreeTicketsResult, FreeTicketOrderResult, FreeTicketRecipient, TicketCheckInResult, TicketSaleInventory, TicketSaleStat } from '@saima/shared'
-import QRCode from 'qrcode'
+import type { FreeTicketOrderResult, FreeTicketRecipient, TicketCheckInResult, TicketSaleInventory, TicketSaleStat } from '@saima/shared'
 import type Stripe from 'stripe'
 import { z } from 'zod'
 
@@ -11,13 +10,11 @@ import {
   assertFreeTicketCapacity,
   assertFreeTicketQuantity,
   assertFreeTicketRecipientAllowed,
-  assertFreeTicketsSecretAllowed,
   filterFreeTicketRecipientProfiles,
 } from '../tickets/free-tickets'
-import { buildTicketCheckInUrl, sendTicketConfirmationEmail } from '../tickets/ticket-email'
+import { sendTicketConfirmationEmail } from '../tickets/ticket-email'
 import { getTicketQuantityLimit } from '../tickets/ticket-quantity'
 import {
-  getConfiguredTicketSale,
   getConfiguredTicketTypeById,
   getConfiguredTicketTypes,
   summarizeConfiguredTicketTypes,
@@ -107,82 +104,6 @@ export const ticketsRouter = {
       ticketInventories: await getTicketInventory(input.eventPublicId),
     }
   }),
-  claimFreeTickets: os
-    .input(
-      z.object({
-        eventPublicId: text,
-        secretKey: text,
-        ticketTypeId: uuid,
-        purchaserName: text.min(1, 'Name is required.'),
-        purchaserEmail: z.string().trim().email('Valid email is required.'),
-        purchaserPhone: z.string().trim().optional(),
-        quantity: z.number().int().min(1).max(10),
-      }),
-    )
-    .handler(async ({ input }): Promise<ClaimFreeTicketsResult> => {
-      const configuredSale = getConfiguredTicketSale(input.eventPublicId)
-      if (!configuredSale) {
-        throw new ORPCError('NOT_FOUND', { message: 'Event ticket configuration not found.' })
-      }
-      assertFreeTicketsSecretAllowed(configuredSale.freeTicketsSecretKey, input.secretKey)
-
-      const ticketType = getConfiguredTicketTypeById(input.ticketTypeId)
-      if (!ticketType || ticketType.eventPublicId !== input.eventPublicId) {
-        throw new ORPCError('BAD_REQUEST', { message: 'Ticket type not found for this event.' })
-      }
-      assertFreeTicketQuantity(ticketType, input.quantity)
-
-      const orders = await getTicketOrderQuantities([ticketType.eventPublicId])
-      assertFreeTicketCapacity(ticketType, input.quantity, orders)
-
-      const order = await getRows<TicketOrderRow>(
-        supabaseAdmin.rpc('create_free_ticket_order', {
-          p_ticket_type_id: ticketType.id,
-          p_event_public_id: ticketType.eventPublicId,
-          p_capacity: ticketType.capacity,
-          p_capacity_units_per_ticket: ticketType.capacityUnitsPerTicket,
-          p_purchaser_user_id: null,
-          p_purchaser_name: input.purchaserName,
-          p_purchaser_email: input.purchaserEmail,
-          p_purchaser_phone: input.purchaserPhone ?? null,
-          p_quantity: input.quantity,
-        }),
-      )
-
-      let qrCodeDataUrl: string | undefined
-      const qrToken = order.qr_token ?? ''
-      try {
-        if (qrToken) {
-          const checkInUrl = buildTicketCheckInUrl(qrToken, env.webOrigin)
-          qrCodeDataUrl = await QRCode.toDataURL(checkInUrl, { width: 320, margin: 1 })
-        }
-      } catch (qrError) {
-        console.error('Failed to generate QR code data URL:', qrError)
-      }
-
-      let emailSent = false
-      let emailError: string | undefined
-      try {
-        await sendTicketConfirmationEmail(order)
-        emailSent = true
-      } catch (error) {
-        emailError = error instanceof Error ? error.message : 'Ticket confirmation email failed.'
-        console.error('Free ticket confirmation email failed:', error)
-      }
-
-      return {
-        orderId: order.id,
-        ticketTypeName: ticketType.name,
-        eventPublicId: ticketType.eventPublicId,
-        quantity: order.quantity,
-        purchaserName: order.purchaser_name,
-        purchaserEmail: order.purchaser_email,
-        qrToken,
-        qrCodeDataUrl,
-        emailSent,
-        emailError,
-      }
-    }),
   createCheckoutSession: authed
     .input(
       z.object({

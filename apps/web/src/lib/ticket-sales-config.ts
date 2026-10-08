@@ -21,7 +21,6 @@ export type TicketSaleConfig = {
   saleEndsAt: string | null
   isActive: boolean
   secretKey?: string
-  freeTicketsSecretKey?: string
   ticketTypes: TicketSaleConfigOption[]
 }
 
@@ -70,19 +69,6 @@ export function verifyTicketSaleSecret(eventPublicId: string, providedKey: strin
   }
 
   return config.secretKey.trim().toLowerCase() === providedKey.trim().toLowerCase()
-}
-
-export function verifyFreeTicketsSecret(eventPublicId: string, providedKey: string | null | undefined): boolean {
-  if (!providedKey || typeof providedKey !== 'string') {
-    return false
-  }
-
-  const config = getTicketSaleConfig(eventPublicId)
-  if (!config || !config.freeTicketsSecretKey) {
-    return false
-  }
-
-  return config.freeTicketsSecretKey.trim().toLowerCase() === providedKey.trim().toLowerCase()
 }
 
 export function calculateTicketAvailabilitySummary(
