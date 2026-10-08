@@ -92,9 +92,7 @@ function EventPage() {
   return (
     <main className="public-page">
       <EventHeader event={event} labels={content.labels} statusLabel={statusLabel} />
-      <EventOverview event={event} labels={content.labels} />
-
-      {event.posterImage ? <EventPosterSection posterImage={event.posterImage} /> : null}
+      <EventOverview event={event} labels={content.labels} posterImage={event.posterImage} />
       {ticketSale?.isActive ? <TicketSaleModule eventPublicId={event.id} /> : null}
       {event.performers ? <EventPerformersSection performers={event.performers} /> : null}
       {event.programImage || event.programSchedule ? (
@@ -151,9 +149,14 @@ function BackToEventsButton({ label }: { label: string }) {
   )
 }
 
-function EventOverview({ event, labels }: { event: EventArticle; labels: EventLabels }) {
+function EventOverview({ event, labels, posterImage }: { event: EventArticle; labels: EventLabels; posterImage: EventArticle['posterImage'] | undefined }) {
   return (
     <section className="public-section">
+      {posterImage && (
+        <div className="event-poster">
+          <img src={posterImage.url} alt={posterImage.label} />
+        </div>
+      )}
       <article className="event-row rich-event-row">
         <time>{event.date}</time>
         <div>
@@ -192,17 +195,6 @@ function EventDetailsSection({ details, labels }: { details: NonNullable<EventAr
           </div>
         ))}
       </dl>
-    </section>
-  )
-}
-
-function EventPosterSection({ posterImage }: { posterImage: NonNullable<EventArticle['posterImage']> }) {
-  return (
-    <section className="public-section">
-      <SectionHeading eyebrow={posterImage.label} title={posterImage.label} />
-      <div className="event-poster">
-        <img src={posterImage.url} alt={posterImage.label} />
-      </div>
     </section>
   )
 }
