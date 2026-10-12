@@ -17,6 +17,14 @@ export type EventArticle = TextBlock & {
   subtitle?: string
   seoTitle?: string
   seoDescription?: string
+  leadQuote?: string
+  overviewSections?: Array<{
+    heading?: string
+    paragraphs?: string[]
+    callouts?: string[]
+    closingParagraphs?: string[]
+    footer?: string
+  }>
   highlights?: string[]
   details?: Array<{
     label: string
@@ -38,6 +46,17 @@ export type EventArticle = TextBlock & {
   programImage?: {
     label: string
     url: string
+  }
+  featuredArtists?: {
+    eyebrow: string
+    title: string
+    subtitle?: string
+    list: Array<{
+      name: string
+      role?: string
+      image: string
+      bio: string[]
+    }>
   }
   performers?: {
     eyebrow: string

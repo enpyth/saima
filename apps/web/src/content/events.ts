@@ -519,24 +519,86 @@ export const eventsContent: Localized<EventsContent> = {
         href: eventHref('20261024'),
         startDate: '2026-10-24',
         title: 'Voices Beyond Borders',
-        subtitle: 'An Anti-War Film Music Concert for Peace, Memory and Human Dignity',
-        date: '24 Oct 2026',
-        location: 'Elder Hall',
+        subtitle: 'An International Concert of Peace, Memory and Humanity',
+        date: '24 October 2026',
+        location: 'Adelaide, South Australia · Elder Hall',
+        leadQuote:
+          'When music transcends borders and history finds its voice through melody, we come together to remember the past, honour humanity, and envision a more peaceful world.',
         paragraphs: [
-          'South Australian International Musicians Association is preparing Voices Beyond Borders, an anti-war film music concert exploring peace, memory, human dignity, and the human cost of conflict through live music performance.',
-          'This concert uses film music from different cultural and historical contexts to create a shared space for listening, remembering, and reflection. Rather than focusing on military history, political positions, or national narratives, the project places human lives, emotional memory, and the longing for peace at the centre.',
-          'The curatorial principles of the concert are:',
-          'Not celebration, but remembrance.',
-          'Not victory, but reflection.',
-          'Not nations, but human lives.',
-          'Through live performance, familiar film music becomes more than a soundtrack. It becomes a way of expressing what words often cannot: fear, loss, resilience, compassion, and the hope for a world beyond violence.',
-          'The proposed program brings together music associated with films and stories from different parts of the world. These works reflect the experiences of children, civilians, artists, families, survivors, and ordinary people affected by war and conflict.',
-          'Presented as a chamber concert featuring solo and small ensemble works, Voices Beyond Borders is designed for the general public, students, cultural communities, and audiences interested in music, film, peace, memory, and cross-cultural understanding.'
+          'Presented by the South Australian International Musicians Association (SAIMA), Voices Beyond Borders is a major multicultural concert dedicated to peace, remembrance, human dignity, and the shared experiences of humanity in times of war and conflict.',
+          'Bringing together powerful film music from different countries, cultures, and historical contexts, the concert explores the human stories behind conflict through live vocal and instrumental performances.',
+          'From Asia to Europe, from historical tragedies to contemporary reflections, music from diverse cultural traditions will come together on one stage. While languages, histories, and national identities may differ, our shared longing for love, family, dignity, and peace remains universal.',
         ],
+        overviewSections: [
+          {
+            heading: 'A Musical Journey Across Cultures and History',
+            paragraphs: [
+              'Featuring musicians and performers from diverse cultural backgrounds, Voices Beyond Borders presents a rich and compelling program of solo performances, duets, ensemble works, choral music, and instrumental compositions.',
+              'Inspired by films and stories from around the world, the selected works explore the experiences of children, families, civilians, soldiers, and survivors whose lives have been shaped by war and conflict.',
+              'Rather than presenting war through the lens of military triumph or national rivalry, the concert turns its attention to the individuals whose lives and stories are so often overshadowed by history.',
+              'Through music, audiences are invited to experience the emotions of separation and loss, courage and resilience, compassion and hope — and to discover the humanity that connects us beyond cultural and national boundaries.',
+            ],
+          },
+          {
+            heading: 'Remembering History. Celebrating Humanity. Connecting the World.',
+            paragraphs: [
+              'Voices Beyond Borders is more than a concert. It is a celebration of cultural dialogue, artistic collaboration, and the extraordinary ability of music to connect people across languages, generations, and borders.',
+              "By bringing film music to life through powerful performances, the concert creates a shared space for reflection on historical memory, the human cost of war, and the enduring importance of peace in today's world.",
+            ],
+            callouts: [
+              'We remember not the glory of war, but the value of human life.',
+              'We seek not victory over others, but understanding between people.',
+              'We believe that while borders may divide nations, music has the power to unite humanity.',
+            ],
+            closingParagraphs: [
+              'On 24 October 2026, join us in Adelaide for an unforgettable evening of music, remembrance, and cultural connection.',
+              'Together, let us honour the past, celebrate our shared humanity, and give voice to the hope for a world beyond conflict.',
+            ],
+            footer: 'Presented by South Australian International Musicians Association (SAIMA)',
+          },
+        ],
+        featuredArtists: {
+          eyebrow: 'Featured Artists',
+          title: 'Meet the Artists',
+          subtitle:
+            'Acclaimed vocalists and instrumentalists bringing stories of memory, peace, and humanity to the stage.',
+          list: [
+            {
+              name: 'Phillip Yufu Cheng',
+              role: 'Vocalist',
+              image: '/events/20261024/phillip.jpg',
+              bio: [
+                'Born in 2014, Phillip Yufu Cheng began his vocal training at age 6 from Elsa Tian, and currently studies with Jessica Dean.',
+                "Since age of 7, he was a chorister and soloist of St Peter's Cathedral. He's won numerous top awards in 2024/2025 Adelaide Eisteddfod vocal, 2025 the Grace Barbara Turner Awards for Excellence in Performance (Vocal), Winner of 5mbs Young Virtuoso Award (YVA) vocal section, and he is the youngest performer and winner in the history of YVA.",
+                'He performed with State Opera South Australia in 2026 Hansel and Gretel as child chorus, 2025 Magic Flute as 1st spirit, performed with ASO in 2023 Christmas Unwrapped as soloist singing "Walking in the Air”.',
+              ],
+            },
+            {
+              name: 'Alexandra Shepherd',
+              role: 'Classical Guitarist',
+              image: '/events/20261024/alexandra.jpeg',
+              bio: [
+                'Alexandra Shepherd is an Australian classical guitarist, and has performed both nationally and internationally. In 2017 she travelled to South Korea with the Elder Conservatorium Classical Guitar Ensemble where she performed at the 2017 Korean International Guitar Festival as an ensemble member and a soloist. In 2019 Alex performed at multiple venues across Ontario, Canada. Alex has also performed at the 2014, 2016, and 2018 Adelaide International Guitar Festival as a part of the Adelaide Guitar Festival orchestra and the Elder Conservatorium Guitar Ensemble.',
+                'In 2016 Alex completed her Bachelor of Music in Classical Performance at the Elder Conservatorium of Music and completed her Honours degree the following year. In 2021 she completed her Master of Philosophy at the Elder Conservatorium, focusing on extended techniques and descriptive score annotations in contemporary classical guitar compositions. Alex studied under Dr Oliver Fartach-Naini from 2013-2021, and has also received masterclasses from many prominent classical guitarists including Richard Charlton, Raffael Agostino. Timothy Kain, Paul Svoboda, Noyoung Lee, Yongtae Kim, and Martha Masters.',
+                'Alex is currently collaborating with British composer, Matthew Sear. Due to their shared love for the music of Ozzy Osbourne and Black Sabbath, Matthew is in the process of writing a sonata for Alex titled ‘Homage to Black Sabbath’. This will be a part of a large concert programme featuring all of Matthew’s solo guitar repertoire, including premieres of Black Sabbath and Ozzy-inspired classical guitar repertoire.',
+              ],
+            },
+            {
+              name: 'Yueqi Li (Queenie)',
+              role: 'Classical Guitarist & Educator',
+              image: '/events/20261024/yueqi.jpeg',
+              bio: [
+                'Yueqi Li (Queenie) holds a Bachelor of Music (Classical Performance) and a Master of Performance and Pedagogy from the Elder Conservatorium of Music, where she studied under Dr. Oliver Fartach-Naini following earlier training in China with prominent classical guitarists Bozhong Du and Danny Yeh. Throughout her studies, she received multiple academic scholarships and competition prizes. Queenie also had the privilege of participating in masterclasses with internationally acclaimed guitar virtuosos, including Song-ou Lee (South Korea), Raffaele Agostino (Australia), Leonardo Bravo (Argentina), Ken Murray (Australia), Richard Charlton (Australia), José María Gallardo del Rey (Spain), Kyuhee Park (South Korea), and Andrea González Caballero (Spain). Her performances on international stages, including the second and third South Korea International Guitar Festival, the Adelaide Guitar Festival with the Conservatorium Guitar Ensemble, and the Guitarissimo and Guitarathon concert series, collectively have demonstrated her profound connection to the music and her ability to interpret its narratives through expressive playing.',
+                'Alongside her performance career, Queenie’s primary professional focus has been classical guitar education. For nearly ten years, Queenie’s dedicated teaching style has found success with students age from 7 to 71, working with beginners through to advanced learners. Her teaching philosophy centres on a holistic approach that emphasises healthy technical development, anatomical awareness, and deep musical understanding. She aims to nurture each student with confidence, artistic expression, and a lifelong appreciation for music. Many of her students take the student leader role in their school ensembles or bands, and all who participated in the Australian Music Examination Board (AMEB) exams received A or A+ results. Serval of her students have also won the first prize and other awards at the Adelaide Eisteddfod Competition.',
+                'In recent years, Queenie founded and has directed the ERA (Exceptional Rising Artists) concert series to expand performance opportunities for her students. The series provides young musicians with valuable formal stage experience while fostering a supportive community for emerging artists.',
+              ],
+            },
+          ],
+        },
         posterImage: {
           label: 'Concert Poster',
-          url: eventAssetUrl('20261024', 'concert-poster.jpg')
-        }
+          url: '/events/20261024/concert-poster.png',
+        },
       },
       {
         id: '20250413',
@@ -684,24 +746,85 @@ export const eventsContent: Localized<EventsContent> = {
         href: eventHref('20261024'),
         startDate: '2026-10-24',
         title: '跨越国界的声音',
-        subtitle: '一场关于和平、记忆与人类尊严的反战电影音乐会',
+        subtitle: '一场关于和平、记忆与人性的国际音乐会',
         date: '2026年10月24日',
-        location: 'Elder Hall',
+        location: '南澳大利亚阿德莱德 · Elder Hall',
+        leadQuote:
+          '当音乐跨越国界、历史借由旋律发声，我们相聚于此——铭记过往，致敬人性，共同展望一个更加和平的世界。',
         paragraphs: [
-          '南澳国际音乐协会正在筹备 《跨越国界的声音》。这是一场以电影音乐现场演奏为核心的反战音乐会，旨在通过音乐探索和平、记忆、人类尊严，以及战争与冲突对普通生命造成的代价。',
-          '本场音乐会通过来自不同文化与历史背景的电影音乐，为观众创造一个共同聆听、记忆与反思的空间。它不以军事历史、政治立场或国家叙事为中心，而是将人的生命经验、情感记忆与对和平的渴望放在核心位置。',
-          '本场音乐会的策展原则是：',
-          '不是庆祝，而是纪念。',
-          '不是胜利，而是反思。',
-          '不是国家叙事，而是人的生命经验。',
-          '通过现场演奏，观众熟悉的电影音乐不再只是电影配乐，而成为一种表达那些语言难以承载之物的方式：恐惧、失去、坚韧、同情，以及对远离暴力世界的希望。',
-          '拟定节目将汇集来自世界不同地区、不同故事背景的电影音乐。这些作品关注儿童、平民、艺术家、家庭、幸存者，以及在战争与冲突中受到影响的普通人。',
-          '本项目将以室内音乐会形式呈现，以独奏与小型重奏为主，面向普通公众、青年学生、文化社群，以及关注音乐、电影、和平、记忆与跨文化理解的观众。'
+          '由南澳国际音乐家协会（SAIMA）主办，《跨越国界的声音》（Voices Beyond Borders）是一场致力于和平、纪念、人类尊严以及战争与冲突中人类共同经历的大型多元文化音乐会。',
+          '音乐会汇集来自不同国家、文化与历史背景的经典电影音乐，通过现场声乐与器乐演绎，倾听冲突背后鲜活的人性故事。',
+          '从亚洲到欧洲，从历史悲剧到当代反思，多元文化传统的音乐将在同一舞台交汇。尽管语言、历史与民族身份各不相同，但我们对爱、家庭、尊严与和平的向往始终相通。',
         ],
+        overviewSections: [
+          {
+            heading: '跨越文化与历史的音乐旅程',
+            paragraphs: [
+              '《跨越国界的声音》汇聚来自不同文化背景的音乐家与表演者，呈现涵盖独唱、重唱、室内乐重奏、合唱及器乐作品的丰富曲目。',
+              '精选作品灵感源自世界各地的电影与真实故事，关注那些生命被战争与冲突深刻改变的儿童、家庭、平民、士兵与幸存者。',
+              '音乐会不以军事胜利或国家对抗的视角呈现战争，而是将目光投向那些往往被宏大历史掩盖的个体生命与故事。',
+              '通过音乐，观众将共同体会分离与失去、勇气与坚韧、悲悯与希望——并发现那种超越文化与国界、将我们彼此相连的人性光辉。',
+            ],
+          },
+          {
+            heading: '铭记历史 · 礼赞人性 · 连接世界',
+            paragraphs: [
+              '《跨越国界的声音》不仅是一场音乐会，更是一场文化对话与艺术合作的庆典，展现音乐跨越语言、世代与国界连接人心的非凡力量。',
+              '通过动人的现场演绎赋予电影音乐新的生命，音乐会为公众创造一个共同反思历史记忆、战争代价以及和平在当今世界持久价值的公共空间。',
+            ],
+            callouts: [
+              '我们铭记的不是战争的荣耀，而是生命的价值。',
+              '我们追求的不是胜过他人，而是人与人之间的理解。',
+              '我们相信，国界或许会分隔国家，但音乐拥有团结人类的力量。',
+            ],
+            closingParagraphs: [
+              '2026年10月24日，诚邀您相聚阿德莱德，共度一个充满音乐、纪念与文化连接的难忘夜晚。',
+              '让我们携手致敬过往，礼赞共同的人性，为超越冲突的和平世界发出声音。',
+            ],
+            footer: '南澳国际音乐家协会（SAIMA）荣誉呈献',
+          },
+        ],
+        featuredArtists: {
+          eyebrow: '特邀艺术家',
+          title: '参演艺术家介绍',
+          subtitle: '杰出声乐与器乐艺术家联袂登台，用音乐传递记忆、和平与人性光辉。',
+          list: [
+            {
+              name: 'Phillip Yufu Cheng',
+              role: '青年声乐歌者',
+              image: '/events/20261024/phillip.jpg',
+              bio: [
+                'Phillip Yufu Cheng 出生于2014年，6岁起师从田依因（Elsa Tian）老师开启声乐训练，目前师从 Jessica Dean。',
+                '自7岁起，他担任圣彼得大教堂合唱团（St Peter’s Cathedral Choir）团员及独唱。他在2024/2025年阿德莱德音乐节（Adelaide Eisteddfod）声乐比赛中屡获最高奖项，并荣获2025年 Grace Barbara Turner 杰出声乐表演奖，以及 5MBS 青年大师奖（Young Virtuoso Award, YVA）声乐组冠军——他也是 YVA 历史上最年轻的参赛者与获奖者。',
+                '他曾参演南澳州歌剧院（State Opera South Australia）2026年《汉泽尔与格蕾太尔》儿童合唱团，并在2025年莫扎特歌剧《魔笛》中饰演第一仙童（1st Spirit）；2023年与阿德莱德交响乐团（ASO）合作，在《Christmas Unwrapped》音乐会中担任独唱，献唱《Walking in the Air》。',
+              ],
+            },
+            {
+              name: 'Alexandra Shepherd',
+              role: '古典吉他演奏家',
+              image: '/events/20261024/alexandra.jpeg',
+              bio: [
+                'Alexandra Shepherd 是澳大利亚知名古典吉他演奏家，演出足迹遍布澳洲及国际舞台。2017年，她随阿德莱德大学埃尔德音乐学院（Elder Conservatorium）古典吉他合奏团赴韩国参加2017韩国国际吉他艺术节，担任合奏团成员及独奏。2019年，Alex 在加拿大安大略省多个音乐厅举办演出。此外，她还曾于2014、2016及2018年作为阿德莱德吉他节乐团与埃尔德音乐学院吉他合奏团成员参演阿德莱德国际吉他节。',
+                '2016年，Alex 在埃尔德音乐学院获得古典表演音乐学士学位，并于次年获得荣誉学士学位。2021年，她在埃尔德音乐学院完成哲学硕士（Master of Philosophy）学位，专注于当代古典吉他作品中的扩展技法与描述性乐谱注释研究。2013年至2021年间，Alex 师从 Oliver Fartach-Naini 博士，并曾受教于 Richard Charlton、Raffael Agostino、Timothy Kain、Paul Svoboda、Noyoung Lee、Yongtae Kim 及 Martha Masters 等多位国际著名古典吉他大师的大师班。',
+                'Alex 目前正与英国作曲家 Matthew Sear 展开合作。源于双方对 Ozzy Osbourne 与 Black Sabbath 音乐的共同热爱，Matthew 正在为 Alex 创作奏鸣曲《向黑色安息日致敬》（Homage to Black Sabbath），并将在包含多首受其启发的古典吉他新作首演专场音乐会中呈现。',
+              ],
+            },
+            {
+              name: 'Yueqi Li (Queenie)',
+              role: '古典吉他演奏家、教育家',
+              image: '/events/20261024/yueqi.jpeg',
+              bio: [
+                '李玥琪（Queenie）拥有阿德莱德大学埃尔德音乐学院古典表演学士学位及表演与教学法硕士学位，师从 Oliver Fartach-Naini 博士；赴澳前曾在中国师从著名古典吉他演奏家杜伯仲与叶登民（Danny Yeh）。求学期间，她多次获得学术奖学金与比赛奖项，并曾参加李成雨（韩国）、Raffaele Agostino（澳大利亚）、Leonardo Bravo（阿根廷）、Ken Murray（澳大利亚）、Richard Charlton（澳大利亚）、José María Gallardo del Rey（西班牙）、朴葵姬 Kyuhee Park（韩国）及 Andrea González Caballero（西班牙）等国际吉他大师班。她曾登台第二届及第三届韩国国际吉他艺术节、阿德莱德国际吉他节以及 Guitarissimo 与 Guitarathon 系列音乐会，以细腻而富有叙事感染力的演奏广受赞誉。',
+                '除舞台演奏外，Queenie 深耕古典吉他教育近十年，学生年龄涵盖7岁至71岁，从初学者到高阶演奏者皆硕果累累。她倡导整体性的教学理念，注重科学的演奏技术发展、身体机能感知与深刻的音乐理解，致力于培养每位学生的自信心、艺术表现力与终身音乐热忱。她的众多学生在学校乐团中担任首席或声部领奏，所有参加澳大利亚音乐考试局（AMEB）考级的学生均取得 A 或 A+ 的优异成绩，多位学生更在阿德莱德音乐节（Adelaide Eisteddfod）比赛中斩获一等奖及其他重要奖项。',
+                '近年来，Queenie 创立并执导了 ERA（Exceptional Rising Artists）新星音乐会系列，为青少年音乐学子提供宝贵的正式舞台演出机会，并构建起支持青年艺术人才成长的温暖社群。',
+              ],
+            },
+          ],
+        },
         posterImage: {
           label: '音乐会海报',
-          url: eventAssetUrl('20261024', 'concert-poster.jpg')
-        }
+          url: '/events/20261024/concert-poster.png',
+        },
       },
       {
         id: '20250413',

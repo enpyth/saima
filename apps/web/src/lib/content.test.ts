@@ -265,4 +265,62 @@ describe('public site content', () => {
     expect(aboutContent.en.sections[2]?.title).toBe('Our Artists, Educators and Community Members')
     expect(JSON.stringify(aboutContent.en)).not.toContain('Meet the people behind the music')
   })
+
+  it('wires 20261024 Voices Beyond Borders intro text, poster, and featured artists with local images', () => {
+    const concertEn = findEvent('en', '20261024')
+    const concertZh = findEvent('zh', '20261024')
+
+    expect(concertEn?.title).toBe('Voices Beyond Borders')
+    expect(concertEn?.subtitle).toBe('An International Concert of Peace, Memory and Humanity')
+    expect(concertEn?.posterImage).toEqual({
+      label: 'Concert Poster',
+      url: '/events/20261024/concert-poster.png',
+    })
+    expect(concertZh?.posterImage).toEqual({
+      label: '音乐会海报',
+      url: '/events/20261024/concert-poster.png',
+    })
+
+    const enOverviewText = JSON.stringify({
+      leadQuote: concertEn?.leadQuote,
+      paragraphs: concertEn?.paragraphs,
+      overviewSections: concertEn?.overviewSections,
+    })
+    expect(enOverviewText).toContain('When music transcends borders and history finds its voice through melody')
+    expect(enOverviewText).toContain('A Musical Journey Across Cultures and History')
+    expect(enOverviewText).toContain('Remembering History. Celebrating Humanity. Connecting the World.')
+    expect(enOverviewText).toContain('We remember not the glory of war, but the value of human life.')
+    expect(enOverviewText).toContain('We seek not victory over others, but understanding between people.')
+    expect(enOverviewText).toContain('We believe that while borders may divide nations, music has the power to unite humanity.')
+    expect(enOverviewText).toContain('Presented by South Australian International Musicians Association (SAIMA)')
+
+    expect(concertEn?.featuredArtists?.list.map((artist) => artist.name)).toEqual([
+      'Phillip Yufu Cheng',
+      'Alexandra Shepherd',
+      'Yueqi Li (Queenie)',
+    ])
+    expect(concertEn?.featuredArtists?.list.map((artist) => artist.image)).toEqual([
+      '/events/20261024/phillip.jpg',
+      '/events/20261024/alexandra.jpeg',
+      '/events/20261024/yueqi.jpeg',
+    ])
+    expect(concertEn?.featuredArtists?.list[0]?.bio.join(' ')).toContain('youngest performer and winner in the history of YVA')
+    expect(concertEn?.featuredArtists?.list[1]?.bio.join(' ')).toContain('Homage to Black Sabbath')
+    expect(concertEn?.featuredArtists?.list[2]?.bio.join(' ')).toContain('ERA (Exceptional Rising Artists)')
+  })
+
+  it('provides stacked Parent-Child Choir and Children’s Choir sections with anchor nav and choir images', () => {
+    for (const language of ['en', 'zh'] as const) {
+      const choir = choirContent[language]
+      expect(choir.sectionsNav).toHaveLength(2)
+      expect(choir.sectionsNav?.map((item) => item.id)).toEqual(['parent-child-choir', 'childrens-choir'])
+      expect(choir.childrensChoir).toBeTruthy()
+      expect(choir.childrensChoir?.gallery.map((image) => image.url)).toEqual([
+        '/images/saima/choir.jpg',
+        '/images/saima/choir1.jpg',
+        '/images/saima/choir2.jpeg',
+      ])
+    }
+    expect(choirContent.en.childrensChoir?.title).toContain('Children’s Choir')
+  })
 })

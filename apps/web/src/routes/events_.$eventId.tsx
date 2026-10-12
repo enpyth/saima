@@ -94,6 +94,7 @@ function EventPage() {
       <EventHeader event={event} labels={content.labels} statusLabel={statusLabel} />
       <EventOverview event={event} labels={content.labels} posterImage={event.posterImage} />
       {ticketSale?.isActive ? <TicketSaleModule eventPublicId={event.id} /> : null}
+      {event.featuredArtists ? <EventFeaturedArtistsSection featuredArtists={event.featuredArtists} /> : null}
       {event.performers ? <EventPerformersSection performers={event.performers} /> : null}
       {event.programImage || event.programSchedule ? (
         <EventProgramSection
@@ -159,13 +160,76 @@ function EventOverview({ event, labels, posterImage }: { event: EventArticle; la
       )}
       <article className="event-row rich-event-row">
         <time>{event.date}</time>
-        <div>
+        <div className="event-overview-body">
+          {event.leadQuote ? <p className="event-lead-quote">{event.leadQuote}</p> : null}
           {event.paragraphs?.map((paragraph) => (
             <p key={paragraph}>{paragraph}</p>
+          ))}
+          {event.overviewSections?.map((section, index) => (
+            <div className="event-overview-subsection" key={section.heading ?? index}>
+              {section.heading ? <h3>{section.heading}</h3> : null}
+              {section.paragraphs?.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
+              {section.callouts ? (
+                <div className="event-overview-callouts">
+                  {section.callouts.map((callout) => (
+                    <p className="event-overview-callout" key={callout}>
+                      <strong>{callout}</strong>
+                    </p>
+                  ))}
+                </div>
+              ) : null}
+              {section.closingParagraphs?.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
+              {section.footer ? (
+                <p className="event-overview-footer">
+                  <strong>{section.footer}</strong>
+                </p>
+              ) : null}
+            </div>
           ))}
           {event.highlights ? <EventHighlights highlights={event.highlights} label={labels.highlights} /> : null}
         </div>
       </article>
+    </section>
+  )
+}
+
+function EventFeaturedArtistsSection({
+  featuredArtists,
+}: {
+  featuredArtists: NonNullable<EventArticle['featuredArtists']>
+}) {
+  return (
+    <section className="public-section">
+      <div className="section-heading">
+        <span className="eyebrow">{featuredArtists.eyebrow}</span>
+        <h2>{featuredArtists.title}</h2>
+        {featuredArtists.subtitle ? <p className="performer-section-subtitle">{featuredArtists.subtitle}</p> : null}
+      </div>
+
+      <div className="featured-artists-list">
+        {featuredArtists.list.map((artist) => (
+          <article className="featured-artist-card" key={artist.name}>
+            <div className="featured-artist-photo">
+              <img src={artist.image} alt={artist.name} loading="lazy" />
+            </div>
+            <div className="featured-artist-content">
+              <div className="featured-artist-header">
+                {artist.role ? <span className="eyebrow">{artist.role}</span> : null}
+                <h3>{artist.name}</h3>
+              </div>
+              <div className="featured-artist-bio">
+                {artist.bio.map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
+                ))}
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
     </section>
   )
 }
