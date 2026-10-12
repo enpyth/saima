@@ -75,7 +75,7 @@ describe('ticket sales config', () => {
     })
   })
 
-  it('loads 20261024 ticket options from the web config file', () => {
+  it('loads 20261024 ticket options from the web config file without early bird', () => {
     const sale = getTicketSaleConfig('20261024')
     const ticketOptions = getTicketSaleOptions('20261024')
 
@@ -90,19 +90,13 @@ describe('ticket sales config', () => {
       'general',
       'concession',
       'child',
-      'early-bird',
     ])
-    expect(ticketOptions.map((ticketOption) => ticketOption.priceCents)).toEqual([10000, 3800, 2800, 1800, 3000])
+    expect(ticketOptions.map((ticketOption) => ticketOption.priceCents)).toEqual([10000, 3800, 2800, 1800])
     expect(ticketOptions.find((ticketOption) => ticketOption.slug === 'family')).toMatchObject({
       name: 'Family',
       capacityUnitsPerTicket: 4,
     })
-    expect(ticketOptions.find((ticketOption) => ticketOption.slug === 'early-bird')).toMatchObject({
-      name: 'Early Bird',
-      description: 'Available until 20 September 2026.',
-      capacityUnitsPerTicket: 1,
-      saleEndsAt: '2026-09-20T23:59:59+09:30',
-    })
+    expect(ticketOptions.find((ticketOption) => ticketOption.slug === 'early-bird')).toBeUndefined()
   })
 
   it('returns empty options for events without a ticket config', () => {

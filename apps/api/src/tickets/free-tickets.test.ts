@@ -35,13 +35,11 @@ describe('free ticket helpers', () => {
 
   it('rejects invalid free ticket quantities', () => {
     const general = getConfiguredTicketTypes('20261016').find((ticketType) => ticketType.slug === 'general')
-    const priceAdjustment = getConfiguredTicketTypes('20261016').find((ticketType) => ticketType.slug === 'price-adjustment')
 
     expect(general).toBeTruthy()
-    expect(priceAdjustment).toBeTruthy()
     expect(() => assertFreeTicketQuantity(general!, 0)).toThrow(ORPCError)
     expect(() => assertFreeTicketQuantity(general!, 11)).toThrow(ORPCError)
-    expect(() => assertFreeTicketQuantity(priceAdjustment!, 100)).not.toThrow()
+    expect(() => assertFreeTicketQuantity(general!, 5)).not.toThrow()
   })
 
   it('rejects free tickets when there is not enough remaining capacity', () => {

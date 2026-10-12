@@ -73,15 +73,6 @@
         "priceCents": 1800,
         "capacityUnitsPerTicket": 1,
         "sortOrder": 40
-      },
-      {
-        "slug": "early-bird",
-        "name": "Early Bird",
-        "description": "Available until 20 September 2026.",
-        "priceCents": 3000,
-        "capacityUnitsPerTicket": 1,
-        "sortOrder": 50,
-        "saleEndsAt": "2026-09-20T23:59:59+09:30"
       }
     ]
   }
